@@ -27,6 +27,13 @@ from posts.models import Post
 from django.utils import timezone
 
 
+
+
+def home(request):
+	return render(request, "home.html")
+
+	
+
 def profile_create(request, id_user):
 	print(id_user)
 	if not request.user.is_staff or not request.user.is_superuser:

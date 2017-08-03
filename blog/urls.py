@@ -29,8 +29,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^comments/', include("comments.urls", namespace='comments')),
 
-    
-    url(r'^/', register_view, name='register'),
+    url(r'^/register', register_view, name='register'),
     url(r'^login/', login_view, name='login'),
     url(r'^logout/', logout_view, name='logout'),
     url(r'^', include("profiles.urls", namespace='profile')),

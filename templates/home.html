@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+
+
+<div class='col-sm-30 col-sm-offset-99'>
+    <!-- CONTENIDO. BLOG VISTA -->
+    <!-- Page Content -->
+                    <h3 class="page-header">
+                    Pagina de inicio
+                    <br>
+<img src='{% static "assets/img/preve.png" %}' height="200" width="200" class='img-responsive' />
+                </h3>
+                <br>
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class='col-sm-30 col-sm-offset-99'>
+                    <h3 class="page-header">
+                    Graficas semanales
+                    <br>
+			<img src='{% static "assets/img/graf4.jpg" %}' height="300px" width="400px" class='img-responsive' />
+			<img src='{% static "assets/img/graf6.jpg" %}' class='img-responsive' />
+			<img src='{% static "assets/img/graf3.jpg" %}' height="400" width="400" class='img-responsive' />
+
+                <h4>
+                </h3>
+                <hr>  
+
+                <hr>
+
+                
+                {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+
+
+                {% endif %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+
+
+
+
+
+{% endblock content %}
