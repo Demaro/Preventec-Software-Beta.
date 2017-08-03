@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+
+{% load urlify %}
+{% load crispy_forms_tags %}
+
+
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+
+
+ {% block post_detail_link %}
+  <li><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a></li>
+  {% endblock %}
+
+
+
+{% block content %}
+<div class='col-sm-10 col-sm-offset-20'>
+<h1>{{ title }} <small>{% if instance.draft %}<span style='color:red;'>Borrador</span> {% endif %}</h1><h5>{{ instance.publish }}</h5>
+    {% if instance.image %}
+    <img src='{{ instance.image.url }}' class='img-responsive' />
+    {% endif %}
+
+
+<!-- {% if instance.read_time|time:"i" <= "01" %} < 1 minute {% else %}{{ instance.read_time|time:"i" }} minutes {% endif %} -->
+
+<h6>
+<p>Tiempo de lectura: {% if instance.read_time <= 1 %} 1 Minuto {% else %}{{ instance.read_time }} minutos {% endif %}</p>
+por:&nbsp;{{ instance.user }}
+{% if instance.user.get_full_name %}
+<p>Author: {{ instance.user.get_full_name }}</p>
+{% endif %}
+</h6>
+
+
+
+<p><div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+<hr/>
+</p>
+
+
+
+<!-- <p>
+<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+Facebook
+</a>
+
+<a href="https://twitter.com/home?status={{ instance.content|truncatechars:80|urlify }}%20{{ request.build_absolute_uri }}">
+Twitter
+</a>
+
+<a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
+
+
+<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ instance.title }}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">
+Linkedin
+</a>
+
+<a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ share_string }}.">Reddit</a>
+
+</p> -->
+<div class='row'>
+<div class='col-sm-50 '>
+
+   <div class='post-detail-item'>{{ instance.get_markdown }}</div>
+
+    <hr/>
+<h6>
+{% if request.user.is_authenticated %}
+{% if instance.user == request.user %}
+<a href='{% url "posts:update" instance.slug %}'> Editar</a> |&nbsp;<a id="url" name="{{instance.slug}}"  href='#' class='btn-ExitSystem' value='{{ instance.slug }}'>Borrar</a></h6>
+{% endif %}
+{% endif %}
+    <div>
+
+        <p class='lead'>Comentarios</p>
+        {% if request.user.is_authenticated %}
+        <form method="POST" action="."> {% csrf_token %}
+            {{ comment_form|crispy }}
+            <input type='submit' value='Comentar' class='btn btn-primary'>
+        </form>
+        {% else %}
+        <p>Debes iniciar sesión para comentar!</p>
+        {% endif %}
+        <hr/>
+        
+        {% for comment in comments %}
+
+        <blockquote>
+          <h6><p>{{ comment.content }}</p></h6>
+          <footer>via: {{ comment.user }} |&nbsp;hace:&nbsp; {{ comment.timestamp|timesince }}  | {% if comment.children.count > 0 %}{{ comment.children.count }} Comentario{% if comment.children.count > 1 %}s{% endif %} | {% endif %} <a class='comment-reply-btn' href='#'>Respuesta</a> | <a class='' href='{{ comment.get_absolute_url }}'>Hilo</a></footer>
+          <div class='comment-reply'>
+              {% for child_comment in comment.children %}
+                <blockquote>
+                <p>{{ child_comment.content }}</p>
+                <footer>via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} hace</footer>
+                </blockquote>
+             {% endfor %}
+             {% if request.user.is_authenticated %}
+            <form method="POST" action="."> {% csrf_token %}
+                {{ comment_form|crispy }}
+                <input type='hidden' name='parent_id' value='{{ comment.id }}'>
+                <input type='submit' value='Responder' class='btn btn-default'>
+            </form>
+            {% else %}
+        <p>Debes iniciar sesión para comentar! </p>
+        {% endif %}
+        </div>
+
+        </blockquote>
+        <hr/>
+        {% endfor %}
+    </div>
+
+
+
+
+</div>
+</div>
+</div>
+
+
+{% endblock content %}
+
+
+{% block footer %}
+<!-- Latest compiled and minified JavaScript -->
+        <!-- Footer -->   
+        <footer class="footer-MaterialDark">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Powered by Demaro!®</h5>
+                        <p class="grey-text text-lighten-4">
+                            <br>
+                        </p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Contacto:</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="">demaromail@gmail.com</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://github.com/Demaro">Repositorio</a></li>
+                            <li><a class="grey-text text-lighten-3" href="http://materializecss.com/">Material frontend</a></li>
+                            <li><a class="grey-text text-lighten-3" href="http://manos.malihu.gr/jquery-custom-content-scroller/">jQuery custom content scroller</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="NavLateralDivider"></div>
+            <div class="footer-copyright">
+                <div class="container center-align">
+                    © 2017 David Esteban Martinez Rojas
+                </div>
+            </div>
+        </footer>
+    </section>
+
+{% endblock footer %}

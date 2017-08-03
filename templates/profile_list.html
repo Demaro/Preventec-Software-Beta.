@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+
+<form method='GET' action='' class='row'>
+        <div class='col-sm-20'>
+            <div class='input-group'>
+                <input class='form-control' type='text' name='q' placeholder='Buscar publicacion' value='{{ request.GET.q }}'/>
+                <span class='input-group-btn'>
+                    <!-- <input class='btn btn-default' type='submit' value='Search' /> -->
+                    <button class='btn btn-primary' type='submit'>Buscar <i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+</form>
+
+
+
+
+<div class='col-sm-30 col-sm-offset-99'>
+    <!-- CONTENIDO. BLOG VISTA -->
+    <!-- Page Content -->
+                    <h1 class="page-header">
+                    Perfiles de usuarios
+                </h1>
+    {% for obj in object_list %}
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-99">
+
+
+                <h4>
+                <a href='{{ obj.get_absolute_url }}'></a>
+                </h4>
+                <p><span class="glyphicon glyphicon-time"></span>&nbsp;Inicio de cargo:&nbsp;{{ obj.inicio_cargo}}</p>
+                <p><span class="glyphicon glyphicon-user"></span>&nbsp;Usuario:&nbsp;<a href="perfil.html">{{ obj.user.username }}</a></p>
+                <hr>
+                {% if obj.avatar %}
+                <img src='{{ obj.avatar.url }}' class='img-responsive' />
+                {% endif %}
+                <hr>
+                {% if obj.user.get_full_name %}<p>Credenciales:</p>
+                Rut:&nbsp;<b>{{ obj.rut }}</b></p>
+                Nombre:&nbsp;<b>{{ obj.user.get_full_name }}</b></p>{% endif %}
+                Cargo:&nbsp;<b>{{ obj.cargo }}</b></p>
+                Especialidad:&nbsp;<b>{{ obj.especialidad }}</b></p>
+                <p><span class="glyphicon glyphicon-time"></span>&nbsp;Ultima actualizacion:&nbsp;{{ obj.ultimateupdate}}
+                <hr>
+
+                
+                {% if request.user.is_authenticated %}
+                {% if obj.user == request.user %}
+
+                <a href='{# url "posts:update" obj.slug %}'> Editar</a> |&nbsp;<a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'>Borrar</a>
+
+                {% endif %}
+                {% endif %}
+
+                <a class="btn btn-primary" href="{{ obj.get_absolute_url }}">Ver mas<span class="glyphicon glyphicon-chevron-right"></span></a><hr>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+</body>
+
+
+
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Pagina {{ object_list.number }} de {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Siguiente</a>
+        {% endif %}
+    </span>
+</div>
+
+
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+<!-- Latest compiled and minified JavaScript -->
+        <!-- Footer -->   
+        <footer class="footer-MaterialDark">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Powered by Demaro!®</h5>
+                        <p class="grey-text text-lighten-4">
+
+                            <br>
+                        </p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Contacto:</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="">demaromail@gmail.com</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://github.com/Demaro">Repositorio</a></li>
+                            <li><a class="grey-text text-lighten-3" href="http://materializecss.com/">Material frontend</a></li>
+                            <li><a class="grey-text text-lighten-3" href="http://manos.malihu.gr/jquery-custom-content-scroller/">jQuery custom content scroller</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="NavLateralDivider"></div>
+            <div class="footer-copyright">
+                <div class="container center-align">
+                    © 2017 David Esteban Martinez Rojas
+                </div>
+            </div>
+        </footer>
+    </section>
+
+{% endblock footer %}
