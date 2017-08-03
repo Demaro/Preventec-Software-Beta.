@@ -54,11 +54,11 @@ def profile_create(request, id_user):
 def profile_list(request):
 	today = timezone.now().date()
 	if not request.user.is_authenticated():
-			queryset_list = Profile.objects.all().order_by("-timestamp")
+			queryset_list = Profile.objects.all().order_by("-ultimateupdate")
 	if request.user.is_active:
-			queryset_list = Profile.objects.filter(user=request.user).order_by("-timestamp")
+			queryset_list = Profile.objects.filter(user=request.user).order_by("-ultimateupdate")
 	if request.user.is_staff or request.user.is_superuser:
-			queryset_list = Profile.objects.all().order_by("-timestamp")
+			queryset_list = Profile.objects.all().order_by("-ultimateupdate")
 	
 	query = request.GET.get("q")
 	if query:
