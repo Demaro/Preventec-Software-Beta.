@@ -47,7 +47,7 @@
         <div class="NavLateral-FontMenu full-width ShowHideMenu"></div>
         <div class="NavLateral-content full-width">
             <header class="NavLateral-title full-width center-align">
-               Prototipo 1 <i class="zmdi zmdi-close NavLateral-title-btn ShowHideMenu"></i>
+               Preventec <i class="zmdi zmdi-close NavLateral-title-btn ShowHideMenu"></i>
             </header>
             <figure class="full-width NavLateral-logo">
                 <img src='{% static "assets/img/logo.png" %}' alt="material-logo" class="responsive-img center-box">
@@ -60,7 +60,7 @@
                     </li>
                     <li class="NavLateralDivider"></li>
                     <li>
-                        <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="zmdi zmdi-language-css3 zmdi-hc-fw"></i> <i class="zmdi zmdi-chevron-down NavLateral-CaretDown"></i> Funciones</a>
+                        <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="zmdi zmdi-widgets zmdi-hc-fw"></i> <i class="zmdi zmdi-chevron-down NavLateral-CaretDown"></i> Funciones</a>
                         <ul class="full-width">
                         {% if request.user.is_superuser %}
                             <li><a href='{% url "register" %}' class="waves-effect waves-light">Crear usuario y perfil</a></li>
@@ -69,6 +69,7 @@
                             <li><a href="table.html" class="waves-effect waves-light">Table</a></li>
                         </ul>
                     </li>
+                    <!--
                     <li class="NavLateralDivider"></li>
                     <li>
                         <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="zmdi zmdi-widgets zmdi-hc-fw"></i> <i class="zmdi zmdi-chevron-down NavLateral-CaretDown"></i> Components</a>
@@ -86,6 +87,7 @@
                         </ul>
                     </li>   
                 </ul>
+                -->
             </div>  
         </div>  
     </section>
@@ -111,7 +113,7 @@
                 <li>
                     <a href="#" class="tooltipped waves-effect-light btn-Notification" data-position="bottom" data-delay="50" data-tooltip="Notifications">
                         <i class="zmdi zmdi-notifications"></i>
-                <li><a href='/create' class="tooltipped waves-effect" data-position="bottom" data-delay="50" data-tooltip="Publicar"><i class="glyphicon glyphicon-flag"></i></a></li>
+               <!---<li><a href='/create' class="tooltipped waves-effect" data-position="bottom" data-delay="50" data-tooltip="Publicar"><i class="glyphicon glyphicon-flag"></i></a></li>-->
                         <span class="ContentPage-Nav-indicator bg-danger">2</span>
                     {% endif %}
                     </a>

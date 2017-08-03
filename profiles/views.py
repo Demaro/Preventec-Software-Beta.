@@ -88,3 +88,16 @@ def profile_list(request):
 		"today": today,
 	}
 	return render(request, "profile_list.html", context)
+
+
+"""
+
+def profile_detail(request, id_perfil):
+		if not request.user.is_authenticated() or request.user.is_active:
+			raise Http404
+		if request.user.is_superuser:
+			detail = Profile.objects.get(id=id_perfil)
+
+		return render(request, "profile_list.html")
+
+"""
