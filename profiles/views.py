@@ -90,14 +90,41 @@ def profile_list(request):
 	return render(request, "profile_list.html", context)
 
 
-"""
 
-def profile_detail(request, id_perfil):
-		if not request.user.is_authenticated() or request.user.is_active:
-			raise Http404
-		if request.user.is_superuser:
-			detail = Profile.objects.get(id=id_perfil)
 
-		return render(request, "profile_list.html")
+def profile_detail(request, id_profile):
+	object_list = Profile.objects.filter(id=id_profile)
+	return render(request, "profile_detail.html", {"object_list": object_list})
 
-"""
+
+
+def profile_update(request, id_profile):
+	instance = Profile.objects.get(id=id_profile)
+	if request.user.is_superuser:
+		form = ProfileForm(request.POST or None, request.FILES or None, instance=instance)
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.ultimateupdate = timezone.now()
+			instance.save()
+			messages.success(request, "<a href='#'>Item</a> Modificado!", extra_tags='html_safe')
+			return HttpResponseRedirect('/perfil-detalle/%s/' % id_profile)
+
+		context = {
+			"instance": instance,
+			"form":form,
+		}
+		return render(request, "perfil_form.html", context)
+	else:
+		raise Http404
+
+
+
+
+def profile_delete(request, id_profile):
+	instance = Profile.objects.get(id=id_profile)
+	if request.user.is_superuser:
+		instance.delete()
+		messages.success(request, "Eliminado con exito")
+		return redirect("profile:list")
+	else:
+		raise Http404

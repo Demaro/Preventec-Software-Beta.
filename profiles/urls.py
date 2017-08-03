@@ -4,9 +4,9 @@ from django.contrib import admin
 from profiles.views import (
     profile_list,
     profile_create,
-    #post_detail,
-    #post_update,
-    #post_delete,
+    profile_detail,
+    profile_update,
+    profile_delete,
     #resume,
 
 
@@ -15,8 +15,10 @@ from profiles.views import (
 urlpatterns = [
     url(r'^$', profile_list, name='list'),
     url(r'^crear_perfil/(?P<id_user>\d+)/$', profile_create, name="crear_perfil"),
-    #url(r'^(?P<slug>[\w-]+)/$', post_detail, name='detail'),
-    #url(r'^(?P<slug>[\w-]+)/edit/$', post_update, name='update'),
+    url(r'^perfil-detalle/(?P<id_profile>\d+)/$', profile_detail, name='detail'),
+    url(r'^perfil-editar/(?P<id_profile>\d+)/$', profile_update, name='update'),
+
+    url(r'^delete-profile/(?P<id_profile>\d+)$', profile_delete, name='delete'),
     #url(r'^(?P<slug>[\w-]+)/delete/$', post_delete, name='delete'),
     #url(r'^resume', resume, name='resume'),
 

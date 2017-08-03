@@ -68,18 +68,13 @@ class Profile(models.Model):
 			return self.rut
 
 	#def get_absolute_url(self):
-	#    return reverse("posts:detail", kwargs={"slug": self.slug})
+	#    return reverse("profile:detail", kwargs={"slug": self.slug})
 
 	#def get_api_url(self):
 	#    return reverse("posts-api:detail", kwargs={"slug": self.slug})
 
 	class Meta:
 		ordering = ["-ultimateupdate",]
-
-	def get_markdown(self):
-		content = self.content
-		markdown_text = markdown(content)
-		return mark_safe(markdown_text)
 
 
 

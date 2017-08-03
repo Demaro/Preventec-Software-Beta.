@@ -62,7 +62,7 @@
                 {% endif %}
                 {% endif %}
 
-                <a class="btn btn-primary" href="{{ obj.get_absolute_url }}">Ver mas<span class="glyphicon glyphicon-chevron-right"></span></a><hr>
+                <a class="btn btn-primary" href='{% url "profile:detail" id_profile=obj.id %}'>Ver mas<span class="glyphicon glyphicon-chevron-right"></span></a><hr>
             </div>
         </div>
     </div>
