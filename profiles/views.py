@@ -1,14 +1,14 @@
 #! / Usr / bin / python env
 # - * - coding: UTF-8 - * -
 try:
-    from urllib import quote_plus #python 2
+	from urllib import quote_plus #python 2
 except:
-    pass
+	pass
 
 try:
-    from urllib.parse import quote_plus #python 3
+	from urllib.parse import quote_plus #python 3
 except: 
-    pass
+	pass
 
 from django.template.loader import get_template
 from django.contrib import messages
@@ -30,7 +30,7 @@ from django.utils import timezone
 def profile_create(request, id_user):
 	print(id_user)
 	if not request.user.is_staff or not request.user.is_superuser:
-		raise Http404	
+		raise Http404   
 	
 	form = ProfileForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
@@ -55,9 +55,9 @@ def profile_list(request):
 	today = timezone.now().date()
 	if  request.user.is_superuser:
 			queryset_list = Profile.objects.all().order_by("-ultimateupdate")
-	if request.user.is_active:
+	if  request.user.is_active:
 			queryset_list = Profile.objects.filter(user=request.user).order_by("-ultimateupdate")
-	if request.user.is_staff:
+	if  request.user.is_staff:
 			queryset_list = Profile.objects.all().order_by("-ultimateupdate")
 	
 	query = request.GET.get("q")
