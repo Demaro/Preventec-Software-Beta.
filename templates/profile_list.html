@@ -41,6 +41,7 @@
                 <p><span class="glyphicon glyphicon-time"></span>&nbsp;Inicio de cargo:&nbsp;{{ obj.inicio_cargo}}</p>
                 <p><span class="glyphicon glyphicon-user"></span>&nbsp;Usuario:&nbsp;<a href="perfil.html">{{ obj.user.username }}</a></p>
                 <hr>
+                <img src='{% static "assets/img/user1.png" %}' height="200" width="200" class='img-responsive' />
                 {% if obj.avatar %}
                 <img src='{{ obj.avatar.url }}' class='img-responsive' />
                 {% endif %}
@@ -55,12 +56,13 @@
 
                 
                 {% if request.user.is_authenticated %}
-                {% if obj.user == request.user %}
+                {% if request.user.is_superuser %}
 
-                <a href='{# url "posts:update" obj.slug %}'> Editar</a> |&nbsp;<a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'>Borrar</a>
+                <a href='{% url "profile:update" id_profile=obj.id %}'> Editar</a> |&nbsp;<a id="url" name="{{obj.id}}"  href='#' class='btn-ExitSystem' value='{{ obj.id }}'>Borrar</a>
 
                 {% endif %}
                 {% endif %}
+                <br>
 
                 <a class="btn btn-primary" href='{% url "profile:detail" id_profile=obj.id %}'>Ver mas<span class="glyphicon glyphicon-chevron-right"></span></a><hr>
             </div>

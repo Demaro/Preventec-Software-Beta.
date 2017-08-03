@@ -15,7 +15,7 @@ from profiles.views import (
 
 urlpatterns = [
     url(r'^$', home, name='home'),
-    url(r'^/profile-list', profile_list, name='list'),
+    url(r'^profile_list', profile_list, name='list'),
     url(r'^crear_perfil/(?P<id_user>\d+)/$', profile_create, name="crear_perfil"),
     url(r'^perfil-detalle/(?P<id_profile>\d+)/$', profile_detail, name='detail'),
     url(r'^perfil-editar/(?P<id_profile>\d+)/$', profile_update, name='update'),

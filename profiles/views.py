@@ -49,7 +49,7 @@ def profile_create(request, id_user):
 		instance.save()
 		# message success
 		messages.success(request, "Creado con exito!")
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect('/profile_list')
 	context = {
 		"form": form,
 	}
