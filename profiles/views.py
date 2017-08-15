@@ -1,14 +1,14 @@
 #! / Usr / bin / python env
 # - * - coding: UTF-8 - * -
 try:
-    from urllib import quote_plus #python 2
+	from urllib import quote_plus #python 2
 except:
-    pass
+	pass
 
 try:
-    from urllib.parse import quote_plus #python 3
+	from urllib.parse import quote_plus #python 3
 except: 
-    pass
+	pass
 
 from django.template.loader import get_template
 from django.contrib import messages
@@ -26,75 +26,96 @@ from posts.models import Post
 
 from django.utils import timezone
 
+from accounts.forms import  UserRegisterForm
 
+from django.contrib.auth import (
+    authenticate,
+    get_user_model,
+    login,
+    logout,
+
+    )
+
+User = get_user_model()
 
 
 def home(request):
-	return render(request, "home.html")
+	return render(request, "login.html")
 
-	
+def dos(request):
+	return render(request, "user.html")
+
+def principal(request):
+	return render(request, "index.html")
+
+def tres(request):
+	return render(request, "table.html")
+
+def cuatro(request):
+	return render(request, "typhography.html")
+
+def cinco(request):
+	return render(request, "icons.html")
+
+def seis(request):
+	return render(request, "maps.html")
+
+def siete(request):
+	return render(request, "notifications.html")
+
+
 
 def profile_create(request, id_user):
-	print(id_user)
-	if not request.user.is_staff or not request.user.is_superuser:
-		raise Http404	
-	
-	form = ProfileForm(request.POST or None, request.FILES or None)
+	if request.user.is_authenticated():
+			form = ProfileForm(request.POST or None)
 	if form.is_valid():
-		instance = form.save(commit=False)
-		id_instance = instance.id 
-		
-		instance.ultimateupdate = timezone.now()
-		instance.user_id = id_user
-		instance.save()
+
+		rut_data = form.cleaned_data.get("rut")
+		birthdate_data = form.cleaned_data.get("birthdate")
+		avatar_data = form.cleaned_data.get("avatar")
+		cargo_data = form.cleaned_data.get("cargo")
+		especialidad_data = form.cleaned_data.get("especialidad")
+		contrato_data = form.cleaned_data.get("contrato")
+		legales_asoc_data = form.cleaned_data.get("legales_asoc")
+
+		new_profile = Profile(user_id=id_user, rut=rut_data, birthdate=birthdate_data, avatar=avatar_data, cargo=cargo_data, especialidad=especialidad_data, contrato=contrato_data, legales_asoc=legales_asoc_data, ultimateupdate = timezone.now(), inicio_cargo=timezone.now())
+
+		new_profile.save()
 		# message success
 		messages.success(request, "Creado con exito!")
-		return HttpResponseRedirect('/profile_list')
+		return HttpResponseRedirect('/')
 	context = {
 		"form": form,
+		"id_user": id_user,
 	}
-	return render(request, "perfil_form.html", context)
+	return render(request, "profile_create.html", context)
 
 
 
 
 def profile_list(request):
+	queryset_list = Profile.objects.all().order_by("-ultimateupdate")
+	form = UserRegisterForm(request.POST or None)
 	today = timezone.now().date()
-	if not request.user.is_authenticated():
-			queryset_list = Profile.objects.all().order_by("-ultimateupdate")
-	if request.user.is_active:
-			queryset_list = Profile.objects.filter(user=request.user).order_by("-ultimateupdate")
-	if request.user.is_staff or request.user.is_superuser:
-			queryset_list = Profile.objects.all().order_by("-ultimateupdate")
-	
-	query = request.GET.get("q")
-	if query:
-		queryset_list = queryset_list.filter(
-				Q(rut__icontains=query)|
-				Q(cargo__icontains=query)|
-				Q(user__first_name__icontains=query)|
-				Q(user__last_name__icontains=query)
-				).distinct()
-	paginator = Paginator(queryset_list, 8) # Show 25 contacts per page
-	page_request_var = "page"
-	page = request.GET.get(page_request_var)
-	try:
-		queryset = paginator.page(page)
-	except PageNotAnInteger:
-		# If page is not an integer, deliver first page.
-		queryset = paginator.page(1)
-	except EmptyPage:
-		# If page is out of range (e.g. 9999), deliver last page of results.
-		queryset = paginator.page(paginator.num_pages)
+	if form.is_valid():
+		username = form.cleaned_data.get("username")
+		password = form.cleaned_data.get('password')
+		email = form.cleaned_data.get("email")
+		nombre = form.cleaned_data.get("first_name")
+		apellido = form.cleaned_data.get("last_name")
+		new_user = User(username=username, password=password, email=email, first_name=nombre, last_name=apellido)
+		new_user.save()
+		#login(request, new_user)
+		new_user.id
+		print(new_user.id)
+		return HttpResponseRedirect('crear_perfil/%s/' % new_user.id)
 
 
 	context = {
-		"object_list": queryset, 
-		"title": "List",
-		"page_request_var": page_request_var,
-		"today": today,
+		"queryset_list": queryset_list, 
+
 	}
-	return render(request, "profile_list.html", context)
+	return render(request, "user.html", context)
 
 
 
@@ -108,7 +129,7 @@ def profile_detail(request, id_profile):
 def profile_update(request, id_profile):
 	instance = Profile.objects.get(id=id_profile)
 	if request.user.is_superuser:
-		form = ProfileForm(request.POST or None, request.FILES or None, instance=instance)
+		form = ProfileForm(request.POST or None,  instance=instance)
 		if form.is_valid():
 			instance = form.save(commit=False)
 			instance.ultimateupdate = timezone.now()
@@ -120,7 +141,7 @@ def profile_update(request, id_profile):
 			"instance": instance,
 			"form":form,
 		}
-		return render(request, "perfil_form.html", context)
+		return render(request, "profile_create.html", context)
 	else:
 		raise Http404
 

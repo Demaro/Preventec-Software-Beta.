@@ -1,71 +1,146 @@
-{% load crispy_forms_tags %}
-
+{% extends "base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Material Dark</title>
+
+{% block head %}
+
+
+		<div class="wrapper">
+
+				<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+						<!--
+								Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+								Tip 2: you can also add an image using data-image tag
+						-->
+
+						<div class="logo">
+								<a href="http://www.creative-tim.com" class="simple-text">
+										Creative Tim
+								</a>
+						</div>
+
+						<div class="sidebar-wrapper">
+								<ul class="nav">
+								<li>	
+									<li class="active">	
+									<a href='{% url "profile:principal" %}'>
+										<i class="material-icons">dashboard</i>
+											<p>Inicio</p>
+											</a>
+											</li>
+										</li>
+										<li>
+										<li class="active">
+
+										<li>
+
+												<a href='{% url "profile:list" %}'>
+													<i class="material-icons">person</i>
+												<p>User Profile</p>
+											</a>
+										</li>
+										<li>
+												<a href='{% url "profile:tres" %}'>
+														<i class="material-icons">content_paste</i>
+														<p>Table List</p>
+												</a>
+										</li>
+										<li>
+												<a href='{% url "profile:cuatro" %}'>
+														<i class="material-icons">library_books</i>
+														<p>Typography</p>
+												</a>
+										</li>
+										<li>
+												<a href='{% url "profile:cinco" %}'>
+														<i class="material-icons">bubble_chart</i>
+														<p>Icons</p>
+												</a>
+										</li>
+										<li>
+												<a href='{% url "profile:seis" %}'>
+														<i class="material-icons">location_on</i>
+														<p>Maps</p>
+												</a>
+										</li>
+										<li>
+												<a href='{% url "profile:siete" %}'>
+														<i class="material-icons text-gray">notifications</i>
+														<p>Notifications</p>
+												</a>
+										</li>
+										<li class="active-pro">
+												<a href="upgrade.html">
+														<i class="material-icons">unarchive</i>
+														<p>Upgrade to PRO</p>
+												</a>
+										</li>
+								</ul>
+						</div>
+				</div>
+{% endblock head %}
+
+
+{% block content %}
+
+
+
+<link rel="stylesheet" type="text/css" href='{% static "css/pages/signin.css" %}'>
+
+
+<div class="account-container">
 	
-     <!-- Normalize CSS -->
-    <link rel="stylesheet" href='{% static "css/normalize.css" %}'>
-    
-     <!-- Materialize CSS -->
-    <link rel="stylesheet" href='{% static "css/materialize.min.css" %}'>
-    
-     <!-- Material Design Iconic Font CSS -->
-    <link rel="stylesheet" href='{% static "css/material-design-iconic-font.min.css" %}'>
-    
-    <!-- Malihu jQuery custom content scroller CSS -->
-    <link rel="stylesheet" href='{% static "css/jquery.mCustomScrollbar.css" %}'>
-    
-    <!-- Sweet Alert CSS -->
-    <link rel="stylesheet" href='{% static "css/sweetalert.css" %}'>
-    
+	<div class="content clearfix">
+		
+		<form action="" method="post" role="form" enctype='multipart/form-data'>
+		
+			<h1>Member Login</h1>		
+			
+			<div class="login-fields">
+				
+				<p>Poravor, ingrese sus datos para acceder</p>
+				
+				<div class="field">
+					<label for="username">Nombre usuario</label>
+					<input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" />
+				</div> <!-- /field -->
+				
+				<div class="field">
+					<label for="password">Contraseña:</label>
+					<input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field"/>
+				</div> <!-- /password -->
+				
+			</div> <!-- /login-fields -->
+			
+			<div class="login-actions">
+				
+				<span class="login-checkbox">
+					<input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />
+					<label class="choice" for="Field">Keep me signed in</label>
+				</span>
+				{% csrf_token %}
+									
+				<button class="button btn btn-success btn-large">Sign In</button>
+				
+			</div> <!-- .actions -->
+			
+			
+			
+		</form>
+		
+	</div> <!-- /content -->
+	
+</div> <!-- /account-container -->
 
-    <!-- MaterialDark CSS -->
-    <link rel="stylesheet" href='{% static "css/style.css" %}'>
-</head>
 
-</head>
-<body class="font-cover" id="login">
-    <div class="container-login center-align">
-        <div style="margin:15px 0;">
-            <i class="zmdi zmdi-account-circle zmdi-hc-5x"></i>
-            <p>Inicia sesión con tu cuenta</p>   
-        </div>
-            <form method='POST' action='' role="form" enctype='multipart/form-data'>
-            <div class="input-field">
-                <input id="username" type="text" class="validate" name="username">
-                <label for="username"><i class="zmdi zmdi-account" ></i>&nbsp; Nombre</label>
-            </div>
-            <div class="input-field col s12">
-                <input id="password" type="password" class="validate" name="password">
-                <label for="password"><i class="zmdi zmdi-lock"></i>&nbsp; Contraseña</label>
-            </div>
-            {% csrf_token %}
-            <input type='submit' class='btn btn-default' value='{{ title }}' />
-        </form>
-        <div class="divider" style="margin: 20px 0;"></div>
-        <a href='{% url "register" %}'>Crear cuenta</a>
-    </div>
 
-    
-    <!-- Sweet Alert JS -->
-    <script src='{% static "js/sweetalert.min.js" %}'></script>
-    
-    <!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/jquery-2.2.0.min.js"><\/script>')</script>
-    
-    <!-- Materialize JS -->
-	<script src='{% static "js/materialize.min.js" %}'></script>
-    
-    <!-- Malihu jQuery custom content scroller JS -->
-	<script src='{% static "js/jquery.mCustomScrollbar.concat.min.js" %}'></script>
-    
-    <!-- MaterialDark JS -->
-	<script src='{% static "js/main.js" %}'></script>
-</body>
-</html>
+<div class="login-extra">
+	<a href="#">Reset Password</a>
+</div> <!-- /login-extra -->
+
+
+
+<script src='{% static "js/signin.js" %}'></script>
+
+
+{% endblock content %}

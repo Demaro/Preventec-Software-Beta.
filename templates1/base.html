@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{% block head_title %}Prototipo{% endblock head_title %}</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+{% load staticfiles %}
+
+<link rel='stylesheet' href='{% static "css/base.css" %}' />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Material Dark</title>
+    
+     <!-- Normalize CSS -->
+    <link rel="stylesheet" href='{% static "css/normalize.css" %}'>
+    
+     <!-- Materialize CSS -->
+    <link rel="stylesheet" href='{% static "css/materialize.min.css" %}'>
+    
+     <!-- Material Design Iconic Font CSS -->
+    <link rel="stylesheet" href='{% static "css/material-design-iconic-font.min.css" %}'>
+    
+    <!-- Malihu jQuery custom content scroller CSS -->
+    <link rel="stylesheet" href='{% static "css/jquery.mCustomScrollbar.css" %}'>
+    
+    <!-- Sweet Alert CSS -->
+    <link rel="stylesheet" href='{% static "css/sweetalert.css" %}'>
+    
+
+    <!-- MaterialDark CSS -->
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+
+    <link rel="stylesheet" href='{% static "dataTables.bootstrap.min.css" %}'/>
+    <link rel="stylesheet" href='{% static "dataTables.checkboxes.css" %}'/>
+ 
+
+    <!-- Nav Lateral -->
+    <section class="NavLateral full-width">
+        <div class="NavLateral-FontMenu full-width ShowHideMenu"></div>
+        <div class="NavLateral-content full-width">
+            <header class="NavLateral-title full-width center-align">
+               Preventec <i class="zmdi zmdi-close NavLateral-title-btn ShowHideMenu"></i>
+            </header>
+            <figure class="full-width NavLateral-logo">
+                <img src='{% static "assets/img/logo.png" %}' alt="material-logo" class="responsive-img center-box">
+                <figcaption class="center-align"></figcaption>
+            </figure> 
+            <div class="NavLateral-Nav">
+                <ul class="full-width">
+                    <li>
+                        <a href="/" class="waves-effect waves-light"><i class="zmdi zmdi-desktop-mac zmdi-hc-fw"></i> Inicio</a>
+                    </li>
+                    <li class="NavLateralDivider"></li>
+                    <li>
+                        <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="zmdi zmdi-widgets zmdi-hc-fw"></i> <i class="zmdi zmdi-chevron-down NavLateral-CaretDown"></i> Gestion</a>
+                        <ul class="full-width">
+                        {% if request.user.is_superuser %}
+                            <li><a href='{% url "register" %}' class="waves-effect waves-light">Enrolar</a></li>
+                            {% endif %}
+                            <li class="NavLateralDivider"></li>
+                            <li><a href='{% url "profile:list" %}' class="waves-effect waves-light">Perfiles</a></li>
+                            <li class="NavLateralDivider"></li>
+                            <li><a href="#" class="waves-effect waves-light">Reportes</a></li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="NavLateralDivider"></li>
+                    <li>
+                        <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="zmdi zmdi-widgets zmdi-hc-fw"></i> <i class="zmdi zmdi-chevron-down NavLateral-CaretDown"></i> Components</a>
+                        <ul class="full-width">
+                            <li><a href="button.html" class="waves-effect waves-light">Button</a></li>
+                            <li class="NavLateralDivider"></li>
+                            <li><a href="form.html" class="waves-effect waves-light">Forms</a></li>
+                        </ul>
+                    </li>
+                    <li class="NavLateralDivider"></li>
+                    <li>
+                        <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="zmdi zmdi-view-web zmdi-hc-fw"></i> <i class="zmdi zmdi-chevron-down NavLateral-CaretDown"></i> Acerca de</a>
+                        <ul class="full-width">
+                            <li><a href='{% url "posts:resume" %}' class="waves-effect waves-light">CV</a></li>
+                        </ul>
+                    </li>   
+                </ul>
+                -->
+            </div>  
+        </div>  
+    </section>
+
+    </head>
+
+    <!-- Page content -->
+    <section class="ContentPage full-width">
+        <!-- Nav Info -->
+        <div class="ContentPage-Nav full-width">
+            <ul class="full-width">
+                <li class="btn-MobileMenu ShowHideMenu"><a href="#" class="tooltipped waves-effect waves-light" data-position="bottom" data-delay="50" data-tooltip="Menu"><i class="zmdi zmdi-more-vert"></i></a></li>
+                {% if request.user.is_authenticated %}
+                <li><figure><img src='{% static "assets/img/user.png" %}' alt="UserImage"></figure></li>
+                <li style="padding:0 5px;">{{request.user.username}}</li>
+                <li><a href='{% url "logout" %}' class="tooltipped waves-effect " data-position="bottom" data-delay="50" data-tooltip="Logout"><i class="zmdi zmdi-power"></i></a></li>
+                {% else %}
+                <li><a href='{% url "register" %}' class="tooltipped waves-effect" data-position="bottom" data-delay="50" data-tooltip="Registrarse"><i class="zmdi zmdi-account-add"></i></a></li>
+                <li><a href='{% url "login" %}' class="tooltipped waves-effect" data-position="bottom" data-delay="50" data-tooltip="Iniciar sesion"><i class="glyphicon glyphicon-log-in"></i></a></li>
+                
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a href="#" class="tooltipped waves-effect-light btn-Notification" data-position="bottom" data-delay="50" data-tooltip="Notifications">
+                        <i class="zmdi zmdi-notifications"></i>
+               <!---<li><a href='/create' class="tooltipped waves-effect" data-position="bottom" data-delay="50" data-tooltip="Publicar"><i class="glyphicon glyphicon-flag"></i></a></li>-->
+                        <span class="ContentPage-Nav-indicator bg-danger">2</span>
+                    {% endif %}
+                    </a>
+                </li>
+            </ul>   
+        </div>
+
+        <!-- Notifications area -->
+    <section class="z-depth-3 NotificationArea">
+            <div class="full-width center-align NotificationArea-title">Notifications <i class="zmdi zmdi-close btn-Notification"></i></div>
+            <a href="#" class="waves-effect Notification">
+                <div class="Notification-icon"><i class="zmdi zmdi-accounts-alt bg-info"></i></div>
+                <div class="Notification-text">
+                    <p>
+                        <i class="zmdi zmdi-circle tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as UnRead"></i>
+                        <strong>New User Registration</strong> 
+                        <br>
+                        <small>Just Now</small>
+                    </p>
+                </div>
+            </a>  
+            <a href="#" class="waves-effect Notification">
+                <div class="Notification-icon"><i class="zmdi zmdi-cloud-download bg-primary"></i></div>
+                <div class="Notification-text">
+                    <p>
+                        <i class="zmdi zmdi-circle-o tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as Read"></i>
+                        <strong>New Updates</strong> 
+                        <br>
+                        <small>30 Mins Ago</small>
+                    </p>
+                </div>
+            </a>
+            <a href="#" class="waves-effect Notification">
+                <div class="Notification-icon"><i class="zmdi zmdi-upload bg-success"></i></div>
+                <div class="Notification-text">
+                    <p>
+                        <i class="zmdi zmdi-circle tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as UnRead"></i>
+                        <strong>Archive uploaded</strong> 
+                        <br>
+                        <small>31 Mins Ago</small>
+                    </p>
+                </div>
+            </a> 
+            <a href="#" class="waves-effect Notification">
+                <div class="Notification-icon"><i class="zmdi zmdi-mail-send bg-danger"></i></div>
+                <div class="Notification-text">
+                    <p>
+                        <i class="zmdi zmdi-circle-o tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as Read"></i>
+                        <strong>New Mail</strong> 
+                        <br>
+                        <small>37 Mins Ago</small>
+                    </p>
+                </div>
+            </a>
+            <a href="#" class="waves-effect Notification">
+                <div class="Notification-icon"><i class="zmdi zmdi-folder bg-primary"></i></div>
+                <div class="Notification-text">
+                    <p>
+                        <i class="zmdi zmdi-circle-o tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as Read"></i>
+                        <strong>Folder delete</strong> 
+                        <br>
+                        <small>1 hours Ago</small>
+                    </p>
+                </div>
+            </a>  
+        </section>
+
+
+</body>
+
+
+
+</div>
+
+
+
+<style>
+{% block style %}{% endblock style %}
+</style>
+
+{% block head_extra %} {% endblock head_extra %}
+</head>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+{% include "messages_display.html" %}
+
+<div class='container'> 
+    <ol class='breadcrumb'>
+    </ol>
+ 
+{% block content %}
+
+{% endblock content %}
+</div>
+</body>
+
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js'></script>
+
+
+{% block footer%}
+
+{% endblock footer %}
+
+
+<br>
+<br>
+<br>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".content-markdown").each(function(){
+            var content = $(this).text()
+            var markedContent = marked(content)
+            $(this).html(markedContent)
+    })
+    $(".post-detail-item img").each(function(){
+            $(this).addClass("img-responsive");
+    })
+
+    
+
+    var contentInput = $("#id_content");
+
+    function setContent(value){
+        var markedContent = marked(value)
+        $("#preview-content").html(markedContent)
+        $("#preview-content img").each(function(){
+            $(this).addClass("img-responsive")
+        })
+    }
+    setContent(contentInput.val())
+
+    contentInput.keyup(function(){
+        var newContent = $(this).val()
+        setContent(newContent)
+    })
+
+    var titleInput = $("#id_title");
+    
+
+
+    function setTitle(value) {
+        $("#preview-title").text(value)
+    }
+    setTitle(titleInput.val())
+
+    titleInput.keyup(function(){
+        var newContent = $(this).val()
+        setTitle(newContent)
+    })
+
+    $(".comment-reply-btn").click(function(event){
+        event.preventDefault();
+        $(this).parent().next(".comment-reply").fadeToggle();
+    })
+
+
+    // preview-title
+    // preview-content
+
+})
+
+</script>
+
+
+    <!-- Sweet Alert JS -->
+    <script src='{% static "js/sweetalert.min.js" %}'></script>
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.0.min.js"><\/script>')</script>
+    
+    <!-- Materialize JS -->
+    <script src='{% static "js/materialize.min.js" %}'></script>
+    
+    <!-- Malihu jQuery custom content scroller JS -->
+    <script src='{% static "js/jquery.mCustomScrollbar.concat.min.js" %}'></script>
+    
+    <!-- MaterialDark JS -->
+
+
+    <script src="{% static "js/main.js" %}"></script>

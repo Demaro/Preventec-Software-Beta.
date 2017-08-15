@@ -23,22 +23,3 @@ class ProfileForm(forms.ModelForm):
 			"legales_asoc",
 
 		]
-		labels	=	{
-			"rut":			"Rut",
-			"birthdate":	"Fecha nacimiento",
-			"cargo":		"Cargo",
-			"especialidad":	"Especialidad",
-			"contrato":		"Contrato",
-			"legales_asoc": "Asuntos legales adociados",
-
-
-		}
-		widgets	=	{
-
-			"birthdate":	forms.DateInput(attrs={'class': 'form-control'}),
-			"cargo":		forms.Select(attrs={'class': 'form-control'}),
-			"especialidad":	forms.Select(attrs={'class': 'form-control'}),
-			"contrato":		forms.TextInput(attrs={'class': 'form-control'}),
-			"legales_asoc": forms.TextInput(attrs={'class': 'form-control'}),
-
-		}

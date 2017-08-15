@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 
-from accounts.views import (login_view, register_view, logout_view)
+from accounts.views import (register_view, )
 
 from django_js_reverse.views import urls_js 
 
@@ -30,8 +30,6 @@ urlpatterns = [
     url(r'^comments/', include("comments.urls", namespace='comments')),
 
     url(r'^register', register_view, name='register'),
-    url(r'^login/', login_view, name='login'),
-    url(r'^logout/', logout_view, name='logout'),
     url(r'^', include("profiles.urls", namespace='profile')),
     url(r'^', include("posts.urls", namespace='posts')),
     #url(r'^api/users/', include("accounts.api.urls", namespace='users-api')),

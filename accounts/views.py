@@ -5,6 +5,9 @@ from django.contrib.auth import (
     logout,
 
     )
+
+User = get_user_model()
+
 from django.shortcuts import render, redirect
 
 from django.http import HttpResponseRedirect, HttpResponse
@@ -23,31 +26,29 @@ def login_view(request):
         login(request, user)
         if next:
             return redirect(next)
-        return redirect("/")
+        return redirect("/principal")
     return render(request, "login.html", {"form":form, "title": title})
 
 
 def register_view(request):
-    print(request.user.is_authenticated())
-    next = request.GET.get('next')
-    title = "Registro"
-    form = UserRegisterForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        password = form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        #new_user = authenticate(username=user.username, password=password)
-        #login(request, new_user)
-        user.id
-        print(user.id)
-        return HttpResponseRedirect('crear_perfil/%s/' % user.id)
+        if request.user.is_authenticated():
+            form = UserRegisterForm(request.POST or None)
+        if form.is_valid():
 
-    context = {
-        "form": form,
-        "title": title
-    }
-    return render(request, "form.html", context)
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get('password')
+            email = form.cleaned_data.get("email")
+            nombre = form.cleaned_data.get("first_name")
+            apellido = form.cleaned_data.get("last_name")
+            new_user = User(username=username, password=password, email=email, first_name=nombre, last_name=apellido)
+            new_user.save()
+            #login(request, new_user)
+            new_user.id
+            print(new_user.id)
+            return HttpResponseRedirect('crear_perfil/%s/' % new_user.id)
+
+
+        return render(request, "user.html", )
 
 
 def logout_view(request):
