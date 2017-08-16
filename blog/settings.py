@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # local apps
     'profiles',
     'accounts',
+    'projects',
     'comments',
     'posts',
     'rest_framework',
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
 
 USE_L10N = True
 USE_TZ = True 
@@ -184,5 +187,5 @@ REST_FRAMEWORK = {
 JS_REVERSE_JS_VAR_NAME = 'Urls'
 
 
-
+AUTHENTICATION_BACKENDS = ('accounts.views.CaseInsensitiveModelBackend',)
 

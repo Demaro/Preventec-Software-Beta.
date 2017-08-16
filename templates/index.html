@@ -40,13 +40,13 @@
 											</a>
 										</li>
 										<li>
-												<a href='{% url "profile:tres" %}'>
+												<a href='{% url "profile:create_project" %}'>
 														<i class="material-icons">content_paste</i>
-														<p>Table List</p>
+														<p>Proyectos</p>
 												</a>
 										</li>
 										<li>
-												<a href='{% url "profile:cuatro" %}'>
+												<a href='{% url "profile:create_project" %}'>
 														<i class="material-icons">library_books</i>
 														<p>Typography</p>
 												</a>
@@ -82,11 +82,305 @@
 
 {% block content %}
 
+	        <div class="content">
+	            <div class="container-fluid">
+				
+		{% block mess %}
+		{% include "messages_display.html" %}
+
+		{% endblock mess %}
+
+				<br>
+
+	                <div class="row">
+
+						<div class="col-lg-8 col-md-28">
+							<div class="card card-nav-tabs">
+
+								<div class="card-header" data-background-color="purple">
+									<div class="nav-tabs-navigation">
+										<div class="nav-tabs-wrapper">
+
+											<span class="nav-tabs-title">Actividades:</span>
+											<ul class="nav nav-tabs" data-tabs="tabs">
+												<li class="active">
+													<a href="#profile" data-toggle="tab">
+														<i class="material-icons">date_range</i>
+														Calendario
+													<div class="ripple-container"></div></a>
+												</li>
+												<li class="">
+													<a href="#messages" data-toggle="tab">
+														<i class="material-icons">check_circle</i>
+														Completadas
+													<div class="ripple-container"></div></a>
+												</li>
+												<li class="">
+													<a href="#settings" data-toggle="tab">
+														<i class="material-icons">cancel</i>
+														No Completadas
+													<div class="ripple-container"></div></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<div class="card-content">
+									<div class="tab-content">
+										<div class="tab-pane active" id="profile">
+											<table class="table">
+												<tbody>
+													<tr>
+		        										<div class="content">
+	            									<div class="container-fluid">
+	                									<div class="row">
+	                            					</div>
+													</tr>
+													<tr>
+								<form id="myform" method="post">
+								<table id="example" class="table table-border table-striped table-hover" >
+																	
+																			<thead class="text-warning">
+																					<th>ID</th>
+																				<th>Name</th>
+																				<th>Salary</th>
+																				<th>Country</th>
+																			</thead>
+																			<tbody>
+																					<tr>
+																						<td>1</td>
+																						<td>Dakota Rice</td>
+																						<td>$36,738</td>
+																						<td>Niger</td>
+																					</tr>
+																					<tr>
+																						<td>2</td>
+																						<td>Minerva Hooper</td>
+																						<td>$23,789</td>
+																						<td>Curaçao</td>
+																					</tr>
+																					<tr>
+																						<td>3</td>
+																						<td>Sage Rodriguez</td>
+																						<td>$56,142</td>
+																						<td>Netherlands</td>
+																					</tr>
+																					<tr>
+																						<td>4</td>
+																						<td>Philip Chaney</td>
+																						<td>$38,735</td>
+																						<td>Korea, South</td>
+																					</tr>
+																					<tr>
+																						<td>5</td>
+																						<td>Philip Chaney</td>
+																						<td>$38,735</td>
+																						<td>Korea, South</td>
+																					</tr5																					
+																			</tbody>
+																	</table>
+										</div>
+										<div class="tab-pane" id="messages">
+											<table class="table">
+												<tbody>
+													<tr>
+														<td>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="optionsCheckboxes">
+																</label>
+															</div>
+														</td>
+														<td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+														<td class="td-actions text-right">
+															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">edit</i>
+															</button>
+															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">close</i>
+															</button>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="optionsCheckboxes" checked>
+																</label>
+															</div>
+														</td>
+														<td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+														</td>
+														<td class="td-actions text-right">
+															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">edit</i>
+															</button>
+															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">close</i>
+															</button>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="optionsCheckboxes">
+																</label>
+															</div>
+														</td>
+														<td>Sign contract for "What are conference organizers afraid of?"</td>
+														<td class="td-actions text-right">
+															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">edit</i>
+															</button>
+															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">close</i>
+															</button>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+								<div class="tab-pane" id="settings">
+											<table class="table">
+												<tbody>
+													<tr>
+														<td>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="optionsCheckboxes">
+																</label>
+															</div>
+														</td>
+														<td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+														<td class="td-actions text-right">
+															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">edit</i>
+															</button>
+															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">close</i>
+															</button>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="optionsCheckboxes" checked>
+																</label>
+															</div>
+														</td>
+														<td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+														</td>
+														<td class="td-actions text-right">
+															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">edit</i>
+															</button>
+															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">close</i>
+															</button>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="optionsCheckboxes">
+																</label>
+															</div>
+														</td>
+														<td>Sign contract for "What are conference organizers afraid of?"</td>
+														<td class="td-actions text-right">
+															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">edit</i>
+															</button>
+															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">close</i>
+															</button>
+														</td>
+																											<tr>
+														<td>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="optionsCheckboxes">
+																</label>
+															</div>
+														</td>
+														<td>Sign contract for "What are conference organizers afraid of?"</td>
+														<td class="td-actions text-right">
+															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">edit</i>
+															</button>
+															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">close</i>
+															</button>
+														</td>
+																											<tr>
+														<td>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="optionsCheckboxes">
+																</label>
+															</div>
+														</td>
+														<td>Sign contract for "What are conference organizers afraid of?"</td>
+														<td class="td-actions text-right">
+															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">edit</i>
+															</button>
+															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">close</i>
+															</button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 
 
-			<div class="content">
-				<div class="container-fluid">
+						<div class="col-md-4">
+    						<div class="card card-profile">
+    							<div class="card-avatar">
+    								<a href="#pablo">
+    									<img class="img"  src='{% static "img/logocontru.jpg" %}' />
+    								</a>
+    							</div>
+
+    							<div class="content">
+
+
+    								<h6 class="category text-gray">Perfil del Proyecto</h6>
+
+    								<h4 class="card-title">Obra Construccion</h4>
+
+    								Inicio el 12 de abril de 2017
+    								<br>
+    								Santa katy, edificio 23, Santiago
+    								<div class="card-footer">
+    								</div>
+    								Gerente:<a href="">&nbsp;Steve Jobs</a>
+    								<br>
+    								Administrador:<a href="">&nbsp;&nbsp;Steve Wozniak</a>
+    								<br>
+    								Supervisor:<a href="">&nbsp;Bill gates</a>
+
+    								<p class="card-content">
+    									
+    								</p>
+    								<a href="#pablo" class="btn btn-primary btn-round">Ver mas</a>
+    							</div>
+    						</div>
+		    			</div>
+	                </div>
+
+
+
+
 					<div class="row">
 						<div class="col-lg-3 col-md-6 col-sm-6">
 							<div class="card card-stats">
@@ -479,7 +773,6 @@
 			</div>
 
 </body>
-
 
 
 {% endblock content %}

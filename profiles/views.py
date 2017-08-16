@@ -46,13 +46,16 @@ def dos(request):
 	return render(request, "user.html")
 
 def principal(request):
+	if not request.user.is_staff or not request.user.is_superuser:
+		return HttpResponseRedirect('/')
+		
 	return render(request, "index.html")
 
 def tres(request):
 	return render(request, "table.html")
 
 def cuatro(request):
-	return render(request, "typhography.html")
+	return render(request, "graphy.html")
 
 def cinco(request):
 	return render(request, "icons.html")
@@ -83,7 +86,7 @@ def profile_create(request, id_user):
 		new_profile.save()
 		# message success
 		messages.success(request, "Creado con exito!")
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect('/profiles')
 	context = {
 		"form": form,
 		"id_user": id_user,

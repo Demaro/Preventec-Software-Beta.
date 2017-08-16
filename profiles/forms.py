@@ -6,7 +6,7 @@ from datetime import date
 from django.forms import widgets, SelectDateWidget
 
 
-from .models import Profile
+from projects.models import Profile
 
 
 class ProfileForm(forms.ModelForm):
