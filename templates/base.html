@@ -56,12 +56,14 @@
 														<span class="icon-bar"></span>
 														<span class="icon-bar"></span>
 												</button>
-												<a class="navbar-brand" href="#">Beta Version 0.1</a>
+												<a class="navbar-brand" href="#">Beta Version 0.2</a>
 										</div>
+
 										<div class="collapse navbar-collapse">
+																				{% if request.user.is_superuser %}
 												<ul class="nav navbar-nav navbar-right">
 														<li>
-														{% if request.user.is_superuser %}
+														
 																<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 																		<i class="material-icons">library_add</i>
 																		<p class="hidden-lg hidden-md">Crear Proyecto</p>
@@ -102,18 +104,19 @@
 																</ul>
 														</li>
 												</ul>
-												{% endif %}
-
+{% endif %}
 												<form class="navbar-form navbar-right" role="search">
 														<div class="form-group  is-empty">
 																<input type="text" class="form-control" placeholder="Search">
 																<span class="material-input"></span>
 														</div>
+
 														<button type="submit" class="btn btn-white btn-round btn-just-icon">
 																<i class="material-icons">search</i><div class="ripple-container"></div>
 														</button>
 												</form>
 										</div>
+
 								</div>
 						</nav>
 
