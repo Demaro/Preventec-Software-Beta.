@@ -12,7 +12,8 @@ from profiles.views import (
 	principal,
 
 	tres,
-	cuatro,
+	actividades,
+	detail_actividad,
 	cinco,
 	seis,
 	siete
@@ -35,7 +36,9 @@ urlpatterns = [
 	url(r'^create_post', post_create, name='create'),
 	url(r'^create_project', project_create, name='create_project'),
 	url(r'^table', tres, name='tabla'),
-	url(r'^graphy', cuatro, name='cuatro'),
+	url(r'^actividades', actividades, name='actividades'),
+	url(r'^detalle_actividad', detail_actividad, name='detail_activity'),
+
 	url(r'^icons', cinco, name='cinco'),
 	url(r'^dropp', seis, name='seis'),
 	url(r'^notific', siete, name='siete'),

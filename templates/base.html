@@ -33,6 +33,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
+<link rel='stylesheet' href='{% static "css/fullcalendar.min.css" %}'  />
+<link rel='stylesheet' media='print' href='{% static "css/fullcalendar.print.min.css" %}'  />
 
 
 </head>
@@ -54,7 +56,7 @@
 														<span class="icon-bar"></span>
 														<span class="icon-bar"></span>
 												</button>
-												<a class="navbar-brand" href="#">Beta Version 0.1</a>
+												<a class="navbar-brand" href="#">Beta Version 0.2</a>
 										</div>
 										<div class="collapse navbar-collapse">
 												<ul class="nav navbar-nav navbar-right">
@@ -123,6 +125,8 @@
 
 {% endblock content %}
 
+
+</body>
 
 
 {% block footer%}
@@ -196,6 +200,9 @@
 
 		<script src='//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'></script> 
 
+		<script language="javascript" type="text/javascript" src='{% static "js/full-calendar/fullcalendar.min.js" %}'></script>
+
+		<script src='js/moment.min.js'></script>
 
 
 {% block content2 %}
@@ -220,62 +227,6 @@ fjs.parentNode.insertBefore(js, fjs);
 
 
 
-
-<script type="text/javascript">
-$(document).ready(function(){
-		$(".content-markdown").each(function(){
-						var content = $(this).text()
-						var markedContent = marked(content)
-						$(this).html(markedContent)
-		})
-		$(".post-detail-item img").each(function(){
-						$(this).addClass("img-responsive");
-		})
-
-		
-
-		var contentInput = $("#id_content");
-
-		function setContent(value){
-				var markedContent = marked(value)
-				$("#preview-content").html(markedContent)
-				$("#preview-content img").each(function(){
-						$(this).addClass("img-responsive")
-				})
-		}
-		setContent(contentInput.val())
-
-		contentInput.keyup(function(){
-				var newContent = $(this).val()
-				setContent(newContent)
-		})
-
-		var titleInput = $("#id_title");
-		
-
-
-		function setTitle(value) {
-				$("#preview-title").text(value)
-		}
-		setTitle(titleInput.val())
-
-		titleInput.keyup(function(){
-				var newContent = $(this).val()
-				setTitle(newContent)
-		})
-
-		$(".comment-reply-btn").click(function(event){
-				event.preventDefault();
-				$(this).parent().next(".comment-reply").fadeToggle();
-		})
-
-
-		// preview-title
-		// preview-content
-
-})
-
-</script>
 
 
 		

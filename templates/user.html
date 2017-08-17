@@ -4,7 +4,6 @@
 
 {% block head %}
 
-
 		<div class="wrapper">
 
 				<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
@@ -23,7 +22,7 @@
 						<div class="sidebar-wrapper">
 								<ul class="nav">
 								<li>	
-								<li>	
+
 									<a href='{% url "profile:principal" %}'>
 										<i class="material-icons">dashboard</i>
 											<p>Principal</p>
@@ -31,10 +30,9 @@
 											</li>
 										</li>
 										<li>
-										<li class="active">
 
-										<li>
 										<li class="active">
+										
 												<a href='{% url "profile:list" %}'>
 													<i class="material-icons">person</i>
 												<p>Perfiles Usuarios</p>
@@ -43,44 +41,19 @@
 										<li>
 												<a href='{% url "profile:create_project" %}'>
 														<i class="material-icons">content_paste</i>
-														<p>Proyectos</p>
+														<p>Projectos</p>
 												</a>
 										</li>
 										<li>
-												<a href='{% url "profile:cuatro" %}'>
-														<i class="material-icons">library_books</i>
-														<p>Typography</p>
+												<a href='{% url "profile:actividades" %}'>
+														<i class="material-icons">local_activity</i>
+														<p>Actividades</p>
 												</a>
 										</li>
-										<li>
-												<a href='{% url "profile:cinco" %}'>
-														<i class="material-icons">bubble_chart</i>
-														<p>Icons</p>
-												</a>
-										</li>
-										<li>
-												<a href='{% url "profile:seis" %}'>
-														<i class="material-icons">location_on</i>
-														<p>Maps</p>
-												</a>
-										</li>
-										<li>
-												<a href='{% url "profile:siete" %}'>
-														<i class="material-icons text-gray">notifications</i>
-														<p>Notifications</p>
-												</a>
-										</li>
-										<li class="active-pro">
-												<a href="upgrade.html">
-														<i class="material-icons">unarchive</i>
-														<p>Upgrade to PRO</p>
-												</a>
-										</li>
+
 								</ul>
 						</div>
 				</div>
-
-
 {% endblock head %}
 
 
@@ -124,12 +97,7 @@
 														Registrar
 													<div class="ripple-container"></div></a>
 												</li>
-												<li class="">
-													<a href="#settings" data-toggle="tab">
-														<i class="material-icons">cloud</i>
-														Server
-													<div class="ripple-container"></div></a>
-												</li>
+
 											</ul>
 										</div>
 									</div>
@@ -269,6 +237,8 @@
 												</tbody>
 											</table>
 										</div>
+
+<!--
 								<div class="tab-pane" id="settings">
 											<table class="table">
 												<tbody>
@@ -330,6 +300,8 @@
 												</tbody>
 											</table>
 										</div>
+
+										-->
 									</div>
 								</div>
 							</div>

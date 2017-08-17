@@ -42,8 +42,9 @@ User = get_user_model()
 def home(request):
 	return render(request, "login.html")
 
-def dos(request):
-	return render(request, "user.html")
+
+def detail_actividad(request):
+	return render(request, "detail_actividad.html")
 
 def principal(request):
 	if not request.user.is_staff or not request.user.is_superuser:
@@ -54,8 +55,8 @@ def principal(request):
 def tres(request):
 	return render(request, "table.html")
 
-def cuatro(request):
-	return render(request, "graphy.html")
+def actividades(request):
+	return render(request, "actividades.html")
 
 def cinco(request):
 	return render(request, "icons.html")

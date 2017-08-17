@@ -3,7 +3,6 @@
 
 {% block head %}
 
-
 		<div class="wrapper">
 
 				<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
@@ -22,7 +21,7 @@
 						<div class="sidebar-wrapper">
 								<ul class="nav">
 								<li>	
-								<li class="active">
+										<li class="active">
 									<a href='{% url "profile:principal" %}'>
 										<i class="material-icons">dashboard</i>
 											<p>Principal</p>
@@ -30,7 +29,6 @@
 											</li>
 										</li>
 										<li>
-										<li class="active">
 
 										<li>
 										
@@ -42,43 +40,21 @@
 										<li>
 												<a href='{% url "profile:create_project" %}'>
 														<i class="material-icons">content_paste</i>
-														<p>Proyectos</p>
+														<p>Projectos</p>
 												</a>
 										</li>
 										<li>
-												<a href='{% url "profile:create_project" %}'>
-														<i class="material-icons">library_books</i>
-														<p>Typography</p>
+												<a href='{% url "profile:actividades" %}'>
+														<i class="material-icons">local_activity</i>
+														<p>Actividades</p>
 												</a>
 										</li>
-										<li>
-												<a href='{% url "profile:cinco" %}'>
-														<i class="material-icons">bubble_chart</i>
-														<p>Icons</p>
-												</a>
-										</li>
-										<li>
-												<a href='{% url "profile:seis" %}'>
-														<i class="material-icons">location_on</i>
-														<p>Maps</p>
-												</a>
-										</li>
-										<li>
-												<a href='{% url "profile:siete" %}'>
-														<i class="material-icons text-gray">notifications</i>
-														<p>Notifications</p>
-												</a>
-										</li>
-										<li class="active-pro">
-												<a href="upgrade.html">
-														<i class="material-icons">unarchive</i>
-														<p>Upgrade to PRO</p>
-												</a>
-										</li>
+
 								</ul>
 						</div>
 				</div>
 {% endblock head %}
+
 
 {% block content %}
 
@@ -105,14 +81,14 @@
 											<ul class="nav nav-tabs" data-tabs="tabs">
 												<li class="active">
 													<a href="#profile" data-toggle="tab">
-														<i class="material-icons">date_range</i>
-														Calendario
+														<i class="material-icons">check_circle</i>
+														Completadas
 													<div class="ripple-container"></div></a>
 												</li>
 												<li class="">
 													<a href="#messages" data-toggle="tab">
-														<i class="material-icons">check_circle</i>
-														Completadas
+														<i class="material-icons">watch_later</i>
+														Pendientes
 													<div class="ripple-container"></div></a>
 												</li>
 												<li class="">
@@ -125,214 +101,194 @@
 										</div>
 									</div>
 								</div>
-
-								<div class="card-content">
+					<div class="card-content">
 									<div class="tab-content">
 										<div class="tab-pane active" id="profile">
 											<table class="table">
 												<tbody>
 													<tr>
-		        										<div class="content">
-	            									<div class="container-fluid">
-	                									<div class="row">
-	                            					</div>
+
 													</tr>
-													<tr>
+									</table>
 								<form id="myform" method="post">
 								<table id="example" class="table table-border table-striped table-hover" >
+
 																	
-																			<thead class="text-warning">
-																					<th>ID</th>
-																				<th>Name</th>
-																				<th>Salary</th>
-																				<th>Country</th>
+																			<thead class="text-success">
+																				<th>ID</th>
+																				<th>usuario</th>
+																				<th>Tarea</th>
+																				<th>Descripcion</th>
+																				<th>Inicio</th>
+																				<th>Fin</th>
+																				<th></th>
 																			</thead>
 																			<tbody>
 																					<tr>
 																						<td>1</td>
-																						<td>Dakota Rice</td>
-																						<td>$36,738</td>
-																						<td>Niger</td>
+																						<td>Steve</td>
+																						<td>Capacitacion</td>
+																						<td>herramientas de proteccion...</td>
+																						<td>15 de Agosto</td>
+																						<td>16 de Agosto</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
 																					</tr>
 																					<tr>
 																						<td>2</td>
-																						<td>Minerva Hooper</td>
-																						<td>$23,789</td>
-																						<td>Curaçao</td>
+																						<td>Woz</td>
+																						<td>Reporte mensual</td>
+																						<td>Documentacion plan de seguridad...</td>
+																						<td>14 de Agosto</td>
+																						<td>16 de Agosto</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
 																					</tr>
 																					<tr>
 																						<td>3</td>
-																						<td>Sage Rodriguez</td>
-																						<td>$56,142</td>
-																						<td>Netherlands</td>
-																					</tr>
-																					<tr>
-																						<td>4</td>
-																						<td>Philip Chaney</td>
-																						<td>$38,735</td>
-																						<td>Korea, South</td>
-																					</tr>
-																					<tr>
-																						<td>5</td>
-																						<td>Philip Chaney</td>
-																						<td>$38,735</td>
-																						<td>Korea, South</td>
-																					</tr5																					
+																						<td>Bill</td>
+																						<td>Soldura de protecciones</td>
+																						<td>Fijar estructuras en edificio 21...</td>
+																						<td>13 de Agosto</td>
+																						<td>15 de Agosto</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
+																					</tr>																
 																			</tbody>
 																	</table>
+
 										</div>
 										<div class="tab-pane" id="messages">
 											<table class="table">
 												<tbody>
 													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
+
 													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes" checked>
-																</label>
-															</div>
-														</td>
-														<td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-														</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Sign contract for "What are conference organizers afraid of?"</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-													</tr>
+									</table>
+								<form id="myform" method="post">
+								<table id="example" class="table table-border table-striped table-hover" >
+
+																	
+																			<thead class="text-primary">
+																				<th>ID</th>
+																				<th>usuario</th>
+																				<th>Tarea</th>
+																				<th>Descripcion</th>
+																				<th>Inicio</th>
+																				<th>Fin</th>
+																				<th></th>
+																			</thead>
+																			<tbody>
+																					<tr>
+																						<td>1</td>
+																						<td>Bill</td>
+																						<td>Reporte mensual</td>
+																						<td>Documentacion plan de seguridad...</td>
+																						<td>16 de Agosto</td>
+																						<td>18 de Agosto</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
+																					</tr>
+																					<tr>
+																						<td>2</td>
+																						<td>Woz</td>
+																						<td>Capacitacion</td>
+																						<td>herramientas de proteccion...</td>
+																						<td>15 de Agosto</td>
+																						<td>17 de Agosto</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
+																					</tr>
+																					<tr>
+																						<td>3</td>
+																						<td>Steve</td>
+																						<td>Soldura de protecciones</td>
+																						<td>Fijar estructuras en edificio 21...</td>
+																						<td>15 de Agosto</td>
+																						<td>17 de Agosto</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
+																					</tr>									
 												</tbody>
 											</table>
 										</div>
 								<div class="tab-pane" id="settings">
-											<table class="table">
-												<tbody>
+											<tbody>
 													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
+
 													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes" checked>
-																</label>
-															</div>
-														</td>
-														<td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-														</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Sign contract for "What are conference organizers afraid of?"</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-																											<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Sign contract for "What are conference organizers afraid of?"</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-																											<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Sign contract for "What are conference organizers afraid of?"</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
+									</table>
+								<form id="myform" method="post">
+								<table id="example" class="table table-border table-striped table-hover" >
+
+																	
+																			<thead class="text-warning">
+																				<th>ID</th>
+																				<th>usuario</th>
+																				<th>Tarea</th>
+																				<th>Descripcion</th>
+																				<th>Inicio</th>
+																				<th>Fin</th>
+																				<th></th>
+																			</thead>
+																			<tbody>
+																					<tr>
+																						<td>1</td>
+																						<td>Woz</td>
+																						<td>Reporte mensual</td>
+																						<td>Documentacion plan de seguridad...</td>
+																						<td>13 de Agosto</td>
+																						<td>Sin finalizar</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
+																					</tr>
+																					<tr>
+																						<td>2</td>
+																						<td>Bill</td>
+																						<td>Capacitacion</td>
+																						<td>herramientas de proteccion...</td>
+																						<td>14 de Agosto</td>
+																						<td>Sin finalizar</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
+																					</tr>
+																					<tr>
+																						<td>3</td>
+																						<td>Steven</td>
+																						<td>Soldura de protecciones</td>
+																						<td>Fijar estructuras en edificio 21...</td>
+																						<td>14 de Agosto</td>
+																						<td>Sin Finalizar</td>
+																						<td>
+																						<a href='#' >
+															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
+																<i class="material-icons">remove_red_eye</i>
+															</button></a></td>
+																					</tr>									
 												</tbody>
 											</table>
 										</div>
@@ -342,6 +298,9 @@
 						</div>
 
 
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
 
 						<div class="col-md-4">
     						<div class="card card-profile">
@@ -376,11 +335,16 @@
     							</div>
     						</div>
 		    			</div>
-	                </div>
+
+		    	</div>
+		    	</div>
 
 
 
 
+
+			<div class="content">
+				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-3 col-md-6 col-sm-6">
 							<div class="card card-stats">
@@ -726,59 +690,61 @@
 
 						<div class="col-lg-6 col-md-12">
 							<div class="card">
-															<div class="card-header" data-background-color="orange">
-																	<h4 class="title">Employees Stats</h4>
-																	<p class="category">New employees on 15th September, 2016</p>
-															</div>
-															<div class="card-content table-responsive">
-																	<table class="table table-hover">
-																			<thead class="text-warning">
-																					<th>ID</th>
-																				<th>Name</th>
-																				<th>Salary</th>
-																				<th>Country</th>
-																			</thead>
-																			<tbody>
-																					<tr>
-																						<td>1</td>
-																						<td>Dakota Rice</td>
-																						<td>$36,738</td>
-																						<td>Niger</td>
-																					</tr>
-																					<tr>
-																						<td>2</td>
-																						<td>Minerva Hooper</td>
-																						<td>$23,789</td>
-																						<td>Curaçao</td>
-																					</tr>
-																					<tr>
-																						<td>3</td>
-																						<td>Sage Rodriguez</td>
-																						<td>$56,142</td>
-																						<td>Netherlands</td>
-																					</tr>
-																					<tr>
-																						<td>4</td>
-																						<td>Philip Chaney</td>
-																						<td>$38,735</td>
-																						<td>Korea, South</td>
-																					</tr>
-																			</tbody>
-																	</table>
-															</div>
-													</div>
+	                            <div class="card-header" data-background-color="orange">
+	                                <h4 class="title">Employees Stats</h4>
+	                                <p class="category">New employees on 15th September, 2016</p>
+	                            </div>
+	                            <div class="card-content table-responsive">
+	                                <table class="table table-hover">
+	                                    <thead class="text-warning">
+	                                        <th>ID</th>
+	                                    	<th>Name</th>
+	                                    	<th>Salary</th>
+	                                    	<th>Country</th>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                        	<td>1</td>
+	                                        	<td>Dakota Rice</td>
+	                                        	<td>$36,738</td>
+	                                        	<td>Niger</td>
+	                                        </tr>
+	                                        <tr>
+	                                        	<td>2</td>
+	                                        	<td>Minerva Hooper</td>
+	                                        	<td>$23,789</td>
+	                                        	<td>Curaçao</td>
+	                                        </tr>
+	                                        <tr>
+	                                        	<td>3</td>
+	                                        	<td>Sage Rodriguez</td>
+	                                        	<td>$56,142</td>
+	                                        	<td>Netherlands</td>
+	                                        </tr>
+	                                        <tr>
+	                                        	<td>4</td>
+	                                        	<td>Philip Chaney</td>
+	                                        	<td>$38,735</td>
+	                                        	<td>Korea, South</td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                        </div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-</body>
+
 
 
 {% endblock content %}
 
 
 {% block content2 %}
+
+
 
 	<script type="text/javascript">
 			$(document).ready(function(){
@@ -788,6 +754,7 @@
 
 			});
 	</script>
+
 
 {% endblock content2 %}
 

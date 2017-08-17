@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+
+
+		<div class="wrapper">
+
+				<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+						<!--
+								Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+								Tip 2: you can also add an image using data-image tag
+						-->
+
+						<div class="logo">
+								<a href="http://www.creative-tim.com" class="simple-text">
+										Preventec
+								</a>
+						</div>
+
+						<div class="sidebar-wrapper">
+								<ul class="nav">
+								<li>	
+								<li>
+									<a href='{% url "profile:principal" %}'>
+										<i class="material-icons">dashboard</i>
+											<p>Principal</p>
+											</a>
+											</li>
+										</li>
+										<li>
+
+										<li>
+										
+												<a href='{% url "profile:list" %}'>
+													<i class="material-icons">person</i>
+												<p>Perfiles Usuarios</p>
+											</a>
+										</li>
+										<li>
+												<a href='{% url "profile:create_project" %}'>
+														<i class="material-icons">content_paste</i>
+														<p>Projectos</p>
+												</a>
+										</li>
+										<li class="active">
+												<a href='{% url "profile:actividades" %}'>
+														<i class="material-icons">local_activity</i>
+														<p>Actividades</p>
+												</a>
+										</li>
+
+								</ul>
+						</div>
+				</div>
+{% endblock head %}
+
+{% block content %}
+
+	        <div class="content">
+	            <div class="container-fluid">
+	                <div class="row">
+
+	                    <div class="col-md-12">
+	                        <div class="card">
+
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">Informacion sobre la Actividad</h4>
+	                                <p class="category">Actividad completada.</p>
+
+	                            </div>
+							<div class="col-md-4">
+    						<div class="card card-profile">
+
+    									<img class="img"  src='{% static "img/capacitacion_principal.jpg" %}' />
+
+    							</div>
+    							</div>
+	                            <div class="card-content table-responsive">
+
+	                                <table class="table">
+	                                    <thead class="text-primary">
+	                                    	<th>Tarea:</th>
+	                                    	<th>Descripcion:</th>
+	                                    	<th>Fecha Inicio</th>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                        	<td>Capacitacion</td>
+	                                        	<td>Utilizacion segura de herramientas de prevencion</td>
+												<td>15 de Agosto a las 12:00</td>
+
+	                                        </tr>
+	                                    <thead class="text-primary">
+	                                    	<th>Usuario Responsable:</th>
+	                                    	<th>Documento:</th>
+	                                    	<th>Fecha Cumplimiento:</th>
+	                                    </thead>
+	                                        <tr>
+	                                        	<td>Steve Jobs</td>
+	                                        	<td>Registro de actividad</td>
+												<td>16 de Agosto a las 13:00</td>
+	                                        </tr>
+	                                       	<thead class="text-primary">
+	                                    	<th>Participantes</th>
+	                                    	<th>Estado:</th>
+	                                    	<th>Fecha Terminada:</th>
+	                                    </thead>
+	                                        <tr>
+
+												<td>8</td>
+	                                        	<td class="text-success">Completada!</td>
+												<td class="text-success">16 de Agosto a las 12:00</td>
+
+	                                        </tr>
+
+
+	                                    </tbody>
+	                                </table>
+
+	                            </div>
+	                        </div>
+	                    </div>
+
+	                </div>
+	            </div>
+	        </div>
+
+
+{% endblock content %}
+
+
+{% block content2 %}
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="birthdate"]'); //our date input has the name "birthdate"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+{% endblock content2 %}
