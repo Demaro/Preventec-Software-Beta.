@@ -1,383 +1,230 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-
-{% block head %}
-
-		<div class="wrapper">
-
-				<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
-						<!--
-								Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-								Tip 2: you can also add an image using data-image tag
-						-->
-
-						<div class="logo">
-								<a href="http://www.creative-tim.com" class="simple-text">
-										Preventec
-								</a>
-						</div>
-
-						<div class="sidebar-wrapper">
-								<ul class="nav">
-								<li>	
-								<li>
-									<a href='{% url "profile:principal" %}'>
-										<i class="material-icons">dashboard</i>
-											<p>Inicio</p>
-											</a>
-											</li>
-										</li>
-										<li>
-
-										<li >
-										
-												<a href='{% url "profile:create_project" %}'>
-													<i class="material-icons">content_paste</i>
-												<p>Projectos</p>
-											</a>
-										</li>
-										<li class="active">
-												<a href='{% url "profile:list" %}'>
-														<i class="material-icons">person</i>
-														<p>Personas</p>
-												</a>
-										</li>
-										<li >
-												<a href='{% url "profile:actividades" %}'>
-														<i class="material-icons">local_activity</i>
-														<p>Actividades</p>
-												</a>
-										</li>
-
-								</ul>
-						</div>
-				</div>
-{% endblock head %}
-
-
-
-
-
-
 {% block content %}
 
 
-	        <div class="content">
-	            <div class="container-fluid">
-				
-		{% block mess %}
-		{% include "messages_display.html" %}
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Enrolar Persona</h3>
+              </div>
 
-		{% endblock mess %}
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
 
-				<br>
+            <div class="row">
 
-	                <div class="row">
-
-						<div class="col-lg-12 col-md-28">
-							<div class="card card-nav-tabs">
-
-								<div class="card-header" data-background-color="purple">
-									<div class="nav-tabs-navigation">
-										<div class="nav-tabs-wrapper">
-
-											<span class="nav-tabs-title">Funciones:</span>
-											<ul class="nav nav-tabs" data-tabs="tabs">
-												<li class="active">
-													<a href="#profile" data-toggle="tab">
-														<i class="material-icons">group</i>
-														Perfiles
-													<div class="ripple-container"></div></a>
-												</li>
-												<li class="">
-													<a href="#messages" data-toggle="tab">
-														<i class="material-icons">person_add</i>
-														Registrar
-													<div class="ripple-container"></div></a>
-												</li>
-
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="card-content">
-									<div class="tab-content">
-										<div class="tab-pane active" id="profile">
-											<table class="table">
-												<tbody>
-													<tr>
-		        										<div class="content">
-	            									<div class="container-fluid">
-	                									<div class="row">
-	                            					</div>
-													</tr>
-													<tr>
-								<form id="myform" method="post">
-								<table id="example" class="table table-border table-striped table-hover" >
-            					<thead>
-				               		<tr> 
-				                    <td>Usuario</td>
-				                    <td>Inicio Cargo</td>
-				                    <td>Nombre</td>
-				                    <td>Apellido</td>
-				                    <td>Cargo</td>
-				                    <td>Especialidad</td>
-				                    <td>Ultima modificacion</td>
-				                    <td></td>
-						            </tr>
-						            </thead>
-						            <tfoot>
-						                <tr>
-
-						                    <td>Usuario</td>
-						                    <td>Inicio Cargo</td>
-						                    <td>Nombre</td>
-						                    <td>Apellido</td>
-						                    <td>Cargo</td>
-						                    <td>Especialidad</td>
-						                    <td>Ultima modificacion</td>
-						                    <td></td> 
-						                    {% if pedido %}
-						                    <td><a href="{% url "usuario:entregar" id_especialidad=especialidad.id %}#" method='GET' type="submit" class="btn btn-success pull-right" value="editar" onclick="document.location.reload();"/>Entregar</a></td>
-						                    {% endif %}
-						                </tr>
-						            </tfoot>
-						            <tbody>
-						        {% if queryset_list  %}
-						        {% for query in queryset_list  %}
-						                <tr>
-						                    <td>{{ query.user.username }}</td>
-						                    <td>{{ query.inicio_cargo }}</td>
-						                    <td>{{ query.user.first_name }}</td>
-						                    <td>{{ query.user.last_name }}</td>
-						                    <td>{{ query.cargo }}</td>
-						                    <td>{{ query.especialidad }}</td>
-						                    <td>{{ query.ultimateupdate }}</td>
-						                    <td><a href='{% url "profile:update" id_profile=query.id %}' >
-															<button type="button" rel="tooltip" title="Editar perfil" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button></a></td>
-						                </tr>
-						        {% endfor %}
-						        {% endif %}
-						           </tbody>
-						           </table>
-									</form>
-													</tr>
-													<tr>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="tab-pane" id="messages">
-											<table class="table">
-												<tbody>
-													<tr>
-		        										<div class="content">
-	            									<div class="container-fluid">
-	                									<div class="row">
-
-	                                			<h4 class="title">Ingresar usuario</h4>
-												<p class="category">Complete los datos</p>
-	                            					</div>
-
-								<div class="card-content">
-	                                <form action="" method="POST" role="form" enctype='multipart/form-data'>
-
-	                                    <div class="row">
-	                                        <div class="col-md-3">
-												<div class="form-group label-floating">
-
-													<label class="control-label">Nombre usuario</label>
-
-													<input id="username" name="username" type="text" class="form-control" >
-												</div>
-	                                        </div>
-	                                        <div class="col-md-3">
-												<div class="form-group label-floating">
-													<label class="control-label">Correo</label>
-													<input id="email" name="email" type="text" class="form-control" >
-												</div>
-	                                        </div>
-	                                        <div class="col-md-3">
-												<div class="form-group label-floating">
-													<label class="control-label">Contraseña</label>
-													<input id="password" name="password" type="password" class="form-control" >
-												</div>
-	                                        </div>
-	                                    </div>
-
-	                                    <div class="row">
-	                                        <div class="col-md-3">
-												<div class="form-group label-floating">
-													<label class="control-label">Nombre</label>
-													<input id="first_name" name="first_name" type="text" class="form-control" >
-												</div>
-	                                        </div>
-	                                        <div class="col-md-3">
-												<div class="form-group label-floating">
-													<label class="control-label">Apellido</label>
-													{% csrf_token %}
-													<input id="last_name" name="last_name" type="text" class="form-control" >
-												</div>
-	                                        </div>
-	                                    </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Ingrese Credenciales</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
 
 
-	                                    <button type="submit" class="btn btn-primary pull-right">Crear Usuario</button>
-	                                    <div class="clearfix"></div>
-	                                </form>
-	                            </div>
-	                        </div>
-	                    </div>
-													</tr>
-												</tbody>
-											</table>
-										</div>
 
-<!--
-								<div class="tab-pane" id="settings">
-											<table class="table">
-												<tbody>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes" checked>
-																</label>
-															</div>
-														</td>
-														<td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-														</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Sign contract for "What are conference organizers afraid of?"</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
+                        <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal form-label-left">
+                    
+                <small>Datos del usuario:</small>
+              
+              <br>
 
-										-->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-<!--
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Nombre de Usuario <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="username" name="username" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
 
-						<div class="col-md-4">
-    						<div class="card card-profile">
-    							<div class="card-avatar">
-    								<a href="#pablo">
-    									<img class="img" src="../assets/img/faces/marc.jpg" />
-    								</a>
-    							</div>
+                          </div>
+                              <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first_name">Nombre <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="first_name" name="first_name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                              <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Apellido <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="last_name" name="last_name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12">Contraseña<span class="required">*</span></label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input id="password" class="form-control col-md-7 col-xs-12" type="password" name="password">
+                            </div>
+                          </div>
+      
+                    <div class="title_left">
+                <small>Datos del Perfil:</small>
+              </div>
+              <br>
 
-    							<div class="content">
-    								<h6 class="category text-gray">CEO / Co-Founder</h6>
-    								<h4 class="card-title">Alec Thompson</h4>
-    								<p class="card-content">
-    									Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-    								</p>
-    								<a href="#pablo" class="btn btn-primary btn-round">Follow</a>
-    							</div>
-    						</div>
-		    			</div>
-	                </div>
-	            </div>
-	        </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="rut" name="rut" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthdate">Fecha Nacimiento <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="birthdate" name="birthdate" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="avatar" class="control-label col-md-3 col-sm-3 col-xs-12">Foto de Perfil<span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{form2.avatar}}
+                            
+                            </div>
+                          </div>
 
--->
 
-{% endblock content %}
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cargo">Cargo <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{form2.cargo}}
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="especialidad">Especialidad <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{form2.especialidad}}
+                            </div>
+                          </div>
 
+                        
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contrato">Contrato<span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="contrato" name="contrato" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="legales_asoc">Legales Acosiados<span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="legales_asoc" name="legales_asoc" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                            <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="legales_asoc">Unidad Asignada<span></span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="unidad" name="unidad" class="form-control col-md-7 col-xs-12">
+                            </div>
+                              {% csrf_token %}
+                          </div>
+                              <button type="submit" class="btn btn-primary pull-right">Crear Perfil</button>
+
+                        </form>
+
+
+
+                    <!-- End SmartWizard Content -->
+
+
+
+
+ 
+                    <!-- End SmartWizard Content -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+ 
+
+ {% endblock content %}
 
 {% block content2 %}
-
-    <script>
-$(document).ready(function (){
-   var table = $('#example').DataTable({
-    "language": idioma_español,
-
-
-    stateSave: true
-
-
-});
-    
-
-});
-
-var idioma_español = {
-    "sProcessing":     "Procesando...",
-    "sLengthMenu":     "Mostrar _MENU_ registros",
-    "sZeroRecords":    "No se encontraron resultados",
-    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-    "sInfoPostFix":    "",
-    "sSearch":         "Buscar:",
-    "sUrl":            "",
-    "sInfoThousands":  ",",
-    "sLoadingRecords": "Cargando...",
-    "oPaginate": {
-        "sFirst":    "Primero",
-        "sLast":     "Último",
-        "sNext":     "Siguiente",
-        "sPrevious": "Anterior"
-    },
-    "oAria": {
-        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-    }
-}
-
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="birthdate"]'); //our date input has the name "birthdate"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
 </script>
+
+
+<script>
+
+ $('#wizard').smartWizard({
+
+
+  // Properties
+    selected: 0,  // Selected Step, 0 = first step   
+    keyNavigation: true, // Enable/Disable key navigation(left and right keys are used if enabled)
+    enableAllSteps: false,  // Enable/Disable all steps on first load
+    transitionEffect: 'fade', // Effect on navigation, none/fade/slide/slideleft
+    contentURL:null, // specifying content url enables ajax content loading
+    contentURLData:null, // override ajax query parameters
+    contentCache:true, // cache step contents, if false content is fetched always from ajax url
+    cycleSteps: false, // cycle step navigation
+    enableFinishButton: false, // makes finish button enabled always
+  hideButtonsOnDisabled: false, // when the previous/next/finish buttons are disabled, hide them instead
+    errorSteps:[],    // array of step numbers to highlighting as error steps
+    labelNext:'Siguiente', // label for Next button
+    labelPrevious:'Anterior', // label for Previous button
+    labelFinish:'Finalizar',  // label for Finish button        
+    noForwardJumping:false,
+  // Events
+    onLeaveStep: null, // triggers when leaving a step
+    onShowStep: null,  // triggers when showing a step
+    onFinish: null  // triggers when Finish button is clicked
+    finishBtn: 'FINISH',
+}); 
+</script>
+
 {% endblock content2 %}

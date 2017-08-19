@@ -1,761 +1,790 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block head %}
-
-		<div class="wrapper">
-
-				<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
-						<!--
-								Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-								Tip 2: you can also add an image using data-image tag
-						-->
-
-						<div class="logo">
-								<a href="http://www.creative-tim.com" class="simple-text">
-										Preventec
-								</a>
-						</div>
-
-						<div class="sidebar-wrapper">
-								<ul class="nav">
-								<li>	
-										<li class="active">
-									<a href='{% url "profile:principal" %}'>
-										<i class="material-icons">dashboard</i>
-											<p>Inicio</p>
-											</a>
-											</li>
-										</li>
-										<li>
-
-										<li>
-										
-												<a href='{% url "profile:create_project" %}'>
-													<i class="material-icons">content_paste</i>
-												<p>Projectos</p>
-											</a>
-										</li>
-										<li>
-												<a href='{% url "profile:list" %}'>
-														<i class="material-icons">person</i>
-														<p>Personas</p>
-												</a>
-										</li>
-										<li >
-												<a href='{% url "profile:actividades" %}'>
-														<i class="material-icons">local_activity</i>
-														<p>Actividades</p>
-												</a>
-										</li>
-
-								</ul>
-						</div>
-				</div>
-{% endblock head %}
-
-
 {% block content %}
 
-	        <div class="content">
-	            <div class="container-fluid">
-				
-		{% block mess %}
-		{% include "messages_display.html" %}
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+          <div class="row tile_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Total Personal</span>
+              <div class="count">250</div>
+              <span class="count_bottom"><i class="green">30+</i> Ultima semana</i></span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i>  Capacitaciones</i></span>
+              <div class="count">70</div>
+              <span class="count_bottom">7<i class="green"><i class="fa fa-sort-asc"></i> Ultima semana</i></span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Dias sin accidentes </i></span>
+              <div class="count green">30</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i></span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Accidentes</i></span>
+              <div class="count">1</div>
+              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i> </i> Ultima semana</i></span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i>  Actividades cargadas</i></span>
+              <div class="count">61</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>30 </i>Este Mes</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Actividades cumplidas</i></span>
+              <div class="count">60</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>29 </i>Ultima semana</span>
+            </div>
+          </div>
+          <!-- /top tiles -->
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Perfil del Proyecto </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+                          <img class="img-responsive avatar-view" src='{% static "images/logocontru.jpg" %}' alt="Avatar" title="Change the avatar">
+                        </div>
+                      </div>
+                      <h3>Constructora Name</h3>
 
-		{% endblock mess %}
+                      <ul class="list-unstyled user_data">
+                        <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, edificio 21, Chile
+                        </li>
 
-				<br>
-
-	                <div class="row">
-
-						<div class="col-lg-8 col-md-28">
-							<div class="card card-nav-tabs">
-
-								<div class="card-header" data-background-color="purple">
-									<div class="nav-tabs-navigation">
-										<div class="nav-tabs-wrapper">
-
-											<span class="nav-tabs-title">Actividades:</span>
-											<ul class="nav nav-tabs" data-tabs="tabs">
-												<li class="active">
-													<a href="#profile" data-toggle="tab">
-														<i class="material-icons">check_circle</i>
-														Completadas
-													<div class="ripple-container"></div></a>
-												</li>
-												<li class="">
-													<a href="#messages" data-toggle="tab">
-														<i class="material-icons">watch_later</i>
-														Pendientes
-													<div class="ripple-container"></div></a>
-												</li>
-												<li class="">
-													<a href="#settings" data-toggle="tab">
-														<i class="material-icons">cancel</i>
-														No Completadas
-													<div class="ripple-container"></div></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-					<div class="card-content">
-									<div class="tab-content">
-										<div class="tab-pane active" id="profile">
-											<table class="table">
-												<tbody>
-													<tr>
-
-													</tr>
-									</table>
-								<form id="myform" method="post">
-								<table id="example" class="table table-border table-striped table-hover" >
-
-																	
-																			<thead class="text-success">
-																				<th>ID</th>
-																				<th>usuario</th>
-																				<th>Tarea</th>
-																				<th>Descripcion</th>
-																				<th>Inicio</th>
-																				<th>Fin</th>
-																				<th></th>
-																			</thead>
-																			<tbody>
-																					<tr>
-																						<td>1</td>
-																						<td>Steve</td>
-																						<td>Capacitacion</td>
-																						<td>herramientas de proteccion...</td>
-																						<td>15 de Agosto</td>
-																						<td>16 de Agosto</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>
-																					<tr>
-																						<td>2</td>
-																						<td>Woz</td>
-																						<td>Reporte mensual</td>
-																						<td>Documentacion plan de seguridad...</td>
-																						<td>14 de Agosto</td>
-																						<td>16 de Agosto</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>
-																					<tr>
-																						<td>3</td>
-																						<td>Bill</td>
-																						<td>Soldura de protecciones</td>
-																						<td>Fijar estructuras en edificio 21...</td>
-																						<td>13 de Agosto</td>
-																						<td>15 de Agosto</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>																
-																			</tbody>
-																	</table>
-
-										</div>
-										<div class="tab-pane" id="messages">
-											<table class="table">
-												<tbody>
-													<tr>
-
-													</tr>
-									</table>
-								<form id="myform" method="post">
-								<table id="example" class="table table-border table-striped table-hover" >
-
-																	
-																			<thead class="text-primary">
-																				<th>ID</th>
-																				<th>usuario</th>
-																				<th>Tarea</th>
-																				<th>Descripcion</th>
-																				<th>Inicio</th>
-																				<th>Fin</th>
-																				<th></th>
-																			</thead>
-																			<tbody>
-																					<tr>
-																						<td>1</td>
-																						<td>Bill</td>
-																						<td>Reporte mensual</td>
-																						<td>Documentacion plan de seguridad...</td>
-																						<td>16 de Agosto</td>
-																						<td>18 de Agosto</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>
-																					<tr>
-																						<td>2</td>
-																						<td>Woz</td>
-																						<td>Capacitacion</td>
-																						<td>herramientas de proteccion...</td>
-																						<td>15 de Agosto</td>
-																						<td>17 de Agosto</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>
-																					<tr>
-																						<td>3</td>
-																						<td>Steve</td>
-																						<td>Soldura de protecciones</td>
-																						<td>Fijar estructuras en edificio 21...</td>
-																						<td>15 de Agosto</td>
-																						<td>17 de Agosto</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>									
-												</tbody>
-											</table>
-										</div>
-								<div class="tab-pane" id="settings">
-											<tbody>
-													<tr>
-
-													</tr>
-									</table>
-								<form id="myform" method="post">
-								<table id="example" class="table table-border table-striped table-hover" >
-
-																	
-																			<thead class="text-warning">
-																				<th>ID</th>
-																				<th>usuario</th>
-																				<th>Tarea</th>
-																				<th>Descripcion</th>
-																				<th>Inicio</th>
-																				<th>Fin</th>
-																				<th></th>
-																			</thead>
-																			<tbody>
-																					<tr>
-																						<td>1</td>
-																						<td>Woz</td>
-																						<td>Reporte mensual</td>
-																						<td>Documentacion plan de seguridad...</td>
-																						<td>13 de Agosto</td>
-																						<td>Sin finalizar</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>
-																					<tr>
-																						<td>2</td>
-																						<td>Bill</td>
-																						<td>Capacitacion</td>
-																						<td>herramientas de proteccion...</td>
-																						<td>14 de Agosto</td>
-																						<td>Sin finalizar</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>
-																					<tr>
-																						<td>3</td>
-																						<td>Steven</td>
-																						<td>Soldura de protecciones</td>
-																						<td>Fijar estructuras en edificio 21...</td>
-																						<td>14 de Agosto</td>
-																						<td>Sin Finalizar</td>
-																						<td>
-																						<a href='#' >
-															<button type="button" rel="tooltip" title="Ver mas" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">remove_red_eye</i>
-															</button></a></td>
-																					</tr>									
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                        <li>
+                          <i class="fa fa-briefcase user-profile-icon"></i> Obra
+                        </li>
+                        <li>
+                          <i class="fa fa-tag user-profile-icon"></i> Constructora
+                        </li>
+                          <li>
+                          <i class="fa fa-flag-o user-profile-icon"></i> Inicio: 01/01/2018
+                        </li>
+                           <li>
+                          <i class="fa fa-flag-checkered user-profile-icon"></i> Termino: 01/12/2018
+                        </li>
+                          <li>
+                          <i class="fa fa-users user-profile-icon"></i> Dotacion Max: 300
+                        </li>
 
 
-			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
+                        <li class="m-top-xs">
+                          <i class="fa fa-external-link user-profile-icon"></i>
+                          <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                        </li>
+                      </ul>
 
-						<div class="col-md-4">
-    						<div class="card card-profile">
-    							<div class="card-avatar">
-    								<a href="#pablo">
-    									<img class="img"  src='{% static "img/logocontru.jpg" %}' />
-    								</a>
-    							</div>
+                      <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Editar Proyecto</a>
+                      <br />
 
-    							<div class="content">
+                      <!-- start skills -->
+                      <h4>Informacion de mando:</h4>
+                      <ul class="list-unstyled user_data">
+                        <li>
+                          <p>Gerente:</p>
+                        <i class="fa fa-globe user-profile-icon"></i> Steve Jobs
+                        </li>
+                        <li>
+                          <p>Administrador:</p>
+                        <i class="fa fa-gear user-profile-icon"></i> Bill Gates
+                        </li>
+                        </li>
+                        <li>
+                          <p>Supervisor:</p>
+                        <i class="fa fa-search user-profile-icon"></i> Steve Wozniak
+                        </li>
+                      </ul>
+                      <!-- end of skills -->
 
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
 
-    								<h6 class="category text-gray">Perfil del Proyecto</h6>
+                      <div class="profile_title">
+                        <div class="col-md-6">
+                          <h2>Reporte de Actividad</h2>
 
-    								<h4 class="card-title">Obra Construccion</h4>
+                      <!-- start of user-activity-graph -->
+                      <div id="graph_bar" style="width:100%; height:280px;"></div>
+                  </div>
+                  </div>
+              </div>
 
-    								Inicio el 12 de abril de 2017
-    								<br>
-    								Santa katy, edificio 23, Santiago
-    								<div class="card-footer">
-    								</div>
-    								Gerente:<a href="">&nbsp;Steve Jobs</a>
-    								<br>
-    								Administrador:<a href="">&nbsp;&nbsp;Steve Wozniak</a>
-    								<br>
-    								Supervisor:<a href="">&nbsp;Bill gates</a>
+              </div>
 
-    								<p class="card-content">
-    									
-    								</p>
-    								<a href="#pablo" class="btn btn-primary btn-round">Ver mas</a>
-    							</div>
-    						</div>
-		    			</div>
-
-		    	</div>
-		    	</div>
+              </div>
 
 
 
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <div id="chart_plot_01" class="demo-placeholder"></div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+                  <div class="x_title">
+                    <h2>Top Campaign Performance</h2>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-xs-6">
+                    <div>
+                      <p>Facebook Campaign</p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p>Twitter Campaign</p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-6">
+                    <div>
+                      <p>Conventional Media</p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p>Bill boards</p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+          </div>
+          <br />
+
+          <div class="row">
 
 
-			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header" data-background-color="orange">
-									<i class="material-icons">content_copy</i>
-								</div>
-								<div class="card-content">
-									<p class="category">Used Space</p>
-									<h3 class="title">49/50<small>GB</small></h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons text-danger">warning</i> <a href="#pablo">Get More Space...</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header" data-background-color="green">
-									<i class="material-icons">store</i>
-								</div>
-								<div class="card-content">
-									<p class="category">Revenue</p>
-									<h3 class="title">$34,245</h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">date_range</i> Last 24 Hours
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header" data-background-color="red">
-									<i class="material-icons">info_outline</i>
-								</div>
-								<div class="card-content">
-									<p class="category">Fixed Issues</p>
-									<h3 class="title">75</h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">local_offer</i> Tracked from Github
-									</div>
-								</div>
-							</div>
-						</div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>App Versions</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <h4>App Usage across versions</h4>
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>0.1.5.2</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
+                          <span class="sr-only">60% Complete</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>123k</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
 
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header" data-background-color="blue">
-									<i class="fa fa-twitter"></i>
-								</div>
-								<div class="card-content">
-									<p class="category">Followers</p>
-									<h3 class="title">+245</h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">update</i> Just Updated
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>0.1.5.3</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
+                          <span class="sr-only">60% Complete</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>53k</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>0.1.5.4</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                          <span class="sr-only">60% Complete</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>23k</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>0.1.5.5</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
+                          <span class="sr-only">60% Complete</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>3k</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>0.1.5.6</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
+                          <span class="sr-only">60% Complete</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span>1k</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
 
-					<div class="row">
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-header card-chart" data-background-color="green">
-									<div class="ct-chart" id="dailySalesChart"></div>
-								</div>
-								<div class="card-content">
-									<h4 class="title">Daily Sales</h4>
-									<p class="category"><span class="text-success"><i class="fa fa-long-arrow-up"></i> 55%  </span> increase in today sales.</p>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">access_time</i> updated 4 minutes ago
-									</div>
-								</div>
-							</div>
-						</div>
+                </div>
+              </div>
+            </div>
 
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-header card-chart" data-background-color="orange">
-									<div class="ct-chart" id="emailsSubscriptionChart"></div>
-								</div>
-								<div class="card-content">
-									<h4 class="title">Email Subscriptions</h4>
-									<p class="category">Last Campaign Performance</p>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">access_time</i> campaign sent 2 days ago
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-header card-chart" data-background-color="red">
-									<div class="ct-chart" id="completedTasksChart"></div>
-								</div>
-								<div class="card-content">
-									<h4 class="title">Completed Tasks</h4>
-									<p class="category">Last Campaign Performance</p>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">access_time</i> campaign sent 2 days ago
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-6 col-md-12">
-							<div class="card card-nav-tabs">
-								<div class="card-header" data-background-color="purple">
-									<div class="nav-tabs-navigation">
-										<div class="nav-tabs-wrapper">
-											<span class="nav-tabs-title">Tasks:</span>
-											<ul class="nav nav-tabs" data-tabs="tabs">
-												<li class="active">
-													<a href="#profile" data-toggle="tab">
-														<i class="material-icons">bug_report</i>
-														Bugs
-													<div class="ripple-container"></div></a>
-												</li>
-												<li class="">
-													<a href="#messages" data-toggle="tab">
-														<i class="material-icons">code</i>
-														Website
-													<div class="ripple-container"></div></a>
-												</li>
-												<li class="">
-													<a href="#settings" data-toggle="tab">
-														<i class="material-icons">cloud</i>
-														Server
-													<div class="ripple-container"></div></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="card-content">
-									<div class="tab-content">
-										<div class="tab-pane active" id="profile">
-											<table class="table">
-												<tbody>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes" checked>
-																</label>
-															</div>
-														</td>
-														<td>Sign contract for "What are conference organizers afraid of?"</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-														</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes" checked>
-																</label>
-															</div>
-														</td>
-														<td>Create 4 Invisible User Experiences you Never Knew About</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="tab-pane" id="messages">
-											<table class="table">
-												<tbody>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes" checked>
-																</label>
-															</div>
-														</td>
-														<td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-														</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Sign contract for "What are conference organizers afraid of?"</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="tab-pane" id="settings">
-											<table class="table">
-												<tbody>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes" checked>
-																</label>
-															</div>
-														</td>
-														<td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-														</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="checkbox">
-																<label>
-																	<input type="checkbox" name="optionsCheckboxes">
-																</label>
-															</div>
-														</td>
-														<td>Sign contract for "What are conference organizers afraid of?"</td>
-														<td class="td-actions text-right">
-															<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-																<i class="material-icons">edit</i>
-															</button>
-															<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-																<i class="material-icons">close</i>
-															</button>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-md-12">
-							<div class="card">
-	                            <div class="card-header" data-background-color="orange">
-	                                <h4 class="title">Employees Stats</h4>
-	                                <p class="category">New employees on 15th September, 2016</p>
-	                            </div>
-	                            <div class="card-content table-responsive">
-	                                <table class="table table-hover">
-	                                    <thead class="text-warning">
-	                                        <th>ID</th>
-	                                    	<th>Name</th>
-	                                    	<th>Salary</th>
-	                                    	<th>Country</th>
-	                                    </thead>
-	                                    <tbody>
-	                                        <tr>
-	                                        	<td>1</td>
-	                                        	<td>Dakota Rice</td>
-	                                        	<td>$36,738</td>
-	                                        	<td>Niger</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>2</td>
-	                                        	<td>Minerva Hooper</td>
-	                                        	<td>$23,789</td>
-	                                        	<td>Curaçao</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>3</td>
-	                                        	<td>Sage Rodriguez</td>
-	                                        	<td>$56,142</td>
-	                                        	<td>Netherlands</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>4</td>
-	                                        	<td>Philip Chaney</td>
-	                                        	<td>$38,735</td>
-	                                        	<td>Korea, South</td>
-	                                        </tr>
-	                                    </tbody>
-	                                </table>
-	                            </div>
-	                        </div>
-						</div>
-					</div>
-				</div>
-			</div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320 overflow_hidden">
+                <div class="x_title">
+                  <h2>Device Usage</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <table class="" style="width:100%">
+                    <tr>
+                      <th style="width:37%;">
+                        <p>Top 5</p>
+                      </th>
+                      <th>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                          <p class="">Device</p>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                          <p class="">Progress</p>
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                      </td>
+                      <td>
+                        <table class="tile_info">
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square blue"></i>IOS </p>
+                            </td>
+                            <td>30%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square green"></i>Android </p>
+                            </td>
+                            <td>10%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square purple"></i>Blackberry </p>
+                            </td>
+                            <td>20%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square aero"></i>Symbian </p>
+                            </td>
+                            <td>15%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square red"></i>Others </p>
+                            </td>
+                            <td>30%</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
 
 
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Quick Settings</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div class="dashboard-widget-content">
+                    <ul class="quick-list">
+                      <li><i class="fa fa-calendar-o"></i><a href="#">Settings</a>
+                      </li>
+                      <li><i class="fa fa-bars"></i><a href="#">Subscription</a>
+                      </li>
+                      <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
+                      <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
+                      </li>
+                      <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
+                      <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
+                      </li>
+                      <li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
+                      </li>
+                    </ul>
+
+                    <div class="sidebar-widget">
+                        <h4>Profile Completion</h4>
+                        <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
+                        <div class="goal-wrapper">
+                          <span id="gauge-text" class="gauge-value pull-left">0</span>
+                          <span class="gauge-value pull-left">%</span>
+                          <span id="goal-text" class="goal-value pull-right">100%</span>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
 
 
-{% endblock content %}
+          <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Recent Activities <small>Sessions</small></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div class="dashboard-widget-content">
+
+                    <ul class="list-unstyled timeline widget">
+                      <li>
+                        <div class="block">
+                          <div class="block_content">
+                            <h2 class="title">
+                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                          </h2>
+                            <div class="byline">
+                              <span>13 hours ago</span> by <a>Jane Smith</a>
+                            </div>
+                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="block">
+                          <div class="block_content">
+                            <h2 class="title">
+                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                          </h2>
+                            <div class="byline">
+                              <span>13 hours ago</span> by <a>Jane Smith</a>
+                            </div>
+                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="block">
+                          <div class="block_content">
+                            <h2 class="title">
+                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                          </h2>
+                            <div class="byline">
+                              <span>13 hours ago</span> by <a>Jane Smith</a>
+                            </div>
+                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="block">
+                          <div class="block_content">
+                            <h2 class="title">
+                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                          </h2>
+                            <div class="byline">
+                              <span>13 hours ago</span> by <a>Jane Smith</a>
+                            </div>
+                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
-{% block content2 %}
+            <div class="col-md-8 col-sm-8 col-xs-12">
 
 
 
-	<script type="text/javascript">
-			$(document).ready(function(){
+              <div class="row">
 
-			// Javascript method's body can be found in assets/js/demos.js
-					demo.initDashboardPageCharts();
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>Visitors location <small>geo-presentation</small></h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
+                            </li>
+                            <li><a href="#">Settings 2</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <div class="dashboard-widget-content">
+                        <div class="col-md-4 hidden-small">
+                          <h2 class="line_30">125.7k Views from 60 countries</h2>
 
-			});
-	</script>
+                          <table class="countries_list">
+                            <tbody>
+                              <tr>
+                                <td>United States</td>
+                                <td class="fs15 fw700 text-right">33%</td>
+                              </tr>
+                              <tr>
+                                <td>France</td>
+                                <td class="fs15 fw700 text-right">27%</td>
+                              </tr>
+                              <tr>
+                                <td>Germany</td>
+                                <td class="fs15 fw700 text-right">16%</td>
+                              </tr>
+                              <tr>
+                                <td>Spain</td>
+                                <td class="fs15 fw700 text-right">11%</td>
+                              </tr>
+                              <tr>
+                                <td>Britain</td>
+                                <td class="fs15 fw700 text-right">10%</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
 
 
-{% endblock content2 %}
+                <!-- Start to do list -->
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>To Do List <small>Sample tasks</small></h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
+                            </li>
+                            <li><a href="#">Settings 2</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
 
+                      <div class="">
+                        <ul class="to_do">
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Schedule meeting with new client </p>
+                          </li>
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Create email address for new intern</p>
+                          </li>
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Have IT fix the network printer</p>
+                          </li>
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Copy backups to offsite location</p>
+                          </li>
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Food truck fixie locavors mcsweeney</p>
+                          </li>
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Food truck fixie locavors mcsweeney</p>
+                          </li>
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Create email address for new intern</p>
+                          </li>
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Have IT fix the network printer</p>
+                          </li>
+                          <li>
+                            <p>
+                              <input type="checkbox" class="flat"> Copy backups to offsite location</p>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End to do list -->
+                
+                <!-- start of weather widget -->
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>Daily active users <small>Sessions</small></h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
+                            </li>
+                            <li><a href="#">Settings 2</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="temperature"><b>Monday</b>, 07:30 AM
+                            <span>F</span>
+                            <span><b>C</b></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="weather-icon">
+                            <canvas height="84" width="84" id="partly-cloudy-day"></canvas>
+                          </div>
+                        </div>
+                        <div class="col-sm-8">
+                          <div class="weather-text">
+                            <h2>Texas <br><i>Partly Cloudy Day</i></h2>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="weather-text pull-right">
+                          <h3 class="degrees">23</h3>
+                        </div>
+                      </div>
 
+                      <div class="clearfix"></div>
+
+                      <div class="row weather-days">
+                        <div class="col-sm-2">
+                          <div class="daily-weather">
+                            <h2 class="day">Mon</h2>
+                            <h3 class="degrees">25</h3>
+                            <canvas id="clear-day" width="32" height="32"></canvas>
+                            <h5>15 <i>km/h</i></h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="daily-weather">
+                            <h2 class="day">Tue</h2>
+                            <h3 class="degrees">25</h3>
+                            <canvas height="32" width="32" id="rain"></canvas>
+                            <h5>12 <i>km/h</i></h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="daily-weather">
+                            <h2 class="day">Wed</h2>
+                            <h3 class="degrees">27</h3>
+                            <canvas height="32" width="32" id="snow"></canvas>
+                            <h5>14 <i>km/h</i></h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="daily-weather">
+                            <h2 class="day">Thu</h2>
+                            <h3 class="degrees">28</h3>
+                            <canvas height="32" width="32" id="sleet"></canvas>
+                            <h5>15 <i>km/h</i></h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="daily-weather">
+                            <h2 class="day">Fri</h2>
+                            <h3 class="degrees">28</h3>
+                            <canvas height="32" width="32" id="wind"></canvas>
+                            <h5>11 <i>km/h</i></h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="daily-weather">
+                            <h2 class="day">Sat</h2>
+                            <h3 class="degrees">26</h3>
+                            <canvas height="32" width="32" id="cloudy"></canvas>
+                            <h5>10 <i>km/h</i></h5>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- end of weather widget -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+        <!-- /page content -->
+
+        {% endblock content %}
+
+        <!-- footer content -->

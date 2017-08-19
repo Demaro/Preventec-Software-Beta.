@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+
+		<div class="wrapper">
+
+				<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+						<!--
+								Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+								Tip 2: you can also add an image using data-image tag
+						-->
+
+						<div class="logo">
+								<a href="http://www.creative-tim.com" class="simple-text">
+										Preventec
+								</a>
+						</div>
+
+						<div class="sidebar-wrapper">
+								<ul class="nav">
+								<li>	
+								<li>
+									<a href='{% url "profile:principal" %}'>
+										<i class="material-icons">dashboard</i>
+											<p>Inicio</p>
+											</a>
+											</li>
+										</li>
+										<li>
+
+										<li class="active">
+										
+												<a href='{% url "profile:create_project" %}'>
+													<i class="material-icons">content_paste</i>
+												<p>Projectos</p>
+											</a>
+										</li>
+										<li >
+												<a href='{% url "profile:list" %}'>
+														<i class="material-icons">person</i>
+														<p>Personas</p>
+												</a>
+										</li>
+										<li >
+												<a href='{% url "profile:actividades" %}'>
+														<i class="material-icons">local_activity</i>
+														<p>Actividades</p>
+												</a>
+										</li>
+
+								</ul>
+						</div>
+				</div>
+{% endblock head %}
+
+
+{% block content %}
+
+
+	        <div class="content">
+	            <div class="container-fluid">
+	                <div class="row">
+	                    <div class="col-md-10">
+	                        <div class="card">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">Ingresar datos del nuevo Proyecto</h4>
+	                            </div>
+	                            <div class="card-content">
+	                                	<form action="" method="POST" role="form" enctype='multipart/form-data'>
+	                                    <div class="row">
+	                                        <div class="col-md-3">
+												<div class="form-group label-floating">
+													<label class="control-label">Nombre</label>
+													<input id="nombre" name="nombre" type="text" class="form-control" value="{{instance.nombre}}">
+												</div>
+	                                        </div>
+	                                        	<div class="col-md-3">
+												<div class="form-group label-floating">
+													<label class="control-label">Tipo</label>
+													<input id="tipo" name="tipo" type="text" class="form-control" value="{{instance.tipo}}">
+												</div>
+	                                        </div>
+	                                            <div class="col-md-2">
+												<div class="form-group label-floating">
+													<label class="control-label">Dotacion</label>
+													<input id="dotacion_max" name="dotacion_max" type="number" class="form-control" value="{{instance.dotacion_max}}">
+												</div>
+	                                        </div>
+	                                        	<div class="col-md-3">
+												<div class="form-group label-floating">
+													<label class="control-label">Direccion</label>
+													<input id="direccion" name="direccion" type="text" class="form-control" value="{{instance.direccion}}">
+												</div>
+	                                        </div>
+
+	                                            <div class="col-md-2">
+												<div class="form-group label-floating">
+													<label class="control-label">Gerente</label>
+													<br>
+													{{form.gerente}}
+												</div>
+	                                        </div>
+	                                        	<div class="col-md-2">
+												<div class="form-group label-floating">
+													<label class="control-label">Administrador</label>
+													<br>
+													{{form.admindor}}
+												</div>
+	                                        </div>
+	                                        	<div class="col-md-2">
+												<div class="form-group label-floating">
+													<label class="control-label">Supervisor</label>
+													<br>
+													{{form.supervisor}}
+												</div>
+											</div>
+
+											                                        	<div class="col-md-3">
+												<div class="form-group label-floating">
+												<label class="control-label">Fecha Termino</label>
+												<input class="form-control" id="fecha_termino" name="fecha_termino"  value="{{instance.fecha_termino}}" type="text"/>
+												</div>
+	                                        </div>
+	   	                                    <div class="row">
+	                                        <div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label"><h4>Foto de Perfil:</h4></label>
+													<br>
+													</div>
+													{{form.image}}
+												
+	                                        </div>
+	                                        </div>	
+
+
+	                                       </div>
+
+
+	                                    <button type="submit" class="btn btn-primary pull-right">Crear Proyecto</button>
+	                                    <div class="clearfix"></div>
+	                                </form>
+	                            </div>
+	                        </div>
+	                    </div>
+
+	                    <!--
+						<div class="col-md-4">
+    						<div class="card card-profile">
+    							<div class="card-avatar">
+    								<a href="#pablo">
+    									<img class="img" src="../assets/img/faces/marc.jpg" />
+    								</a>
+    							</div>
+
+    							<div class="content">
+    								<h6 class="category text-gray">CEO / Co-Founder</h6>
+    								<h4 class="card-title">Alec Thompson</h4>
+    								<p class="card-content">
+    									Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+    								</p>
+    								<a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+    							</div>
+    						</div>
+		    			</div>
+-->
+
+	            </div>
+	        </div>
+
+{% endblock content %}
+
+
+{% block content2 %}
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="fecha_termino"]'); //our date input has the name "birthdate"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+{% endblock content2 %}
