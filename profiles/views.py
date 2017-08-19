@@ -40,14 +40,17 @@ User = get_user_model()
 
 
 def home(request):
-	return render(request, "login.html")
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect('/login')
+	else:
+		return HttpResponseRedirect('/inicio')
 
 
 def detail_actividad(request):
 	return render(request, "detail_actividad.html")
 
 def principal(request):
-	if not request.user.is_staff or not request.user.is_superuser:
+	if not request.user.is_authenticated():
 		return HttpResponseRedirect('/')
 		
 	return render(request, "index.html")

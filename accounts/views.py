@@ -21,17 +21,15 @@ from profiles.forms import ProfileForm
 from profiles.models import Profile
 
 def login_view(request):
-
-    if request.user.is_authenticated:
-        return HttpResponseRedirect('/principal')
     form = UserLoginForm(request.POST or None)
+    if not request.user.is_authenticated():
 
-    if form.is_valid():
-        username = form.cleaned_data.get("username")
-        password = form.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect("/principal")
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect("/inicio")
     return render(request, "login.html", {"form":form})
 
 
@@ -67,7 +65,7 @@ def register_view(request):
             new_profile.save()
             new_profile.id
             print(new_profile.id)
-            return HttpResponseRedirect('/principal')
+            return HttpResponseRedirect('/inicio')
 
         context = {
         "form2": form2,

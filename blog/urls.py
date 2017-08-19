@@ -19,21 +19,28 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from django.contrib.auth.views import login_required
+
 from accounts.views import register_view, login_view, logout_view
 from django_js_reverse.views import urls_js 
+
+from profiles import urls
+
+from profiles.views import home
 
 urlpatterns = [
     
     url(r'^admin/', admin.site.urls),
     url(r'^comments/', include("comments.urls", namespace='comments')),
 
-    url(r'^$', login_view, name='login'),
+    url(r'^login', login_view, name='login'),
     url(r'^logout/', logout_view, name='logout'),
 
-    url(r'^register', register_view, name='register'),
-    url(r'^', include("profiles.urls", namespace='profile')),
+    url(r'^$', home, name='home'),
 
-    url(r'^', include("posts.urls", namespace='posts')),
+    url(r'^register', register_view, name='register'),
+    url(r'^', include(urls, namespace='profile')),
+
     #url(r'^api/users/', include("accounts.api.urls", namespace='users-api')),
     url(r'^api/comments/', include("comments.api.urls", namespace='comments-api')),
     url(r'^api/posts/', include("posts.api.urls", namespace='posts-api')),
