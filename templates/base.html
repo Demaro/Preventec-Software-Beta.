@@ -42,6 +42,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 <link rel='stylesheet' media='print' href='{% static "css/fullcalendar.print.min.css" %}'  />
 
+    <link rel="stylesheet" href='{% static "vendors/iCheck/skins/flat/green.css" %}' >
+
+
+    <link rel="stylesheet" href='{% static "vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" %}' >
+    <link rel="stylesheet" href='{% static "vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{% static "vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" %}' >
+    <link rel="stylesheet" href='{% static "vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" %}' >
+
+
   </head>
 
   <body class="nav-md">
@@ -86,7 +95,7 @@
                   <li><a><i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href='{% url "register" %}'>Enrolar</a></li>
-                      <li><a href="#">Gestor de Personal</a></li>
+                      <li><a href='{%  url "profile:list" %}'>Gestor de Personal</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-folder-open-o"></i> Proyectos <span class="fa fa-chevron-down"></span></a>
@@ -308,9 +317,25 @@
 
 
 	<script language="javascript" type="text/javascript" src='{% static "js/full-calendar/fullcalendar.min.js" %}'></script>
+
+    <script src='{% static "vendors/datatables.net/js/jquery.dataTables.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-buttons/js/dataTables.buttons.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-buttons/js/buttons.flash.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-buttons/js/buttons.html5.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-buttons/js/buttons.print.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-keytable/js/dataTables.keyTable.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-responsive/js/dataTables.responsive.min.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js" %}'></script>
+    <script src='{% static "vendors/datatables.net-scroller/js/dataTables.scroller.min.js" %}'></script>
+    <script src='{% static "vendors/jszip/dist/jszip.min.js" %}'></script>
+    <script src='{% static "vendors/pdfmake/build/pdfmake.min.js" %}'></script>
+    <script src='{% static "vendors/pdfmake/build/vfs_fonts.js" %}'></script>
+    <script src='//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'></script>
 	
-  </body>
-</html>
+
 
 
 
@@ -318,7 +343,8 @@
 {% endblock content2 %}
 
 
-
+  </body>
+</html>
 		
 
 

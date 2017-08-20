@@ -1,4 +1,10 @@
+#! / Usr / bin / python env
+# - * - coding: UTF-8 - * -
+
+
 from __future__ import unicode_literals
+
+
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
@@ -12,6 +18,7 @@ from django.utils.text import slugify
 
 from markdown_deux import markdown
 from comments.models import Comment
+from projects.models import Project
 
 #from utils import get_read_time
 
@@ -57,6 +64,8 @@ class Profile(models.Model):
 	años_exp = models.IntegerField(null=True, blank=True)
 	contrato = models.TextField(null=True, blank=True)
 	legales_asoc =  models.TextField(null=True, blank=True)
+	unidad_asignada = models.ForeignKey('projects.Project')
+	
 
 	objects = ProfileManager()
 

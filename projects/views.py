@@ -1,14 +1,14 @@
 #! / Usr / bin / python env
 # - * - coding: UTF-8 - * -
 try:
-    from urllib import quote_plus #python 2
+	from urllib import quote_plus #python 2
 except:
-    pass
+	pass
 
 try:
-    from urllib.parse import quote_plus #python 3
+	from urllib.parse import quote_plus #python 3
 except: 
-    pass
+	pass
 
 from django.template.loader import get_template
 from django.contrib import messages
@@ -30,17 +30,23 @@ from django.utils import timezone
 
 
 
-
 def project_create(request):
 	if not request.user.is_staff or not request.user.is_superuser:
 		raise Http404
 		
-	form = ProjectForm(request.POST or None, request.FILES or None)
+	form = ProjectForm(request.POST or None)
 	if form.is_valid():
-		instance = form.save(commit=False)
-		instance.fecha_inicio = timezone.now()
-		instance.user = request.user
-		instance.save()
+		nombre   =			form.cleaned_data.get("nombre")
+		tipo   =			form.cleaned_data.get("tipo")
+		direccion =			form.cleaned_data.get("direccion")
+		dotacion_max =		form.cleaned_data.get("dotacion_max")
+		fecha_inicio =		form.cleaned_data.get("fecha_inicio")
+		fecha_termino =		form.cleaned_data.get("fecha_termino")
+
+
+		new_project = Project(user_id=request.user.id, nombre=nombre, tipo=tipo, direccion=direccion, dotacion_max=dotacion_max, fecha_inicio=fecha_inicio, fecha_termino=fecha_inicio, updated=timezone.now())
+
+		new_project.save()
 		# message success
 		messages.success(request, "Creado con exito!")
 		return HttpResponseRedirect(instance.get_absolute_url())

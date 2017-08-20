@@ -29,12 +29,12 @@ from django.utils import timezone
 from accounts.forms import  UserRegisterForm
 
 from django.contrib.auth import (
-    authenticate,
-    get_user_model,
-    login,
-    logout,
+	authenticate,
+	get_user_model,
+	login,
+	logout,
 
-    )
+	)
 
 User = get_user_model()
 
@@ -101,28 +101,16 @@ def profile_create(request, id_user):
 
 
 def profile_list(request):
-	queryset_list = Profile.objects.all().order_by("-ultimateupdate")
-	form = UserRegisterForm(request.POST or None)
-	today = timezone.now().date()
-	if form.is_valid():
-		username = form.cleaned_data.get("username")
-		password = form.cleaned_data.get('password')
-		email = form.cleaned_data.get("email")
-		nombre = form.cleaned_data.get("first_name")
-		apellido = form.cleaned_data.get("last_name")
-		new_user = User(username=username, password=password, email=email, first_name=nombre, last_name=apellido)
-		new_user.save()
-		#login(request, new_user)
-		new_user.id
-		print(new_user.id)
-		return HttpResponseRedirect('crear_perfil/%s/' % new_user.id)
+	profiles_obj = Profile.objects.all().order_by("-ultimateupdate")
+	user_list = User.objects.all()
 
 
 	context = {
-		"queryset_list": queryset_list, 
+		"profiles_obj": profiles_obj, 
+		"user_list": user_list
 
 	}
-	return render(request, "user.html", context)
+	return render(request, "profile_list.html", context)
 
 
 
@@ -136,9 +124,9 @@ def profile_detail(request, id_profile):
 def profile_update(request, id_profile):
 	instance = Profile.objects.get(id=id_profile)
 	if request.user.is_superuser:
-		form = ProfileForm(request.POST or None,  instance=instance)
-		if form.is_valid():
-			instance = form.save(commit=False)
+		form2 = ProfileForm(request.POST or None,  instance=instance)
+		if form2.is_valid():
+			instance = form2.save(commit=False)
 			instance.ultimateupdate = timezone.now()
 			instance.save()
 			messages.success(request, "<a href='#'>Item</a> Modificado!", extra_tags='html_safe')
@@ -146,9 +134,9 @@ def profile_update(request, id_profile):
 
 		context = {
 			"instance": instance,
-			"form":form,
+			"form2":form2,
 		}
-		return render(request, "profile_create.html", context)
+		return render(request, "user.html", context)
 	else:
 		raise Http404
 

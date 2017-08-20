@@ -1,3 +1,6 @@
+#! / Usr / bin / python env
+# - * - coding: UTF-8 - * -
+
 from __future__ import unicode_literals
 
 from django.conf import settings
@@ -12,7 +15,7 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 from markdown_deux import markdown
 from comments.models import Comment
-from profiles.models import Profile
+
 
 
 # Create your models here.

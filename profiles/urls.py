@@ -16,7 +16,7 @@ from profiles.views import (
 	cinco,
 	seis,
 	siete,
-	principal
+	principal,
 
 
 	)
@@ -48,7 +48,7 @@ urlpatterns = [
 	url(r'^profiles', profile_list, name='list'),
 	url(r'^crear_perfil/(?P<id_user>\d+)/$', login_required(profile_create), name="crear_perfil"),
 	url(r'^perfil-detalle/(?P<id_profile>\d+)/$', login_required(profile_detail), name='detail'),
-	url(r'^perfil-editar/(?P<id_profile>\d+)/$', login_required(profile_update), name='update'),
+	url(r'^perfil-editar/(?P<id_profile>\d+)/$', login_required(profile_update), name='edit'),
 
 	url(r'^delete-profile/(?P<id_profile>\d+)$', profile_delete, name='delete'),
 	#url(r'^(?P<slug>[\w-]+)/delete/$', post_delete, name='delete'),

@@ -49,118 +49,89 @@
 
 
                         <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal form-label-left">
-                    
-                <small>Datos del usuario:</small>
               
               <br>
 
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Nombre de Usuario <span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="username" name="username" required="required" value="{{ instance.user.username }}" class="form-control col-md-7 col-xs-12">
-                            </div>
-
-                          </div>
                               <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first_name">Nombre <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre de Proyecto <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="first_name" name="first_name" required="required" value="{{ instance.user.first_name }}" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="nombre" name="nombre" required="required" value="{{ instance.nombre }}" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                               <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Apellido <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipo">Tipo <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="last_name" name="last_name" required="required" value="{{ instance.user.last_name }}" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="tipo" name="tipo" required="required" value="{{ instance.tipo }}" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccion">Direccion <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="email" name="email" required="required"  value="{{ instance.user.email }}" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="direccion" name="direccion" required="required"  value="{{ instance.direccion }}" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
-                          {% if not instance %}
+
                           <div class="form-group">
-                            <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12">Contraseña<span class="required">*</span></label>
+                            <label for="gerente" class="control-label col-md-3 col-sm-3 col-xs-12">Gerente<span class="required">*</span></label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input id="password" class="form-control col-md-7 col-xs-12" type="password" name="password">
+                            {{form.gerente}}
                             </div>
-                          </div>
-                          {% endif %}
+                            </div>
       
-                    <div class="title_left">
-                <small>Datos del Perfil:</small>
-              </div>
-              <br>
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="admindor">Administrador <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="rut" name="rut" required="required" value="{{ instance.rut }}" class="form-control col-md-7 col-xs-12">
-                            </div>
-                          </div>
-                          {% if not instance %}
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthdate">Fecha Nacimiento <span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="birthdate" name="birthdate" required="required" class="form-control col-md-7 col-xs-12">
-                            </div>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="avatar" class="control-label col-md-3 col-sm-3 col-xs-12">Foto de Perfil<span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{form2.avatar}}
-                            
-                            </div>
-                          </div>
-                          {% endif %}
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cargo">Cargo <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{form2.cargo}}
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="especialidad">Especialidad <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{form2.especialidad}}
-                            </div>
-                          </div>
-
-                        
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contrato">Contrato<span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="contrato" name="contrato" value="{{ instance.contrato }}" required="required" class="form-control col-md-7 col-xs-12">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="legales_asoc">Legales Acosiados<span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="legales_asoc" name="legales_asoc" value="{{ instance.legales_asoc }}" required="required" class="form-control col-md-7 col-xs-12">
+                            {{form.admindor}}
                             </div>
                           </div>
                             <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unidad_asignada">Unidad Asignada<span></span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supervisor">Supervisor <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="unidad_asignada" name="unidad_asignada" value="{{ instance.unidad_asignada }}" class="form-control col-md-7 col-xs-12">
+                            {{form.supervisor}}
                             </div>
-                              {% csrf_token %}
                           </div>
+                          {% if not instance %}
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_inicio">Fecha Inicio <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="fecha_inicio" name="fecha_inicio" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                            {% endif %}
+                            <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_inicio">Fecha Termino <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="fecha_termino" name="fecha_termino" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                              <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dotacion_max">Dotacion Maxima<span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="dotacion_max" name="dotacion_max" value="{{ instance.dotacion_max }}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+
+
+
+                      
+                          <div class="form-group">
+                            <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Imagen Corporativa<span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{form.image}}
+                            {% csrf_token %}
+                            </div>
+                          </div>
+
                               <button type="submit" class="btn btn-primary pull-right">Crear Perfil</button>
 
                         </form>
@@ -189,7 +160,7 @@
 {% block content2 %}
 <script>
     $(document).ready(function(){
-      var date_input=$('input[name="birthdate"]'); //our date input has the name "birthdate"
+      var date_input=$('input[name="fecha_inicio"]'); //our date input has the name "birthdate"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
         format: 'mm/dd/yyyy',
@@ -200,6 +171,21 @@
       date_input.datepicker(options);
     })
 </script>
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="fecha_termino"]'); //our date input has the name "birthdate"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
 
 
 <script>
