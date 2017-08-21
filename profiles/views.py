@@ -72,6 +72,8 @@ def seis(request):
 def siete(request):
 	return render(request, "notifications.html")
 
+def calendario_activity(request):
+	return render(request, "calendar.html")
 
 
 def profile_create(request, id_user):
