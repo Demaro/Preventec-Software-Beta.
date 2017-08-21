@@ -44,27 +44,29 @@ def register_view(request):
             email = form.cleaned_data.get("email")
             nombre = form.cleaned_data.get("first_name")
             apellido = form.cleaned_data.get("last_name")
-            new_user = User(username=username, password=password, email=email, first_name=nombre, last_name=apellido)
+            new_user = User(username=username, password=password, email=email, first_name=nombre, last_name=apellido, is_staff=True)
             new_user.save()
             #login(request, new_user)
-            new_user.id
+            user = new_user.id
             print(new_user.id)
+
 
         if form2.is_valid():
 
-            rut_data = form2.cleaned_data.get("rut")
+            profile = form2.save(commit=False)
+
             birthdate_data = form2.cleaned_data.get("birthdate")
-            avatar_data = form2.cleaned_data.get("avatar")
-            cargo_data = form2.cleaned_data.get("cargo")
-            especialidad_data = form2.cleaned_data.get("especialidad")
-            contrato_data = form2.cleaned_data.get("contrato")
-            legales_asoc_data = form2.cleaned_data.get("legales_asoc")
 
-            new_profile = Profile(user_id=new_user.id, rut=rut_data, birthdate=birthdate_data, avatar=avatar_data, cargo=cargo_data, especialidad=especialidad_data, contrato=contrato_data, legales_asoc=legales_asoc_data, ultimateupdate = timezone.now(), inicio_cargo=timezone.now())
+            profile.birthdate = birthdate_data
 
-            new_profile.save()
-            new_profile.id
-            print(new_profile.id)
+            profile.user_id = user
+
+            profile.fecha_cargo = timezone.now()
+            profile.ultimateupdate = timezone.now()
+
+            profile.save()
+            profile.id
+            print(profile.id)
             return HttpResponseRedirect('/inicio')
 
         context = {

@@ -26,6 +26,8 @@ from posts.models import Post
 
 from django.utils import timezone
 
+from accounts.views import (login_view, register_view, logout_view) 
+
 from accounts.forms import  UserRegisterForm
 
 from django.contrib.auth import (
@@ -55,8 +57,8 @@ def principal(request):
 		
 	return render(request, "index.html")
 
-def tres(request):
-	return render(request, "table.html")
+def profiles_contacts(request):
+	return render(request, "contacts.html")
 
 def actividades(request):
 	return render(request, "actividades.html")
@@ -74,28 +76,32 @@ def siete(request):
 
 def profile_create(request, id_user):
 	if request.user.is_authenticated():
-			form = ProfileForm(request.POST or None)
+		form = ProfileForm(request.POST or None)
+		username = User.objects.get(id=id_user)
 	if form.is_valid():
 
 		rut_data = form.cleaned_data.get("rut")
 		birthdate_data = form.cleaned_data.get("birthdate")
 		avatar_data = form.cleaned_data.get("avatar")
 		cargo_data = form.cleaned_data.get("cargo")
-		especialidad_data = form.cleaned_data.get("especialidad")
 		contrato_data = form.cleaned_data.get("contrato")
 		legales_asoc_data = form.cleaned_data.get("legales_asoc")
 
-		new_profile = Profile(user_id=id_user, rut=rut_data, birthdate=birthdate_data, avatar=avatar_data, cargo=cargo_data, especialidad=especialidad_data, contrato=contrato_data, legales_asoc=legales_asoc_data, ultimateupdate = timezone.now(), inicio_cargo=timezone.now())
+		new_profile = Profile(user_id=id_user, rut=rut_data, birthdate=birthdate_data, avatar=avatar_data, cargo=cargo_data, contrato=contrato_data, legales_asoc=legales_asoc_data,  ultimateupdate = timezone.now(), inicio_cargo=timezone.now())
 
 		new_profile.save()
+
+		new_profile.id
+		print(new_profile.id)
 		# message success
 		messages.success(request, "Creado con exito!")
-		return HttpResponseRedirect('/profiles')
+		return HttpResponseRedirect('/inicio')
 	context = {
 		"form": form,
 		"id_user": id_user,
+		"username": username,
 	}
-	return render(request, "profile_create.html", context)
+	return render(request, "profile_form.html", context)
 
 
 

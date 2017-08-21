@@ -38,7 +38,7 @@ urlpatterns = [
 
 	url(r'^$', home, name='home'),
 
-	url(r'^register', register_view, name='register'),
+	url(r'^add_staff', register_view, name='register'),
 	url(r'^', include(urls, namespace='profile')),
 
 	#url(r'^api/users/', include("accounts.api.urls", namespace='users-api')),

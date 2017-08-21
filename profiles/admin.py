@@ -14,8 +14,8 @@ class ProfileModelAdmin(admin.ModelAdmin):
 		model = Profile
 
 class CargoModelAdmin(admin.ModelAdmin):
-	list_display = ["nombre"]
-	list_editable = ["nombre"]
+	list_display = ["nombre", "tipo",]
+	list_editable = ["nombre", "tipo",]
 	list_filter = ["nombre"]
 
 	search_fields = ["nombre"]

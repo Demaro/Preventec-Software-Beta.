@@ -9,7 +9,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Creador de Proyecto</h3>
+                <h3>Creador de Actividades</h3>
               </div>
 
               <div class="title_right">
@@ -53,87 +53,48 @@
               <br>
 
                               <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre de Proyecto <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="asunto">Asunto <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form.nombre}}
+                              <input type="text" id="asunto" name="asunto" required="required" value="{{ instance.asunto }}" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                               <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipo">Tipo <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripcion <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form.tipo}}
+                              <input type="text" id="descripcion" name="descripcion" required="required" value="{{ instance.descripcion }}" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccion">Direccion <span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form.direccion}}
-                            </div>
-                          </div>
+    
 
-                          <div class="form-group">
-                            <label for="gerente" class="control-label col-md-3 col-sm-3 col-xs-12">Gerente<span class="required">*</span></label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form.gerente}}
-                            </div>
-                            </div>
-      
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="admindor">Administrador <span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form.admindor}}
-                            </div>
-                          </div>
-                            <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supervisor">Supervisor <span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form.supervisor}}
-                            </div>
-                          </div>
-                          {% if not instance %}
+                          
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_inicio">Fecha Inicio <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="fecha_inicio" name="fecha_inicio" value="{{ instance.fecha_inicio }}" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="fecha_inicio" name="fecha_inicio" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
+                          {% if not instance %}
                             {% endif %}
                             <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_termino">Fecha Termino <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="fecha_termino" name="fecha_termino" value="{{ instance.fecha_termino }}" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="fecha_termino" name="fecha_termino" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
-                              <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dotacion_max">Dotacion Maxima<span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{ form.dotacion_max }}
-                            </div>
-                            </div>
 
-
-
-
-
-                      
                           <div class="form-group">
-                            <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Imagen Corporativa<span class="required">*</span></label>
+                            <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Imagen<span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                             {{form.image}}
                             {% csrf_token %}
                             </div>
                           </div>
 
-                              <button type="submit" class="btn btn-primary pull-right">Crear Proyecto</button>
+                              <button type="submit" class="btn btn-primary pull-right">Crear Actividad</button>
 
                         </form>
 
@@ -189,33 +150,5 @@
 
 
 
-<script>
-
- $('#wizard').smartWizard({
-
-
-  // Properties
-    selected: 0,  // Selected Step, 0 = first step   
-    keyNavigation: true, // Enable/Disable key navigation(left and right keys are used if enabled)
-    enableAllSteps: false,  // Enable/Disable all steps on first load
-    transitionEffect: 'fade', // Effect on navigation, none/fade/slide/slideleft
-    contentURL:null, // specifying content url enables ajax content loading
-    contentURLData:null, // override ajax query parameters
-    contentCache:true, // cache step contents, if false content is fetched always from ajax url
-    cycleSteps: false, // cycle step navigation
-    enableFinishButton: false, // makes finish button enabled always
-  hideButtonsOnDisabled: false, // when the previous/next/finish buttons are disabled, hide them instead
-    errorSteps:[],    // array of step numbers to highlighting as error steps
-    labelNext:'Siguiente', // label for Next button
-    labelPrevious:'Anterior', // label for Previous button
-    labelFinish:'Finalizar',  // label for Finish button        
-    noForwardJumping:false,
-  // Events
-    onLeaveStep: null, // triggers when leaving a step
-    onShowStep: null,  // triggers when showing a step
-    onFinish: null  // triggers when Finish button is clicked
-    finishBtn: 'FINISH',
-}); 
-</script>
 
 {% endblock content2 %}

@@ -92,18 +92,28 @@
                       <li><a href='{% url "profile:home" %}'>Proyeco 3</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href='{% url "register" %}'>Enrolar</a></li>
-                      <li><a href='{%  url "profile:list" %}'>Gestor de Personal</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-folder-open-o"></i> Proyectos <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-folder-open-o"></i> Proyectos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href='{% url "profile:create_project" %}'>Crear</a></li>
-                      <li><a href="#">Gestor de Proyectos</a></li>
+                      <li><a href='{% url "profile:projects_list" %}'>Gestor de Proyectos</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a>Enrolar<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li class="sub_menu"><a href='{% url "register" %}'>Parcial</a>
+                            </li>
+                            <li><a href=#>Activo</a>
+                            </li>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href='{% url "profile:profiles_contacts" %}'>Gestion de Personal</a>
+                        </li>
+                    </ul>
+                  </li>
+ 
                   <li><a><i class="fa fa-table"></i> Actividades <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Cargar</a></li>
@@ -337,7 +347,13 @@
 	
 
 
+    <script src='{% static "vendors/moment/min/moment.min.js" %}'></script>
+    <script src='{% static "vendors/fullcalendar/dist/fullcalendar.min.js" %}'></script>
 
+        <script src='{% static "vendors/raphael/raphael.min.js" %}'></script>
+    <script src='{% static "vendors/morris.js/morris.min.js" %}'></script>
+        <script src='{% static "vendors/echarts/dist/echarts.min.js" %}'></script>
+    <script src='{% static "vendors/echarts/map/js/world.js" %}'></script>
 
 {% block content2 %}
 {% endblock content2 %}

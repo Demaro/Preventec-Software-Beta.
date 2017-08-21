@@ -12,6 +12,10 @@ class ProjectForm(forms.ModelForm):
 
         fields = [
 
+        	"nombre",
+        	"tipo",
+        	"direccion",
+        	"dotacion_max",
 			"gerente",
 			"admindor",
 			"supervisor",

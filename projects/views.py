@@ -24,6 +24,7 @@ from comments.forms import CommentForm
 from comments.models import Comment
 from .forms import ProjectForm
 from .models import Project
+from profiles.models import Profile
 
 
 from django.utils import timezone
@@ -35,25 +36,40 @@ def project_create(request):
 		raise Http404
 		
 	form = ProjectForm(request.POST or None)
+
 	if form.is_valid():
-		nombre   =			form.cleaned_data.get("nombre")
-		tipo   =			form.cleaned_data.get("tipo")
-		direccion =			form.cleaned_data.get("direccion")
-		dotacion_max =		form.cleaned_data.get("dotacion_max")
-		fecha_inicio =		form.cleaned_data.get("fecha_inicio")
-		fecha_termino =		form.cleaned_data.get("fecha_termino")
 
+		project = form.save(commit=False)
 
-		new_project = Project(user_id=request.user.id, nombre=nombre, tipo=tipo, direccion=direccion, dotacion_max=dotacion_max, fecha_inicio=fecha_inicio, fecha_termino=fecha_inicio, updated=timezone.now())
+		fecha_inicio_data =		form.cleaned_data.get("fecha_inicio")
+		fecha_termino_data =	form.cleaned_data.get("fecha_termino")
 
-		new_project.save()
+		project.fecha_inicio = fecha_inicio_data
+		project.fecha_termino = fecha_termino_data
+		project.user_id = request.user.id
+
+		project.save()
+
 		# message success
 		messages.success(request, "Creado con exito!")
-		return HttpResponseRedirect(instance.get_absolute_url())
+		return HttpResponseRedirect('/inicio')
 	context = {
 		"form": form,
 	}
 	return render(request, "project_form.html", context)
+
+
+
+def projects_list(request):
+	projects_obj = Project.objects.all()
+
+	context = {
+		"projects_obj": projects_obj,
+	}
+
+	return render(request, "projects.html", context)
+
+
 
 """
 def post_detail(request, slug=None):

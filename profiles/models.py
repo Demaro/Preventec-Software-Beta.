@@ -54,17 +54,16 @@ class Profile(models.Model):
 			blank=True,
 			width_field="width_field", 
 			height_field="height_field")
-	height_field = models.IntegerField(default=0)
-	width_field = models.IntegerField(default=0)
-	digitalid = models.CharField(max_length=20)
+	height_field = models.IntegerField(default=0, null=True, blank=True)
+	width_field = models.IntegerField(default=0, null=True, blank=True)
+	digitalid = models.CharField(max_length=20, null=True, blank=True)
 	ultimateupdate = models.DateTimeField()
 	cargo = models.ForeignKey('Cargo')
 	especialidad = models.ForeignKey('Especialidad')
 	inicio_cargo = models.DateField(auto_now=True, auto_now_add=False)
-	años_exp = models.IntegerField(null=True, blank=True)
+	años_exp     = models.IntegerField(null=True, blank=True)
 	contrato = models.TextField(null=True, blank=True)
 	legales_asoc =  models.TextField(null=True, blank=True)
-	unidad_asignada = models.ForeignKey('projects.Project')
 	
 
 	objects = ProfileManager()
@@ -87,8 +86,10 @@ class Profile(models.Model):
 
 
 
+
 class Cargo(models.Model):
 	nombre = models.TextField(max_length=30)
+	tipo   = models.IntegerField()
 
 
 	def __unicode__(self):

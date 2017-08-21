@@ -18,7 +18,6 @@ class ProfileForm(forms.ModelForm):
 			"birthdate",
 			"avatar",
 			"cargo",
-			"especialidad",
 			"contrato",
 			"legales_asoc",
 

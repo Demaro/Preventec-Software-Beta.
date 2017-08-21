@@ -61,7 +61,7 @@ class Project(models.Model):
 	draft = models.BooleanField(default=False)
 	fecha_inicio = models.DateField(auto_now=True, auto_now_add=False)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-	fecha_termino = models.DateTimeField(null=True, blank=True)
+	fecha_termino = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 
 	objects = ProjectManager()
