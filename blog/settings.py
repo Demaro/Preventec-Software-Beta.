@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 	'projects',
 	'comments',
 	'posts',
+
 	'rest_framework',
 	'django_js_reverse',
 	'storages',
@@ -190,4 +191,3 @@ JS_REVERSE_JS_VAR_NAME = 'Urls'
 
 
 AUTHENTICATION_BACKENDS = ('accounts.views.CaseInsensitiveModelBackend',)
-
