@@ -101,13 +101,19 @@
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title" id="myModalLabel2">Cargar Nueva Actividad</h4>
+            <h4 class="modal-title" id="myModalLabel2">Detalle de la Actividad</h4>
           </div>
           <div class="modal-body">
 
             <div id="testmodal2" style="padding: 5px 20px;">
               <form id="antoform2" class="form-horizontal calender" role="form">
                 <div class="form-group">
+                  <label class="col-sm-3 control-label">Inicio:</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="start2"  name="start2">
+                    Start: <span id="start2"></span><br>
+                  </div>
+
                   <label class="col-sm-3 control-label">Titulo</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="title2" name="title2">
@@ -134,26 +140,7 @@
     <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
     <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
 
-    <div id="popupEventForm" class="modal hide" style="display: none;">
-   <div class="modal-header"><h3>Add new event</h3></div>
-  <div class="modal-body">
-    <form id="EventForm" class="well">
-        <input type="hidden" id="eventID">
-        <label>Event title</label>
-        <input type="text" id="eventTitle" placeholder="Title here"><br />
-        <label>Scheduled date</label>
-        <input type="text" id="eventDate"><br />
-        <label>Scheduled time</label>
-        <input type="text" id="eventTime"><br />
-        <label>Appointment length (minutes)</label>
-        <input type="text" id="eventDuration" placeholder="15"><br />
-    </form>
-</div>
-  <div class="modal-footer">
-    <button type="button" id="btnPopupCancel" data-dismiss="modal" class="btn">Cancel</button>
-    <button type="button" id="btnPopupSave" data-dismiss="modal" class="btn btn-primary">Save event</button>
-  </div>
-</div> 
+
         
 {% endblock content %}
 
@@ -177,7 +164,48 @@
         
       },
 
-      selectable:!0,selectHelper:!0,select:function(a,b,c){$("#fc_create").click(),e=a,ended=b,$(".antosubmit").on("click",function(){var a=$("#title").val();return b&&(ended=b),f=$("#event_type").val(),a&&g.fullCalendar("renderEvent",{title:a,start:e,end:b,allDay:c},!0),$("#title").val(""),g.fullCalendar("unselect"),$(".antoclose").click(),!1})},eventClick:function(a,b,c){$("#fc_edit").click(),$("#title2").val(a.title),f=$("#event_type").val(),$(".antosubmit2").on("click",function(){a.title=$("#title2").val(),g.fullCalendar("updateEvent",a),$(".antoclose2").click()}),g.fullCalendar("unselect")},editable:!0,events:[]
+
+      selectable:!0,
+      selectHelper:!0,
+      select:function(a,b,c){$("#fc_create").click(),
+      e=a,ended=b,
+      $(".antosubmit").on("click",function(){var a=$("#title").val();
+        return b&&(ended=b),
+        f=$("#event").val(),
+        a&&g.fullCalendar("renderEvent",{title:a,start:e,end:b,allDay:c},!0),
+        $("#title").val(""),
+        g.fullCalendar("unselect"),
+        $(".antoclose").click(),!1})},
+        eventClick:function(a,b,c, e){$("#fc_edit").click(),
+
+
+        $("#title2").val(a.title),
+        f=$("#event").val(),
+        $(".antosubmit2").on("click",function(){a.title=$("#title2").val(),
+        g.fullCalendar("updateEvent",a),
+        $(".antoclose2").click()}),
+        g.fullCalendar("unselect"),
+
+        $("#start2").val(a.start),
+        f=$("#event").val(),
+        $(".antosubmit2").on("click",function(){a.start=$("#start2").val(),
+        g.fullCalendar("updateEvent",a),
+        $(".antoclose2").click()}),
+        g.fullCalendar("unselect")},
+
+
+
+
+
+        editable:!0,
+        events: [
+        {
+          title: 'All Day Event',
+          
+          start: '2017-08-01'
+        },
+
+   ]
 
 
 })
