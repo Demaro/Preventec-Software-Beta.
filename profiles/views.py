@@ -61,7 +61,7 @@ def profiles_contacts(request):
 	return render(request, "contacts.html")
 
 def actividades(request):
-	return render(request, "actividades.html")
+	return render(request, "activitys.html")
 
 def cinco(request):
 	return render(request, "icons.html")

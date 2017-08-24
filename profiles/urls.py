@@ -53,7 +53,7 @@ urlpatterns = [
 	url(r'^proyectos', login_required(projects_list), name='projects_list'),
 
 
-	url(r'^actividades', login_required(actividades), name='actividades'),
+	url(r'^actividades', login_required(actividades), name='activitys'),
 	url(r'^detalle_actividad', login_required(detail_actividad), name='detail_activity'),
 	url(r'^calendario_actividades', calendario_activity, name='calendar_activity'),
 
