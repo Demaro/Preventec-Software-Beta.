@@ -52,10 +52,14 @@ def detail_actividad(request):
 	return render(request, "detail_actividad.html")
 
 def principal(request):
+	obj_profiles = Profile.objects.all()
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect('/')
-		
-	return render(request, "index.html")
+
+	context = {
+    "obj_profiles": obj_profiles,
+    }	
+	return render(request, "index.html", context)
 
 def profiles_contacts(request):
 	return render(request, "contacts.html")
@@ -72,8 +76,7 @@ def seis(request):
 def siete(request):
 	return render(request, "notifications.html")
 
-def calendario_activity(request):
-	return render(request, "calendar.html")
+
 
 
 def profile_create(request, id_user):

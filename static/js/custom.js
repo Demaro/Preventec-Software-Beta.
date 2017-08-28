@@ -2518,7 +2518,7 @@ if (typeof NProgress != 'undefined') {
 					  dom: "Bfrtip",
 					  buttons: [
 						{
-						  extend: "copy",
+						  extend: "copiar",
 						  className: "btn-sm"
 						},
 						{
@@ -2534,7 +2534,7 @@ if (typeof NProgress != 'undefined') {
 						  className: "btn-sm"
 						},
 						{
-						  extend: "print",
+						  extend: "imprimir",
 						  className: "btn-sm"
 						},
 					  ],

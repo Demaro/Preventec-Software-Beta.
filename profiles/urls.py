@@ -17,12 +17,12 @@ from profiles.views import (
 	siete,
 	principal,
 	profiles_contacts,
-	calendario_activity,
 
 
 	)
 
 from posts.views import post_create
+from activitys.views import activity_create
 
 from projects.views import project_create, projects_list
 
@@ -55,7 +55,7 @@ urlpatterns = [
 
 	url(r'^actividades', login_required(actividades), name='activitys'),
 	url(r'^detalle_actividad', login_required(detail_actividad), name='detail_activity'),
-	url(r'^calendario_actividades', calendario_activity, name='calendar_activity'),
+	url(r'^calendario_actividades', activity_create, name='calendar_activity'),
 
 	url(r'^icons', cinco, name='cinco'),
 	url(r'^dropp', seis, name='seis'),

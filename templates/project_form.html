@@ -164,7 +164,11 @@
       var date_input=$('input[name="fecha_inicio"]'); //our date input has the name "birthdate"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
-        format: 'mm/dd/yyyy',
+        format: 'yyyy-mm-dd',
+
+        changeMonth: true,
+        changeYear: true,
+
         container: container,
         todayHighlight: true,
         autoclose: true,
@@ -178,7 +182,11 @@
       var date_input=$('input[name="fecha_termino"]'); //our date input has the name "birthdate"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
-        format: 'mm/dd/yyyy',
+        format: 'yyyy-mm-dd',
+
+        changeMonth: true,
+        changeYear: true,
+
         container: container,
         todayHighlight: true,
         autoclose: true,

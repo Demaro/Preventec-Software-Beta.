@@ -41,14 +41,17 @@ def project_create(request):
 
 		project = form.save(commit=False)
 
-		fecha_inicio_data =		form.cleaned_data.get("fecha_inicio")
-		fecha_termino_data =	form.cleaned_data.get("fecha_termino")
+		fecha_inicio_data =		request.POST['fecha_inicio']
+		fecha_termino_data =	request.POST['fecha_termino']
 
 		project.fecha_inicio = fecha_inicio_data
 		project.fecha_termino = fecha_termino_data
 		project.user_id = request.user.id
 
 		project.save()
+		print(project.id)
+		print(project.fecha_inicio)
+		print(project.fecha_termino)
 
 		# message success
 		messages.success(request, "Creado con exito!")

@@ -59,9 +59,9 @@ class Project(models.Model):
 	width_field = models.IntegerField(default=0)
 	dotacion_max = models.IntegerField(default=0)
 	draft = models.BooleanField(default=False)
-	fecha_inicio = models.DateField(auto_now=True, auto_now_add=False)
+	fecha_inicio = models.DateField(null=True, blank=True)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-	fecha_termino = models.DateTimeField(auto_now=True, auto_now_add=False)
+	fecha_termino = models.DateField(null=True, blank=True)
 
 
 	objects = ProjectManager()
@@ -115,6 +115,12 @@ def pre_save_project_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_project_receiver, sender=Project)
+
+
+
+
+
+
 
 
 

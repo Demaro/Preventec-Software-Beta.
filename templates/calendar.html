@@ -7,16 +7,10 @@
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-              <div class="title_left">
-                <h3>Calendar <small>Click to add/edit events</small></h3>
-              </div>
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
                     </span>
                   </div>
                 </div>
@@ -29,7 +23,7 @@
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Calendar Events <small>Sessions</small></h2>
+                    <h2>Calendario Actividades </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -64,6 +58,7 @@
     <!-- calendar modal -->
     <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
+
         <div class="modal-content">
 
           <div class="modal-header">
@@ -72,25 +67,56 @@
           </div>
           <div class="modal-body">
             <div id="testmodal" style="padding: 5px 20px;">
-              <form id="antoform" class="form-horizontal calender" role="form">
+            
+              <form id="antoform" action="" method="POST" enctype='multipart/form-data' class="form-horizontal calender" role="form">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">Titulo</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="title" name="title">
-                  </div>
+                <label class="control-label col-md-4 col-sm-3 col-xs-12" for="user_asign">Usuario <span class="required">*</span>
+                            </label>
+                 {{form.user_asign}}
+                
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">Descripcion</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                <label class="control-label col-md-4 col-sm-3 col-xs-12" for="asunto">Asunto <span class="required">*</span>
+                </label>
+                  
+                  {{form.asunto}}
                   </div>
-                </div>
-              </form>
+                <div class="form-group">
+                <label class="control-label col-md-4 col-sm-3 col-xs-12" for="descripcion">Descripcion <span class="required">*</span>
+                            </label>
+                  
+                  {{form.descripcion}}
+                  </div>
+                
+                  <div class="form-group">
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12" for="fecha_inicio">Fecha Inicio <span class="required">*</span>
+                  </label>
+                  <div class="col-md-4 col-sm-6 col-xs-12">
+                  <input type="text" id="fecha_inicio" name="fecha_inicio" required="required" class="form-control col-md-7 col-xs-12">
+                  </div>
+                 </div>
+                  <div class="form-group">
+                  <label class="control-label col-md-4 col-sm-3 col-xs-12" for="fecha_termino">Fecha Termino <span class="required">*</span>
+                  </label>
+                  <div class="col-md-4 col-sm-6 col-xs-12">
+                  <input type="text" id="fecha_termino" name="fecha_termino" required="required" class="form-control col-md-7 col-xs-12">
+                  </div>
+                 </div>
+                 <!--
+                <div class="form-group">
+                  <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Imagen</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    {{form.image}}
+                    -->
+                    {% csrf_token %}
+                      
+              
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary antosubmit">Guardar</button>
+            <button type="submit" class="btn btn-primary pull-right">Crear</button>
+            </form>
           </div>
         </div>
       </div>
@@ -111,8 +137,18 @@
                   <label class="col-sm-3 control-label">Inicio:</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="start2"  name="start2">
-                    Start: <span id="start2"></span><br>
+
                   </div>
+                </div>
+
+            <div id="testmodal2" style="padding: 5px 20px;">
+              <form id="antoform2" class="form-horizontal calender" role="form">
+                <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_asign">Asignar Usuario <span class="required">*</span>
+                            </label>
+                            {{form.user_asign}}
+                  </div>
+
 
                   <label class="col-sm-3 control-label">Titulo</label>
                   <div class="col-sm-9">
@@ -138,7 +174,9 @@
     </div>
 
     <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+    <!--
     <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+    -->
 
 
         
@@ -193,17 +231,22 @@
         $(".antoclose2").click()}),
         g.fullCalendar("unselect")},
 
-
-
-
-
         editable:!0,
+
         events: [
+
+        {% for i in all_events %}
+
         {
-          title: 'All Day Event',
+          title: ' {{ i.user_asign.username }}. {{ i.asunto }}, {{ i.descripcion }}  ',
           
-          start: '2017-08-01'
+          start: ' {{ i.fecha_inicio|date:"Y-m-d" }} ',
+
+          end:   ' {{ i.fecha_termino|date:"Y-m-d" }} '
+
         },
+
+        {% endfor %}
 
    ]
 
@@ -213,7 +256,41 @@
 });
 
 
-
-
 </script>
+
+
+
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="fecha_inicio"]'); //our date input has the name "birthdate"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="fecha_termino"]'); //our date input has the name "birthdate"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+
+
+
+
 {% endblock content2 %}
