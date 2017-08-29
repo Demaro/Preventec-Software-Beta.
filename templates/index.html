@@ -13,11 +13,6 @@
               <span class="count_bottom"><i class="green">30+</i> Ultima semana</i></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i>  Capacitaciones</i></span>
-              <div class="count">70</div>
-              <span class="count_bottom">7<i class="green"><i class="fa fa-sort-asc"></i> Ultima semana</i></span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Dias sin accidentes </i></span>
               <div class="count green">30</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i></span>
@@ -26,11 +21,6 @@
               <span class="count_top"><i class="fa fa-user"></i> Accidentes</i></span>
               <div class="count">1</div>
               <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i> </i> Ultima semana</i></span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i>  Actividades cargadas</i></span>
-              <div class="count">61</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>30 </i>Este Mes</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Actividades cumplidas</i></span>
@@ -136,7 +126,6 @@
 
 
 
-
                      
                     <div id="chart_plot_01" class="demo-placeholder"></div>
 
@@ -188,7 +177,7 @@
                           <td><a href="#">20</a></td>
                           <td><a href="#">5</a></td>
                           <td><a href='/actividades' >
-                          <button type="button" rel="tooltip" title="Editar perfil" class="btn btn-primary btn-simple btn-xs">
+                          <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-eye"></i>
                           </button></a></td>
 
@@ -253,6 +242,21 @@
   }
 
 </style>
-        {% endblock content %}
+{% endblock content %}
 
+
+
+{% block content2 %}
+
+
+<script type="text/javascript">
+function init_PNotify(){"undefined"!=typeof PNotify&&(console.log("init_PNotify"),new PNotify({title:"Actividad Diaria",type:"info",text:"Capacitar 20 tazadores para Try hovering over me. You can click things behind me",addclass:"info",styling:"bootstrap3",hide:!1,before_close:function(a){return a.update({title:a.options.title+" - Enjoy your Stay",before_close:null}),a.queueRemove(),!1}}))}
+
+
+</script>
+        
         <!-- footer content -->
+
+
+{% endblock content2 %}
+
