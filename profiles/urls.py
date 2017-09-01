@@ -12,7 +12,7 @@ from profiles.views import (
 
 	actividades,
 	detail_actividad,
-	cinco,
+	modules,
 	seis,
 	siete,
 	principal,
@@ -57,7 +57,7 @@ urlpatterns = [
 	url(r'^detalle_actividad', login_required(detail_actividad), name='detail_activity'),
 	url(r'^calendario_actividades', activity_create, name='calendar_activity'),
 
-	url(r'^icons', cinco, name='cinco'),
+	url(r'^modulo', modules, name='modules'),
 	url(r'^dropp', seis, name='seis'),
 	url(r'^notific', siete, name='siete'),
 

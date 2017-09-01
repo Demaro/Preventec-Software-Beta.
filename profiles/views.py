@@ -67,8 +67,8 @@ def profiles_contacts(request):
 def actividades(request):
 	return render(request, "activitys.html")
 
-def cinco(request):
-	return render(request, "icons.html")
+def modules(request):
+	return render(request, "modules_form.html")
 
 def seis(request):
 	return render(request, "maps.html")
