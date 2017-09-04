@@ -11556,7 +11556,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			"sLengthMenu": "Mostrar_MENU_ entradas",
 	
 	
 			/**
