@@ -214,7 +214,6 @@
                         <tr>
                         <th>Ver</th>
                           <th>Nombre</th>
-                          <th>Apellido</th>
                           <th>Cargo</th>
                           <th>Cargadas</th>
                           <th>Completas</th>
@@ -232,8 +231,7 @@
                           <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-eye"></i>
                           </button></a></td>
-                          <td>{{ obj.user.first_name }}</td>
-                          <td>{{ obj.user.last_name }}</td>
+                          <td>{{ obj.user.first_name }} {{ obj.user.last_name }}</td>
                           <td>{{ obj.cargo }}</td>
                           <td>23</td>
                           <td><a href="#">20</a></td>
@@ -295,7 +293,8 @@ $(document).ready(function() {
             },
 
 
-        ]
+        ],
+        responsive:!0}
     } );
 } );
 </script>        
