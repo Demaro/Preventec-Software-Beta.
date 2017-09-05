@@ -130,76 +130,7 @@
                     <div id="chart_plot_01" class="demo-placeholder"></div>
 
                     
-
-<!--
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Tabla Actividades <small>Usuarios</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Nombre</th>
-                          <th>Apellido</th>
-                          <th>Cargo</th>
-                          <th>Cargadas</th>
-                          <th>Completas</th>
-                          <th>Incompletas</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-                      {% if obj_profiles %}
-                        {% for obj in obj_profiles %}
-                        <tr>
-                          <td>{{ obj.user.first_name }}</td>
-                          <td>{{ obj.user.last_name }}</td>
-                          <td>{{ obj.cargo }}</td>
-                          <td>23</td>
-                          <td><a href="#">20</a></td>
-                          <td><a href="#">5</a></td>
-                          <td><a href='/actividades' >
-                          <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
-                          <i class="fa fa-eye"></i>
-                          </button></a></td>
-
-                        </tr>
-                        {% endfor %}
-                        {% endif %}
-
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>              
-
-
-
-              </div>
-              </div>
-              </div>
-        -->
-
+<div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
               
                   <div class="x_title">
@@ -208,8 +139,9 @@
                     <br>Tabla Actividades </h2>
                     </div>
                   <div class="x_content">
-                  
-                    <table id="datatable-button" class="table table-striped table-bordered">
+
+                  <table id="datatable-button" class="table table-bordered" role="grid" aria-describedby="datatable_info">
+                 
                       <thead>
                         <tr>
                         <th>Ver</th>
@@ -247,14 +179,13 @@
                   </div>
                 </div>
               </div>      
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-      
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
 
 
 {% endblock content %}
@@ -294,9 +225,9 @@ $(document).ready(function() {
 
 
         ],
-        responsive:!0}
+        responsive: !100
     } );
-} );
+    } );
 </script>        
         <!-- footer content -->
 
