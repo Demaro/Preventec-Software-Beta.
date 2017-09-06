@@ -14,6 +14,10 @@ class ActivityModelAdmin(admin.ModelAdmin):
 		model = Activity
 
 
+
+
+
 admin.site.register(Activity, ActivityModelAdmin)
+
 
 

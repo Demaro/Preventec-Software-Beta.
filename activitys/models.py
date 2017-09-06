@@ -15,6 +15,7 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 from markdown_deux import markdown
 from comments.models import Comment
+from profiles.models import Profile
 
 
 
@@ -67,54 +68,9 @@ class Activity(models.Model):
 
 	def __str__(self):
 		return self.asunto
-"""
-	def get_absolute_url(self):
-		return reverse("activity:detail", kwargs={"slug": self.slug})
-
-	def get_api_url(self):
-		return reverse("activity-api:detail", kwargs={"slug": self.slug})
-
-
-	def get_markdown(self):
-		descripcion = self.descripcion
-		markdown_text = markdown(descripcion)
-		return mark_safe(markdown_text)
-
-	@property
-	def comments(self):
-		instance = self
-		qs = Comment.objects.filter_by_instance(instance)
-		return qs
-
-	@property
-	def get_content_type(self):
-		instance = self
-		content_type = ContentType.objects.get_for_model(instance.__class__)
-		return content_type
-
-
-def create_slug(instance, new_slug=None):
-	slug = slugify(instance.asunto)
-	if new_slug is not None:
-		slug = new_slug
-	qs = Activity.objects.filter(slug=slug).order_by("-id")
-	exists = qs.exists()
-	if exists:
-		new_slug = "%s-%s" %(slug, qs.first().id)
-		return create_slug(instance, new_slug=new_slug)
-	return slug
-
-
-def pre_save_activity_receiver(sender, instance, *args, **kwargs):
-	if not instance.slug:
-		instance.slug = create_slug(instance)
-
-
-pre_save.connect(pre_save_activity_receiver, sender=Activity)
 
 
 
-"""
 
 
 
