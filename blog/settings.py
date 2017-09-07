@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 	'activitys',
 	'comments',
 	'posts',
-	'modules',
+	'modulos',
 
 	'rest_framework',
 	'django_js_reverse',

@@ -44,11 +44,17 @@ def upload_location(instance, filename):
 
 
 
+
+class Modular(models.Model):
+	modules = models.ForeignKey('Modulo')
+
+
 class Modulo(models.Model):
 	user_prev = models.ForeignKey(User, related_name="superuser")
 	nombre    = models.CharField(max_length=100)
 	porcent   = models.IntegerField(default=0)
 	estado    = models.CharField(max_length=20, null=True, blank=True)
+	submodulo = models.ManyToManyField('Submodulo')
 
 	def __str__(self):
 		return self.nombre
@@ -56,14 +62,12 @@ class Modulo(models.Model):
 
 
 class Submodulo(models.Model):
-	modulo = models.ForeignKey(Modulo)
 	nombre    = models.CharField(max_length=100, null=True, blank=True)
 	porcent   = models.IntegerField(default=0)
 	estado    = models.CharField(max_length=20, null=True, blank=True)
 
 	def __str__(self):
 		return self.nombre
-
 
 
 

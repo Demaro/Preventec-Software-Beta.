@@ -30,6 +30,12 @@ from accounts.views import (login_view, register_view, logout_view)
 
 from accounts.forms import  UserRegisterForm
 
+
+from modulos.forms import  ModuloForm
+
+
+
+
 from django.contrib.auth import (
 	authenticate,
 	get_user_model,
@@ -40,7 +46,7 @@ from django.contrib.auth import (
 
 User = get_user_model()
 
-from modules.models import Modulo, Submodulo
+from modulos.models import Modulo, Submodulo
 
 
 def home(request):
@@ -69,82 +75,43 @@ def profiles_contacts(request):
 def actividades(request):
 	return render(request, "activitys.html")
 
+
+
 def modules(request):
-	obj_all = Modulo.objects.get(id=1)
-	obj_sub = Submodulo.objects.filter(modulo_id=1).order_by("nombre")
 
-	obj_all2 = Modulo.objects.get(id=2)
-	obj_sub2 = Submodulo.objects.filter(modulo_id=2).order_by("nombre")
+	queryset_list = Modulo.objects.all().order_by("id")
+	form 		= ModuloForm(request.POST)
 
-	obj_all3 = Modulo.objects.get(id=3)
-	obj_sub3 = Submodulo.objects.filter(modulo_id=3).order_by("nombre")
 
-	obj_all4 = Modulo.objects.get(id=4)
-	obj_sub4 = Submodulo.objects.filter(modulo_id=4).order_by("nombre")
-
-	obj_all5 = Modulo.objects.get(id=5)
-	obj_sub5 = Submodulo.objects.filter(modulo_id=5).order_by("nombre")
-
-	obj_all6 = Modulo.objects.get(id=6)
-	obj_sub6 = Submodulo.objects.filter(modulo_id=6).order_by("nombre")
-
-	obj_all7 = Modulo.objects.get(id=7)
-	obj_sub7 = Submodulo.objects.filter(modulo_id=7).order_by("nombre")
-
-	obj_all8 = Modulo.objects.get(id=8)
-	obj_sub8 = Submodulo.objects.filter(modulo_id=8).order_by("nombre")
-
-	obj_all9 = Modulo.objects.get(id=9)
-	obj_sub9 = Submodulo.objects.filter(modulo_id=9).order_by("nombre")
-
-	obj_all10 = Modulo.objects.get(id=10)
-	obj_sub10 = Submodulo.objects.filter(modulo_id=10).order_by("nombre")
-
-	obj_all11 = Modulo.objects.get(id=11)
-	obj_sub11 = Submodulo.objects.filter(modulo_id=11).order_by("nombre")
-
-	obj_all12 = Modulo.objects.get(id=12)
-	obj_sub12 = Submodulo.objects.filter(modulo_id=12).order_by("nombre")
-
+	query = request.GET.get("modules")
+	if query:
+		queryset_list = queryset_list.filter(
+				Q(id__icontains=query)|
+				Q(porcent__icontains=query)|
+				Q(estado__icontains=query) 
+				).distinct()
+	paginator = Paginator(queryset_list, 12) # Show 25 contacts per page
+	page_request_var = "page"
+	page = request.GET.get(page_request_var)
+	try:
+		queryset = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		queryset = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		queryset = paginator.page(paginator.num_pages)
 
 
 
 	context = {
-	"obj_all": obj_all,
-	"obj_sub": obj_sub,
 
-	"obj_all2": obj_all2,
-	"obj_sub2": obj_sub2,
 
-	"obj_all3": obj_all3,
-	"obj_sub3": obj_sub3,
 
-	"obj_all4": obj_all4,
-	"obj_sub4": obj_sub4,
-
-	"obj_all5": obj_all5,
-	"obj_sub5": obj_sub5,
-
-	"obj_all6": obj_all6,
-	"obj_sub6": obj_sub6,
-
-	"obj_all7": obj_all7,
-	"obj_sub7": obj_sub7,
-
-	"obj_all8": obj_all8,
-	"obj_sub8": obj_sub8,
-
-	"obj_all9": obj_all9,
-	"obj_sub9": obj_sub9,
-
-	"obj_all10": obj_all10,
-	"obj_sub10": obj_sub10,
-
-	"obj_all11": obj_all11,
-	"obj_sub11": obj_sub11,
-
-	"obj_all12": obj_all12,
-	"obj_sub12": obj_sub12
+		"queryset_list": queryset, 
+		"page_request_var": page_request_var,
+		"form": form
+	
 
 	}	
 	return render(request, "modules_form.html", context)

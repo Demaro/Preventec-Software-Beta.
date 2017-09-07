@@ -20,14 +20,16 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-
+from comments.forms import CommentForm
+from comments.models import Comment
+from .forms import ActivityForm
+from .models import Activity
 from profiles.models import Profile
 
 
 from django.utils import timezone
 
 
-"""
 def activity_create(request):
 	
 	if not request.user.is_staff or not request.user.is_superuser:
@@ -97,6 +99,7 @@ def projects_list(request):
 
 
 
+"""
 def post_detail(request, slug=None):
 	instance = get_object_or_404(Post, slug=slug)
 	if instance.publish > timezone.now().date() or instance.draft:
@@ -221,4 +224,5 @@ def post_delete(request, slug=None):
 		return redirect("posts:list")
 	else:
 		raise Http404
+
 """

@@ -13,8 +13,6 @@ from profiles.views import (
 	actividades,
 	detail_actividad,
 	modules,
-	seis,
-	siete,
 	principal,
 	profiles_contacts,
 
@@ -58,8 +56,7 @@ urlpatterns = [
 	url(r'^calendario_actividades', activity_create, name='calendar_activity'),
 
 	url(r'^modulo', modules, name='modules'),
-	url(r'^dropp', seis, name='seis'),
-	url(r'^notific', siete, name='siete'),
+
 
 	#url(r'^(?P<slug>[\w-]+)/delete/$', post_delete, name='delete'),
 	#url(r'^resume', resume, name='resume'),
