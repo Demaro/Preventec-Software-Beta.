@@ -52,7 +52,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                    <div class="col-md-3 col-sm-3 col-xs-10 profile_left">
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
@@ -91,7 +91,7 @@
                       <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Editar Proyecto</a>
                       <br />
 
-                      <!-- start skills -->
+                  
                       <h4>Informacion de mando:</h4>
                       <ul class="list-unstyled user_data">
                         <li>
@@ -108,7 +108,7 @@
                         <i class="fa fa-search user-profile-icon"></i> Steve Wozniak
                         </li>
                       </ul>
-                      <!-- end of skills -->
+        
 
 
                     </div>
@@ -130,55 +130,110 @@
                     <div id="chart_plot_01" class="demo-placeholder"></div>
 
                     
-<div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="col-md-12 col-sm-9 col-xs-12">
               
                   <div class="x_title">
                   <br>
                     <h2>
                     <br>Tabla Actividades </h2>
                     </div>
+                
                   <div class="x_content">
+ 
 
-                  <table id="datatable-button" class="table table-bordered  " role="grid" aria-describedby="datatable_info">
-                 
-                      <thead>
-                        <tr>
-                        <th>Ver</th>
-                          <th>Nombre</th>
-                          <th>Cargo</th>
-                          <th>Cargadas</th>
-                          <th>Completas</th>
-                          <th>Incompletas</th>
-                          
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-                      {% if obj_profiles %}
-                        {% for obj in obj_profiles %}
-                        <tr>
-                        <td><a href='/actividades' >
+                          <div class="panel-body">
+                            <table id=datatable-button class="table table-bordered">
+                              <thead>
+                                <tr>
+                                 
+                                  <th>Nombre</th>
+                                  <th>Modulo</th>
+                                  <th>Carpeta</th>
+                                  <th>Fecha</th>
+                                  <th>Ver</th>
+                            
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  
+                                  <td>Steve Jobs</td>
+                                  <td>Dispociciones legales</td>
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li></td>
+                                  <td>12 de Agosto</td>
+                                  <td><a href='/actividades' >
                           <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-eye"></i>
                           </button></a></td>
-                          <td>{{ obj.user.first_name }} {{ obj.user.last_name }}</td>
-                          <td>{{ obj.cargo }}</td>
-                          <td>23</td>
-                          <td><a href="#">20</a></td>
-                          <td><a href="#">5</a></td>
-                        
-
-                        </tr>
-                        {% endfor %}
-                        {% endif %}
-
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>      
+                                  
+                                </tr>
+                               <tr>
+                                  
+                                  <td>Steve Jobs</td>
+                                  <td>Dispociciones legales</td>
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li></td>
+                                  <td>12 de Agosto </td>
+                                  <td><a href='/actividades' >
+                          <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-eye"></i>
+                          </button></a></td>
+                                  
+                                </tr>
+                                <tr>
+                                  
+                                  <td>Steve Jobs</td>
+                                  <td>Dispociciones legales</td>
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li></td>
+                                  <td>12 de Agosto </td>
+                                  <td><a href='/actividades' >
+                          <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-eye"></i>
+                          </button></a></td>
+                                  
+                                </tr>
+                        <tr>
+                                  
+                                  <td>Steve Jobs</td>
+                                  <td>Dispociciones legales</td>
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li></td>
+                                  <td>12 de Agosto </td>
+                                  <td><a href='/actividades' >
+                          <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-eye"></i>
+                          </button></a></td>
+                                  
+                                </tr>
+                                <tr>
+                                  
+                                  <td>Steve Jobs</td>
+                                  <td>Dispociciones legales</td>
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li></td>
+                                  <td>12 de Agosto </td>
+                                  <td><a href='/actividades' >
+                          <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-eye"></i>
+                          </button></a></td>
+                                  
+                                </tr>
+                             <tr>
+                                  
+                                  <td>Steve Jobs</td>
+                                  <td>Dispociciones legales</td>
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li></td>
+                                  <td>12 de Agosto</td>
+                                  <td><a href='/actividades' >
+                          <button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-eye"></i>
+                          </button></a></td>
+                              
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        </div>
+    
 </div>
 </div>
 </div>
@@ -225,7 +280,8 @@ $(document).ready(function() {
 
 
         ],
-        responsive: !100
+        responsive:
+       
     } );
     } );
 </script>        
