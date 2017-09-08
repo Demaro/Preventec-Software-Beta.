@@ -17,8 +17,6 @@
                   <div class="input-group">
 
                       
-    
-                    </span>
                   </div>
                 </div>
                 
@@ -209,6 +207,30 @@
 </div>
 </div>
 {% endfor %}
+
+
+
+
+
+<center>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if queryset_list.has_previous %}
+            <a href="?pagina={{ queryset_list.previous_page_number }}">Anterior.</a>
+        {% endif %}
+
+        <span class="current">
+            Pagina <button class="btn btn-info" type="button">{{ queryset_list.number }}</button> de <button class="btn btn-info active" type="button">{{ queryset_list.paginator.num_pages }}</button>
+        </span>
+
+        {% if queryset_list.has_next %}
+            <a href="?pagina={{ queryset_list.next_page_number }}">Siguiente</a>
+        {% endif %}
+    </span>
+</div>
+</center>
 </div>
 
 </div>
@@ -218,6 +240,8 @@
 
 </div>
 </div>
+
+
 
 
 

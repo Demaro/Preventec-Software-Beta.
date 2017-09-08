@@ -90,11 +90,11 @@ def modules(request):
 				Q(porcent__icontains=query)|
 				Q(estado__icontains=query) 
 				).distinct()
-	paginator = Paginator(queryset_list, 12) # Show 25 contacts per page
-	page_request_var = "page"
-	page = request.GET.get(page_request_var)
+	paginator = Paginator(queryset_list, 6) # Show 25 contacts per page
+	page_request_var = "pagina"
+	pagina = request.GET.get(page_request_var)
 	try:
-		queryset = paginator.page(page)
+		queryset = paginator.page(pagina)
 	except PageNotAnInteger:
 		# If page is not an integer, deliver first page.
 		queryset = paginator.page(1)
