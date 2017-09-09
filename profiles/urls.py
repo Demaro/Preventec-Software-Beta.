@@ -19,6 +19,8 @@ from profiles.views import (
 
 	)
 
+from modulos.views import modulo_detail
+
 from posts.views import post_create
 from activitys.views import activity_create
 
@@ -55,7 +57,10 @@ urlpatterns = [
 	url(r'^detalle_actividad', login_required(detail_actividad), name='detail_activity'),
 	url(r'^calendario_actividades', activity_create, name='calendar_activity'),
 
-	url(r'^modulo', modules, name='modules'),
+	url(r'^modulos', modules, name='modules'),
+	url(r'^modulo/(?P<id_modulo>\d+)/$', modulo_detail, name='module'),
+
+
 
 
 	#url(r'^(?P<slug>[\w-]+)/delete/$', post_delete, name='delete'),

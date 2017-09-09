@@ -76,12 +76,7 @@ def actividades(request):
 	return render(request, "activitys.html")
 
 
-
-def modules(request):
-
-	queryset_list = Modulo.objects.all().order_by("id")
-	form 		= ModuloForm(request.POST)
-
+"""
 
 	query = request.GET.get("modules")
 	if query:
@@ -102,17 +97,22 @@ def modules(request):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		queryset = paginator.page(paginator.num_pages)
 
+"""
+
+
+def modules(request):
+
+	queryset_list = Modulo.objects.all().order_by("id")
+
+
+	form 		= ModuloForm(request.POST)
 
 
 	context = {
-
-
-
-		"queryset_list": queryset, 
-		"page_request_var": page_request_var,
+		#"queryset_list": queryset, 
+		#"page_request_var": page_request_var,
+		"queryset_list" : queryset_list,
 		"form": form
-	
-
 	}	
 	return render(request, "modules_form.html", context)
 

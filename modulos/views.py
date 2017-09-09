@@ -22,8 +22,8 @@ from django.utils import timezone
 
 from comments.forms import CommentForm
 from comments.models import Comment
-from .forms import ActivityForm
-from .models import Activity
+
+from .models import Modulo
 from profiles.models import Profile
 
 
@@ -87,16 +87,17 @@ def activity_create(request):
 
 
 
-def projects_list(request):
-	projects_obj = Project.objects.all()
+def modulo_detail(request, id_modulo):
 
-	context = {
-		"projects_obj": projects_obj,
-	}
+	id_modulo = id_modulo
+	obj = Modulo.objects.get(id=id_modulo)
 
-	return render(request, "projects.html", context)
+	context = {	
 
+		"obj" : obj
 
+		}
+	return render(request, "modulo_detalle.html")
 
 
 """
