@@ -90,14 +90,17 @@ def activity_create(request):
 def modulo_detail(request, id_modulo):
 
 	id_modulo = id_modulo
-	obj = Modulo.objects.get(id=id_modulo)
+	
+	obj_get = Modulo.objects.filter(id=id_modulo).order_by()[0]
+
+
 
 	context = {	
 
-		"obj" : obj
+		"obj_get" : obj_get
 
 		}
-	return render(request, "modulo_detalle.html")
+	return render(request, "modulo_detalle.html", context)
 
 
 """

@@ -265,7 +265,7 @@ function countChecked() {
     if (checkCount) {
         $('.column-title').hide();
         $('.bulk-actions').show();
-        $('.action-cnt').html(checkCount + ' Records Selected');
+        $('.action-cnt').html(checkCount + confirmButtonText: "Si");
     } else {
         $('.column-title').show();
         $('.bulk-actions').hide();

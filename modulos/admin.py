@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Modulo, Submodulo
+from .models import Modulo, Submodulo, Carpeta, Archivo
 
 
 
@@ -21,15 +21,28 @@ class SubModuloModelAdmin(admin.ModelAdmin):
 	list_display = ["id",  "nombre", "porcent", "estado", ]
 	list_editable     = [ "nombre", "porcent", "estado",  ]
 	list_filter	       = [  "nombre" , "estado", ]
+	filter_horizontal = [ "carpeta", ]
 
 	search_fields = ["nombre", "estado"]
 	class Meta:
 		model = Submodulo
 
 
+class CarpetaModelAdmin(admin.ModelAdmin):
+	list_display = ["id",  "nombre",  "estado",  ]
+	list_editable     = [ "nombre", "estado",  ]
+	list_filter	       = [  "nombre" , "estado", ]
+
+	search_fields = ["nombre", "estado"]
+	class Meta:
+		model = Carpeta
+
+
 
 admin.site.register(Modulo, ModuloModelAdmin)
 
 admin.site.register(Submodulo, SubModuloModelAdmin)
+
+admin.site.register(Carpeta, CarpetaModelAdmin)
 
 

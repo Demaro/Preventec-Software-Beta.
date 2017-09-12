@@ -4,12 +4,13 @@ from django.contrib import admin
 from .models import Activity
 
 class ActivityModelAdmin(admin.ModelAdmin):
-	list_display = ["id", "asunto", "descripcion", "user_asign", "image", "updated","fecha_inicio", "fecha_termino",]
+	list_display = ["id", "user_asign", "image", "updated","fecha_inicio", "fecha_termino",]
 	list_display_links = ["user_asign",]
-	list_editable = ["asunto",  "descripcion",]
-	list_filter = ["asunto", "fecha_inicio", "user_asign", ]
+	list_editable = [ "fecha_termino", ]
+	list_filter = [ "fecha_inicio", "user_asign", ]
+	filter_horizontal = [ "carpeta" ,]
 
-	search_fields = ["asunto", "user_asign"]
+	search_fields = ["user_asign"]
 	class Meta:
 		model = Activity
 

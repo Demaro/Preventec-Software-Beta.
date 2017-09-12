@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from markdown_deux import markdown
 from comments.models import Comment
 from profiles.models import Profile
+from modulos.models import Carpeta
 
 
 
@@ -44,11 +45,9 @@ def upload_location(instance, filename):
 
 class Activity(models.Model):
 	user_create = models.ForeignKey(User,related_name="user_create")
-	asunto = models.CharField(max_length=20)
-	descripcion   = models.CharField(max_length=20)
+	carpeta   = models.ManyToManyField(Carpeta)
 	user_asign = models.ForeignKey(User,related_name="asignado")
 
-	slug = models.SlugField(unique=True, null=True)
 	image = models.ImageField(upload_to=upload_location, 
 			null=True, 
 			blank=True, 
@@ -60,14 +59,6 @@ class Activity(models.Model):
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 	fecha_termino = models.DateTimeField(null=True, blank=True)
 
-
-	objects = ActivityManager()
-
-	def __unicode__(self):
-		return self.asunto
-
-	def __str__(self):
-		return self.asunto
 
 
 

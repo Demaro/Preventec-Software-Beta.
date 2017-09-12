@@ -114,20 +114,7 @@ menu profile quick info -->
 
  {% endblock content %}
 
-              <div class="col-md-6 col-sm-6 col-xs-6">
-              <a href='{% url "profile:module" obj_all.id %}'>
-                <div class="x_panel" style="height: auto;">
-                 
-                    
-                    <div class="col-md-12 col-sm-0 col-xs-6">
-                              <h2>{{ obj_all.nombre }}</h2>
-                        </div>
-                            <div class="col-md-8 col-sm-5 col-xs-5">
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-info" data-transitiongoal="50"><small>50% Completado</small> </div>
-                      </div>
-                            </div>
- 
+
 
                   <div class="x_content" style="display: none;">
 
@@ -135,11 +122,11 @@ menu profile quick info -->
                  
                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
 
-                      {% for obj in obj_all.submodulo.all %}
+                      {% for obj in obj_get.submodulo.all|dictsort:"nombre" %}
                       <div class="panel">
                         <a class="panel-heading collapsed" role="tab" id="heading{{ obj.id }}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ obj.id }}" aria-expanded="false" aria-controls="collapse{{ obj.id }}">
                               <div class="col-md-5 col-sm-0 col-xs-0">
-                              <h4 class="panel-title">{{ obj.nombre }} {% if not forloop.last %} {% endif %}</h4>
+                              <h4 class="panel-title">{{ obj.nombre }}</h4>
 </div>
                             <div class="col-md-2 col-sm-0 col-xs-0">
                              <div class="progress progress_sm">
@@ -152,65 +139,46 @@ menu profile quick info -->
                               </a>
                         <div id="collapse{{ obj.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ obj.id }}">
                           <div class="panel-body">
-                            <table class="table table-bordered">
-                              <thead>
-                                <tr>
-                                 
-                                  <th>Nombre</th>
-                                  <th>Estado</th>
-                                  <th>Fecha ingreso</th>
-                                  <th>Archivo</th>
-                                </tr>
-                              </thead>
+                           <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                              <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">Nombre</th>
+                            <th class="column-title">Estado</th>
+                            <th class="column-title">Responsable</th>
+                            <th class="column-title">Archivo</th>
+                          
+                            </th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
                               <tbody>
-                                <tr>
+
+                               {% for carpeta in obj.carpeta.all  %}
+
+                          <tr class="even pointer">
+                            <td class="a-center ">
+                              <input type="checkbox" class="flat" name="table_records">
+                            </td>  
+                                  <td>{{ carpeta.nombre }}</td>
+                                  <td>
+                                  <button type="button" class="btn btn-danger btn-xs">{{ carpeta.estado }}</button></td>                               
                                   
-                                  <td>Reglamento Interno de Orden Higiene y Seguridad</td>
-                                  <td><button type="button" class="btn btn-success btn-xs">Cargado</button></td>
-                                  <td>12 de Agosto del 2018 a las 12:00</td>
-                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
-                            </li></td>
-                                </tr>
-                                <tr>
-                                 
-                                  <td>Carta de Recepción de Dirección del Trabajo</td>
-                                  <td><button type="button" class="btn btn-success btn-xs">Cargado</button></td>
-                                  <td>12 de Agosto del 2018 a las 12:00</td>
-                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
-                            </li></td>
-                                </tr>
-                                <tr>
-                           
-                                  <td>Carta de Recepción de SEREMI</td>
-                                  <td><button type="button" class="btn btn-success btn-xs">Cargado</button></td>
-                                  <td>12 de Agosto del 2018 a las 12:00</td>
-                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
-                            </li></td>
-                                </tr>
-                                  <tr>
-                               
-                                  <td>Certificado de Adhesion a Organismo Administrador de la Ley N° 16.744</td>
-                                  <td><button type="button" class="btn btn-success btn-xs">Cargado</button></td>
-                                  <td>12 de Agosto del 2018 a las 12:00</td>
-                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
-                            </li></td>
-                                </tr>
-                                <tr>
+                                  <td>Sin Asignar</td>
                                 
-                                  <td>Registro de Experto en Prevención de Riesgos</td>
-                                  <td><button type="button" class="btn btn-success btn-xs">Cargado</button></td>
-                                  <td>12 de Agosto del 2018 a las 12:00</td>
-                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
-                            </li></td>
-                                </tr>
-                                  <tr>
+                                 
+                                  <td>{% if carpeta.archivo %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li>{% else %}Vacio{% endif %}</td>
                                   
-                                  <td>Certificado de Tasas</td>
-                                  <td><button type="button" class="btn btn-danger btn-xs">Faltante</button></td>
-                                  <td>No esta Cargado</td>
-                                  <td><a href="">NULL</a></td>
                                 </tr>
+           
                               </tbody>
+                              {% endfor %}
                             </table>
                           </div>
                         </div>

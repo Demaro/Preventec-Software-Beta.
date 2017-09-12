@@ -65,10 +65,26 @@ class Submodulo(models.Model):
 	nombre    = models.CharField(max_length=100, null=True, blank=True)
 	porcent   = models.IntegerField(default=0)
 	estado    = models.CharField(max_length=20, null=True, blank=True)
+	carpeta   = models.ManyToManyField('Carpeta')
 
 	def __str__(self):
 		return self.nombre
 
+class Carpeta(models.Model):
+	nombre    = models.CharField(max_length=100, null=True, blank=True)
+	estado    = models.CharField(max_length=20, null=True, blank=True, default="Faltante")
+	archivo = models.ManyToManyField('Archivo', null=True, blank=True)
+
+	def __str__(self):
+		return self.nombre
+
+
+class Archivo(models.Model):
+	archivo = models.FileField()
+	fecha_up = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+	def __str__(self):
+		return self.archivo
 
 
 

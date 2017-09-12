@@ -12,8 +12,6 @@ class ActivityForm(forms.ModelForm):
 
 		fields = [
 
-			"asunto",
-			"descripcion",
 			"user_asign",
 			"image",
 
