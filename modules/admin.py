@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Modulo, Submodulo, Carpetas
+from .models import Modulo, Submodulo, Carpeta
 
 
 
@@ -35,7 +35,7 @@ class CarpetaModelAdmin(admin.ModelAdmin):
 
 	search_fields = ["nombre", "estado"]
 	class Meta:
-		model = Carpetas
+		model = Carpeta
 
 
 
@@ -47,4 +47,6 @@ admin.site.register(Modulo, ModuloModelAdmin)
 
 admin.site.register(Submodulo, SubModuloModelAdmin)
 
-admin.site.register(Carpetas, CarpetaModelAdmin)
+admin.site.register(Carpeta, CarpetaModelAdmin)
+
+

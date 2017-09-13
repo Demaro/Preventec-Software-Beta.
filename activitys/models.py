@@ -16,7 +16,7 @@ from django.contrib.auth.models import User
 from markdown_deux import markdown
 from comments.models import Comment
 from profiles.models import Profile
-from modulos.models import Carpeta
+#from modulos.models import Carpeta
 
 
 
@@ -44,9 +44,9 @@ def upload_location(instance, filename):
 	return "%s/%s" %(new_id, filename)
 
 class Activity(models.Model):
-	user_create = models.ForeignKey(User,related_name="user_create")
-	carpeta   = models.ManyToManyField(Carpeta)
-	user_asign = models.ForeignKey(User,related_name="asignado")
+	user_create = models.ForeignKey(User,related_name="user_create", null=True, blank=True)
+
+	user_asign = models.ForeignKey(User,related_name="none")
 
 	image = models.ImageField(upload_to=upload_location, 
 			null=True, 

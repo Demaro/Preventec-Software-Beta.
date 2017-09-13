@@ -89,7 +89,7 @@
                         <thead>
                           <tr class="headings">
                             <th>
-                              <input type="checkbox" id="check-all" class="flat">
+                              <input type="checkbox"  id="check-all" class="flat">
                             </th>
                             <th class="column-title">Nombre</th>
                             <th class="column-title">Estado</th>
@@ -105,11 +105,13 @@
 
                               <tbody>
 
-                               {% for carpeta in obj.carpeta.all  %}
+                               {% for carpeta in obj.carpeta.all|dictsort:"id"  %}
 
                           <tr class="even pointer">
                             <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
+                            <form id="list-action">
+                              <input type="checkbox"  class="flat" value= "{{ carpeta.id }}" name="table_records">
+                            </form>
                             </td>  
                                   <td>{{ carpeta.nombre }}</td>
                                   <td>
@@ -151,17 +153,30 @@
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel2">Asignar Tareas</h4>
+                          <h4 class="modal-title" id="myModalLabel2">Asignar Responsable</h4>
                         </div>
                         <div class="modal-body">
               <form id="antoform" action="" method="POST" enctype='multipart/form-data' class="form-horizontal calender" role="form">
                 <div class="form-group">
-                <label class="control-label col-md-4 col-sm-3 col-xs-12" for="user_asign">Usuario <span class="required">*</span>
+                <label class="control-label col-md-5 col-sm-3 col-xs-12" for="user_asign">Usuario <span class="required">*</span>
                             </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                  {{form.user_asign}}
+                 {{form.carpeta}}
                 
                 </div>
-  
+                </div>
+
+                 <div class="form-group">
+                <label class="control-label col-md-5 col-sm-3 col-xs-12" for="user_asign">Carpetas <span class="required">*</span>
+                            </label>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            ( <span class="action-cnt"> </span> )
+                 
+                
+                </div>
+                </div>
                 
                   <div class="form-group">
                   <label class="control-label col-md-5 col-sm-3 col-xs-12" for="fecha_inicio">Fecha Inicio
@@ -186,13 +201,13 @@
                     {% csrf_token %}
                     
 
-          </form>
+        
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          <button type="button" class="btn btn-primary">Asignar</button>
+                          <button type="submit"  class="btn btn-primary pull-right">Asignar</button>
                         </div>
-
+  </form>
                       </div>
                     </div>
                   </div>
@@ -269,3 +284,37 @@
 
 {% endblock content %}
 
+
+{% block content2 %}
+
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="fecha_inicio"]'); //our date input has the name "birthdate"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="fecha_termino"]'); //our date input has the name "birthdate"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+
+{% endblock content2 %}

@@ -44,12 +44,17 @@ def upload_location(instance, filename):
 
 
 
+
+class Modular(models.Model):
+	modules = models.ForeignKey('Modulo')
+
+
 class Modulo(models.Model):
 	user_prev = models.ForeignKey(User, related_name="superuser")
 	nombre    = models.CharField(max_length=100)
 	porcent   = models.IntegerField(default=0)
 	estado    = models.CharField(max_length=20, null=True, blank=True)
-	submodulo = models.ManyToManyField('Submodulo', related_name="sub1")
+	submodulo = models.ManyToManyField('Submodulo')
 
 	def __str__(self):
 		return self.nombre
@@ -60,20 +65,33 @@ class Submodulo(models.Model):
 	nombre    = models.CharField(max_length=100, null=True, blank=True)
 	porcent   = models.IntegerField(default=0)
 	estado    = models.CharField(max_length=20, null=True, blank=True)
-	carpetas  = models.ManyToManyField('Carpetas', related_name="carpeta")
+	carpetas   = models.ManyToManyField('Carpeta')
+	
 
 	def __str__(self):
 		return self.nombre
 
 
-class Carpetas(models.Model):
-	user_asign = models.ForeignKey(User, related_name="responsable", null=True, blank=True)
-	nombre     = models.CharField(max_length=100)
-	fecha_inicio = models.DateTimeField(null=True, blank=True)
-	fecha_termino = models.DateTimeField(null=True, blank=True)
-	porcent			= models.IntegerField(default=0)
-	estado        = models.CharField(max_length=20)
 
+
+class Carpeta(models.Model):
+	asign_user	= models.ForeignKey(User, related_name="responsable")
+	fecha_inicio = models.DateField(null=True, blank=True)
+	fecha_termino = models.DateTimeField(null=True, blank=True) 
+	nombre    = models.CharField(max_length=100, null=True, blank=True)
+	estado    = models.CharField(max_length=20, null=True, blank=True, default="Faltante")
+	archivo = models.ManyToManyField('Archivo', null=True, blank=True)
+
+	def __str__(self):
+		return self.nombre
+
+
+class Archivo(models.Model):
+	archivo = models.FileField()
+	fecha_up = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+	def __str__(self):
+		return self.archivo
 
 
 
