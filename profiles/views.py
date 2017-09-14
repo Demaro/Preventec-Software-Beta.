@@ -30,7 +30,7 @@ from accounts.views import (login_view, register_view, logout_view)
 
 from accounts.forms import  UserRegisterForm
 
-
+from modulos.forms import ModuloForm
 
 
 

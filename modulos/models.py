@@ -60,19 +60,22 @@ class Submodulo(models.Model):
 	nombre    = models.CharField(max_length=100, null=True, blank=True)
 	porcent   = models.IntegerField(default=0)
 	estado    = models.CharField(max_length=20, null=True, blank=True)
-	carpetas  = models.ManyToManyField('Carpetas', related_name="carpeta")
+	carpeta  = models.ManyToManyField('Carpeta', related_name="carpeta")
 
 	def __str__(self):
 		return self.nombre
 
 
-class Carpetas(models.Model):
+class Carpeta(models.Model):
 	user_asign = models.ForeignKey(User, related_name="responsable", null=True, blank=True)
 	nombre     = models.CharField(max_length=100)
 	fecha_inicio = models.DateTimeField(null=True, blank=True)
 	fecha_termino = models.DateTimeField(null=True, blank=True)
 	porcent			= models.IntegerField(default=0)
 	estado        = models.CharField(max_length=20)
+
+	def __str__(self):
+		return self.nombre
 
 
 
