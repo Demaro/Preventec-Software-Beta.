@@ -21,7 +21,6 @@ from profiles.views import (
 
 from modulos.views import modulo_detail
 
-from posts.views import post_create
 from activitys.views import activity_create
 
 from projects.views import project_create, projects_list
@@ -45,7 +44,6 @@ urlpatterns = [
 
 	url(r'^home', home, name='home'),
 	url(r'^inicio', principal, name='inicio'),
-	url(r'^create_post', login_required(post_create), name='create'),
 
 
 

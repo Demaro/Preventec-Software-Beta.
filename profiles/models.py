@@ -15,9 +15,7 @@ from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 
-
 from markdown_deux import markdown
-from comments.models import Comment
 from projects.models import Project
 
 #from utils import get_read_time
@@ -104,3 +102,6 @@ class Especialidad(models.Model):
 
 	def __str__(self):
 			return self.nombre		
+
+
+

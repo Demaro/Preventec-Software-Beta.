@@ -14,7 +14,7 @@ from django.utils.text import slugify
 
 from django.contrib.auth.models import User
 from markdown_deux import markdown
-from comments.models import Comment
+
 from profiles.models import Profile
 #from modulos.models import Carpeta
 

@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 	'accounts',
 	'projects',
 	'activitys',
-	'comments',
+
 	'posts',
 	'modulos',
 

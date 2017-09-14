@@ -7,9 +7,7 @@ from rest_framework.serializers import (
 
 
 from accounts.api.serializers import UserDetailSerializer
-from comments.api.serializers import CommentListSerializer, CommentSerializer
 
-from comments.models import Comment
 
 from posts.models import Post
 
@@ -57,12 +55,6 @@ class PostDetailSerializer(ModelSerializer):
 			image = None
 		return image
 
-	def get_comments(self, obj):
-		content_type = obj.get_content_type
-		object_id = obj.id
-		c_qs = Comment.objects.filter_by_instance(obj)
-		comments = CommentSerializer(c_qs, many=True).data
-		return comments
 
 class PostListSerializer(ModelSerializer):
 	url = post_detail_url
