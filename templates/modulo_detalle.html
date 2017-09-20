@@ -28,10 +28,10 @@
                 <div class="x_panel">
                   <div class="x_title">
                     
-                    <div class="col-md-5 col-sm-0 col-xs-0">
+                    <div class="col-md-5 col-sm-6 col-xs-12">
                               <h2>{{ obj_get.nombre }}</h2>
                         </div>
-                            <div class="col-md-3 col-sm-0 col-xs-0">
+                            <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="progress">
                         <div class="progress-bar progress-bar-info" data-transitiongoal="65"></div>
                       </div>
@@ -70,10 +70,10 @@
                       {% for obj in obj_get.submodulo.all|dictsort:"nombre" %}
                       <div class="panel">
                         <a class="panel-heading collapsed" role="tab" id="heading{{ obj.id }}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ obj.id }}" aria-expanded="false" aria-controls="collapse{{ obj.id }}">
-                              <div class="col-md-5 col-sm-0 col-xs-0">
+                              <div class="col-md-5 col-sm-6 col-xs-12">
                               <h4 class="panel-title">{{ obj.nombre }}</h4>
 </div>
-                            <div class="col-md-2 col-sm-0 col-xs-0">
+                            <div class="col-md-2 col-sm-2 col-xs-4">
                              <div class="progress progress_sm">
                               <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
                             </div>
