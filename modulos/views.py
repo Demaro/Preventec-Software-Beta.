@@ -21,10 +21,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 
-from .models import Modulo
+from .models import Modulo, Carpeta
 from profiles.models import Profile
 
 from activitys.forms import ActivityForm
+
+from .forms import ModuloForm, CarpetaForm
 
 
 from django.utils import timezone
@@ -107,43 +109,52 @@ def modulo_detail(request, id_modulo):
 
 	id_modulo = id_modulo
 	
-	obj_get = Modulo.objects.filter(id=id_modulo)[0]
-
-	form = ActivityForm(request.POST)
+	obj_get = Modulo.objects.get(id=id_modulo)
 
 
+	context = {	
+
+		"obj_get" : obj_get,
+
+	}
+	return render(request, "modulo_detalle.html", context)
+
+
+
+def carpeta_detail(request, id_carpeta):
+
+	obj_get	=	Carpeta.objects.get(id=id_carpeta)
+
+	form = CarpetaForm(request.POST)
 
 	if form.is_valid():
 
-		activity = form.save(commit=False)
+		instance = form.save(commit=False)
+
+		check_carps =			request.POST.getlist('table_records')
 
 		fecha_inicio_data =		request.POST['fecha_inicio']
 		fecha_termino_data =	request.POST['fecha_termino']
-		carpetas =				request.POST.getlist('table_records')
 
 
-		activity.fecha_inicio = fecha_inicio_data
-		activity.fecha_termino = fecha_termino_data
-		user = request.user.id
-		activity.user_create_id  = user
-		for c in carpetas:
-			activity.carpeta 		=	c
+		instance.fecha_inicio = fecha_inicio_data
+		instance.fecha_termino = fecha_termino_data
+		instance.estado			= "Ingresado"
+		instance.save()
 			
-		activity.save()
-		activity.id
-		print(activity.id)
-		print(activity.user_asign)
-		
-		print(activity.carpeta)
-
+		print(instance.id)
 
 		# message success
 		messages.success(request, "Creado con exito!")
 		return HttpResponseRedirect('/calendario_actividades')
+
 	context = {	
 
 		"obj_get" : obj_get,
 		"form"  : form,
 
-		}
-	return render(request, "modulo_detalle.html", context)
+	}
+	return render(request, "carpeta_detail.html", context)
+
+
+

@@ -19,7 +19,7 @@ from profiles.views import (
 
 	)
 
-from modulos.views import modulo_detail
+from modulos.views import modulo_detail, carpeta_detail
 
 from activitys.views import activity_create
 
@@ -57,6 +57,7 @@ urlpatterns = [
 
 	url(r'^modulos', modules, name='modules'),
 	url(r'^modulo/(?P<id_modulo>\d+)/$', modulo_detail, name='module'),
+	url(r'^carpeta/(?P<id_carpeta>\d+)/$', carpeta_detail, name='carpeta'),
 
 
 
