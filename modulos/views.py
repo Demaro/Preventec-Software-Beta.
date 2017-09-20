@@ -121,40 +121,30 @@ def modulo_detail(request, id_modulo):
 
 
 
-def carpeta_detail(request, id_carpeta):
+def carpeta_detail(request, id_modulo, id_carpeta):
+
+	obj_module = Modulo.objects.get(id=id_modulo)
 
 	obj_get	=	Carpeta.objects.get(id=id_carpeta)
 
-	form = CarpetaForm(request.POST)
+	form = CarpetaForm(request.POST or None, instance=obj_get)
 
 	if form.is_valid():
 
 		instance = form.save(commit=False)
-
-		check_carps =			request.POST.getlist('table_records')
-
-		fecha_inicio_data =		request.POST['fecha_inicio']
-		fecha_termino_data =	request.POST['fecha_termino']
-
-
-		instance.fecha_inicio = fecha_inicio_data
-		instance.fecha_termino = fecha_termino_data
-		instance.estado			= "Ingresado"
-		instance.save()
-			
-		print(instance.id)
-
+		instance.save()	
+		print(obj_get.id)
 		# message success
 		messages.success(request, "Creado con exito!")
-		return HttpResponseRedirect('/calendario_actividades')
+		return HttpResponseRedirect('/modulo/%s/' % id_modulo)
 
 	context = {	
 
 		"obj_get" : obj_get,
 		"form"  : form,
+		"obj_module": obj_module,
 
 	}
 	return render(request, "carpeta_detail.html", context)
-
 
 

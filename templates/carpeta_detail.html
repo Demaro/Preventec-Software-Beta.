@@ -10,7 +10,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-              <a href=javascript:history.back(1)>Modulos <i class="fa fa-backward"></i></a>  
+              <a href="/modulo/{{ obj_module.id }}">{{ obj_module.nombre }} <i class="fa fa-backward"></i></a>  
               </div>
 
               <div class="title_right">
@@ -55,85 +55,71 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+
+
                   <div class="x_content">
+                    <br />
+                    <form id="demo-form2" action="" method="POST" enctype='multipart/form-data' data-parsley-validate class="form-horizontal form-label-left">
 
-
-                    <!-- start accordion -->
-      
-
-
-                 
-                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-
-                      {% for obj in obj_get.submodulo.all|dictsort:"nombre" %}
-                      <div class="panel">
-                        <a class="panel-heading collapsed" role="tab" id="heading{{ obj.id }}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ obj.id }}" aria-expanded="false" aria-controls="collapse{{ obj.id }}">
-                              <div class="col-md-5 col-sm-0 col-xs-0">
-                              <h4 class="panel-title">{{ obj.nombre }}</h4>
-</div>
-                            <div class="col-md-2 col-sm-0 col-xs-0">
-                             <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
-                            </div>
-                            </div>
-                            
-
-                              <small>80% Completado</small> 
-                              </a>
-                        <div id="collapse{{ obj.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ obj.id }}">
-                          <div class="panel-body">
-                           <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                          <tr class="headings">
-                            <th>
-                            
-                            </th>
-                            <th class="column-title">Nombre</th>
-                            <th class="column-title">Estado</th>
-                            <th class="column-title">Responsable</th>
-                            <th class="column-title">Archivo</th>
-                            <th class="column-title">Facha Carga</th>
-                          
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Seleccion masiva ( <span class="action-cnt"> </span> ) &nbsp;&nbsp;&nbsp;     <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Asignar</button></a>
-                            </th>
-                          </tr>
-                        </thead>
-
-                              <tbody>
-
-                               {% for carpeta in obj.carpeta.all|dictsort:"id"  %}
-
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              
-                         
-                            </td>  
-
-                                  <td><a href='{% url "profile:carpeta" carpeta.id %}'>{{ carpeta.nombre }}</td>
-                                  
-                                  <td>
-                                  <button type="button" class="btn btn-danger btn-xs">{{ carpeta.estado }}</button></td></a>                               
-                                  
-                                  <td>Sin Asignar</td>
-                                
-                                 
-                                  <td>{% if carpeta.archivo %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li>{% else %}Vacio{% endif %}</td>
-                                  <td>No Cargado</td>
-                                  
-                                </tr>
-           
-                              </tbody>
-                              {% endfor %}
-                            </table>
-                          </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_asign">Responsable <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          {{ form.user_asign }}
                         </div>
-                        </div>
-                        </div>
+                      </div>
 
-                        {% endfor %}
+                      <div class="form-group">
+                        <label for="fecha_inicio" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Inicio<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          {{ form.fecha_inicio }}
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="fecha_termino" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Termino<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          {{ form.fecha_termino }}
+                        </div>
+                      </div>
+                    <div class="form-group">
+                        <label for="estado" class="control-label col-md-3 col-sm-3 col-xs-12">Estado
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="status" class="date-picker form-control col-md-7 col-xs-12" value="{{ obj_get.estado }}" type="text" disabled="">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label for="fecha_carga" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Carga
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="carga" class="date-picker form-control col-md-7 col-xs-12" value="{{ obj_get.fecha_termino }}" type="text" disabled="">
+                        </div>
+                      </div>
+                     <div class="form-group">
+                        <label for="archivos" class="control-label col-md-3 col-sm-3 col-xs-12">Archivos
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        {% csrf_token %}
+                          <button class="btn btn-primary" type="button">Cancelar</button>
+                          <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                      </div>
+
+
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
  

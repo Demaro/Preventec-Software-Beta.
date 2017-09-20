@@ -27,11 +27,21 @@ class CarpetaForm(forms.ModelForm):
 			"user_asign",
 			"fecha_inicio",
 			"fecha_termino",
-			"estado"
-
+			
 
 
 		]
+		labels = {
+			"user_asign" : 'Responsable',
+			"fecha_inicio":	'Fecha inicio',
+			"fecha_termino": 'Fecha Termino',									
+		}
+		widgets = {
+			'user_asign':		forms.Select(attrs={'class': 'form-control'}),
+			'fecha_inicio': 	forms.TextInput(attrs={'class': 'form-control'}),
+			'fecha_termino':	forms.TextInput(attrs={'class': 'form-control'}),
+	
+		}
 
 
 

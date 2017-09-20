@@ -69,8 +69,8 @@ class Submodulo(models.Model):
 class Carpeta(models.Model):
 	user_asign = models.ForeignKey(User, related_name="responsable", null=True, blank=True)
 	nombre     = models.CharField(max_length=100)
-	fecha_inicio = models.DateTimeField(null=True, blank=True)
-	fecha_termino = models.DateTimeField(null=True, blank=True)
+	fecha_inicio = models.DateField(null=True, blank=True)
+	fecha_termino = models.DateField(null=True, blank=True)
 	porcent			= models.IntegerField(default=0)
 	estado        = models.CharField(max_length=20)
 

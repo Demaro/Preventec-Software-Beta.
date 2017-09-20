@@ -57,7 +57,7 @@ urlpatterns = [
 
 	url(r'^modulos', modules, name='modules'),
 	url(r'^modulo/(?P<id_modulo>\d+)/$', modulo_detail, name='module'),
-	url(r'^carpeta/(?P<id_carpeta>\d+)/$', carpeta_detail, name='carpeta'),
+	url(r'^modulo/(?P<id_modulo>\d+)/carpeta/(?P<id_carpeta>\d+)/$', carpeta_detail, name='carpeta'),
 
 
 

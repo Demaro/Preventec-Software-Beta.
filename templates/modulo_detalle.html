@@ -10,7 +10,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-              <a href=javascript:history.back(1)>Modulos <i class="fa fa-backward"></i></a>  
+              <a href="/modulos">Modulos <i class="fa fa-backward"></i></a>  
               </div>
 
               <div class="title_right">
@@ -114,16 +114,16 @@
                          
                             </td>  
 
-                                  <td><a href='{% url "profile:carpeta" carpeta.id %}'>{{ carpeta.nombre }}</td>
+                                  <td><a href='{% url "profile:carpeta"  obj_get.id carpeta.id %}'>{{ carpeta.nombre }}</td>
                                   
                                   <td>
-                                  <button type="button" class="btn btn-danger btn-xs">{{ carpeta.estado }}</button></td></a>                               
+                                  {% if carpeta.estado == "Cargado" %}<button type="button" class="btn btn-success btn-xs">{{ carpeta.estado }}</button>{% else %}  <button type="button" class="btn btn-danger btn-xs">{{ carpeta.estado }}</button> {% endif %} </td></a>                               
                                   
-                                  <td>Sin Asignar</td>
+                                  <td>{% if carpeta.user_asign %}{{ carpeta.user_asign }} {% else %}Sin Asignar {% endif %}</td>
                                 
                                  
-                                  <td>{% if carpeta.archivo %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li>{% else %}Vacio{% endif %}</td>
-                                  <td>No Cargado</td>
+                                  <td>{% if carpeta.estado == "Cargado" %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li>{% else %}Vacio{% endif %}</td>
+                                  <td>{% if carpeta.fecha_termino %}{{ carpeta.fecha_termino }} {% else %}No Cargado {% endif %}</td>
                                   
                                 </tr>
            
