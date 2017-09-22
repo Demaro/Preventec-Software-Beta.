@@ -254,13 +254,13 @@ $('.bulk_action input#check-all').on('ifUnchecked', function () {
 
 function countChecked() {
     if (checkState === 'all') {
-        $(".bulk_action input[name='table_records']").iCheck('check');
+        $(".bulk_action input[name='carpeta']").iCheck('check');
     }
     if (checkState === 'none') {
-        $(".bulk_action input[name='table_records']").iCheck('uncheck');
+        $(".bulk_action input[name='carpeta']").iCheck('uncheck');
     }
 
-    var checkCount = $(".bulk_action input[name='table_records']:checked").length;
+    var checkCount = $(".bulk_action input[name='carpeta']:checked").length;
 
     if (checkCount) {
         $('.column-title').hide();

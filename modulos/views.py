@@ -21,7 +21,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 
-from .models import Modulo, Carpeta
+from .models import Modulo, Submodulo, Carpeta
 from profiles.models import Profile
 
 from activitys.forms import ActivityForm
@@ -111,13 +111,57 @@ def modulo_detail(request, id_modulo):
 	
 	obj_get = Modulo.objects.get(id=id_modulo)
 
+	form = ActivityForm(request.POST or None)
+
+	if form.is_valid():
+
+		instance = form.save(commit=False)
+		instance.save()	
+		print(obj_get.id)
+		# message success
+		messages.success(request, "Creado con exito!")
+		return HttpResponseRedirect('/modulo/%s/' % id_modulo)
+
 
 	context = {	
-
+		"form": form,
 		"obj_get" : obj_get,
 
 	}
 	return render(request, "modulo_detalle.html", context)
+
+
+
+def submodulo_detail(request, id_modulo, id_submodulo):
+
+
+	id_modulo = id_modulo
+
+	id_submodulo = id_submodulo
+	
+	obj_get = Submodulo.objects.get(id=id_submodulo)
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+
+	form = ActivityForm(request.POST or None)
+
+	if form.is_valid():
+
+		instance = form.save(commit=False)
+		instance.save()	
+		print(obj_get.id)
+		# message success
+		messages.success(request, "Creado con exito!")
+		return HttpResponseRedirect('/submodulo/%s/' % id_submodulo)
+
+
+	context = {	
+		"form": form,
+		"obj_get" : obj_get,
+		"obj_modulo": obj_modulo,
+
+	}
+	return render(request, "submodulo.html", context)	
 
 
 
@@ -127,7 +171,9 @@ def carpeta_detail(request, id_modulo, id_carpeta):
 
 	obj_get	=	Carpeta.objects.get(id=id_carpeta)
 
-	form = CarpetaForm(request.POST or None, instance=obj_get)
+
+
+	form = ActivityForm(request.POST or None, instance=obj_get)
 
 	if form.is_valid():
 

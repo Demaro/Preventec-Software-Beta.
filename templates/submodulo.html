@@ -10,7 +10,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-              <a href="/modulos">Modulos <i class="fa fa-backward"></i></a>  
+              <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward"></i></a>   
               </div>
 
               <div class="title_right">
@@ -62,33 +62,8 @@
 
                     <!-- start accordion -->
       
-
-
-                 
-                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-
-                      {% for obj in obj_get.submodulo.all|dictsort:"nombre" %}
-                     
-                      <div class="panel">
-                        <a class="panel-heading collapsed" href='{% url "profile:submodule"  obj_get.id obj.id %}' aria-expanded="false" aria-controls="collapse{{ obj.id }}">
-                              <div class="col-md-5 col-sm-6 col-xs-12">
-                              <h4 class="panel-title">{{ obj.nombre }}</h4>
-</div>
-                            <div class="col-md-2 col-sm-2 col-xs-4">
-                             <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
-                            </div>
-                            </div>
-                            
-
-                              <small>80% Completado</small> 
-                              </a>
-                        <div id="collapse{{ obj.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ obj.id }}">
-
-<!--
-
                           <div class="panel-body">
-                           <div class="table-responsive">
+                          <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
@@ -114,7 +89,7 @@
 
                               <tbody>
 
-                               {% for carpeta in obj.carpeta.all|dictsort:"id"  %}
+                               {% for carpeta in obj_get.carpeta.all|dictsort:"id"  %}
 
                           <tr class="even pointer">
                             <td class="a-center ">
@@ -142,7 +117,6 @@
                             </table>
                           </div>
                         </div>
--->
 
 
 
@@ -151,7 +125,6 @@
                         </div>
                         </a>
 
-                        {% endfor %}
 
                   <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm">

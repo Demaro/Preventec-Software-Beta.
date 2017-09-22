@@ -16,7 +16,7 @@ from django.contrib.auth.models import User
 from markdown_deux import markdown
 
 from profiles.models import Profile
-#from modulos.models import Carpeta
+from modulos.models import Carpeta
 
 
 
@@ -58,6 +58,8 @@ class Activity(models.Model):
 	fecha_inicio = models.DateField(null=True, blank=True)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 	fecha_termino = models.DateTimeField(null=True, blank=True)
+	estado        = models.CharField(max_length=20, null=True, blank=True)
+	carpeta  = models.ManyToManyField(Carpeta, related_name="carpetas")
 
 
 
