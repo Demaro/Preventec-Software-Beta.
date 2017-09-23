@@ -99,7 +99,7 @@
                               
                             </td>  
 
-                                  <td><a href='{% url "profile:carpeta"  obj_get.id carpeta.id %}'>{{ carpeta.nombre }}</td>
+                                  <td><a href='{% url "profile:carpeta"  id_modulo=obj_modulo.id id_submodulo=obj_get.id id_carpeta=carpeta.id %}'>{{ carpeta.nombre }}</td>
                                   
                                   <td>
                                   {% if carpeta.estado == "Cargado" %}<button type="button" class="btn btn-success btn-xs">{{ carpeta.estado }}</button>{% else %}  <button type="button" class="btn btn-danger btn-xs">{{ carpeta.estado }}</button> {% endif %} </td></a>                               

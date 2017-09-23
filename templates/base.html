@@ -88,10 +88,15 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                  <li><a href='{% url "profile:home" %}'> <i class="fa fa-backward"></i> Proyecto Constructora </a>
+                  
+
+                  </li>
                     <li><a href='{% url "profile:home" %}'><i class="fa fa-home"></i> Inicio </a>
                   
 
                   </li>
+                  <!--
                     <li><a><i class="fa fa-folder-open-o"></i> Proyectos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href='{% url "profile:create_project" %}'>Crear</a></li>
@@ -113,6 +118,8 @@
                       <li><a href='{% url "profile:activitys" %}'>Ver Actividades</a></li>
                     </ul>
                   </li>
+
+                  -->
                     <li><a href='{% url "profile:modules" %}'><i class="fa fa-cubes"></i> Modulos </a>
                     
 
@@ -120,7 +127,7 @@
               </div>
 
             </div>
-            <!-- /sidebar menu -->
+         
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
@@ -154,12 +161,7 @@
               <ul class="nav navbar-nav navbar-right">
 
 
-            <div class="col-md-4 col-sm-4 col-xs-6">
-              <img class="img-responsive avatar-view" src='{% static "images/logo_min_opt_opt.png" %}'>
-            </div>
-
-             
-
+          
 
                 <li class="">
 
@@ -272,10 +274,16 @@
 {% block footer%}
 
         <footer>
-          <div class="pull-right">
-            Preventec - Prevencion de Riesgos Digital by <a href="//mux.cl" target="_blank">mux</a>
+     
+            
+            <div class="col-md-8 col-sm-8 col-xs-8">
+              <img class="img-responsive avatar-view" src='{% static "images/preventec_logofoot.png" %}'>
+
+          
           </div>
+
           <div class="clearfix"></div>
+
         </footer>
         <!-- /footer content -->
 {% endblock footer%}

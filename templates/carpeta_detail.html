@@ -9,9 +9,16 @@
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-              <div class="title_left">
-              <a href="/modulo/{{ obj_module.id }}">{{ obj_module.nombre }} <i class="fa fa-backward"></i></a>  
-              </div>
+           
+           
+                            <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> 
+                            &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward">
+                            </i></a>
+                            &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}">{{ obj_sub.nombre }} <i class="fa fa-backward">
+                            </i></a>
+                            </div>
+
+           
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-5 form-group pull-right top_search">

@@ -137,13 +137,15 @@ def submodulo_detail(request, id_modulo, id_submodulo):
 
 	id_modulo = id_modulo
 
-	id_submodulo = id_submodulo
+	id_submodulo = id_submodulo	
 	
 	obj_get = Submodulo.objects.get(id=id_submodulo)
 
 	obj_modulo = Modulo.objects.get(id=id_modulo)
 
-	form = ActivityForm(request.POST or None)
+	obj_carpeta = Carpeta.objects.get(id=1)
+
+	form = CarpetaForm(request.POST or None, instance=obj_carpeta)
 
 	if form.is_valid():
 
@@ -165,11 +167,21 @@ def submodulo_detail(request, id_modulo, id_submodulo):
 
 
 
-def carpeta_detail(request, id_modulo, id_carpeta):
+def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 
-	obj_module = Modulo.objects.get(id=id_modulo)
+	id_modulo = id_modulo
+
+	id_submodulo = id_submodulo
+
+	id_carpeta = id_carpeta	
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 
 	obj_get	=	Carpeta.objects.get(id=id_carpeta)
+
+
 
 
 
@@ -188,7 +200,8 @@ def carpeta_detail(request, id_modulo, id_carpeta):
 
 		"obj_get" : obj_get,
 		"form"  : form,
-		"obj_module": obj_module,
+		"obj_modulo": obj_modulo,
+		"obj_sub":	obj_sub,
 
 	}
 	return render(request, "carpeta_detail.html", context)
