@@ -35,12 +35,12 @@
                         </div>
                             <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="progress">
-                        <div class="progress-bar progress-bar-info" data-transitiongoal="65"></div>
+                        <div class="progress-bar progress-bar-info" data-transitiongoal="17"></div>
                       </div>
                             </div>
                             
 
-                              <small>50% Completado</small> 
+                              <small>17% Completado</small> 
                               </a>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -77,6 +77,7 @@
                             </th>
                          
                             <th class="column-title">Nombre</th>
+                            <th class="column-title">%</th>
                             <th class="column-title">Estado</th>
                             <th class="column-title">Responsable</th>
                             <th class="column-title">Archivo</th>
@@ -102,15 +103,16 @@
                             </td>  
 
                                   <td><a href='{% url "profile:carpeta"  id_modulo=obj_modulo.id id_submodulo=obj_get.id id_carpeta=carpeta.id %}'>{{ carpeta.nombre }}</td>
+                                  <td>17%</td>
                                   
                                   <td>
-                                  {% if carpeta.estado == "Cargado" %}<button type="button" class="btn btn-success btn-xs">{{ carpeta.estado }}</button>{% else %}  <button type="button" class="btn btn-danger btn-xs">{{ carpeta.estado }}</button> {% endif %} </td></a>                               
+                                  {% if carpeta.estado == "Cargado" %}<button type="button" class="btn btn-success btn-xs">{{ carpeta.estado }}</button>{% else %}<button type="button" class="btn btn-danger btn-xs">{{ carpeta.estado }}</button>{% endif %}</td></a>                               
                                   
-                                  <td>{% if carpeta.user_asign %}{{ carpeta.user_asign }} {% else %}Sin Asignar {% endif %}</td>
+                                  <td>{{ carpeta.user_asign}}</td>
                                 
                                  
-                                  <td>{% if carpeta.estado == "Cargado" %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li>{% else %}Vacio{% endif %}</td>
-                                  <td>{% if carpeta.fecha_termino %}{{ carpeta.fecha_termino }} {% else %}No Cargado {% endif %}</td>
+                                  <td>{% if carpeta.estado == "Cargado" %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf. + 2</a></li>{% else %}Vacio{% endif %}</td>
+                                  <td>{{ carpeta.fecha_termino }}</td>
                                   
                                 </tr>
            
