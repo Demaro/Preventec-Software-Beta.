@@ -9,7 +9,7 @@
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-           
+           <div class="title_left">
            
                             <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> 
                             &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward">
@@ -17,6 +17,8 @@
                             &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}">{{ obj_sub.nombre }} <i class="fa fa-backward">
                             </i></a>
                             </div>
+                            <br>
+                           
 
            
 
@@ -64,71 +66,77 @@
                   </div>
 
 
-                  <div class="x_content">
-                    <br />
-                    <form id="demo-form2" action="" method="POST" enctype='multipart/form-data' data-parsley-validate class="form-horizontal form-label-left">
+                          <div class="panel-body">
+                          <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                      
+                            </th>
+                         
+                            <th class="column-title">Responsable</th>
+                             <th class="column-title">Archivo</th>
+                            <th class="column-title">Fecha Carga</th>
+                           
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_asign">Responsable <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          {{ form.user_asign }}
+                          
+                            </th>
+                          </tr>
+                        </thead>
+
+                              <tbody>
+
+                       
+
+                          <tr class="even pointer">
+                            <td class="a-center ">
+
+                            <form id="antoform" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype='multipart/form-data'>
+                                              
+                            </td>  
+
+                                  <td>Steve Jobs
+                                  </td>
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> Reglamento_Interno_OHS_1.pdf</a></li></td>
+                                  <td>04 Octubre del 2017</td>
+                                 
+                                  
+                                </tr>
+                                <tr class="even pointer">
+                                <td class="a-center ">
+                                  </td>
+                                    <td>Steve Jobs
+                                  </td>
+ 
+                              <td><a href=""><i class="fa fa-file-pdf-o"></i> Reglamento_Interno_OHS_2.pdf</a></li></td>
+                              <td>04 Octubre del 2017</td>
+                                </tr>
+                                <tr class="even pointer">
+                                      <td class="a-center ">
+                                  </td>
+                                  <td>Bill Gates
+                                  </td>
+
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> Reglamento_Interno_OHS_3.pdf</a></li></td>
+                                  <td>10 Octubre del 2017</td>
+                                    </tr>
+           
+                              </tbody>
+                  
+                            </table>
+                          </div>
                         </div>
-                      </div>
 
-                      <div class="form-group">
-                        <label for="fecha_inicio" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Inicio<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          {{ form.fecha_inicio }}
+
+                        <td>
+                          <td>
+                            
+                          </td>
+                        </td>
+
                         </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="fecha_termino" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Termino<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          {{ form.fecha_termino }}
                         </div>
-                      </div>
-                    <div class="form-group">
-                        <label for="estado" class="control-label col-md-3 col-sm-3 col-xs-12">Estado
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="status" class="date-picker form-control col-md-7 col-xs-12" value="{{ obj_get.estado }}" type="text" disabled="">
-                        </div>
-                      </div>
-                        <div class="form-group">
-                        <label for="fecha_carga" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Carga
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="carga" class="date-picker form-control col-md-7 col-xs-12" value="{{ obj_get.fecha_termino }}" type="text" disabled="">
-                        </div>
-                      </div>
-                     <div class="form-group">
-                        <label for="archivos" class="control-label col-md-3 col-sm-3 col-xs-12">Archivos
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a></li>
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        {% csrf_token %}
-                          <button class="btn btn-primary" type="button">Cancelar</button>
-                          <button type="submit" class="btn btn-success">Guardar</button>
-                        </div>
-                      </div>
-
-
-
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
  
 
 </div>

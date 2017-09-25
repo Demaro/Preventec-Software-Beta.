@@ -15,6 +15,7 @@ from profiles.views import (
 	modules,
 	principal,
 	profiles_contacts,
+	casa
 
 
 	)
@@ -44,6 +45,7 @@ urlpatterns = [
 
 	url(r'^home', home, name='home'),
 	url(r'^inicio', principal, name='inicio'),
+	url(r'^Bienvenido', casa, name='casa'),
 
 
 

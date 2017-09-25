@@ -48,9 +48,13 @@ User = get_user_model()
 from modulos.models import Modulo, Submodulo
 
 
+def casa(request):
+
+	return render(request, "home.html")
+
 def home(request):
 	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/login')
+		return HttpResponseRedirect('/Bienvenido')
 	else:
 		return HttpResponseRedirect('/inicio')
 
