@@ -57,6 +57,7 @@
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
+
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -65,19 +66,30 @@
                     <!-- start accordion -->
       
                           <div class="panel-body">
+                                            <div class="col-md-4 col-sm-3 col-xs-6">
+                                                   <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Asignar</button>
+                              
+                         
+                              <button type="button" id="btncarpeta" name="btncarpeta" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bd-example-modal-sm">Duplicar</button>
+                                </div>
+                                <br>
+                                <br>
+
+
                           <div class="table-responsive">
+
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
                             <th>
                             
-                              <input type="checkbox" id="check-all" class="flat">
+                              <input type="checkbox" id="checkAll" class="check" name="carpeta">
                               
                             
                             </th>
                          
                             <th class="column-title">Nombre</th>
-                            <th class="column-title">Ponder %</th>
+                            <th class="column-title">Ponder %%</th>
                             <th class="column-title">Estado</th>
                             <th class="column-title">Responsable</th>
                             <th class="column-title">Archivo</th>
@@ -85,10 +97,7 @@
                           
                             </th>
                             <th class="bulk-actions" colspan="7" id="botones">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Seleccion masiva ( <span class="action-cnt"> </span> ) &nbsp;&nbsp;&nbsp;     <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Asignar</button></a>
-                              
-                           
-                              <button type="button" id="btncarpeta" name="btncarpeta" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bd-example-modal-sm">Duplicar</button>
+
                           
 
                             </th>
@@ -105,8 +114,8 @@
                             
                             <div id="checkboxes">
 
-                            <input type="checkbox" name="carpeta" value="{{ carpeta.nombre }}"  class="flat"  >
-                      
+                            <input type="checkbox" name="carpeta" value="{{ carpeta.nombre }}" class="check"   >
+                    
 
                             </div>
                               
@@ -263,6 +272,31 @@
 {% block content2 %}
 
 
+<script type="text/javascript">
+$("#checkAll").click(function () {
+    $(".check").prop('checked', $(this).prop('checked'));
+});
+  $(document).ready(function() {
+    $("input[name='carpeta']").change(function() {
+        var maxAllowed = 1;
+          var cnt = $("input[name='carpeta']:checked").length;
+            if (cnt > maxAllowed) {
+              $('#btncarpeta').fadeOut('fast');
+           
+            }else {
+              $('#btncarpeta').fadeIn('fast');
+            }
+    
+
+    });
+
+    
+  });
+
+
+
+
+</script>
 
 <script type="text/javascript">
 
