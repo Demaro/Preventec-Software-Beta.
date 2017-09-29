@@ -69,7 +69,7 @@
                  
                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
 
-                      {% for obj in obj_get.submodulo.all|dictsort:"nombre" %}
+                      {% for obj in obj_get.submodulo.all|dictsort:"" %}
                      
                       <div class="panel">
                         <a class="panel-heading collapsed" href='{% url "profile:submodule"  obj_get.id obj.id  %}' aria-expanded="false" aria-controls="collapse{{ obj.id }}">
@@ -98,7 +98,7 @@
                         {% endfor %}
                        {% else %}
 
-                        {% for obj in obj_get.submodulo.all|dictsort:"nombre" %}
+                        {% for obj in obj_get.submodulo.all|dictsort:"id" %}
 
                     <!-- start accordion -->
                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
