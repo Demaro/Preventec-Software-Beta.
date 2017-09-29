@@ -303,6 +303,7 @@ def subcarpeta_detail(request, id_modulo, id_submodulo, id_carpeta, id_subcarpet
 		"form"  : form,
 		"obj_modulo": obj_modulo,
 		"obj_sub":	obj_sub,
+		"obj_subcarp": obj_subcarp,
 
 	}
 	return render(request, "carpeta_detail.html", context)
