@@ -21,12 +21,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 
-from .models import Modulo, Submodulo, Carpeta
+from .models import Modulo, Submodulo, Carpeta, SubCarpeta
 from profiles.models import Profile
 
 from activitys.forms import ActivityForm
 
-from .forms import ModuloForm, CarpetaForm
+from .forms import ModuloForm, CarpetaForm, SubCarpetaForm
 
 
 from django.utils import timezone
@@ -163,8 +163,35 @@ def submodulo_detail(request, id_modulo, id_submodulo):
 		"obj_modulo": obj_modulo,
 
 	}
-	return render(request, "submodulo.html", context)	
+	if obj_get.id == 3:
+		return render(request, "proceso.html", context)	
+	if obj_get.id == 18:
+		return render(request, "proceso.html", context)
+	else:
+		return render(request, "submodulo.html", context)	
 
+
+def subcarpeta_edit(request, id_subcarpeta):
+
+	obj_get = SubCarpeta.objects.get(id=id_subcarpeta)
+
+
+	form = SubCarpetaForm(request.POST or None, instance=obj_get)
+
+	if form.is_valid():
+
+		instance = form.save(commit=False)
+		instance.save()	
+		# message success
+		messages.success(request, "Creado con exito!")
+		return HttpResponseRedirect('/')
+
+	context = {	
+
+		"obj_get" : obj_get,
+		"form"		: form,
+	}
+	return render(request, "subcarpeta_edit.html", context)
 
 
 def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
@@ -180,9 +207,6 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 
 	obj_get	=	Carpeta.objects.get(id=id_carpeta)
-
-
-
 
 
 	form = ActivityForm(request.POST or None, instance=obj_get)
@@ -207,3 +231,78 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 	return render(request, "carpeta_detail.html", context)
 
 
+def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
+
+	id_modulo = id_modulo
+
+	id_submodulo = id_submodulo
+
+	id_carpeta = id_carpeta	
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+
+	obj_get	=	Carpeta.objects.get(id=id_carpeta)
+
+
+	form = ActivityForm(request.POST or None, instance=obj_get)
+
+	if form.is_valid():
+
+		instance = form.save(commit=False)
+		instance.save()	
+		print(obj_get.id)
+		# message success
+		messages.success(request, "Creado con exito!")
+		return HttpResponseRedirect('/modulo/%s/' % id_modulo)
+
+	context = {	
+
+		"obj_get" : obj_get,
+		"form"  : form,
+		"obj_modulo": obj_modulo,
+		"obj_sub":	obj_sub,
+
+	}
+	return render(request, "subproceso.html", context)
+
+def subcarpeta_detail(request, id_modulo, id_submodulo, id_carpeta, id_subcarpeta):
+
+	id_modulo = id_modulo
+
+	id_submodulo = id_submodulo
+
+	id_carpeta = id_carpeta	
+
+	id_subcarpeta	= id_subcarpeta
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+
+	obj_get	=	Carpeta.objects.get(id=id_carpeta)
+
+	obj_subcarp = SubCarpeta.objects.get(id=id_subcarpeta)
+
+
+	form = ActivityForm(request.POST or None, instance=obj_get)
+
+	if form.is_valid():
+
+		instance = form.save(commit=False)
+		instance.save()	
+		print(obj_get.id)
+		# message success
+		messages.success(request, "Creado con exito!")
+		return HttpResponseRedirect('/modulo/%s/' % id_modulo)
+
+	context = {	
+
+		"obj_get" : obj_get,
+		"form"  : form,
+		"obj_modulo": obj_modulo,
+		"obj_sub":	obj_sub,
+
+	}
+	return render(request, "carpeta_detail.html", context)

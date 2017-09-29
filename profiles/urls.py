@@ -20,7 +20,7 @@ from profiles.views import (
 
 	)
 
-from modulos.views import modulo_detail, carpeta_detail, submodulo_detail
+from modulos.views import modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit
 
 from activitys.views import activity_create
 
@@ -60,7 +60,13 @@ urlpatterns = [
 	url(r'^modulos', modules, name='modules'),
 	url(r'^modulo/(?P<id_modulo>\d+)/$', modulo_detail, name='module'),
 	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/$', submodulo_detail, name='submodule'),
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/proceso/(?P<id_carpeta>\d+)/$', proceso_detail, name='proceso'),
 	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/$', carpeta_detail, name='carpeta'),
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/proceso/(?P<id_carpeta>\d+)/subcarpeta/(?P<id_subcarpeta>\d+)/$', subcarpeta_detail, name='subcarpeta'),
+	url(r'^editar/subcarpeta/(?P<id_subcarpeta>\d+)/$', subcarpeta_edit, name='edit_subcpa'),
+	
+
+
 
 
 

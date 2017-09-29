@@ -5,15 +5,20 @@
 
 
 
+
         <!-- page content -->
-        <div class="right_col" role="main">
+      <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
-              <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward"></i></a>  
-
+                            <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> 
+                            &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward">
+                            </i></a>
+                  
+                            </i></a>
+                            </div>
+                            <br>
               </div>
-              <br>
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -30,17 +35,17 @@
                 <div class="x_panel">
                   <div class="x_title">
                     
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                              <h2><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;&nbsp;{{ obj_get.nombre }}</h2>
+                    <div class="col-md-5 col-sm-6 col-xs-12">
+                              <h2><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;{{ obj_get.nombre }}</h2>
                         </div>
                             <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="progress">
-                        <div class="progress-bar progress-bar-info" data-transitiongoal="17"></div>
+                        <div class="progress-bar progress-bar-info" data-transitiongoal="65"></div>
                       </div>
                             </div>
                             
 
-                              <small>17% Completado</small> 
+                              <small>50% Completado</small> 
                               </a>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -57,7 +62,6 @@
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
-
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -65,18 +69,58 @@
 
                     <!-- start accordion -->
       
-                          <div class="panel-body">
-                                            <div class="col-md-4 col-sm-3 col-xs-6">
-                                                   <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Asignar</button>
-                              
+
+
+                 
+                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+
+                      {% for obj in obj_get.carpeta.all|dictsort:"id" %}
+                     
+                      <div class="panel">
+                        <a class="panel-heading collapsed" href='{% url "profile:proceso" obj_modulo.id obj_get.id obj.id %}' aria-expanded="false" aria-controls="collapse{{ obj.id }}">
+                              <div class="col-md-5 col-sm-6 col-xs-12">
+                              <h4 class="panel-title">{% if obj.tipo.id == 1 %}<span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>{% else %}<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>{% endif %}&nbsp;&nbsp;&nbsp;  {{ obj.nombre }}</h4>
+</div>
+                            <div class="col-md-2 col-sm-2 col-xs-4">
+                             <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
+                            </div>
+                            </div>
                          
-                              <button type="button" id="btncarpeta" name="btncarpeta" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bd-example-modal-sm">Duplicar</button>
-                                </div>
-                                <br>
-                                <br>
+                            
+
+                              <small>17% Completado</small> 
+                              </a>
+                          <div id="collapse{{ obj.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ obj.id }}">
 
 
-                          <div class="table-responsive">
+
+
+
+                        </div>
+                        </div>
+                        </a>
+
+                        {% endfor %}
+<!---
+
+                              {% for carpeta in obj_get.carpeta.all|dictsort:"id"  %}
+                  
+                              <div class="col-md-5 col-sm-6 col-xs-12">
+                              <h4 class="panel-title">{{ carpeta.nombre }}</h4>
+</div>
+                            <div class="col-md-2 col-sm-2 col-xs-4">
+                             <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
+                            </div>
+                            </div>
+                            
+
+                              <small>17% Completado</small> 
+                        <br>
+                        <br>
+
+                        <div class="table-responsive">
 
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
@@ -94,6 +138,8 @@
                             <th class="column-title">Responsable</th>
                             <th class="column-title">Archivo</th>
                             <th class="column-title">Facha Carga</th>
+                            <th></th>
+                        
                           
                             </th>
                             <th class="bulk-actions" colspan="7" id="botones">
@@ -104,24 +150,26 @@
                           </tr>
                         </thead>
 
-                              <tbody>
+                                                      <tbody>
 
-                               {% for carpeta in obj_get.carpeta.all|dictsort:"id"  %}
+                               {% for subcarpeta in carpeta.subcarpeta.all|dictsort:"id"  %}
 
                           <tr class="even pointer">
                             <td class="a-center ">
 
                             
-                            <div id="checkboxes">
+                            <div id="checkboxes"> 
+                            <label>
 
-                            <input type="checkbox" name="carpeta" value="{{ carpeta.nombre }}" class="check"   >
+                            <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
+
                     
 
                             </div>
                               
                             </td>  
 
-                                  <td><a href='{% url "profile:carpeta"  id_modulo=obj_modulo.id id_submodulo=obj_get.id id_carpeta=carpeta.id %}'>{{ carpeta.nombre }}</td>
+                                  <td><a href='{% url "profile:carpeta"  id_modulo=obj_modulo.id id_submodulo=obj_get.id id_carpeta=carpeta.id %}'>{{ subcarpeta.nombre }}</td>
                                   <td>17%</td>
                                   
                                   <td>
@@ -132,6 +180,13 @@
                                  
                                   <td>{% if carpeta.estado == "Cargado" %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf. + 2</a></li>{% else %}Vacio{% endif %}</td>
                                   <td>{{ carpeta.fecha_carga }}</td>
+                                  <td>{% if not subcarpeta.default %}<a id="url" name="{{ request.build_absolute_uri }}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                          <i class="fa fa-trash">{% endif %}</i>
+                          </button></a></td>
+
+
+
+
                                   
                                 </tr>
            
@@ -143,13 +198,13 @@
 
 
 
+           
+          {% endfor %}
+          
 
 
 
-                        </div>
-                        </div>
-                        </a>
-
+-->
 
 
 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -274,10 +329,13 @@
 {% block content2 %}
 
 
+
+
 <script type="text/javascript">
 $("#checkAll").click(function () {
     $(".check").prop('checked', $(this).prop('checked'));
 });
+
   $(document).ready(function() {
     $("input[name='carpeta']").change(function() {
         var maxAllowed = 1;

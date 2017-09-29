@@ -10,7 +10,10 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-              <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward"></i></a>  
+              <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward"></i></a> 
+
+
+
 
               </div>
               <br>
@@ -30,8 +33,8 @@
                 <div class="x_panel">
                   <div class="x_title">
                     
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                              <h2><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;&nbsp;{{ obj_get.nombre }}</h2>
+                    <div class="col-md-5 col-sm-6 col-xs-12">
+                              <h2>{% if obj_get.tipo.id == 1 %}<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{% else %}<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>{% endif %}&nbsp;&nbsp;  {{ obj_get.nombre }}</h2>
                         </div>
                             <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="progress">
@@ -94,6 +97,8 @@
                             <th class="column-title">Responsable</th>
                             <th class="column-title">Archivo</th>
                             <th class="column-title">Facha Carga</th>
+                            <th></th>
+                            
                           
                             </th>
                             <th class="bulk-actions" colspan="7" id="botones">
@@ -106,7 +111,7 @@
 
                               <tbody>
 
-                               {% for carpeta in obj_get.carpeta.all|dictsort:"id"  %}
+                               {% for carpeta in obj_get.subcarpeta.all|dictsort:"id"  %}
 
                           <tr class="even pointer">
                             <td class="a-center ">
@@ -121,7 +126,7 @@
                               
                             </td>  
 
-                                  <td><a href='{% url "profile:carpeta"  id_modulo=obj_modulo.id id_submodulo=obj_get.id id_carpeta=carpeta.id %}'>{{ carpeta.nombre }}</td>
+                                  <td><a href='{% url "profile:subcarpeta"  obj_modulo.id obj_sub.id obj_get.id carpeta.id %}'>{{ carpeta.nombre }}</td>
                                   <td>17%</td>
                                   
                                   <td>
@@ -132,6 +137,15 @@
                                  
                                   <td>{% if carpeta.estado == "Cargado" %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf. + 2</a></li>{% else %}Vacio{% endif %}</td>
                                   <td>{{ carpeta.fecha_carga }}</td>
+
+
+                                  <td> {% if not carpeta.default %}<a href='{% url "profile:edit_subcpa" carpeta.id %}' ><button type="button" rel="tooltip" title="Editar" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-edit"></i>
+                          </button></a>{% endif %}
+                          {% if not carpeta.default %}<a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                          <i class="fa fa-trash"></i>
+                          </button></a>{% endif %}</td>
+
                                   
                                 </tr>
            
@@ -205,10 +219,17 @@
 
                       </div>
                     </div>
+
+
+
+
+
+
+
 </div>
 </form>
 <form id="antoform" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype='multipart/form-data'>
-                  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div id="mymodalasignar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
                       <div class="modal-content">
 
@@ -274,6 +295,35 @@
 {% block content2 %}
 
 
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    
+
+    var myurl = document.getElementById('url').getAttribute("name");
+    $('.btn-ExitSystem').on('click', function(e){
+        e.preventDefault();
+        swal({ 
+            title: "Desea Eliminar este Elemento?",   
+            text: "Se eliminara todo su contenido",   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#DD6B55",   
+            confirmButtonText: "Si",
+            animation: "slide-from-top",   
+            closeOnConfirm: false,
+            cancelButtonText: "Cancelar"
+        }, function(){   
+            window.location=  myurl ; 
+        });
+    }); 
+
+})(jQuery);
+
+</script>
+
 <script type="text/javascript">
 $("#checkAll").click(function () {
     $(".check").prop('checked', $(this).prop('checked'));
@@ -284,11 +334,37 @@ $("#checkAll").click(function () {
           var cnt = $("input[name='carpeta']:checked").length;
             if (cnt > maxAllowed) {
               $('#btncarpeta').fadeOut('fast');
+            
            
             }else {
               $('#btncarpeta').fadeIn('fast');
+            
             }
+
+
+    });
+
     
+  });
+
+
+
+
+</script>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $("input[name='carpeta']").change(function() {
+        var maxAllowed = 1;
+          var cnt = $("input[name='carpeta']:checked").length;
+            if (cnt < maxAllowed) {
+              $('#btnasignar').fadeOut('fast');
+           
+            }else {
+              $('#btnasignar').fadeIn('fast');
+            }
+
 
     });
 

@@ -30,7 +30,7 @@
                   <div class="x_title">
                     
                     <div class="col-md-5 col-sm-6 col-xs-12">
-                              <h2>{{ obj_get.nombre }}</h2>
+                              <h2><i class="fa fa-cubes"></i>&nbsp;&nbsp;{{ obj_get.nombre }}</h2>
                         </div>
                             <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="progress">
@@ -64,6 +64,7 @@
                     <!-- start accordion -->
       
 
+{% if not obj_get.id == 3 %}
 
                  
                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
@@ -73,7 +74,7 @@
                       <div class="panel">
                         <a class="panel-heading collapsed" href='{% url "profile:submodule"  obj_get.id obj.id  %}' aria-expanded="false" aria-controls="collapse{{ obj.id }}">
                               <div class="col-md-5 col-sm-6 col-xs-12">
-                              <h4 class="panel-title">{{ obj.nombre }}</h4>
+                              <h4 class="panel-title"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;{{ obj.nombre|truncatechars_html:45 }}</h4>
 </div>
                             <div class="col-md-2 col-sm-2 col-xs-4">
                              <div class="progress progress_sm">
@@ -82,9 +83,9 @@
                             </div>
                             
 
-                              <small>80% Completado</small> 
+                              <small>17% Completado</small> 
                               </a>
-                        <div id="collapse{{ obj.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ obj.id }}">
+                          <div id="collapse{{ obj.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ obj.id }}">
 
 
 
@@ -95,6 +96,70 @@
                         </a>
 
                         {% endfor %}
+                       {% else %}
+
+                        {% for obj in obj_get.submodulo.all|dictsort:"nombre" %}
+
+                    <!-- start accordion -->
+                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+
+                      <div class="panel">
+                        <a class="panel-heading collapsed" role="tab" id="heading{{ obj.id }}" data-toggle="collapse" data-parent="#accordion" href="#collapse_{{ obj.id }}" aria-expanded="false" aria-controls="collapse_{{ obj.id }}">
+                              <div class="col-md-5 col-sm-6 col-xs-12">
+                              <h4 class="panel-title"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;{{ obj.nombre|truncatechars_html:45 }}</h4>
+</div>
+                            <div class="col-md-2 col-sm-2 col-xs-4">
+                             <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
+                            </div>
+                            </div>
+                          
+                            
+
+                              <small>17% Completado</small> 
+                              </a>
+                        <div id="collapse_{{ obj.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ obj.id }}">
+                          <div class="panel-body">
+                          {% for carpeta in obj.carpeta.all|dictsort:"id" %}
+                      <div class="panel">
+                        <a class="panel-heading2 collapsed" href='{% url "profile:proceso" obj_get.id obj.id carpeta.id %}' aria-expanded="false" aria-controls="collapse{{ obj.id }}">
+                              <div class="col-md-5 col-sm-6 col-xs-12">
+                              <h4 class="panel-title">{% if carpeta.tipo.id == 1 %}<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{% else %}<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>{% endif %}&nbsp;&nbsp;&nbsp;{{ carpeta.nombre|truncatechars_html:45 }}</h4>
+</div>
+                            <div class="col-md-2 col-sm-2 col-xs-4">
+                             <div class="progress progress_sm">
+                              <div class="progress-bar bg-yellow" role="progressbar" data-transitiongoal="80"></div>
+                            </div>
+                            </div>
+                            
+
+                              <small>17% Completado</small> 
+                              </a>
+                          </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                      </div>
+
+                      {% endfor %}
+
+                      {% endif %}
+                      
+                    <!-- end of accordion -->
+
+<style type="text/css">
+  .accordion .panel-heading2 {
+    background: #f7f7f7;
+    padding: 13px;
+    width: 100%;
+    display: block;
+}
+</style>
+                  </div>
+                </div>
+              </div>
+                    <!-- end of accordion -->
+
 
                   <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
@@ -159,6 +224,31 @@
 
 {% block content2 %}
 
+
+ 
+ <script type="text/javascript">
+
+$(document).ready(function () {
+        //when a group is shown, save it as the active accordion group
+        $("#accordion").on('shown.bs.collapse', function () {
+            var active = $("#accordion .in").attr('id');
+            $.cookie('activeAccordionGroup', active);
+          //  alert(active);
+        });
+        $("#accordion").on('hidden.bs.collapse', function () {
+            $.removeCookie('activeAccordionGroup');
+        });
+        var last = $.cookie('activeAccordionGroup');
+        if (last != null) {
+            //remove default collapse settings
+            $("#accordion .panel-collapse").removeClass('in');
+            //show the account_last visible group
+            $("#" + last).addClass("in");
+        }
+    });
+
+
+</script>
 
 <script>
     $(document).ready(function(){

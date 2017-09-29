@@ -20,7 +20,7 @@
     <!-- iCheck -->
     <link rel="stylesheet" href='{% static "vendors/iCheck/skins/flat/green.css" %}' >
 
-    <link rel="stylesheet" href='{% static "vendors/animate.css/animate.min.css" %}' >
+    <link rel="stylesheet"href='{% static "vendors/animate.css/animate.min.css" %}' >
 	
     <!-- bootstrap-progressbar -->
     <link rel="stylesheet" href='{% static "vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" %}' >
@@ -32,7 +32,8 @@
     <!-- Custom Theme Style -->
     <link rel="stylesheet" href='{% static "css/custom.min.css" %}' >
 
-   
+       <!-- Sweet Alert CSS -->
+    <link rel="stylesheet" href='{% static "css/sweetalert.css" %}'>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
@@ -88,7 +89,7 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href='{% url "profile:home" %}'> <i class="fa fa-backward"></i> Proyecto Constructora </a>
+                  <li><a href='/'> <i class="fa fa-backward"></i> Proyecto Constructora </a>
                   
 
                   </li>
@@ -111,15 +112,12 @@
                         </li>
                     </ul>
                   </li>
+                    -->
  
-                  <li><a><i class="fa fa-table"></i> Actividades <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href='{% url "profile:calendar_activity" %}'>Calendario</a></li>
-                      <li><a href='{% url "profile:activitys" %}'>Ver Actividades</a></li>
-                    </ul>
+                  <li><a href='{% url "profile:calendar_activity" %}'><i class="fa fa-table"></i> Calendario <span class="fa fa-chevron-down"></span></a>
                   </li>
 
-                  -->
+                
                     <li><a href='{% url "profile:modules" %}'><i class="fa fa-cubes"></i> Modulos </a>
                     
 
@@ -299,9 +297,15 @@
 
       </div>
     </div>
-  <script src='{% static "js/main.js" %}'></script>
+
+
+    <script src='{% static "js/main.js" %}'></script>
+    
+
+
     <!-- jQuery -->
     <script src='{% static "vendors/jquery/dist/jquery.min.js" %}'></script>
+
     <!-- Bootstrap -->
     <script src='{% static "vendors/bootstrap/dist/js/bootstrap.min.js" %}'></script>
     <!-- FastClick -->
@@ -349,7 +353,7 @@
 			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
 
-	
+	 
 
     <script src='{% static "vendors/datatables.net/js/jquery.dataTables.min.js" %}'></script>
     <script src='{% static "vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" %}'></script>
@@ -367,6 +371,8 @@
     <script src='{% static "vendors/pdfmake/build/pdfmake.min.js" %}'></script>
     <script src='{% static "vendors/pdfmake/build/vfs_fonts.js" %}'></script>
     <script src='//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'></script>
+
+
 	
 
 
@@ -393,8 +399,11 @@
     <script src='{% static "vendors/pnotify/dist/pnotify.js" %}'></script>
     <script src='{% static "vendors/pnotify/dist/pnotify.buttons.js" %}'></script>
     <script src='{% static "vendors/pnotify/dist/pnotify.nonblock.js" %}'></script>
+  
+    <script src='{% static "js/sweetalert.min.js" %}'></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src='{% static "js/jquery.cookie.js" %}'></script>
 
-    
 {% block content2 %}
 {% endblock content2 %}
 

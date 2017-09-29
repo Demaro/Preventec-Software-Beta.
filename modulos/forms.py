@@ -2,7 +2,7 @@ from django import forms
 
 from pagedown.widgets import PagedownWidget
 
-from .models import Modulo, Carpeta
+from .models import Modulo, Carpeta, SubCarpeta
 
 
 class ModuloForm(forms.ModelForm):
@@ -41,6 +41,30 @@ class CarpetaForm(forms.ModelForm):
 			'user_asign':		forms.Select(attrs={'class': 'form-control'}),
 			'fecha_inicio': 	forms.TextInput(attrs={'class': 'form-control'}),
 			'fecha_termino':	forms.TextInput(attrs={'class': 'form-control'}),
+	
+		}
+
+class SubCarpetaForm(forms.ModelForm):
+	class Meta:
+		model = SubCarpeta
+
+
+		fields = [
+			"nombre",
+			"porcent",
+			"cumplimiento",
+
+
+		]
+		labels = {
+			"nombre" : 'Nombre',
+			"porcent":	'Porcentaje',
+			"cumplimiento": 'Cumplimiento',									
+		}
+		widgets = {
+			'nombre':		forms.TextInput(attrs={'class': 'form-control'}),
+			'porcent': 		forms.NumberInput(attrs={'class': 'form-control'}),
+			'cumplimiento':	forms.Select(attrs={'class': 'form-control'}),
 	
 		}
 
