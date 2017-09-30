@@ -167,6 +167,14 @@ def submodulo_detail(request, id_modulo, id_submodulo):
 		return render(request, "proceso.html", context)	
 	if obj_get.id == 18:
 		return render(request, "proceso.html", context)
+	if obj_get.id == 19:
+		return render(request, "proceso.html", context)
+	if obj_get.id == 20:
+		return render(request, "proceso.html", context)
+	if obj_get.id == 21:
+		return render(request, "proceso.html", context)
+	if obj_get.id == 22:
+		return render(request, "proceso.html", context)
 	else:
 		return render(request, "submodulo.html", context)	
 
