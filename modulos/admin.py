@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Modulo, Submodulo, Carpeta, SubCarpeta, Tipo, Ejecucion
+from .models import Modulo, Submodulo, Carpeta, SubCarpeta, Tipo, Ejecucion, Documento, Template
 
 
 
@@ -67,9 +67,25 @@ class EjecucionModelAdmin(admin.ModelAdmin):
 		model = Ejecucion
 
 
+class DocumentoModelAdmin(admin.ModelAdmin):
+	list_display = ["id", "template", "user1", "fecha", "depto", "duracion", "titulo", "subtitulo1", "subtitulo2", "user2", ]
+	list_editable     = [  "user1", "fecha", "depto", "duracion", "titulo", "subtitulo1", "subtitulo2", "user2", ]
+	list_filter	       = [  "template", "fecha", "user1", ]
+
+	search_fields = ["fecha", "user1",  ]
+	class Meta:
+		model = Documento
 
 
 
+class TemplateModelAdmin(admin.ModelAdmin):
+	list_display = ["id",  "nombre",  ]
+	list_editable     = [ "nombre",  ]
+	list_filter	       = [  "nombre" ,  ]
+
+	search_fields = ["nombre",  ]
+	class Meta:
+		model = Template
 
 
 
@@ -82,5 +98,11 @@ admin.site.register(Carpeta, CarpetaModelAdmin)
 admin.site.register(Tipo, TipoModelAdmin)
 
 admin.site.register(Ejecucion, EjecucionModelAdmin)
+
+admin.site.register(Documento, DocumentoModelAdmin)
+
+admin.site.register(Template, TemplateModelAdmin)
+
+
 
 admin.site.register(SubCarpeta, SubCarpetaModelAdmin)

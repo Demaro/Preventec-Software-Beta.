@@ -214,7 +214,11 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 
-	obj_get	=	Carpeta.objects.get(id=id_carpeta)
+	obj_get1	=	Carpeta.objects.get(id=id_carpeta)
+
+	obj_get	=	SubCarpeta.objects.get(id=id_carpeta) 
+
+
 
 
 	form = ActivityForm(request.POST or None, instance=obj_get)
@@ -231,6 +235,7 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 	context = {	
 
 		"obj_get" : obj_get,
+		"obj_get1": obj_get1,
 		"form"  : form,
 		"obj_modulo": obj_modulo,
 		"obj_sub":	obj_sub,
