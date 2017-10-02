@@ -21,7 +21,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from profiles.forms import ProfileForm
-from profiles.models import Profile, Cargo
+from profiles.models import Profile
 from posts.models import Post
 
 from django.utils import timezone
