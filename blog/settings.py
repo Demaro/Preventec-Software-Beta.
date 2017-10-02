@@ -162,6 +162,8 @@ STATICFILES_DIRS = [
 	#'/var/www/static/',
 ]
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
