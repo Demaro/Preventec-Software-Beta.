@@ -194,11 +194,12 @@
         {% for i in all_events %}
 
         {
-          title: ' {{ i.user_asign.username }}. {{ i.carpeta }}, {{ i.descripcion }}  ',
+          title: ' {{ i.user_asign.first_name }} {{ i.user_asign.last_name }}. {{ i.nombre }}, {{ i.estado }}',
           
-          start: ' {{ i.fecha_inicio|date:"Y-m-d" }} ',
+          start: ' {{ i.fecha_inicio|date:"Y-m-d" }}  ',
 
           end:   ' {{ i.fecha_termino|date:"Y-m-d" }} '
+
 
         },
 

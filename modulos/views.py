@@ -42,20 +42,20 @@ import pytz
 
 
 
-def activity_create(request):
+def calendar_activity(request):
 	
 	if not request.user.is_staff or not request.user.is_superuser:
 		raise Http404
 
 
-	all_events = Activity.objects.all()
-	get_event_types = Activity.objects.only('user_asign')
+	all_events = Carpeta.objects.all()
+	get_event_types = Carpeta.objects.only('user_asign')
 	if request.GET:  
 		event_arr = []
 		if request.GET.get('user_asign') == "all":
-			all_events = Activity.objects.filter()
+			all_events = Carpeta.objects.filter()
 		else:   
-			all_events = Activity.objects.filter(user_asign__icontains=request.GET.get('user_asign'))
+			all_events = Carpeta.objects.filter(user_asign__icontains=request.GET.get('user_asign'))
 
 
 		for i in all_events:
@@ -96,7 +96,7 @@ def activity_create(request):
 	context = {
 		"form": form,
 		"all_events" : all_events,
-		"fecha_init" : fecha_init
+
 	}
 	return render(request, "calendar.html", context)
 

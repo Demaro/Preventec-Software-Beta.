@@ -22,7 +22,7 @@ from profiles.views import (
 
 from modulos.views import PDFPrueba, modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit, documento_select, get_docu
 
-from activitys.views import activity_create
+from modulos.views import calendar_activity
 
 from projects.views import project_create, projects_list
 
@@ -55,7 +55,7 @@ urlpatterns = [
 
 	url(r'^actividades', login_required(actividades), name='activitys'),
 	url(r'^detalle_actividad', login_required(detail_actividad), name='detail_activity'),
-	url(r'^calendario_actividades', activity_create, name='calendar_activity'),
+	url(r'^calendario_actividades', calendar_activity, name='calendar_activity'),
 
 	url(r'^modulos', modules, name='modules'),
 	url(r'^modulo/(?P<id_modulo>\d+)/$', modulo_detail, name='module'),
