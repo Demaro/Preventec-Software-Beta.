@@ -72,7 +72,7 @@
                                 <br>
 
                   {% for carpeta in obj_get.carpeta.all|dictsort:"id"  %}
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
                               <h2>{% if carpeta.tipo.id == 1 %}<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{% else %}<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>{% endif %}&nbsp;&nbsp;  {{ carpeta.nombre }}</h2>
                         </div>
 
@@ -82,6 +82,7 @@
    
                                 <br>
                                 <br>
+
 
 
                           <div class="table-responsive">
@@ -343,34 +344,6 @@ $("#checkAll").click(function () {
 
 </script>
 
-<script type="text/javascript">
-
-    $(document).ready(function(){
-      var date_input=$('input[name="fecha_inicio"]'); //our date input has the name "birthdate"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-</script>
-
-<script>
-    $(document).ready(function(){
-      var date_input=$('input[name="fecha_termino"]'); //our date input has the name "birthdate"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-</script>
 
 <script type="text/javascript">
 

@@ -114,50 +114,6 @@
                     <!-- end of accordion -->
 
 
-                  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title" id="myModalLabel2">Asignar Responsable</h4>
-                        </div>
-                         <div class="x_content">
-                      <div class="form-group">
-                        <label class="control-label col-md-6 col-sm-3 col-xs-12" for="user_asign">Usuario <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          {{ form.user_asign }}
-                        </div>
-                      </div>
-                      <br>
-                      <div class="form-group">
-                        <label for="fecha_inicio" class="control-label col-md-6 col-sm-3 col-xs-12">Fecha Inicio<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          {{ form.fecha_inicio }}
-                        </div>
-                      </div>
-                        <div class="form-group">
-                        <label for="fecha_termino" class="control-label col-md-6 col-sm-3 col-xs-12">Fecha Termino<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          {{ form.fecha_termino }}
-                        </div>
-                      </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          <button type="button" class="btn btn-primary">Guardar</button>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-            
-              </form>
- 
-
 </div>
 </div>
 
@@ -203,33 +159,6 @@ $(document).ready(function () {
 
 </script>
 
-<script>
-    $(document).ready(function(){
-      var date_input=$('input[name="fecha_inicio"]'); //our date input has the name "birthdate"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-</script>
-
-<script>
-    $(document).ready(function(){
-      var date_input=$('input[name="fecha_termino"]'); //our date input has the name "birthdate"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-</script>
 
 
 {% endblock content2 %}
