@@ -129,6 +129,11 @@ class Documento(models.Model):
 	def __str__(self):
 		return self.titulo
 
+	def get_markdown(self):
+		descripcion = self.descripcion
+		markdown_text = markdown(descripcion)
+		return mark_safe(markdown_text)
+
 
 class Template(models.Model):
 	nombre = models.CharField(max_length=20)

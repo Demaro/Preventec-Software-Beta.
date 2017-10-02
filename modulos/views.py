@@ -389,7 +389,7 @@ class PDFPrueba(View):
 			"titulo" 		:	obj_docu1.titulo,
 			"subtitulo1" 	:	obj_docu1.subtitulo1,
 			"subtitulo2" 	:	obj_docu1.subtitulo2,
-			"content"		:	obj_docu1.descripcion,
+			"content"		:	obj_docu1.get_markdown,
 			"user1_name"	: 	obj_docu1.user1.user.first_name,
 			"user1_last"	: 	obj_docu1.user1.user.last_name,
 			"rut"			:	obj_docu1.user1.rut,
