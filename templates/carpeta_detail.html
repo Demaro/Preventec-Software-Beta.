@@ -127,14 +127,16 @@
                             </table>
                           </div>
                         </div>
-                     <div class="btn-group">
-                      
-                      <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
-                    </div>
+
                     <div class="btn-group">
-                   <button type="button" class="btn btn-success">Subir</button>
-                    </div>
-                       
+                          <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false"> Modelo <span class="caret"></span> </button>
+                          <ul class="dropdown-menu">
+                            {% for obj in obj_template %}
+                            <li><a href='{% url "profile:documento" obj.id %}'>{{ obj.nombre }}</a>
+                            </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
                           
                      
                             

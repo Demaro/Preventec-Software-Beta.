@@ -20,6 +20,7 @@ class ActivityForm(forms.ModelForm):
 			"fecha_inicio",
 			"fecha_termino",
 			"carpeta",
+			"image",
 			
 
 
@@ -28,13 +29,15 @@ class ActivityForm(forms.ModelForm):
 			"user_asign" : 'Responsable',
 			"fecha_inicio":	'Fecha inicio',
 			"fecha_termino": 'Fecha Termino',
-			"carpeta":		'carpeta',							
+			"carpeta":		'carpeta',		
+			"image":		'Archivo'					
 		}
 		widgets = {
 			'user_asign':		forms.Select(attrs={'class': 'form-control'}),
 			'fecha_inicio': 	forms.TextInput(attrs={'class': 'form-control'}),
 			'fecha_termino':	forms.TextInput(attrs={'class': 'form-control'}),
 			'carpeta':          forms.CheckboxSelectMultiple(attrs={'class': 'flat'}),
+			'image':	          forms.CheckboxSelectMultiple(attrs={'class': 'flat'}),
 	
 		}
 

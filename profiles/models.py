@@ -66,12 +66,10 @@ class Profile(models.Model):
 
 	objects = ProfileManager()
 
-	def __unicode__(self):
-		return self.user.username
-
 
 	def __str__(self):
-			return self.user.username
+			return self.user.first_name + " " + self.user.last_name
+
 
 	#def get_absolute_url(self):
 	#    return reverse("profile:detail", kwargs={"slug": self.slug})

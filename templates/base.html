@@ -55,6 +55,10 @@
     <link rel="stylesheet" href='{% static "vendors/pnotify/dist/pnotify.buttons.css" %}' >
     <link rel="stylesheet" href='{% static "vendors/pnotify/dist/pnotify.nonblock.css" %}' >
 
+
+{% block head_extra %}
+
+{% endblock head_extra %}
   </head>
 
   <body class="nav-md">
@@ -403,6 +407,8 @@
     <script src='{% static "js/sweetalert.min.js" %}'></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src='{% static "js/jquery.cookie.js" %}'></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
 
 {% block content2 %}
 {% endblock content2 %}

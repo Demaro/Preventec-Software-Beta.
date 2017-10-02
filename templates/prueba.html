@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PDF_{{ context.title1 }}_{{ context.fecha|date }}</title>
+</head>
+
+<body>
+                              <div class="form-group">
+                              <center>
+                            <label class="control-label col-md-9 col-sm-10 col-xs-12" for="contrato"><h2>{{ context.titulo }}</h2>
+                             </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <h3>{{ context.subtitulo1 }}</h3>
+                            </div>
+                           
+                              </div>
+                              </div>
+                              <br>
+                              <div class="row invoice-info">
+                        <!-- /.col -->
+                         <center>
+                        <div class="col-md-12 col-sm-10 col-xs-12">
+                      
+                     					<h4>
+                                          <strong>Nombre:</strong>
+                                          {{ context.user1_name}} {{ context.user1_last}}.
+                                          &nbsp;&nbsp; 
+                                          <strong>Rut:</strong>
+                                          {{ context.rut }}.
+                                         &nbsp;&nbsp;
+                                          <strong>Cargo:</strong>
+                                          {{ context.cargo }}.
+                                          </h4>
+
+                                    
+                        </div>
+                        </center>
+                        <!-- /.col -->
+                         <center>
+                        <div class="col-md-12 col-sm-10 col-xs-12">
+                        <h4>
+                                          <strong>Fecha:</strong>
+                                          {{ context.fecha|date }}.
+                                          &nbsp;&nbsp; 
+                                          <strong>Depto:</strong>
+                                          {{ context.depto }}.
+                                         &nbsp;&nbsp;
+                                          <strong>Duracion:</strong>
+                                          {{ context.duracion }} dias.
+                        </h4>
+                                               <br>
+                                                    <br>
+
+                                      
+                        </div>
+                        </center>
+
+                      
+                        <div class="content">
+                        <h4>
+                       
+                              {{ context.content }} 
+                        </h4>
+                        </div>
+                        </div>
+                        <br>
+
+                              <div class="form-group">
+                              <center>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <h3>{{ context.subtitulo2 }}</h3>
+                            </div>
+                            </center>
+                              </div>
+
+
+<div class="content">
+<center>
+                              <h3><strong>DEFINICIONES DE ACCIDENTES</strong></h3>
+                              <br>
+<h4>
+Accidente del Trabajo: Toda lesión que sufre un trabajador a causa o con ocasión del
+                                        Trabajo que le produzca incapacidad o muerte.
+Accidente de Trayecto: Toda lesión que sufre un trabajador en el trayecto directo desde el lugar de su habitación a su trabajo o viceversa que le produzca incapacidad o muerte.
+
+Yo asumo la responsabilidad de informarme de los procedimientos y manuales que me sean entregado especialmente su reglamento interno, además la Empresa queda facultada para evaluar el conocimiento adquirido a través de ello.
+</h3>
+</center>
+</div>
+<br>
+
+
+                         <center>
+                        <div class="col-md-12 col-sm-10 col-xs-12">
+                        <h4>
+                                          <strong>Efectuado por:</strong>
+                                          <u>{{ context.user2_name }} {{ context.user2_last }}.</u>
+                                          <br> 
+                                          <br>
+
+                                          <strong>Cargo:</strong>
+                                          <u>{{ context.cargo2 }}.</u>
+                                         <br>
+                                         <br>
+                                          <strong>Firma:</strong>
+                                          <u>soy una firma.</u>
+                        </h4>
+                                               <br>
+                                                    <br>
+                                      
+                        </div>
+                        </center>
+                       
+
+             {% csrf_token %}                 
+                           
+                            
+
+<style type="text/css">
+  .content
+  {
+    margin: 0 auto;
+    width: 80%;
+    height: 200px;
+    
+    text-align: center;
+  }
+</style>
+
+ 
+                    <!-- End SmartWizard Content -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</body>
+
+</html>

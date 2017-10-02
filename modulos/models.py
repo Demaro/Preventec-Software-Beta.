@@ -120,9 +120,10 @@ class Documento(models.Model):
 	fecha 	=	models.DateField(null=True, blank=True)
 	depto	=	models.CharField(max_length=50, null=True, blank=True)
 	duracion	=	models.IntegerField(default=0)
-	titulo	=	models.CharField(max_length=50, null=True, blank=True)
-	subtitulo1	=	models.CharField(max_length=30, null=True, blank=True)
-	subtitulo2	=	models.CharField(max_length=30, null=True, blank=True)
+	titulo	=	models.TextField()
+	descripcion	= 	models.TextField(null=True, blank=True)
+	subtitulo1	=	models.TextField(null=True, blank=True)
+	subtitulo2	=	models.TextField(null=True, blank=True)
 	user2		=	models.ForeignKey(Profile, related_name="user2", null=True, blank=True)
 
 	def __str__(self):

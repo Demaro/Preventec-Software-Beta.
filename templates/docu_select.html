@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head_extra %} 
+{{ form.media }}
+
+{% endblock head_extra %}
+{% block content %}
+
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3> </h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      
+            <div class="clearfix"></div>
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="x_panel">
+
+                  <div class="x_title">
+                    <h2> {{ obj_get.nombre }}</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+      
+
+
+                        <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal form-label-left">
+
+                              <div class="form-group">
+                              <center>
+                            <label class="control-label col-md-9 col-sm-10 col-xs-12" for="contrato"><h3>{{ obj_docu1.titulo }}</h3>
+                             </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <h4>{{ obj_docu1.subtitulo1 }}</h4>
+                            </div>
+                           
+                              </div>
+                              </div>
+                              <br>
+                              <div class="row invoice-info">
+                        <!-- /.col -->
+                         <center>
+                        <div class="col-md-12 col-sm-10 col-xs-12">
+                      
+                     
+                                          <strong>Nombre:</strong>
+                                          {{ obj_docu1.user1.user.first_name}} {{ obj_docu1.user1.user.last_name}}.
+                                          &nbsp;&nbsp; 
+                                          <strong>Rut:</strong>
+                                          {{ obj_docu1.user1.rut }}.
+                                         &nbsp;&nbsp;
+                                          <strong>Cargo:</strong>
+                                          {{ obj_docu1.user1.cargo }}.
+
+                                    
+                        </div>
+                        </center>
+                        <!-- /.col -->
+                         <center>
+                        <div class="col-md-12 col-sm-10 col-xs-12">
+                                          <strong>Fecha:</strong>
+                                          {{ date|date }}.
+                                          &nbsp;&nbsp; 
+                                          <strong>Depto:</strong>
+                                          {{ obj_docu1.depto }}.
+                                         &nbsp;&nbsp;
+                                          <strong>Duracion:</strong>
+                                          {{ obj_docu1.duracion }} dias.
+
+                                               <br>
+                                                    <br>
+
+                                      
+                        </div>
+                        </center>
+
+                      
+                        <div class="content">
+                       
+                              {{ obj_docu1.descripcion }} 
+                        </div>
+                        </div>
+                        <br>
+
+                              <div class="form-group">
+                              <center>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <h4>{{ obj_docu1.subtitulo2 }}</h4>
+                            </div>
+                            </center>
+                              </div>
+
+
+<div class="content">
+<center>
+                              <strong>DEFINICIONES DE ACCIDENTES</strong>
+                              <br>
+
+Accidente del Trabajo: Toda lesión que sufre un trabajador a causa o con ocasión del
+                                        Trabajo que le produzca incapacidad o muerte.
+Accidente de Trayecto: Toda lesión que sufre un trabajador en el trayecto directo desde el lugar de su habitación a su trabajo o viceversa que le produzca incapacidad o muerte.
+
+Yo asumo la responsabilidad de informarme de los procedimientos y manuales que me sean entregado especialmente su reglamento interno, además la Empresa queda facultada para evaluar el conocimiento adquirido a través de ello.
+</center>
+</div>
+<br>
+
+
+                         <center>
+                        <div class="col-md-12 col-sm-10 col-xs-12">
+                                          <strong>Efectuado por:</strong>
+                                          <u>{{ obj_docu1.user2.user.first_name }} {{ obj_docu1.user2.user.last_name }}.</u>
+                                          <br> 
+                                          <br>
+
+                                          <strong>Cargo:</strong>
+                                          <u>{{ obj_docu1.user2.cargo }}.</u>
+                                         <br>
+                                         <br>
+                                          <strong>Firma:</strong>
+                                          <u>soy una firma.</u>
+
+                                               <br>
+                                                    <br>
+                                      
+                        </div>
+                        </center>
+                       
+
+             {% csrf_token %}   
+             <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>    
+         <a href='{% url "profile:mi_pdf"  obj_docu1.id obj_get.nombre %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generar PDF</button></a>              
+                           
+                            
+
+<style type="text/css">
+  .content
+  {
+    margin: 0 auto;
+    width: 65%;
+    
+    text-align: center;
+  }
+</style>
+
+ 
+                    <!-- End SmartWizard Content -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<style>
+    #exportButton {
+        border-radius: 0;
+    }
+</style>
+ 
+
+ {% endblock content %}
+
+
+ {% block content2 %}
+
+ <script type="text/javascript">
+function genPDF() {
+  
+  var doc = new jsPDF();
+  
+
+    
+    doc.fromHTML($('#doc_pdf').get(0), 20,20,{
+                 'width':500,
+       
+    });
+
+
+
+  
+  doc.save('Test.pdf');
+  
+}
+</script>
+
+{% endblock content2 %}
+

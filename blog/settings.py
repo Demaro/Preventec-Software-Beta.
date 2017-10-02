@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 	'crispy_forms',
 	'markdown_deux',
 	'pagedown',
+	'blog',
 
 
 	
@@ -111,7 +112,7 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
 		'NAME':  'd6q60mlq0hha72',
 		'USER': 'rujkpxneaccakb',
-		'PASSWORD': 'd7168c9df334aec6086b54a6e0b4b625ec7bcb2966ec7d56383c29b0f274fbed',
+		'QUE TE RAJEN!'
 		'HOST': 'ec2-107-22-211-182.compute-1.amazonaws.com',
 		'PORT':      '5432',
 	}

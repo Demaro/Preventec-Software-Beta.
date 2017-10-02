@@ -21,12 +21,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 
-from .models import Modulo, Submodulo, Carpeta, SubCarpeta
+from .models import Modulo, Submodulo, Carpeta, SubCarpeta, Template, Documento
 from profiles.models import Profile
 
 from activitys.forms import ActivityForm
 
-from .forms import ModuloForm, CarpetaForm, SubCarpetaForm
+from .forms import ModuloForm, CarpetaForm, SubCarpetaForm, DocumentoForm
 
 
 from django.utils import timezone
@@ -218,6 +218,8 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 
 	obj_get	=	SubCarpeta.objects.get(id=id_carpeta) 
 
+	obj_template	= Template.objects.all()
+
 
 
 
@@ -239,6 +241,7 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 		"form"  : form,
 		"obj_modulo": obj_modulo,
 		"obj_sub":	obj_sub,
+		"obj_template" : obj_template,
 
 	}
 	return render(request, "carpeta_detail.html", context)
@@ -320,3 +323,90 @@ def subcarpeta_detail(request, id_modulo, id_submodulo, id_carpeta, id_subcarpet
 
 	}
 	return render(request, "carpeta_detail.html", context)
+
+
+def documento_select(request, id_doc):
+
+	obj_template1 = Template.objects.get(id=id_doc)
+
+	obj_get	=	Documento.objects.filter(template=id_doc)
+	obj_template 		= Documento.objects.get(id=obj_get)
+
+	form 	=	DocumentoForm(request.POST or None, instance=obj_template)
+
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+		print(instance.id)
+		return HttpResponseRedirect('/documento/%s/' % id_doc )
+
+
+	context = {	
+
+		"obj_template" : obj_template,
+		"obj_template1":	obj_template1,
+		"form"		:	form
+
+	}	
+	return render(request, "documento.html", context)
+
+
+def get_docu(request, id_doc):
+
+	date 	= timezone.now()
+
+	obj_get	=	Template.objects.get(id=id_doc)
+	obj_docu	=	Documento.objects.filter(template=id_doc)
+	obj_docu1 		= Documento.objects.get(id=obj_docu)
+
+	context = {	
+
+		"obj_get" : obj_get,
+		"obj_docu1"	: obj_docu1,
+		"date" 	: date
+
+	}	
+	return render(request, "docu_select.html", context)
+
+
+from django.views.generic import View
+from blog.util import render_pdf
+
+class PDFPrueba(View):
+
+
+
+	def get(self, request, nombre, id_docu, *args, **kwargs):
+
+		obj_get1	=	Template.objects.filter(nombre=nombre)
+		obj_get 	= 	Template.objects.get(id=obj_get1)
+
+		obj_docu1 	= 	Documento.objects.get(id=id_docu)
+		date 	= timezone.now()
+
+		context = {	
+			"title1"		: 	obj_get.nombre,
+			"titulo" 		:	obj_docu1.titulo,
+			"subtitulo1" 	:	obj_docu1.subtitulo1,
+			"subtitulo2" 	:	obj_docu1.subtitulo2,
+			"content"		:	obj_docu1.descripcion,
+			"user1_name"	: 	obj_docu1.user1.user.first_name,
+			"user1_last"	: 	obj_docu1.user1.user.last_name,
+			"rut"			:	obj_docu1.user1.rut,
+			"cargo"			:	obj_docu1.user1.cargo,
+			"fecha"			:	date,
+			"depto"			:	obj_docu1.depto,
+			"duracion"		:	obj_docu1.duracion,
+			"user2_name"	:	obj_docu1.user2.user.first_name,
+			"user2_last"	:	obj_docu1.user2.user.last_name,
+			"cargo2"		:	obj_docu1.user2.cargo,
+
+		}	
+		pdf = render_pdf("prueba.html", {"context": context})
+		return HttpResponse(pdf, content_type="application/pdf", )
+
+
+
+
+
+

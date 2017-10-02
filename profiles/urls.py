@@ -20,7 +20,7 @@ from profiles.views import (
 
 	)
 
-from modulos.views import modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit
+from modulos.views import PDFPrueba, modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit, documento_select, get_docu
 
 from activitys.views import activity_create
 
@@ -64,6 +64,12 @@ urlpatterns = [
 	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/$', carpeta_detail, name='carpeta'),
 	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/proceso/(?P<id_carpeta>\d+)/subcarpeta/(?P<id_subcarpeta>\d+)/$', subcarpeta_detail, name='subcarpeta'),
 	url(r'^editar/subcarpeta/(?P<id_subcarpeta>\d+)/$', subcarpeta_edit, name='edit_subcpa'),
+
+	url(r'^modelo/(?P<id_doc>\d+)/$', documento_select, name='documento'),
+
+	url(r'^documento/(?P<id_doc>\d+)/$', get_docu, name='docu_select'),
+
+	url(r'^documento_pdf/(?P<id_docu>\d+)/(?P<nombre>[\w-]+)$', PDFPrueba.as_view(), name='mi_pdf'),
 	
 
 

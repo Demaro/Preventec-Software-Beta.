@@ -2,7 +2,7 @@ from django import forms
 
 from pagedown.widgets import PagedownWidget
 
-from .models import Modulo, Carpeta, SubCarpeta
+from .models import Modulo, Carpeta, SubCarpeta, Documento
 
 
 class ModuloForm(forms.ModelForm):
@@ -65,6 +65,47 @@ class SubCarpetaForm(forms.ModelForm):
 			'nombre':		forms.TextInput(attrs={'class': 'form-control'}),
 			'porcent': 		forms.NumberInput(attrs={'class': 'form-control'}),
 			'cumplimiento':	forms.Select(attrs={'class': 'form-control'}),
+	
+		}
+
+
+
+class DocumentoForm(forms.ModelForm):
+	descripcion = forms.CharField(widget=PagedownWidget(show_preview=False))
+	class Meta:
+		model = Documento
+
+
+		fields = [
+			"user1",
+			"depto",
+			"duracion",
+			"titulo",
+			"descripcion",
+			"subtitulo1",
+			"subtitulo2",
+			"user2",
+
+
+		]
+		labels = {
+			"user1" :	'Nombre',
+			"depto" :	'Depto',
+			"duracion" :	'Duracion',
+			"titulo" :	'Titulo',
+			"subtitulo1" : 'Sub Titulo',
+			"subtitulo2" :	'Sub Titulo',
+			"user2" :		'Efectuado por'	,			
+		}
+		widgets = {
+			'user1':		forms.Select(attrs={'class': 'form-control'}),
+			'depto':		forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Depto'}),
+			"duracion":	  	forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Duracion'}),				
+			"titulo":	  	forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Titulo'}),	
+			"subtitulo1":  	forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Sub titulo'}),
+			"subtitulo2":  	forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Sub titulo'}),
+			"user2":  		forms.Select(attrs={'class': 'form-control'}),
+
 	
 		}
 
