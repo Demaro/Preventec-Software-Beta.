@@ -37,11 +37,6 @@ import pytz
 
 
 
-
-
-
-
-
 def calendar_activity(request):
 	
 	if not request.user.is_staff or not request.user.is_superuser:
@@ -366,6 +361,25 @@ def get_docu(request, id_doc):
 		"date" 	: date
 
 	}	
+	return render(request, "firmas_asist.html", context)
+
+
+def firmas_asist(request, id_docu, id_doc):
+
+	obj_get	=	Template.objects.get(id=id_doc)
+
+	date 	= timezone.now()
+
+	obj_docu1 		= Documento.objects.get(id=id_docu)
+
+	context = {	
+
+		"obj_docu1"	: obj_docu1,
+		"date" 	: date,
+		"obj_get": obj_get,
+
+	}	
+
 	return render(request, "docu_select.html", context)
 
 
@@ -373,8 +387,6 @@ from django.views.generic import View
 from blog.util import render_pdf
 
 class PDFPrueba(View):
-
-
 
 	def get(self, request, nombre, id_docu, *args, **kwargs):
 
@@ -404,7 +416,6 @@ class PDFPrueba(View):
 		}	
 		pdf = render_pdf("prueba.html", {"context": context})
 		return HttpResponse(pdf, content_type="application/pdf", )
-
 
 
 

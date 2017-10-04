@@ -20,7 +20,7 @@ from profiles.views import (
 
 	)
 
-from modulos.views import PDFPrueba, modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit, documento_select, get_docu
+from modulos.views import PDFPrueba, modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit, documento_select, get_docu, firmas_asist
 
 from modulos.views import calendar_activity
 
@@ -48,7 +48,6 @@ urlpatterns = [
 	url(r'^Bienvenido', casa, name='casa'),
 
 
-
 	url(r'^create_project', login_required(project_create), name='create_project'),
 	url(r'^proyectos', login_required(projects_list), name='projects_list'),
 
@@ -70,6 +69,8 @@ urlpatterns = [
 	url(r'^documento/(?P<id_doc>\d+)/$', get_docu, name='docu_select'),
 
 	url(r'^documento_pdf/(?P<id_docu>\d+)/(?P<nombre>[\w-]+)$', PDFPrueba.as_view(), name='mi_pdf'),
+
+	url(r'^firmas_asist/(?P<id_docu>\d+)/(?P<id_doc>\d+)/$', firmas_asist, name='firmas_asist'),
 	
 
 

@@ -78,7 +78,7 @@ class Carpeta(models.Model):
 	fecha_termino 	= models.DateField(null=True, blank=True)
 	porcent			= models.IntegerField(default=0)
 	estado        	= models.CharField(max_length=20)
-	subcarpeta		= models.ManyToManyField('SubCarpeta', related_name="subcarpeta")
+	subcarpeta		= models.ManyToManyField('SubCarpeta', related_name="subcarpeta", null=True, blank=True)
 	#archivo
 
 

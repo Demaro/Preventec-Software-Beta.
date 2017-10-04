@@ -198,14 +198,21 @@
           
           start: ' {{ i.fecha_inicio|date:"Y-m-d" }}  ',
 
-          end:   ' {{ i.fecha_termino|date:"Y-m-d" }} '
+          end:   ' {{ i.fecha_termino|date:"Y-m-d" }} ',
 
+          {% if i.estado == "Cargado" %}
+          color  : '#25a930'
+          {% elif i.estado == "Faltante" %}
+          color  : '#4080ff'
+          {% elif i.estado == "Tarde" %}
+          color  : '#f93131'
+          {% endif %}
 
         },
 
         {% endfor %}
 
-   ]
+   ], 
 
 
 })
