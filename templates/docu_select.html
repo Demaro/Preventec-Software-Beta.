@@ -161,8 +161,10 @@ Yo asumo la responsabilidad de informarme de los procedimientos y manuales que m
                        
 
              {% csrf_token %}   
-             <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>    
-         <a href='{% url "profile:mi_pdf"  obj_docu1.id obj_get.nombre %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generar PDF</button></a>              
+    
+                      <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left" style="margin-right: 5px;"><i class="fa fa-sign-out"></i> Salir</button></a>    
+         <a href='{% url "profile:mi_pdf"  obj_docu1.id obj_get.nombre %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generar PDF</button></a>   
+
                            
                             
 

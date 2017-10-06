@@ -20,7 +20,7 @@ from profiles.views import (
 
 	)
 
-from modulos.views import PDFPrueba, modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit, documento_select, get_docu, firmas_asist
+from modulos.views import PDFPrueba, modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit, documento_select, get_docu,  firmas_asist, huellero, docu_generate
 
 from modulos.views import calendar_activity
 
@@ -64,14 +64,20 @@ urlpatterns = [
 	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/proceso/(?P<id_carpeta>\d+)/subcarpeta/(?P<id_subcarpeta>\d+)/$', subcarpeta_detail, name='subcarpeta'),
 	url(r'^editar/subcarpeta/(?P<id_subcarpeta>\d+)/$', subcarpeta_edit, name='edit_subcpa'),
 
-	url(r'^modelo/(?P<id_doc>\d+)/$', documento_select, name='documento'),
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/modelo/(?P<id_doc>\d+)/$', documento_select, name='documento'),
 
-	url(r'^documento/(?P<id_doc>\d+)/$', get_docu, name='docu_select'),
+	url(r'^seleccion_asistentes/(?P<id_doc>\d+)/$', get_docu, name='docu_select'),
 
-	url(r'^documento_pdf/(?P<id_docu>\d+)/(?P<nombre>[\w-]+)$', PDFPrueba.as_view(), name='mi_pdf'),
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/documento/(?P<id_docu>\d+)/(?P<id_doc>\d+)/$', docu_generate, name='docu_generate'),
 
-	url(r'^firmas_asist/(?P<id_docu>\d+)/(?P<id_doc>\d+)/$', firmas_asist, name='firmas_asist'),
-	
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/firmar/(?P<id_docu>\d+)/(?P<id_doc>\d+)/$', huellero, name='huella'),
+
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/firmas_asist/(?P<id_docu>\d+)/(?P<id_doc>\d+)/$', firmas_asist, name='firmas_asist'),
+
+	url(r'^documento_pdf/(?P<id_docu>\d+)/(?P<nombre>[\w-]+)$', PDFPrueba.as_view(), name='mi_pdf')
+
+
+,	
 
 
 

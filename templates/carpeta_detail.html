@@ -76,8 +76,13 @@
                             </th>
                          
                             <th class="column-title">Responsable</th>
+                            <th class="column-title">Cargo</th>
                              <th class="column-title">Archivo</th>
                             <th class="column-title">Fecha Carga</th>
+                            <th class="column-title">Asistentes</th>
+                            <th class="column-title">Firmas</th>
+
+                            
                            
 
                           
@@ -98,8 +103,12 @@
 
                                   <td>Steve Jobs
                                   </td>
+                                  <td>Gerente</td>
                                   <td><a href=""><i class="fa fa-file-pdf-o"></i> Reglamento_Interno_OHS_1.pdf</a></li></td>
                                   <td>04 Octubre del 2017</td>
+                                  <td>10</td>
+                                  <td>10</td>
+
                                  
                                   
                                 </tr>
@@ -108,37 +117,145 @@
                                   </td>
                                     <td>Steve Jobs
                                   </td>
+                                  <td>Supervisor</td>
  
                               <td><a href=""><i class="fa fa-file-pdf-o"></i> Reglamento_Interno_OHS_2.pdf</a></li></td>
                               <td>04 Octubre del 2017</td>
+                              <td>5</td>
+                              <td>5</td>
+
+                                </tr>
+                                <tr class="even pointer">
+                                 <td class="a-center ">
+                                  </td>
+                                  <td>Bill Gates
+                                  </td>
+                                  <td>Supervisor</td>
+                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> Reglamento_Interno_OHS_3.pdf</a></li></td>
+                                  <td>10 Octubre del 2017</td>
+                                  <td>7</td>
+                                  <td>6</td>
+                                    </tr>
+           
+                              </tbody>
+                  
+                            </table>
+
+
+            {% if not obj_modulo.id == 3%}
+                    <div class="btn-group">
+
+                      <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
+                    </div>
+                      <button class="btn btn-success dropdown-toggle" type="button" > Subir </button>
+                     
+
+            {% else %}
+
+                      <div class="btn-group">
+
+                          <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false"> Modelo <span class="caret"></span> </button>
+
+
+                          <ul class="dropdown-menu">
+
+                            {% for obj in obj_template %}
+                            <li><a href='{% url "profile:documento" obj_modulo.id obj_sub.id obj_get.id obj.id %}'>{{ obj.nombre }}</a>
+                            </li>
+                            {% endfor %}
+                          </ul>
+
+                        </div>                         
+                              <br>
+                               <br>
+
+                                <div class="col-md-5 col-sm-6 col-xs-12">
+                              <h2><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Documentos Pendientes</h2>
+                              <br>
+                        </div>
+                         <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                      
+                            </th>
+                         
+                            <th class="column-title">Responsable</th>
+                            <th class="column-title"></th>
+                             <th class="column-title">Nombre</th>
+                            <th class="column-title">Fecha Creacion</th>
+                            <th class="column-title">Asistentes</th>
+                            <th class="column-title">Firmas</th>
+                            <th class="column-title">Continuar</th>
+
+
+                            </th>
+                          </tr>
+                        </thead>
+                              <tbody>
+
+                          <tr class="even pointer">
+                            <td class="a-center ">
+
+                            <form id="antoform" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype='multipart/form-data'>
+                                              
+                            </td>  
+
+                                  <td>Steve Jobs
+                                  </td>
+                                  <td>Gerente</td>
+                                  <td><a href='#'><i class="fa fa-file-pdf-o"></i> Registro de Entrega Derecho a Saber</a></li></td>
+                                  <td>6 Octubre del 2017</td>
+                                   <td>6</td>
+                                      <td>5</td>
+                                      <td><a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-chevron-right"></i>
+                          </button></a></td>
+                                 
+                                  
+                                </tr>
+                                <tr class="even pointer">
+                                <td class="a-center ">
+                                  </td>
+                                    <td>Jean perez
+                                  </td>
+                                  <td>Supervisor</td>
+                              <td><a href='#'><i class="fa fa-file-pdf-o"></i> Registro de Entrega Derecho a Saber V1</a></li></td>
+                              <td>05 Octubre del 2017</td>
+                               <td>17</td>
+                               <td>15</td>
+                                  <td>
+                                    <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-chevron-right"></i>
+                          </button></a></td>
+
                                 </tr>
                                 <tr class="even pointer">
                                       <td class="a-center ">
                                   </td>
                                   <td>Bill Gates
                                   </td>
-
-                                  <td><a href=""><i class="fa fa-file-pdf-o"></i> Reglamento_Interno_OHS_3.pdf</a></li></td>
-                                  <td>10 Octubre del 2017</td>
+                                  <td>Supervisor</td>
+                                  <td><a href='#'><i class="fa fa-file-pdf-o"></i> Registro de Entrega Derecho a Saber V2</a></li></td>
+                                  <td>04 Octubre del 2017</td>
+                                   <td>5</td>
+                                   <td>5</td>
+                                  <td>
+                                    <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-chevron-right"></i>
+                          </button></a></td>
                                     </tr>
            
                               </tbody>
                   
                             </table>
+
+                                {% endif %}
+
                           </div>
                         </div>
 
-                    <div class="btn-group">
-                          <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false"> Modelo <span class="caret"></span> </button>
-                          <ul class="dropdown-menu">
-                            {% for obj in obj_template %}
-                            <li><a href='{% url "profile:documento" obj.id %}'>{{ obj.nombre }}</a>
-                            </li>
-                            {% endfor %}
-                          </ul>
-                        </div>
-                          
-                     
+
                             
                           </div>
                         <td>

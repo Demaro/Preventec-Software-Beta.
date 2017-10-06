@@ -46,8 +46,28 @@
                       </li>
                     </ul>
                     <div class="clearfix"></div>
+
+
+                         <div class="form-group">
+                        <div class="col-md-4 col-sm-2 col-xs-7">
+                              <select class="form-control" id="id_modules" name="modules">
+                               
+                                    <option value="" selected="selected">Mis Actividades</option>
+                                {% for mod in obj_modulos %}
+                                    <option value="1">{{ mod.nombre }}</option>
+                                {% endfor %}
+                                    </select>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+
+                         
+                      </div>
+
                   </div>
                   <div class="x_content">
+
+
 
                     <div id='calendar'></div>
 
@@ -157,6 +177,8 @@
         right: 'month,agendaWeek,agendaDay,listWeek',
         
       },
+      firstDay: 1,
+      lastDay: 5,
 
 
       selectable:!0,
@@ -201,11 +223,11 @@
           end:   ' {{ i.fecha_termino|date:"Y-m-d" }} ',
 
           {% if i.estado == "Cargado" %}
-          color  : '#25a930'
+          color  : 'rgba(9, 167, 20, 0.52)'
           {% elif i.estado == "Faltante" %}
-          color  : '#4080ff'
+          color  : 'rgba(0, 110, 204, 0.47)'  
           {% elif i.estado == "Tarde" %}
-          color  : '#f93131'
+          color  : 'rgba(195, 0, 0, 0.42)'
           {% endif %}
 
         },

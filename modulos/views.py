@@ -31,6 +31,8 @@ from .forms import ModuloForm, CarpetaForm, SubCarpetaForm, DocumentoForm
 
 from django.utils import timezone
 
+from django.template import loader
+
 
 import pytz
 
@@ -41,6 +43,8 @@ def calendar_activity(request):
 	
 	if not request.user.is_staff or not request.user.is_superuser:
 		raise Http404
+
+	obj_modulos	=	Modulo.objects.all()
 
 
 	all_events = Carpeta.objects.all()
@@ -91,6 +95,7 @@ def calendar_activity(request):
 	context = {
 		"form": form,
 		"all_events" : all_events,
+		"obj_modulos": obj_modulos,
 
 	}
 	return render(request, "calendar.html", context)
@@ -320,12 +325,25 @@ def subcarpeta_detail(request, id_modulo, id_submodulo, id_carpeta, id_subcarpet
 	return render(request, "carpeta_detail.html", context)
 
 
-def documento_select(request, id_doc):
+def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc): 
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
 
 	obj_template1 = Template.objects.get(id=id_doc)
 
 	obj_get	=	Documento.objects.filter(template=id_doc)
 	obj_template 		= Documento.objects.get(id=obj_get)
+	context1 = {
+
+		"obj_modulo": obj_modulo,
+		"obj_sub": obj_sub,
+		"obj_get1": obj_get1,
+		"obj_template" : obj_template,
+		"obj_template1":	obj_template1,
+
+	}
 
 	form 	=	DocumentoForm(request.POST or None, instance=obj_template)
 
@@ -333,8 +351,7 @@ def documento_select(request, id_doc):
 		instance = form.save(commit=False)
 		instance.save()
 		print(instance.id)
-		return HttpResponseRedirect('/documento/%s/' % id_doc )
-
+		return render(request, "table_asist.html", context1)
 
 	context = {	
 
@@ -346,9 +363,13 @@ def documento_select(request, id_doc):
 	return render(request, "documento.html", context)
 
 
-def get_docu(request, id_doc):
+def get_docu(request, id_modulo, id_submodulo, id_carpeta, id_doc, id_docu):
 
 	date 	= timezone.now()
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
 
 	obj_get	=	Template.objects.get(id=id_doc)
 	obj_docu	=	Documento.objects.filter(template=id_doc)
@@ -356,15 +377,50 @@ def get_docu(request, id_doc):
 
 	context = {	
 
+		"obj_modulo": obj_modulo,
+		"obj_sub": obj_sub,
+		"obj_get1": obj_get1,
 		"obj_get" : obj_get,
 		"obj_docu1"	: obj_docu1,
 		"date" 	: date
 
 	}	
-	return render(request, "firmas_asist.html", context)
+	return render(request, "table_asist.html", context)
 
 
-def firmas_asist(request, id_docu, id_doc):
+
+def table_asist(request):
+	
+	return render(request, "table_asist.html") 
+
+
+def huellero(request, id_modulo,id_submodulo, id_carpeta, id_docu, id_doc):
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
+
+	obj_get	=	Template.objects.get(id=id_doc)
+	obj_docu1 		= Documento.objects.get(id=id_docu)
+
+	context = {	
+
+		"obj_modulo": obj_modulo,
+		"obj_sub": obj_sub,
+		"obj_get1": obj_get1,
+		"obj_docu1"	: obj_docu1,
+		"obj_get": obj_get,
+
+	}
+	return render(request, "huella.html", context)
+
+
+
+def firmas_asist(request, id_modulo,id_submodulo, id_carpeta, id_docu, id_doc):
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
 
 	obj_get	=	Template.objects.get(id=id_doc)
 
@@ -374,12 +430,38 @@ def firmas_asist(request, id_docu, id_doc):
 
 	context = {	
 
+		"obj_modulo": obj_modulo,
+		"obj_sub": obj_sub,
+		"obj_get1": obj_get1,
 		"obj_docu1"	: obj_docu1,
 		"date" 	: date,
 		"obj_get": obj_get,
 
 	}	
 
+	return render(request, "firmas_asist.html", context)
+
+
+def docu_generate(request, id_modulo,id_submodulo, id_carpeta, id_doc, id_docu):
+	date 	= timezone.now()
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
+
+	obj_get	=	Template.objects.get(id=id_doc)
+	obj_docu1 		= Documento.objects.get(id=id_docu)
+
+	context = {	
+
+		"obj_modulo": obj_modulo,
+		"obj_sub": obj_sub,
+		"obj_get1": obj_get1,
+		"obj_get" : obj_get,
+		"obj_docu1"	: obj_docu1,
+		"date" 	: date
+
+	}	
 	return render(request, "docu_select.html", context)
 
 
