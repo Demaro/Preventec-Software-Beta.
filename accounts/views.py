@@ -34,23 +34,42 @@ def login_view(request):
 
 
 def register_view(request):
+        form = UserRegisterForm(request.POST or None)
         if request.user.is_authenticated():
-            form = UserRegisterForm(request.POST or None)
-            form2 = ProfileForm(request.POST or None)
-        if form.is_valid():
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.save()
+                print(instance.id)
+                id_user = instance.id
+                return HttpResponseRedirect('/crear_perfil_staff/%s' % id_user )
 
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get('password')
-            email = form.cleaned_data.get("email")
-            nombre = form.cleaned_data.get("first_name")
-            apellido = form.cleaned_data.get("last_name")
-            new_user = User(username=username, password=password, email=email, first_name=nombre, last_name=apellido, is_staff=True)
-            new_user.save()
-            #login(request, new_user)
-            user = new_user.id
-            print(new_user.id)
+        context = {
+            "form": form,
+        }
+        return render(request, "create_staff.html", context)
 
 
+
+
+
+
+def view_users(request):
+    obj = Profile.objects.all()
+
+    context = {
+
+        "obj": obj,
+    }
+    return render(request, "user.html", context)
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")
+
+
+"""
         if form2.is_valid():
 
             profile = form2.save(commit=False)
@@ -67,20 +86,8 @@ def register_view(request):
             profile.save()
             profile.id
             print(profile.id)
-            return HttpResponseRedirect('/inicio')
-
-        context = {
-        "form2": form2,
-        }
-        return render(request, "user.html", context)
-
-
-def logout_view(request):
-    logout(request)
-    return redirect("/")
-
-
-
+            return HttpResponseRedirect('/crear_usuario')
+"""
 
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import User

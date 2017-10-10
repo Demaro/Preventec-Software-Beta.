@@ -9,24 +9,18 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3></h3>
+          
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                  </div>
-                </div>
-              </div>
             </div>
+
             <div class="clearfix"></div>
 
-            <div class="row">
-
+            <div class="">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Gestion de Personal</h2>
+                    <h2><i class="fa fa-users"></i> Gestion de Usuarios<small>Editar y Agregar</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -46,199 +40,364 @@
                   </div>
                   <div class="x_content">
 
-<!--
 
-                        <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal form-label-left">
-                    
-                <small>Datos del usuario:</small>
-              
-              <br>
-
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Nombre de Usuario <span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="username" name="username" required="required" value="{{ instance.user.username }}" class="form-control col-md-7 col-xs-12">
-                            </div>
-
-                          </div>
-                              <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first_name">Nombre <span class="required"></span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="first_name" name="first_name" required="required" value="{{ instance.user.first_name }}" class="form-control col-md-7 col-xs-12">
-                            </div>
-                          </div>
-                              <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last_name">Apellido <span class="required"></span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="last_name" name="last_name" required="required" value="{{ instance.user.last_name }}" class="form-control col-md-7 col-xs-12">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo <span class="required"></span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="email" name="email" required="required"  value="{{ instance.user.email }}" class="form-control col-md-7 col-xs-12">
-                            </div>
-                          </div>
-                          {% if not instance %}
-                          <div class="form-group">
-                            <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12">Contraseña<span class="required">*</span></label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input id="password" class="form-control col-md-7 col-xs-12" type="password" name="password">
-                            </div>
-                          </div>
-                          {% endif %}
-      
-                    <div class="title_left">
-                <small>Datos del Perfil:</small>
-              </div>
-              <br>
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut <span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form2.rut}}
-                            </div>
-                          </div>
-                          {% if not instance %}
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthdate">Fecha Nacimiento <span class="required"></span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="birthdate" name="birthdate" required="required" class="form-control col-md-7 col-xs-12">
-                            </div>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="avatar" class="control-label col-md-3 col-sm-3 col-xs-12">Foto de Perfil<span class="required"></span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{form2.avatar}}
-                            
-                            </div>
-                          </div>
-                          {% endif %}
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cargo">Cargo <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{form2.cargo}}
-                            </div>
-                          </div>
-                          
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contrato">Contrato<span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form2.contrato}}
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="legales_asoc">Legales Acosiados<span class="required">*</span>
-                            </label>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{form2.legales_asoc}}
-                            </div>
-                          </div>
-                        {% csrf_token %}
-                              <button type="submit" class="btn btn-primary pull-right">Crear Perfil</button>
-
-                        </form>
-
-
-
-               -->
-
-                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <div class="panel" id="panel" role="tabpanel" data-example-id="togglable-tabs">
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Lista</a>
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Resumen</a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Agregar</a>
-                        </li>
-                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Lista</a>
                         </li>
                       </ul>
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                          <p>Contenido: tabla jquery con datos y listado de todos los usuarios registrados en la base de datos, input para buscar por nombre, apellido, cargo, fechas, etc...
-                          Se gestionaran mediante funciones en botones para editar o eliminar el usuario que se requiera gestionar.</p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                          <p>Contenido: Formulario para agregar usuario nuevo, inputs para ingresar credeciales basicas de contacto e informacion detallada como los datos del Perfil, informacion personal, carga de archivos y documentos necesarios, etc.</p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                          <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk </p>
-                        </div>
-                      </div>
-                    </div>
+                          <p>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Total por Cargos</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="table-responsive">
 
+                    <div id="echart_pie" style="height:350px;"></div>
+                  </div>
 
-
-
- 
-                    <!-- End SmartWizard Content -->
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Total por Especialidades</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="table-responsive">
+
+                    <div id="echart_pie2" style="height:350px;"></div>
+                  </div>
+
+                  </div>
+                </div>
+                <br>
+                  <br>
+                 
+              </div>
 
 
- 
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+               <h2><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;Usuarios Incompletos</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
 
- {% endblock content %}
+      
+                          <div class="panel-body">
+                            
+
+
+                          <div class="table-responsive">
+
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr >
+                         
+                            <th class="column-title">Nombre</th>
+                            <th class="column-title">Apellido</th>
+                            <th class="column-title">Cargo</th>
+                            <th class="column-title">Supervisor</th>
+                            <th class="column-title">Faltante</th>
+                            <th class="column-title">Continuar</th>
+                          
+
+                          </tr>
+                        </thead>
+
+                              <tbody>
+
+                            
+
+                          <tr> 
+
+                                  <td><a href='#'>  Manuel</a></td>
+                        
+                                  
+                                  <td>
+                                    Blanco
+                                  </td>                               
+                                  
+                                  <td>Supervisor</td>
+
+                                  <td> No Aplica</td>
+                                
+                                 
+                                  <td>Creacion del Perfil</td>
+
+
+
+                                  <td><a href="/crear_perfil_staff/8/"><button type="button"  class="btn btn-primary btn-simple btn-xs">
+                                    <i class="fa fa-chevron-right"></i></button></a>
+                                   
+                                  </td>
+
+
+                             
+                          </tr>
+                          <tr class="even pointer"> 
+
+                                  <td><a href='#'> Ramón</a> </td>
+                        
+                                  
+                                  <td>
+                                    Freire
+                                  </td>                               
+                                  
+                                  <td>Obrero</td>
+
+                                  <td>Steve Jobs</td>
+                                
+                                 
+                                  <td>Carga Documentos</td>
+
+
+
+                                  <td><a href="/crear_perfil_staff/8/"><button type="button"  class="btn btn-primary btn-simple btn-xs">
+                                    <i class="fa fa-chevron-right"></i>
+                                    </button></a>
+                                  </td>
+
+
+                             
+                                </tr>
+
+                              
+                              </tbody>
+                             
+                            </table>
+                              </div>
+                            </div>
+                          </div>
+
+</div>
+</div>
+</p>
+</div>
+
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                          <p>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+               <h2></i>&nbsp;&nbsp;Todos los Usuarios</h2>
+
+             </div>
+
+    
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                   Agregar: &nbsp;&nbsp;
+                                 <a href='{% url "staff" %}'><button type="button" class="btn btn-primary btn-xs">Responsable</button></a>
+                                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Trabajador</button>
+
+                            
+                                </div>
+                                               <br>
+                                <br>
+                             
+
+      
+                          <div class="panel-body">
+                            
+
+
+                          <div class="table-responsive">
+
+                      <table id="myTable" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                         
+                            <th class="column-title">Nombre</th>
+                            <th class="column-title">Apellido</th>
+                            <th class="column-title">Cargo</th>
+                            <th class="column-title">Supervisor</th>
+                            <th class="column-title">Ultima Actualizacion</th>
+                            <th></th>
+                          
+                         
+
+                          </tr>
+                        </thead>
+
+                              <tbody>
+
+                            
+                      {% for obj in obj %}
+                          <tr class="even pointer"> 
+
+                                 <td>  <a href='{% url "profile:profile_detail" obj.id %}'> {{ obj.user.first_name }}</a></td> 
+                        
+                                  
+                                   <td>
+                                    <a href='{% url "profile:profile_detail" obj.id %}'>{{ obj.user.last_name }}</a>
+                                  </td>                              
+                                  
+                                  <td>{{ obj.cargo }}</td>
+
+                                  <td> No Aplica</td>
+                                
+                                 
+                                  <td>{{ obj.ultimateupdate }}</td>
+
+
+
+                                  <td><button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-primary btn-simple btn-xs">
+                                    <i class="fa fa-edit"></i>
+                                    </button>
+                                  </td>  
+                                </tr>
+                        {% endfor %}
+
+                              
+                              </tbody>
+                             
+                            </table>
+                          </div>
+                        </div>
+                                                  </div>
+                        </div>
+                                                  </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </p>
+
+
+ </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+                    
+
+
+                  
+            
+
+
+
+
+{% endblock content %}
+
+
+
+
 
 {% block content2 %}
-<script>
-    $(document).ready(function(){
-      var date_input=$('input[name="birthdate"]'); //our date input has the name "birthdate"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'mm/dd/yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('#myTable').DataTable();
+});
+
 </script>
 
+<script type="text/javascript">
+$(document).ready(function () {
+        //when a group is shown, save it as the active accordion group
+        $("#accordion").on('shown.bs.collapse', function () {
+            var active = $("#accordion .in").attr('id');
+            $.cookie('activeAccordionGroup', active);
+          //  alert(active);
+        });
+        $("#accordion").on('hidden.bs.collapse', function () {
+            $.removeCookie('activeAccordionGroup');
+        });
+        var last = $.cookie('activeAccordionGroup');
+        if (last != null) {
+            //remove default collapse settings
+            $("#accordion .panel-collapse").removeClass('in');
+            //show the account_last visible group
+            $("#" + last).addClass("in");
+        }
+    });
 
-<script>
 
- $('#wizard').smartWizard({
-
-
-  // Properties
-    selected: 0,  // Selected Step, 0 = first step   
-    keyNavigation: true, // Enable/Disable key navigation(left and right keys are used if enabled)
-    enableAllSteps: false,  // Enable/Disable all steps on first load
-    transitionEffect: 'fade', // Effect on navigation, none/fade/slide/slideleft
-    contentURL:null, // specifying content url enables ajax content loading
-    contentURLData:null, // override ajax query parameters
-    contentCache:true, // cache step contents, if false content is fetched always from ajax url
-    cycleSteps: false, // cycle step navigation
-    enableFinishButton: false, // makes finish button enabled always
-  hideButtonsOnDisabled: false, // when the previous/next/finish buttons are disabled, hide them instead
-    errorSteps:[],    // array of step numbers to highlighting as error steps
-    labelNext:'Siguiente', // label for Next button
-    labelPrevious:'Anterior', // label for Previous button
-    labelFinish:'Finalizar',  // label for Finish button        
-    noForwardJumping:false,
-  // Events
-    onLeaveStep: null, // triggers when leaving a step
-    onShowStep: null,  // triggers when showing a step
-    onFinish: null  // triggers when Finish button is clicked
-    finishBtn: 'FINISH',
-}); 
 </script>
-
 {% endblock content2 %}

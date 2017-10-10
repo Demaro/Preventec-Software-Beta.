@@ -10,7 +10,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-              <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward"></i></a>  
+              <a href="/modulos/">Modulos <i class="fa fa-hand-o-left"></i></a> &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-hand-o-left"></i></a>  
 
               </div>
               <br>
@@ -143,13 +143,15 @@
                                   <td>{% if subcarpeta.estado == "Cargado" %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf. + 2</a></li>{% else %}Vacio{% endif %}</td>
                                   <td>{{ subcarpeta.fecha_carga }}</td>
 
-                                  <td> {% if not subcarpeta.default %}<a href='{% url "profile:edit_subcpa" subcarpeta.id %}' ><button type="button" rel="tooltip" title="Editar" class="btn btn-primary btn-simple btn-xs">
+                                  <td> {% if not subcarpeta.default %}<button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-primary btn-simple btn-xs">
                                     <i class="fa fa-edit"></i>
                                     </button></a>{% endif %}
                                   {% if not subcarpeta.default %}<a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
                                   <i class="fa fa-trash"></i>
                                   </button></a>{% endif %}</td>
-                                  
+
+
+                             
                                 </tr>
            
                               </tbody>
@@ -167,6 +169,86 @@
                         </div>
                         </a>
 
+
+<!-- Trigger the modal with a button -->
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                  <div class="x_title">
+                    <h2>Editar Elemento</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+
+      
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre 
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" value="Registro Ingreso de Programa 2" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Responsable 
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          {{ form.user_asign }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Inicio</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Termino</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ponderacion  
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="birthday" value="17" class="date-picker form-control col-md-7 col-xs-12" required="required" type="number">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ejecucion 
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          {{ form.cumplimiento }}
+                        </div>
+                      </div>
+                    
+
+                    </form>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                          <button type="button" class="btn btn-primary">Guardar</button>
+                        </div>
+
+                      </div>
+
+  </div>
+</div>
 
 
 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">

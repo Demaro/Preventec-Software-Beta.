@@ -45,7 +45,7 @@ def upload_location(instance, filename):
 
 class Profile(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL)
-	rut  = models.CharField(max_length=20)
+	rut  = models.CharField(max_length=20, null=True, blank=True)
 	birthdate = models.DateField()
 	avatar = models.ImageField(upload_to='upload_location', 
 			null=True, 
@@ -56,12 +56,12 @@ class Profile(models.Model):
 	width_field = models.IntegerField(default=0, null=True, blank=True)
 	digitalid = models.CharField(max_length=20, null=True, blank=True)
 	ultimateupdate = models.DateTimeField()
-	cargo = models.ForeignKey('Cargo')
-	especialidad = models.ForeignKey('Especialidad')
+	cargo = models.ForeignKey('Cargo', null=True, blank=True)
+	especialidad = models.ForeignKey('Especialidad', null=True, blank=True)
 	inicio_cargo = models.DateField(auto_now=True, auto_now_add=False)
 	años_exp     = models.IntegerField(null=True, blank=True)
-	contrato = models.TextField(null=True, blank=True)
-	legales_asoc =  models.TextField(null=True, blank=True)
+	contrato = models.FileField(null=True, blank=True)
+	legales_asoc =  models.FileField(null=True, blank=True)
 	
 
 	objects = ProfileManager()

@@ -9,9 +9,13 @@
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-              <div class="title_left"> 
-
-              </div>
+               <div class="col-md-12 col-sm-12 col-xs-12">
+   
+                             Generar {{ obj_get.nombre }} <i class="fa fa-hand-o-left"></i> &nbsp;&nbsp;  &nbsp;  Seleccion de Asistentes <i class="fa fa-hand-o-left"></i>
+                               &nbsp;&nbsp;&nbsp; <a href='#Usted esta Aqui.'>Firmas de Asistentes <i class="fa fa-hand-o-down"></i></a>
+                               &nbsp;&nbsp;&nbsp;  Documento <i class="fa fa-hand-o-right"></i> 
+        
+</div> 
               <br>
 
               <div class="title_right">
@@ -181,8 +185,15 @@
 
 
 
-<a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left" style="margin-right: 5px;"><i class="fa fa-sign-out"></i> Salir</button></a> 
-<a href='{% url "profile:docu_generate"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'><button type="button" class="btn btn-default pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Siguiente</button></a>
+                          <!--
+
+                          <button type="submit" class="btn btn-primary pull-right">Guardar y Continuar</button>
+                        -->
+
+
+                        <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
+
+                        <a href='{% url "profile:docu_generate"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Guardar/Continuar</button></a>
 
 
                         </div>

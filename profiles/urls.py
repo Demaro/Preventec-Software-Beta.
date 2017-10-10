@@ -3,7 +3,8 @@ from django.contrib import admin
 
 from profiles.views import (
 	profile_list,
-	profile_create,
+	crear_perfil_staff,
+	carga_docu,
 	profile_detail,
 	profile_update,
 	profile_delete,
@@ -29,13 +30,16 @@ from projects.views import project_create, projects_list
 from django.contrib import admin
 from django.contrib.auth.views import login_required
 
+
 urlpatterns = [
 
 
 	url(r'^profiles', profile_list, name='list'),
 	url(r'^perfiles', profiles_contacts, name='profiles_contacts'),
-	url(r'^perfil_crear/(?P<id_user>\d+)/$', login_required(profile_create), name="crear_perfil"),
-	url(r'^perfil-detalle/(?P<id_profile>\d+)/$', login_required(profile_detail), name='detail'),
+	url(r'^crear_perfil_staff/(?P<id_user>\d+)/$', login_required(crear_perfil_staff), name="perfil_staff"),
+	url(r'^cargar_documentos/(?P<id_profile>\d+)/$', login_required(carga_docu), name="add_docu"),
+
+	url(r'^perfil-detalle/(?P<id_profile>\d+)/$', login_required(profile_detail), name='profile_detail'),
 	url(r'^perfil-editar/(?P<id_profile>\d+)/$', login_required(profile_update), name='edit'),
 
 	url(r'^delete-profile/(?P<id_profile>\d+)$', profile_delete, name='delete'),

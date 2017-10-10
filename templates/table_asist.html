@@ -9,9 +9,14 @@
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-              <div class="title_left"> 
-
-              </div>
+             
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                             Generar {{ obj_template1.nombre }} <i class="fa fa-hand-o-left"></i></a> &nbsp;&nbsp;&nbsp;<a href='#Usted esta Aqui.'>  Seleccion de Asistentes <i class="fa fa-hand-o-down"></i> </a>
+                               &nbsp;&nbsp;&nbsp;  Firmas de Asistentes <i class="fa fa-hand-o-right"></i>
+                               &nbsp;&nbsp;&nbsp;  Documento <i class="fa fa-hand-o-right"></i>
+                  
+                            </div>
+            
               <br>
 
               <div class="title_right">
@@ -77,6 +82,7 @@
                             <th class="column-title">Apellido</th>
                             <th class="column-title">Rut</th>
                             <th class="column-title">Cargo</th>
+                            <th class="column-title">Supervisor</th>
                          
                           
 
@@ -105,7 +111,8 @@
                                   <td>Bill</td>
                                   <td>Gates</td>
                                   <td>18.211.122-1</td>
-                                  <td>Gerente</td>                               
+                                  <td>Gerente</td>
+                                  <td>No Aplica</td>                              
                                   
                                   
                                 
@@ -126,7 +133,8 @@
                                  <td> Steve</td>
                                   <td>Wozniak</td>
                                   <td>73.011.122-1</td>
-                                  <td>Supervisor</td>                               
+                                  <td>Supervisor</td>
+                                  <td>No Aplica</td>                               
                                   
                                  
                                 
@@ -147,7 +155,8 @@
                                   <td>Steve</td>
                                   <td>Jobs</td>
                                   <td>18.211.122-1</td>
-                                  <td>Supervisor</td> 
+                                  <td>Supervisor</td>
+                                  <td>No Aplica</td> 
                                 
                                  
                                 
@@ -167,7 +176,8 @@
                                   <td>jesus</td>
                                   <td>Martinez</td>
                                   <td>12.241.122-k</td>
-                                  <td>Obrero</td> 
+                                  <td>Obrero</td>
+                                  <td>Steve Wozniak</td> 
                                 
                                  
                                   
@@ -187,7 +197,8 @@
                                   <td>Steve</td>
                                   <td>Jobs</td>
                                   <td>2.411.188-5</td>
-                                  <td>Obrero</td> 
+                                  <td>Obrero</td>
+                                  <td>Steve Jobs</td> 
                                 
                                  
                                   
@@ -201,8 +212,14 @@
                           </div>
                         </div>
 
+                        <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
+                          <!--
 
-<a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id obj_template.id obj_template1.id %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Siguiente</button></a>
+                          <button type="submit" class="btn btn-primary pull-right">Guardar y Continuar</button>
+                        -->
+
+
+<a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id obj_template.id obj_template1.id %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Guardar/Continuar</button></a>
 
 
                         </div>

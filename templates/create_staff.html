@@ -8,25 +8,29 @@
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-              <div class="title_left">
-                <h3>Creador de Perfil</h3>
-              </div>
+               <div class="col-md-12 col-sm-12 col-xs-12">
+   
+                             <a href='#Usted esta Aqui.'>Crear Usuario Responsable <i class="fa fa-hand-o-down"></i></a> &nbsp;&nbsp;  &nbsp;  Creacion del Perfil <i class="fa fa-hand-o-right"></i>
+                               &nbsp;&nbsp;&nbsp;  Carga de Documentacion <i class="fa fa-hand-o-right"></i>
+
+                               
+        
+</div> 
+
 
               <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                  </div>
-                </div>
+
               </div>
             </div>
+
             <div class="clearfix"></div>
+   <br>
 
-            <div class="row">
-
+            <div class="">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Ingrese Credenciales</h2>
+                    <h2><i class="fa fa-user"></i> Crear Usuario Responsable<small>Usuario con ingreso al sistema </small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -46,25 +50,33 @@
                   </div>
                   <div class="x_content">
 
-
-
                         <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal form-label-left">
-                    
-                            <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Usuario <span class="required">*</span>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username"> 
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="username" name="username" disabled required="required" value="{{ username.username }}" class="form-control col-md-7 col-xs-12">
+                              {{ form }}
                             </div>
+
                           </div>
+
+ 
+
+      <!--
+                    <div class="title_left">
+                <small>Datos del Perfil:</small>
+              </div>
+              <br>
+
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="rut" name="rut" required="required" value="{{ instance.rut }}" class="form-control col-md-7 col-xs-12">
+                            {{form2.rut}}
                             </div>
                           </div>
-
+                          {% if not instance %}
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthdate">Fecha Nacimiento <span class="required"></span>
                             </label>
@@ -76,16 +88,17 @@
                           <div class="form-group">
                             <label for="avatar" class="control-label col-md-3 col-sm-3 col-xs-12">Foto de Perfil<span class="required"></span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{form.avatar}}
+                            {{form2.avatar}}
                             
                             </div>
                           </div>
+                          {% endif %}
 
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cargo">Cargo <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{form.cargo}}
+                            {{form2.cargo}}
                             </div>
                           </div>
                           
@@ -94,85 +107,37 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contrato">Contrato<span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="contrato" name="contrato" value="{{ instance.contrato }}" required="required" class="form-control col-md-7 col-xs-12">
+                            {{form2.contrato}}
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="legales_asoc">Legales Acosiados<span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              <input type="text" id="legales_asoc" name="legales_asoc" value="{{ instance.legales_asoc }}" required="required" class="form-control col-md-7 col-xs-12">
+                            {{form2.legales_asoc}}
                             </div>
                           </div>
-                        {% csrf_token %}
+                        
+   </form>
+                             -->
+                              {% csrf_token %}
+                              <a href='/gestion_usuarios'><button type="button" class="btn btn-default pull-left">Cancelar</button></a>
                               <button type="submit" class="btn btn-primary pull-right">Crear Usuario</button>
 
-                        </form>
+                     
 
 
 
-                    <!-- End SmartWizard Content -->
+          
 
 
-
-
- 
-                    <!-- End SmartWizard Content -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
  
 
  {% endblock content %}
-
-{% block content2 %}
-<script>
-    $(document).ready(function(){
-      var date_input=$('input[name="birthdate"]'); //our date input has the name "birthdate"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'mm/dd/yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-</script>
-
-
-<script>
-
- $('#wizard').smartWizard({
-
-
-  // Properties
-    selected: 0,  // Selected Step, 0 = first step   
-    keyNavigation: true, // Enable/Disable key navigation(left and right keys are used if enabled)
-    enableAllSteps: false,  // Enable/Disable all steps on first load
-    transitionEffect: 'fade', // Effect on navigation, none/fade/slide/slideleft
-    contentURL:null, // specifying content url enables ajax content loading
-    contentURLData:null, // override ajax query parameters
-    contentCache:true, // cache step contents, if false content is fetched always from ajax url
-    cycleSteps: false, // cycle step navigation
-    enableFinishButton: false, // makes finish button enabled always
-  hideButtonsOnDisabled: false, // when the previous/next/finish buttons are disabled, hide them instead
-    errorSteps:[],    // array of step numbers to highlighting as error steps
-    labelNext:'Siguiente', // label for Next button
-    labelPrevious:'Anterior', // label for Previous button
-    labelFinish:'Finalizar',  // label for Finish button        
-    noForwardJumping:false,
-  // Events
-    onLeaveStep: null, // triggers when leaving a step
-    onShowStep: null,  // triggers when showing a step
-    onFinish: null  // triggers when Finish button is clicked
-    finishBtn: 'FINISH',
-}); 
-</script>
-
-{% endblock content2 %}

@@ -145,7 +145,7 @@ def submodulo_detail(request, id_modulo, id_submodulo):
 
 	obj_carpeta = Carpeta.objects.get(id=1)
 
-	form = CarpetaForm(request.POST or None, instance=obj_carpeta)
+	form = SubCarpetaForm(request.POST or None, instance=obj_carpeta)
 
 	if form.is_valid():
 
@@ -357,7 +357,11 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 
 		"obj_template" : obj_template,
 		"obj_template1":	obj_template1,
-		"form"		:	form
+		"form"		:	form,
+		"obj_modulo": obj_modulo,
+		"obj_sub": obj_sub,
+		"obj_get1": obj_get1,
+
 
 	}	
 	return render(request, "documento.html", context)

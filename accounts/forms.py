@@ -35,12 +35,36 @@ class UserRegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'first_name',
-            'last_name',
+
             'username',
             'email',
             'password'
-        ]
+        ]         
+        widgets = {
+
+            'username':     forms.TextInput(attrs={'class': 'form-control'}),              
+            'email':        forms.EmailInput(attrs={'class': 'form-control'}),  
+            'password':     forms.PasswordInput(attrs={'class': 'form-control'}),
+
+
+    
+        }
+
+class UserNamesForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+
+        ]         
+        widgets = {
+            'first_name':   forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name':    forms.TextInput(attrs={'class': 'form-control'}),
+
+
+    
+        }        
 
     # def clean(self, *args, **kwargs):
     #     email = self.cleaned_data.get('email')

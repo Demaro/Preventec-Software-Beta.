@@ -11,10 +11,10 @@
             <div class="page-title">
            
            
-                            <a href="/modulos/">Modulos <i class="fa fa-backward"></i></a> 
-                            &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-backward">
+                            <a href="/modulos/">Modulos <i class="fa fa-hand-o-left"></i></a> 
+                            &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}">{{ obj_modulo.nombre }} <i class="fa fa-hand-o-left">
                             </i></a>
-                            &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}">{{ obj_sub.nombre }} <i class="fa fa-backward">
+                            &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}">{{ obj_sub.nombre }} <i class="fa fa-hand-o-left">
                             </i></a>
                             </div>
                             <br>
@@ -210,7 +210,10 @@
                                       <td>5</td>
                                       <td><a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-chevron-right"></i>
-                          </button></a></td>
+                          </button></a>
+                        <a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                                  <i class="fa fa-trash"></i>
+                                  </button></a></td>
                                  
                                   
                                 </tr>
@@ -227,7 +230,10 @@
                                   <td>
                                     <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-chevron-right"></i>
-                          </button></a></td>
+                          </button></a>
+                        <a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                                  <i class="fa fa-trash"></i>
+                                  </button></a></td>
 
                                 </tr>
                                 <tr class="even pointer">
@@ -243,7 +249,10 @@
                                   <td>
                                     <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-chevron-right"></i>
-                          </button></a></td>
+                          </button></a>
+                          <a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                                  <i class="fa fa-trash"></i>
+                                  </button></a></td>
                                     </tr>
            
                               </tbody>
@@ -287,7 +296,32 @@
 
 {% block content2 %}
 
+<script type="text/javascript">
 
+$(document).ready(function(){
+    
+
+    var myurl = document.getElementById('url').getAttribute("name");
+    $('.btn-ExitSystem').on('click', function(e){
+        e.preventDefault();
+        swal({ 
+            title: "Desea Eliminar este Elemento?",   
+            text: "Se eliminara todo su contenido",   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#DD6B55",   
+            confirmButtonText: "Si",
+            animation: "slide-from-top",   
+            closeOnConfirm: false,
+            cancelButtonText: "Cancelar"
+        }, function(){   
+            window.location=  myurl ; 
+        });
+    }); 
+
+})(jQuery);
+
+</script>
 
 
 {% endblock content2 %}

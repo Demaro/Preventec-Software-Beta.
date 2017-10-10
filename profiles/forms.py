@@ -10,6 +10,7 @@ from profiles.models import Profile
 
 
 class ProfileForm(forms.ModelForm):
+	birthdate	= forms.DateField(widget=forms.SelectDateWidget(years=range(1900, 2020)))
 	class Meta:
 		model = Profile
 
@@ -18,7 +19,27 @@ class ProfileForm(forms.ModelForm):
 			"birthdate",
 			"avatar",
 			"cargo",
+
+		]
+		widgets = {
+            'rut':   forms.TextInput(attrs={'class': 'form-control'}),
+			'cargo':    forms.Select(attrs={'class': 'form-control'}),
+
+    
+        }   
+
+class ProfileDocForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+
+		fields = [
 			"contrato",
 			"legales_asoc",
 
 		]
+		widgets = {
+            'contrato':   forms.FileInput(attrs={'class': 'form-control'}),
+			'legales_asoc':    forms.FileInput(attrs={'class': 'form-control'}),
+
+    
+        }  

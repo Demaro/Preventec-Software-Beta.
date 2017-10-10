@@ -20,7 +20,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from profiles.forms import ProfileForm
+from profiles.forms import ProfileForm, ProfileDocForm
 from profiles.models import Profile, Cargo
 from posts.models import Post
 
@@ -28,7 +28,7 @@ from django.utils import timezone
 
 from accounts.views import (login_view, register_view, logout_view) 
 
-from accounts.forms import  UserRegisterForm
+from accounts.forms import  UserRegisterForm, UserNamesForm
 
 from modulos.forms import ModuloForm
 
@@ -128,35 +128,49 @@ def siete(request):
 
 
 
-def profile_create(request, id_user):
+def crear_perfil_staff(request, id_user):
 	if request.user.is_authenticated():
-		form = ProfileForm(request.POST or None)
-		username = User.objects.get(id=id_user)
-	if form.is_valid():
+		instance1	=	id_user
+		obj 	= User.objects.get(id=id_user)
+		form2 = ProfileForm(request.POST or None)
+		form = UserNamesForm(request.POST or None, instance=obj)
+		if form.is_valid():
+			instance1 = form.save(commit=False)
+			instance1.save()
+		
+		if form2.is_valid():
+			instance = form2.save(commit=False)
+			instance.user = obj
+			instance.ultimateupdate = timezone.now()
+			instance.inicio_cargo = timezone.now()
+			instance.save()
+			print(instance.id)
+			return HttpResponseRedirect('/cargar_documentos/%s' % instance.id )
 
-		rut_data = form.cleaned_data.get("rut")
-		birthdate_data = form.cleaned_data.get("birthdate")
-		avatar_data = form.cleaned_data.get("avatar")
-		cargo_data = form.cleaned_data.get("cargo")
-		contrato_data = form.cleaned_data.get("contrato")
-		legales_asoc_data = form.cleaned_data.get("legales_asoc")
-
-		new_profile = Profile(user_id=id_user, rut=rut_data, birthdate=birthdate_data, avatar=avatar_data, cargo=cargo_data, contrato=contrato_data, legales_asoc=legales_asoc_data,  ultimateupdate = timezone.now(), inicio_cargo=timezone.now())
-
-		new_profile.save()
-
-		new_profile.id
-		print(new_profile.id)
-		# message success
-		messages.success(request, "Creado con exito!")
-		return HttpResponseRedirect('/inicio')
 	context = {
+		"obj":obj,
 		"form": form,
-		"id_user": id_user,
-		"username": username,
+		"form2": form2,
 	}
-	return render(request, "profile_form.html", context)
+	return render(request, "create_profile.html", context)
 
+
+
+def carga_docu(request, id_profile):
+	if request.user.is_authenticated():
+		instance = id_profile
+		obj 	= Profile.objects.get(id=id_profile)
+		form 	= ProfileDocForm(request.POST or None, instance=obj)
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.save()
+			print(instance.id)
+			return HttpResponseRedirect('/gestion_usuarios')
+	context = {
+		"obj": obj,
+		"form": form,
+	}
+	return render(request, "cargar_docu.html", context)
 
 
 
@@ -183,7 +197,16 @@ def profile_detail(request, id_profile):
 
 def profile_update(request, id_profile):
 	instance = Profile.objects.get(id=id_profile)
+	id_user = instance.user.id
+	obj 	= User.objects.get(id=id_user)
 	if request.user.is_superuser:
+
+		form = UserNamesForm(request.POST or None, instance=obj)
+		if form.is_valid():
+			instance1 = form.save(commit=False)
+			instance1.save()
+
+
 		form2 = ProfileForm(request.POST or None,  instance=instance)
 		if form2.is_valid():
 			instance = form2.save(commit=False)
@@ -195,8 +218,9 @@ def profile_update(request, id_profile):
 		context = {
 			"instance": instance,
 			"form2":form2,
+			"form": form,
 		}
-		return render(request, "user.html", context)
+		return render(request, "create_profile.html", context)
 	else:
 		raise Http404
 

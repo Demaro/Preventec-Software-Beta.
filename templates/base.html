@@ -95,7 +95,7 @@
                   
 
                   </li>
-                    <li><a href='{% url "register" %}'><i class="fa fa-users"></i> Usuarios </a>
+                    <li><a href='{% url "user" %}'><i class="fa fa-users"></i> Usuarios </a>
                   
 
                   </li>
@@ -108,7 +108,7 @@
                   </li>
                   <li><a><i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href='{% url "register" %}'>Enrolar</a>
+                   
                         </li>
                         <li><a href='{% url "profile:profiles_contacts" %}'>Gestion de Personal</a>
                         </li>
@@ -399,6 +399,9 @@
 <script src='{% static "js/jquery.cookie.js" %}'></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
+    <script src='{% static "vendors/raphael/raphael.min.js" %}'></script>
+    <script src='{% static "vendors/morris.js/morris.min.js" %}'></script>
 
 
 

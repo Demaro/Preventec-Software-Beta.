@@ -21,7 +21,7 @@ from django.contrib import admin
 
 from django.contrib.auth.views import login_required
 
-from accounts.views import (login_view, register_view, logout_view) 
+from accounts.views import (login_view, register_view, logout_view, view_users) 
 from django_js_reverse.views import urls_js 
 
 from profiles import urls
@@ -37,7 +37,8 @@ urlpatterns = [
 
 	url(r'^$', home, name='home'),
 
-	url(r'^add_staff', register_view, name='register'),
+	url(r'^add_staff', register_view, name='staff'),
+	url(r'^gestion_usuarios', view_users, name='user'),
 	url(r'^', include(urls, namespace='profile')),
 
 	#url(r'^api/users/', include("accounts.api.urls", namespace='users-api')),
