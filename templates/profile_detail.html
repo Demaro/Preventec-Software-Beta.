@@ -64,11 +64,19 @@
                           <i class="fa fa-briefcase user-profile-icon"></i> {{obj.cargo}}
                         </li>
                             <li class="m-top-xs">
-                          <i class="fa fa-play-circle-o user-profile-icon"></i> {{ obj.inicio_cargo }}
+                          <i class="fa fa-calendar user-profile-icon"></i> Inicio Cargo: {{ obj.inicio_cargo }}
 
                         </li>
                         <li class="m-top-xs">
                           <i class="fa fa-gift user-profile-icon"></i> {{ obj.birthdate }}
+
+                        </li>
+                          <li class="m-top-xs">
+                          <i class="fa fa-users user-profile-icon"></i> Comite Paritario:  {% if obj.comite_par %} <i class="fa fa-check user-profile-icon"></i>{% endif %}
+
+                        </li>
+                            <li class="m-top-xs">
+                          <i class="fa fa-cube user-profile-icon"></i> Unidad: {{ obj.unidad }}
 
                         </li>
 

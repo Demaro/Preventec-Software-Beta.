@@ -18,15 +18,35 @@ class ProfileForm(forms.ModelForm):
 			"rut",
 			"birthdate",
 			"avatar",
-			"cargo",
+
 
 		]
 		widgets = {
             'rut':   forms.TextInput(attrs={'class': 'form-control'}),
-			'cargo':    forms.Select(attrs={'class': 'form-control'}),
+
 
     
         }   
+
+class ProfileDatosForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+
+		fields = [
+			"cargo",
+			"unidad",
+			"comite_par",
+			"subcta",
+
+		]
+		widgets = {
+            'cargo':   forms.Select(attrs={'class': 'form-control'}),
+			'unidad':    forms.Select(attrs={'class': 'form-control'}),
+			'comite_par': forms.CheckboxInput(attrs={'class': 'form-control'}),
+			'subcta'	:	forms.CheckboxInput(attrs={'class': 'form-control'}),
+
+    
+        } 
 
 class ProfileDocForm(forms.ModelForm):
 	class Meta:

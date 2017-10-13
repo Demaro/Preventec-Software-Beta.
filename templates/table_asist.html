@@ -67,40 +67,37 @@
 
                           <div class="table-responsive">
 
-                      <table id="myTable" class="table table-striped jambo_table bulk_action">
+
+
+                      <table id="myexample" class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
                         <thead>
                           <tr class="headings">
-                            <th>
-                            
-                            
-                              
-                            
-                            </th>
-                         
-                     
+                            <th></th>
                             <th class="column-title">Nombre</th>
                             <th class="column-title">Apellido</th>
                             <th class="column-title">Rut</th>
                             <th class="column-title">Cargo</th>
                             <th class="column-title">Supervisor</th>
-                         
                           
-
-                          
-                            </th>
-                            <th class="bulk-actions" colspan="7" id="botones">
-
-                          
-
-                            </th>
                           </tr>
                         </thead>
+                         <tfoot>
+                          <tr class="headings">
+                            <th></th>
+                            <th class="column-title">Nombre</th>
+                            <th class="column-title">Apellido</th>
+                            <th class="column-title">Rut</th>
+                            <th class="column-title">Cargo</th>
+                            <th class="column-title">Supervisor</th>
+                          
+                          </tr>
+                        </tfoot>
 
-                              <tbody>
+                          <tbody>
 
 
-                          <tr class="even pointer">
-                            <td class="a-center ">  
+                          <tr>
+                            <td>  
                             <div id="checkboxes">
 
                             <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
@@ -120,9 +117,9 @@
                                  
                                 
                                 </tr>
-                                <tr class="even pointer">
-                            <td class="a-center ">   
-                                                        <div id="checkboxes">
+                                <tr>
+                            <td>   
+                              <div id="checkboxes">
 
                             <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
                     
@@ -137,17 +134,13 @@
                                   <td>No Aplica</td>                               
                                   
                                  
-                                
-                                 
-                                 
                                   
                                 </tr>
-           <tr class="even pointer">
+                              <tr>
                             <td class="a-center ">  
-                                                        <div id="checkboxes">
+                             <div id="checkboxes">
 
-                            <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
-                    
+                            <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check">
 
                             </div>                            
                             </td>  
@@ -157,15 +150,13 @@
                                   <td>18.211.122-1</td>
                                   <td>Supervisor</td>
                                   <td>No Aplica</td> 
-                                
-                                 
-                                
+
                                   
                                 </tr>
            
-           <tr class="even pointer">
-                            <td class="a-center ">
-                                                        <div id="checkboxes">
+           <tr>
+                            <td>
+                           <div id="checkboxes">
 
                             <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
                     
@@ -183,9 +174,9 @@
                                   
                                   
                                 </tr>
-           <tr class="even pointer">
-                            <td class="a-center ">
-                                                        <div id="checkboxes">
+           <tr>
+                            <td>
+                            <div id="checkboxes">
 
                             <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
                     
@@ -194,8 +185,8 @@
                             </td>  
 
                             
-                                  <td>Steve</td>
-                                  <td>Jobs</td>
+                                  <td>Jose</td>
+                                  <td>Perez</td>
                                   <td>2.411.188-5</td>
                                   <td>Obrero</td>
                                   <td>Steve Jobs</td> 
@@ -212,6 +203,7 @@
                           </div>
                         </div>
 
+
                         <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
                           <!--
 
@@ -219,9 +211,11 @@
                         -->
 
 
-<a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id obj_template.id obj_template1.id %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Guardar/Continuar</button></a>
+<a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id obj_template.id obj_template1.id %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Continuar</button></a>
 
-
+                            <div class="col-md-4 col-sm-4 col-xs-4">  
+                      <button type="button" class="btn btn-primary ">Guardar</button>
+                    </div>
                         </div>
                         </div>
                         </a>
@@ -238,11 +232,37 @@
 
 {% block content2 %}
 
-<script type="text/javascript">
 
-$(document).ready(function(){
-    $('#myTable').DataTable();
-});
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#myexample').DataTable( {
+    initComplete: function () {
+        
+    this.api().columns([4]).every( function () {
+        var column = this;
+        var select = $('<select><option value="Cargo"></option></select>')
+          .appendTo( $(column.footer()).empty() )
+          .on( 'change', function () {
+            var val = $.fn.dataTable.util.escapeRegex(
+              $(this).val()
+            );
+
+            column
+              .search( val ? '^'+val+'$' : '', true, false )
+              .draw();
+          } );
+
+        column.data().unique().sort().each( function ( d, j ) {
+          select.append( '<option value="'+d+'">'+d+'</option>' )
+        } );
+      } );
+    }
+  } );
+} );
+
+
 
 </script>
 {% endblock content2 %}

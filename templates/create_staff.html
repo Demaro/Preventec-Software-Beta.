@@ -11,6 +11,7 @@
                <div class="col-md-12 col-sm-12 col-xs-12">
    
                              <a href='#Usted esta Aqui.'>Crear Usuario Responsable <i class="fa fa-hand-o-down"></i></a> &nbsp;&nbsp;  &nbsp;  Creacion del Perfil <i class="fa fa-hand-o-right"></i>
+                                &nbsp;&nbsp;&nbsp;  Datos de Obra <i class="fa fa-hand-o-right"></i>
                                &nbsp;&nbsp;&nbsp;  Carga de Documentacion <i class="fa fa-hand-o-right"></i>
 
                                
@@ -121,8 +122,11 @@
    </form>
                              -->
                               {% csrf_token %}
-                              <a href='/gestion_usuarios'><button type="button" class="btn btn-default pull-left">Cancelar</button></a>
-                              <button type="submit" class="btn btn-primary pull-right">Crear Usuario</button>
+                              <a href='/gestion_usuarios'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i> Cancelar</button></a>
+                              <button type="submit" id="next" name="next" class="btn btn-primary pull-right" style="display:none;"><i class="fa fa-chevron-right"></i> Continuar</button>
+                              <div class="col-md-4 col-sm-4 col-xs-4">  
+                      <button name="btnsave" type="button" class="btn btn-primary ">Guardar</button>
+                    </div>
 
                      
 
@@ -141,3 +145,17 @@
  
 
  {% endblock content %}
+
+ {% block content2 %}
+
+<script>
+$(document).ready(function(){
+    $("button[name='btnsave']").click(function(){
+        $("#next").fadeIn()
+    });
+
+});
+</script>
+
+{% endblock content2 %}
+

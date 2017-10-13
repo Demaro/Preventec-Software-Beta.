@@ -12,8 +12,8 @@
    
                              Crear Usuario Responsable <i class="fa fa-hand-o-left"></i>
                              &nbsp;&nbsp;&nbsp;  Creacion del Perfil <i class="fa fa-hand-o-left"></i>
-                               &nbsp;&nbsp;&nbsp;  Datos de Obra <i class="fa fa-hand-o-left"></i>
-                               &nbsp;&nbsp;&nbsp;  <a href='#Usted esta Aqui.'>Carga de Documentacion <i class="fa fa-hand-o-down"></i></a>
+                             &nbsp;&nbsp;&nbsp; <a href='#Usted esta Aqui.'> Datos de Obra <i class="fa fa-hand-o-down"></i></a>
+                               &nbsp;&nbsp;&nbsp; Carga de Documentacion <i class="fa fa-hand-o-right"></i>
 
                                
         
@@ -30,7 +30,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><i class="fa fa-user"></i> Carga de Documentacion</h2>
+                    <h2><i class="fa fa-user"></i> Ingresar Datos de Obra</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -50,6 +50,9 @@
                   </div>
                   <div class="x_content">
 
+
+
+
                         <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal form-label-left">
                              <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username"> Usuario
@@ -60,28 +63,50 @@
 
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username"> Contrato
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unidad"> Cargo
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              {{ form.contrato }}
+                              {{ form.cargo }}
                             </div>
 
                           </div>
                             <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username"> Legales Asociados
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unidad"> Unidad
                             </label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                              {{ form.legales_asoc }}
+                              {{ form.unidad }}
                                 <br>
                             </div>
 
 
                           </div>
 
+                            <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unidad"> Comite Paritario
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              {{ form.comite_par }}
+                                <br>
+                            </div>
+
+
+                          </div>
+                             <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="subcta"> Subcontratista
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              {{ form.subcta }}
+                                <br>
+                            </div>
+
+
+                          </div>
 
   
 
                               {% csrf_token %}
+                              <br>
+                              <br>
                               {% if instance %}
                               <a href='/perfil-detalle/{{ obj.id }}/'><button type="button" class="btn btn-default pull-left">Cancelar</button></a>
 

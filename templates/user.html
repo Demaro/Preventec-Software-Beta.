@@ -289,7 +289,7 @@
                             <th class="column-title">Cargo</th>
                             <th class="column-title">Supervisor</th>
                             <th class="column-title">Ultima Actualizacion</th>
-                            <th></th>
+                            <th>Ver</th>
                           
                          
 
@@ -302,11 +302,11 @@
                       {% for obj in obj %}
                           <tr class="even pointer"> 
 
-                                 <td>  <a href='{% url "profile:profile_detail" obj.id %}'> {{ obj.user.first_name }}</a></td> 
+                                 <td>   {{ obj.user.first_name }}</a></td> 
                         
                                   
                                    <td>
-                                    <a href='{% url "profile:profile_detail" obj.id %}'>{{ obj.user.last_name }}</a>
+                                    {{ obj.user.last_name }}
                                   </td>                              
                                   
                                   <td>{{ obj.cargo }}</td>
@@ -318,10 +318,9 @@
 
 
 
-                                  <td><button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-primary btn-simple btn-xs">
-                                    <i class="fa fa-edit"></i>
-                                    </button>
-                                  </td>  
+                          <td><a href='{% url "profile:profile_detail" obj.id %}'><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-eye"></i>
+                          </button></a></td>
                                 </tr>
                         {% endfor %}
 
@@ -379,24 +378,19 @@ $(document).ready(function(){
 </script>
 
 <script type="text/javascript">
-$(document).ready(function () {
-        //when a group is shown, save it as the active accordion group
-        $("#accordion").on('shown.bs.collapse', function () {
-            var active = $("#accordion .in").attr('id');
-            $.cookie('activeAccordionGroup', active);
-          //  alert(active);
-        });
-        $("#accordion").on('hidden.bs.collapse', function () {
-            $.removeCookie('activeAccordionGroup');
-        });
-        var last = $.cookie('activeAccordionGroup');
-        if (last != null) {
-            //remove default collapse settings
-            $("#accordion .panel-collapse").removeClass('in');
-            //show the account_last visible group
-            $("#" + last).addClass("in");
-        }
-    });
+$('#panel a:first').tab('show');
+
+//for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+//save the latest tab; use cookies if you like 'em better:
+localStorage.setItem('selectedTab', $(e.target).attr('id'));
+});
+
+//go to the latest tab, if it exists:
+var selectedTab = localStorage.getItem('selectedTab');
+if (selectedTab) {
+  $('#'+selectedTab).tab('show');
+}
 
 
 </script>

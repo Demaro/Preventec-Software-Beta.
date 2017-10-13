@@ -18,6 +18,8 @@ from django.utils.text import slugify
 from markdown_deux import markdown
 from projects.models import Project
 
+from django.contrib.auth.models import User
+
 #from utils import get_read_time
 
 
@@ -54,14 +56,19 @@ class Profile(models.Model):
 			height_field="height_field")
 	height_field = models.IntegerField(default=0, null=True, blank=True)
 	width_field = models.IntegerField(default=0, null=True, blank=True)
+	unidad		= models.ForeignKey('Unidad', null=True, blank=True)
 	digitalid = models.CharField(max_length=20, null=True, blank=True)
 	ultimateupdate = models.DateTimeField()
-	cargo = models.ForeignKey('Cargo', null=True, blank=True)
+	cargo 		= 	models.ForeignKey('Cargo', null=True, blank=True)
 	especialidad = models.ForeignKey('Especialidad', null=True, blank=True)
+	comite_par	= models.BooleanField(default=False,  blank=True)
+	subcta		= models.BooleanField(default=False, blank=True)
+	supervisor	= models.ForeignKey(User, related_name="supervisor2", null=True, blank=True)
 	inicio_cargo = models.DateField(auto_now=True, auto_now_add=False)
 	años_exp     = models.IntegerField(null=True, blank=True)
 	contrato = models.FileField(null=True, blank=True)
 	legales_asoc =  models.FileField(null=True, blank=True)
+
 	
 
 	objects = ProfileManager()
@@ -96,6 +103,13 @@ class Cargo(models.Model):
 			return self.nombre
 
 class Especialidad(models.Model):
+	nombre = models.TextField(max_length=30)
+
+	def __str__(self):
+			return self.nombre		
+
+
+class Unidad(models.Model):
 	nombre = models.TextField(max_length=30)
 
 	def __str__(self):

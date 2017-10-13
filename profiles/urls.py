@@ -4,7 +4,10 @@ from django.contrib import admin
 from profiles.views import (
 	profile_list,
 	crear_perfil_staff,
+	perfil_datos_staff2,
+	perfil_datos_staff,
 	carga_docu,
+	carga_docu2,
 	profile_detail,
 	profile_update,
 	profile_delete,
@@ -37,7 +40,12 @@ urlpatterns = [
 	url(r'^profiles', profile_list, name='list'),
 	url(r'^perfiles', profiles_contacts, name='profiles_contacts'),
 	url(r'^crear_perfil_staff/(?P<id_user>\d+)/$', login_required(crear_perfil_staff), name="perfil_staff"),
+
+	url(r'^perfil_datos_staff/(?P<id_profile>\d+)/$', login_required(perfil_datos_staff), name="datos_staff"),
+	url(r'^perfil_datos_staff_edit/(?P<id_profile>\d+)/$', login_required(perfil_datos_staff2), name="datos_staff2"),
 	url(r'^cargar_documentos/(?P<id_profile>\d+)/$', login_required(carga_docu), name="add_docu"),
+	url(r'^cargar_documentos_edit/(?P<id_profile>\d+)/$', login_required(carga_docu2), name="add_docu2"),
+
 
 	url(r'^perfil-detalle/(?P<id_profile>\d+)/$', login_required(profile_detail), name='profile_detail'),
 	url(r'^perfil-editar/(?P<id_profile>\d+)/$', login_required(profile_update), name='edit'),

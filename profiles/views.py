@@ -20,7 +20,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from profiles.forms import ProfileForm, ProfileDocForm
+from profiles.forms import ProfileForm, ProfileDocForm, ProfileDatosForm
 from profiles.models import Profile, Cargo
 from posts.models import Post
 
@@ -145,7 +145,7 @@ def crear_perfil_staff(request, id_user):
 			instance.inicio_cargo = timezone.now()
 			instance.save()
 			print(instance.id)
-			return HttpResponseRedirect('/cargar_documentos/%s' % instance.id )
+			return HttpResponseRedirect('/perfil_datos_staff/%s' % instance.id )
 
 	context = {
 		"obj":obj,
@@ -154,6 +154,41 @@ def crear_perfil_staff(request, id_user):
 	}
 	return render(request, "create_profile.html", context)
 
+
+def perfil_datos_staff(request, id_profile):
+	if request.user.is_authenticated():
+		instance = id_profile
+		obj 	= Profile.objects.get(id=id_profile)
+		form 	= ProfileDatosForm(request.POST or None, instance=obj)
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.save()
+			print(instance.id)
+			return HttpResponseRedirect('/cargar_documentos/%s' % instance.id )
+	context = {
+		"obj": obj,
+		"form": form,
+	}
+	return render(request, "perfil_datos_staff.html", context)
+
+
+
+def perfil_datos_staff2(request, id_profile):
+	if request.user.is_authenticated():
+		instance = id_profile
+		obj 	= Profile.objects.get(id=id_profile)
+		form 	= ProfileDatosForm(request.POST or None, instance=obj)
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.save()
+			print(instance.id)
+			return HttpResponseRedirect('/cargar_documentos_edit/%s' % instance.id )
+	context = {
+		"obj": obj,
+		"form": form,
+		"instance": instance
+	}
+	return render(request, "perfil_datos_staff.html", context)
 
 
 def carga_docu(request, id_profile):
@@ -169,6 +204,24 @@ def carga_docu(request, id_profile):
 	context = {
 		"obj": obj,
 		"form": form,
+	}
+	return render(request, "cargar_docu.html", context)
+
+
+def carga_docu2(request, id_profile):
+	if request.user.is_authenticated():
+		instance = id_profile
+		obj 	= Profile.objects.get(id=id_profile)
+		form 	= ProfileDocForm(request.POST or None, instance=obj)
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.save()
+			print(instance.id)
+			return HttpResponseRedirect('/perfil-detalle/%s' % instance.id )
+	context = {
+		"obj": obj,
+		"form": form,
+		"instance": instance,
 	}
 	return render(request, "cargar_docu.html", context)
 
@@ -213,7 +266,7 @@ def profile_update(request, id_profile):
 			instance.ultimateupdate = timezone.now()
 			instance.save()
 			messages.success(request, "<a href='#'>Item</a> Modificado!", extra_tags='html_safe')
-			return HttpResponseRedirect('/perfil-detalle/%s/' % id_profile)
+			return HttpResponseRedirect('/perfil_datos_staff_edit/%s/' % id_profile)
 
 		context = {
 			"instance": instance,
