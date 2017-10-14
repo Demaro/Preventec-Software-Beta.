@@ -264,13 +264,12 @@
                   <div class="x_content">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                    Agregar: &nbsp;&nbsp;
-                                 <a href='{% url "staff" %}'><button type="button" class="btn btn-primary btn-xs">Responsable</button></a>
+                                 <a href='{% url "staff" %}'><button type="button" class="btn btn-primary btn-xs">Usuario</button></a>
                                   <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Trabajador</button>
 
                             
                                 </div>
                                                <br>
-                                <br>
                              
 
       
@@ -370,6 +369,37 @@
 {% block content2 %}
 
 <script type="text/javascript">
+  
+$(document).ready(function() {
+    if (location.hash) {
+        $("a[href='" + location.hash + "']").tab("show");
+    }
+    $(document.body).on("click", "a[data-toggle]", function(event) {
+        location.hash = this.getAttribute("href");
+    });
+});
+$(window).on("popstate", function() {
+    var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+    $("a[href='" + anchor + "']").tab("show");
+});
+
+  $(function() { 
+    // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        // save the latest tab; use cookies if you like 'em better:
+        localStorage.setItem('lastTab', $(this).attr('href'));
+    });
+
+    // go to the latest tab, if it exists:
+    var lastTab = localStorage.getItem('lastTab');
+    if (lastTab) {
+        $('[href="' + lastTab + '"]').tab('show');
+    }
+});
+</script>
+
+
+<script type="text/javascript">
 
 $(document).ready(function(){
     $('#myTable').DataTable();
@@ -377,21 +407,5 @@ $(document).ready(function(){
 
 </script>
 
-<script type="text/javascript">
-$('#panel a:first').tab('show');
 
-//for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
-$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-//save the latest tab; use cookies if you like 'em better:
-localStorage.setItem('selectedTab', $(e.target).attr('id'));
-});
-
-//go to the latest tab, if it exists:
-var selectedTab = localStorage.getItem('selectedTab');
-if (selectedTab) {
-  $('#'+selectedTab).tab('show');
-}
-
-
-</script>
 {% endblock content2 %}
