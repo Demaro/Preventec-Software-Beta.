@@ -117,6 +117,7 @@
               </div>
 
 
+
                     <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -370,31 +371,35 @@
 
 <script type="text/javascript">
   
-$(document).ready(function() {
-    if (location.hash) {
-        $("a[href='" + location.hash + "']").tab("show");
-    }
-    $(document.body).on("click", "a[data-toggle]", function(event) {
-        location.hash = this.getAttribute("href");
-    });
+$(document).ready(function(){  
+if (location.hash) {
+  $('a[href=\'' + location.hash + '\']').tab('show');
+}
+var activeTab = localStorage.getItem('activeTab');
+if (activeTab) {
+  $('a[href="' + activeTab + '"]').tab('show');
+}
+
+$('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
+  e.preventDefault()
+  var tab_name = this.getAttribute('href')
+  if (history.pushState) {
+    history.pushState(null, null, tab_name)
+  }
+  else {
+    location.hash = tab_name
+  }
+  localStorage.setItem('activeTab', tab_name)
+
+  $(this).tab('show');
+  return false;
 });
-$(window).on("popstate", function() {
-    var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
-    $("a[href='" + anchor + "']").tab("show");
+$(window).on('popstate', function () {
+  var anchor = location.hash ||
+    $('a[data-toggle=\'tab\']').first().attr('href');
+  $('a[href=\'' + anchor + '\']').tab('show');
 });
 
-  $(function() { 
-    // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        // save the latest tab; use cookies if you like 'em better:
-        localStorage.setItem('lastTab', $(this).attr('href'));
-    });
-
-    // go to the latest tab, if it exists:
-    var lastTab = localStorage.getItem('lastTab');
-    if (lastTab) {
-        $('[href="' + lastTab + '"]').tab('show');
-    }
 });
 </script>
 
