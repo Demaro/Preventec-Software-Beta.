@@ -73,7 +73,12 @@ def principal(request):
 	return render(request, "index.html", context)
 
 def profiles_contacts(request):
-	return render(request, "contacts.html")
+
+	object_list = Profile.objects.filter(user__is_staff="True")
+	context	=	{
+	"object_list": object_list,
+	}
+	return render(request, "contacts.html", context)
 
 def actividades(request):
 	return render(request, "activitys.html")
@@ -221,7 +226,8 @@ def carga_docu2(request, id_profile):
 	context = {
 		"obj": obj,
 		"form": form,
-		"instance": instance,
+		"instance":	instance
+
 	}
 	return render(request, "cargar_docu.html", context)
 

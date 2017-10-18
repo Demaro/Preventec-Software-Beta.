@@ -38,7 +38,7 @@ urlpatterns = [
 
 
 	url(r'^profiles', profile_list, name='list'),
-	url(r'^perfiles', profiles_contacts, name='profiles_contacts'),
+	url(r'^organigrama', profiles_contacts, name='org_users'),
 	url(r'^crear_perfil_staff/(?P<id_user>\d+)/$', login_required(crear_perfil_staff), name="perfil_staff"),
 
 	url(r'^perfil_datos_staff/(?P<id_profile>\d+)/$', login_required(perfil_datos_staff), name="datos_staff"),

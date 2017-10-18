@@ -38,6 +38,7 @@ def register_view(request):
         if request.user.is_authenticated():
             if form.is_valid():
                 instance = form.save(commit=False)
+                instance.is_staff   = "True"
                 instance.save()
                 print(instance.id)
                 id_user = instance.id
