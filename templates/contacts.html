@@ -4,22 +4,18 @@
 {% block content %}
 
         <!-- page content -->
+
+
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Encargados del Proyecto</h3>
+              
               </div>
 
               <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
+                  <h2></i>Encargados de proyecto</h2>
+
               </div>
             </div>
 
@@ -28,57 +24,66 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="x_panel">
-                  <div class="x_content">
-                    <div class="row">
-                      <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <ul class="pagination pagination-split">
-                      </div>
 
-                      <div class="clearfix"></div>
 
+
+      
+                          <div class="panel-body">
+                            
+
+
+                          <div class="table-responsive">
+
+                      <table id="myTable" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                         
+                            <th class="column-title">Nombre</th>
+                            <th class="column-title">Apellido</th>
+                            <th class="column-title">Cargo</th>
+                     
+                            <th class="column-title">Ultima Actualizacion</th>
+                            <th>Ver</th>
+                          
+                         
+
+                          </tr>
+                        </thead>
+
+                              <tbody>
+
+                            
                       {% for obj in object_list|dictsort:"id" %}
+                          <tr class="even pointer"> 
 
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i></i>{{ obj.cargo }}</h4>
-                            <div class="left col-xs-7">
-                              <h2>{{ obj.user.first_name }} {{ obj.user.last_name }}</h2>
-                              <p><strong>Inicio: {{ obj.inicio_cargo|date }} </strong> 
-                                <br>{{ obj.rut }} / {{ obj.user.email }}  / 2 Años exp / Contrato vigente </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-users"></i> Comite Paritario: {% if obj.comite_par %} <i class="fa fa-check user-profile-icon"></i>{% else %} <i class="fa fa-close user-profile-icon"></i> {% endif %}</li>
-                                <li><i class="fa fa-edit"></i> Subcontratista:  {% if obj.subcta %} <i class="fa fa-check user-profile-icon"></i></a>{% else %} <i class="fa fa-close user-profile-icon"></i>{% endif %}
- </li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src='{% static "images/menconstru.png" %}' alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <a href='{% url "profile:profile_detail" obj.id %}'><button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                                 <td>   {{ obj.user.first_name }}</a></td> 
+                        
+                                  
+                                   <td>
+                                    {{ obj.user.last_name }}
+                                  </td>                              
+                                  
+                                  <td>{{ obj.cargo }}</td>
 
-                      {% endfor  %}
+                             
+                                
+                                 
+                                  <td>{{ obj.ultimateupdate }}</td>
+
+
+
+                          <td><a href='{% url "profile:profile_detail" obj.id %}'><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-eye"></i>
+                          </button></a></td>
+                                </tr>
+                        {% endfor %}
+
+                              
+                              </tbody>
+                             
+                            </table>
+
+
 
 
                     </div>

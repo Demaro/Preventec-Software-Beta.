@@ -333,12 +333,13 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 
 	obj_template1 = Template.objects.get(id=id_doc)
 
-	obj_get	=	Documento.objects.filter(template=id_doc)
+	obj_get	=	Documento.objects.filter(template=obj_template1)
 	obj_template 		= Documento.objects.get(id=obj_get)
 	context1 = {
 
 		"obj_modulo": obj_modulo,
 		"obj_sub": obj_sub,
+		"obj_get": obj_get,
 		"obj_get1": obj_get1,
 		"obj_template" : obj_template,
 		"obj_template1":	obj_template1,
