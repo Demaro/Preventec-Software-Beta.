@@ -170,7 +170,7 @@ STATICFILES_DIRS = [
 """
 
 
-STATICFILES_STORAGE ='django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+#STATICFILES_STORAGE ='django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
