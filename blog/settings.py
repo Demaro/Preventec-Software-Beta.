@@ -71,7 +71,7 @@ USE_TZ = True
 USE_I18N = True
 
 MIDDLEWARE_CLASSES = [
-	#'django.middleware.security.SecurityMiddleware',
+	'django.middleware.security.SecurityMiddleware',
 	'whitenoise.middleware.WhiteNoiseMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
@@ -156,15 +156,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 STATIC_URL = '/static/'
 
+"""
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, "static"),
 	#'/var/www/static/',
 ]
 
+"""
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
+
+STATICFILES_STORAGE ='django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
