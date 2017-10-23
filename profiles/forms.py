@@ -29,6 +29,7 @@ class ProfileForm(forms.ModelForm):
         }   
 
 class ProfileDatosForm(forms.ModelForm):
+	inicio_cargo	= forms.DateField(widget=forms.SelectDateWidget(years=range(2017, 2020)))
 	class Meta:
 		model = Profile
 
@@ -37,6 +38,7 @@ class ProfileDatosForm(forms.ModelForm):
 			"unidad",
 			"comite_par",
 			"subcta",
+			"inicio_cargo",
 
 		]
 		widgets = {
@@ -44,6 +46,8 @@ class ProfileDatosForm(forms.ModelForm):
 			'unidad':    forms.Select(attrs={'class': 'form-control'}),
 			'comite_par': forms.CheckboxInput(attrs={'class': 'form-control'}),
 			'subcta'	:	forms.CheckboxInput(attrs={'class': 'form-control'}),
+
+
 
     
         } 

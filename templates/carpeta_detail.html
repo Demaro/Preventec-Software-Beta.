@@ -147,7 +147,7 @@
 
                       <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
                     </div>
-                      <button class="btn btn-success dropdown-toggle" type="button" > Subir </button>
+                      <a href='{%  url "profile:select_users2" obj_modulo.id obj_sub.id obj_get1.id %}'><button class="btn btn-success dropdown-toggle" type="button" > Subir </button></a>
                      
 
             {% else %}
@@ -181,7 +181,7 @@
                             </th>
                          
                             <th class="column-title">Responsable</th>
-                            <th class="column-title"></th>
+                            <th class="column-title">Cargo</th>
                              <th class="column-title">Nombre</th>
                             <th class="column-title">Fecha Creacion</th>
                             <th class="column-title">Asistentes</th>
@@ -208,7 +208,7 @@
                                   <td>6 Octubre del 2017</td>
                                    <td>6</td>
                                       <td>5</td>
-                                      <td><a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                                      <td><a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 5 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-chevron-right"></i>
                           </button></a>
                         <a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
@@ -228,7 +228,7 @@
                                <td>17</td>
                                <td>15</td>
                                   <td>
-                                    <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                                    <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 5 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-chevron-right"></i>
                           </button></a>
                         <a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
@@ -247,7 +247,7 @@
                                    <td>5</td>
                                    <td>5</td>
                                   <td>
-                                    <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 4 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                                    <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id 5 1  %}' ><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
                           <i class="fa fa-chevron-right"></i>
                           </button></a>
                           <a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">

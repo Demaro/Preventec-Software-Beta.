@@ -15,11 +15,14 @@
             <div class="page-title">
                <div class="col-md-12 col-sm-12 col-xs-12">
    
-                             Generar {{ obj_get.nombre }} <i class="fa fa-hand-o-left"></i> &nbsp;&nbsp;  &nbsp;  Seleccion de Asistentes <i class="fa fa-hand-o-left"></i>
-                               &nbsp;&nbsp;&nbsp; Firmas de Asistentes <i class="fa fa-hand-o-left"></i>
-                               &nbsp;&nbsp;&nbsp;  <a href='#Usted esta Aqui.'>Documento <i class="fa fa-hand-o-down"></i> </a>
+                             <a href='/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}/carpeta/{{ obj_get1.id }}/modelo/{{ obj_get.id }}/'> Generar {{ obj_get.nombre }} <i class="fa fa-hand-o-left"></i></a> &nbsp;&nbsp;  &nbsp;  <a href="/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}/carpeta/{{ obj_get1.id }}/documento/{{ obj_docu1.id }}/{{ obj_get.id }}/selecion_asistentes/"> Seleccion de Asistentes <i class="fa fa-hand-o-left"></i></a>
+                               &nbsp;&nbsp;&nbsp; <a href="/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}/carpeta/{{ obj_get1.id }}/firmas_asist/{{ obj_docu1.id }}/{{ obj_get.id }}"> Firmas de Asistentes <i class="fa fa-hand-o-left"></i></a>
+                               &nbsp;&nbsp;&nbsp;  <a href='#Usted esta Aqui.'> <u> Documento</u> <i class="fa fa-hand-o-down"></i> </a>
         
 </div> 
+
+
+
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">

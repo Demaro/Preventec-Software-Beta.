@@ -352,7 +352,7 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 		instance = form.save(commit=False)
 		instance.save()
 		print(instance.id)
-		return render(request, "table_asist.html", context1)
+	
 
 	context = {	
 
@@ -368,35 +368,44 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 	return render(request, "documento.html", context)
 
 
-def get_docu(request, id_modulo, id_submodulo, id_carpeta, id_doc, id_docu):
 
-	date 	= timezone.now()
 
+def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 	obj_modulo = Modulo.objects.get(id=id_modulo)
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
 
-	obj_get	=	Template.objects.get(id=id_doc)
-	obj_docu	=	Documento.objects.filter(template=id_doc)
-	obj_docu1 		= Documento.objects.get(id=obj_docu)
+	obj_get	=	Documento.objects.get(id=id_docu)
 
-	context = {	
+	obj_template = Template.objects.get(id=id_doc)
+
+
+	context = {
 
 		"obj_modulo": obj_modulo,
 		"obj_sub": obj_sub,
+		"obj_get": obj_get,
 		"obj_get1": obj_get1,
-		"obj_get" : obj_get,
-		"obj_docu1"	: obj_docu1,
-		"date" 	: date
+		"obj_template": obj_template,
 
-	}	
+	}
 	return render(request, "table_asist.html", context)
 
 
+def select_users2(request, id_modulo, id_submodulo, id_carpeta):
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+	obj_get	=	Carpeta.objects.get(id=id_carpeta)
+	obj_profiles = Profile.objects.all()
 
-def table_asist(request):
-	
-	return render(request, "table_asist.html") 
+	context = {
+		"obj_modulo": obj_modulo,
+		"obj_sub": obj_sub,
+		"obj_get": obj_get,
+		"obj_profiles": obj_profiles,
+	}
+	return render(request, "table_asist2.html", context)
+
 
 
 def huellero(request, id_modulo,id_submodulo, id_carpeta, id_docu, id_doc):
