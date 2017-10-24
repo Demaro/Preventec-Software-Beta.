@@ -214,16 +214,15 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 
-	obj_get1	=	Carpeta.objects.get(id=id_carpeta)
+	obj_get	=	Carpeta.objects.get(id=id_carpeta)
 
-	obj_get	=	SubCarpeta.objects.get(id=id_carpeta) 
 
 	obj_template	= Template.objects.all()
 
 
 
 
-	form = ActivityForm(request.POST or None, instance=obj_get)
+	form = ActivityForm(request.POST or None)
 
 	if form.is_valid():
 
@@ -237,7 +236,6 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 	context = {	
 
 		"obj_get" : obj_get,
-		"obj_get1": obj_get1,
 		"form"  : form,
 		"obj_modulo": obj_modulo,
 		"obj_sub":	obj_sub,
@@ -259,7 +257,9 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 
-	obj_get	=	Carpeta.objects.get(id=id_carpeta)
+	obj_get	=	SubCarpeta.objects.get(id=id_carpeta)
+
+	obj_template	= Template.objects.all()
 
 
 	form = ActivityForm(request.POST or None, instance=obj_get)
@@ -279,9 +279,10 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 		"form"  : form,
 		"obj_modulo": obj_modulo,
 		"obj_sub":	obj_sub,
+		"obj_template": obj_template
 
 	}
-	return render(request, "subproceso.html", context)
+	return render(request, "carpeta_detail.html", context)
 
 def subcarpeta_detail(request, id_modulo, id_submodulo, id_carpeta, id_subcarpeta):
 
