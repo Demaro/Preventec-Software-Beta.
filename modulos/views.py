@@ -41,8 +41,6 @@ import pytz
 
 def calendar_activity(request):
 	
-	if not request.user.is_staff or not request.user.is_superuser:
-		raise Http404
 
 	obj_modulos	=	Modulo.objects.all()
 
