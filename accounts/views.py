@@ -18,7 +18,7 @@ from .forms import UserLoginForm, UserRegisterForm
 
 from profiles.forms import ProfileForm
 
-from profiles.models import Profile
+from profiles.models import Profile, Perfil_Obrero
 
 def login_view(request):
     form = UserLoginForm(request.POST or None)
@@ -55,11 +55,13 @@ def register_view(request):
 
 
 def view_users(request):
-    obj = Profile.objects.all()
+    obj = Profile.objects.all().order_by("-id")
+    obj2   = Perfil_Obrero.objects.all().order_by("-id")
 
     context = {
 
         "obj": obj,
+        "obj2": obj2,
     }
     return render(request, "user.html", context)
 

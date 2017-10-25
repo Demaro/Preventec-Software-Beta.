@@ -52,15 +52,15 @@
                           <img class="img-responsive avatar-view" src='{% static "images/menconstru.png" %}' alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
-                      {% for obj in object_list %}
+                      {% for obj in objects_list %}
                       
                       
 
                         <br>
-                      <a href='{% url "profile:edit" obj.id %}' class="btn btn-success"><i class="fa fa-edit m-right-xs"></i> Editar Perfil</a>
+                      <a href='{% url "profile:edit_obrero" obj.id %}' class="btn btn-success"><i class="fa fa-edit m-right-xs"></i> Editar Perfil</a>
                       
                       <br>
-                                          Ultima Actualizacion: <u>{{obj.ultimateupdate|date}}</u>
+                     Ultima Actualizacion: <u>{{obj.ultimateupdate|date}}</u>
                     
                       <br>
                       <br>
@@ -100,7 +100,7 @@
 
                       <div class="profile_title">
                         <div class="col-md-6">
-                          <h3>{{ obj.user.first_name }} {{ obj.user.last_name }}</h3>
+                          <h3>{{ obj.nombre }} {{ obj.apellido }}</h3>
                         </div>
                         <div class="col-md-6">
 
@@ -152,11 +152,6 @@
                      <br>
 
 
-                         &nbsp;&nbsp;&nbsp; Correo Electronico:&nbsp;  <u>{{obj.user.email}}</u>
-
-                     <br>
-                     <br>
-
                       &nbsp;&nbsp;&nbsp; Unidad: &nbsp;  <u>{{obj.unidad }}</u>
 
                      <br>
@@ -171,7 +166,7 @@
                      <br>
                      <br>
 
-                         &nbsp;&nbsp;&nbsp; Subcontratista:&nbsp;  {% if obj.subcta %} <i class="fa fa-check user-profile-icon"></i>{% else %}<i class="fa fa-close user-profile-icon"></i> {% endif %}
+                         &nbsp;&nbsp;&nbsp; Supervisor:&nbsp;  <u>{{obj.supervisor }}</u>
 
                      <br>
                      <br>

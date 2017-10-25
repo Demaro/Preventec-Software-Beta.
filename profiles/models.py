@@ -60,10 +60,8 @@ class Profile(models.Model):
 	digitalid = models.CharField(max_length=20, null=True, blank=True)
 	ultimateupdate = models.DateTimeField()
 	cargo 		= 	models.ForeignKey('Cargo', null=True, blank=True)
-	especialidad = models.ForeignKey('Especialidad', null=True, blank=True)
 	comite_par	= models.BooleanField(default=False,  blank=True)
 	subcta		= models.BooleanField(default=False, blank=True)
-	supervisor	= models.ForeignKey(User, related_name="supervisor2", null=True, blank=True)
 	inicio_cargo = models.DateField(auto_now=True, auto_now_add=False)
 	años_exp     = models.IntegerField(null=True, blank=True)
 	contrato = models.FileField(null=True, blank=True)
@@ -88,6 +86,51 @@ class Profile(models.Model):
 		ordering = ["-ultimateupdate",]
 
 
+
+class Perfil_Obrero(models.Model):
+	nombre = models.TextField(max_length=100)
+	apellido = models.TextField(max_length=100)
+	rut  = models.CharField(max_length=20, null=True, blank=True)
+	birthdate = models.DateField()
+	avatar = models.ImageField(upload_to='upload_location', 
+			null=True, 
+			blank=True,
+			width_field="width_field", 
+			height_field="height_field")
+	height_field = models.IntegerField(default=0, null=True, blank=True)
+	width_field = models.IntegerField(default=0, null=True, blank=True)
+	unidad		= models.ForeignKey('Unidad', null=True, blank=True)
+	digitalid = models.CharField(max_length=20, null=True, blank=True)
+	ultimateupdate = models.DateTimeField()
+	cargo 		= 	models.TextField(max_length=20, default="Obrero")
+	especialidad = models.ForeignKey('Especialidad', null=True, blank=True)
+
+	comite_par	= models.BooleanField(default=False,  blank=True)
+
+	supervisor	= models.ForeignKey('Profile', related_name="supervisor2", null=True, blank=True)
+	
+	inicio_cargo = models.DateField(auto_now=True, auto_now_add=False)
+	años_exp     = models.IntegerField(null=True, blank=True)
+	contrato = models.FileField(null=True, blank=True)
+	legales_asoc =  models.FileField(null=True, blank=True)
+
+	
+
+	objects = ProfileManager()
+
+
+	def __str__(self):
+			return self.nombre + " " + self.apellido
+
+
+	#def get_absolute_url(self):
+	#    return reverse("profile:detail", kwargs={"slug": self.slug})
+
+	#def get_api_url(self):
+	#    return reverse("posts-api:detail", kwargs={"slug": self.slug})
+
+	class Meta:
+		ordering = ["-ultimateupdate",]
 
 
 class Cargo(models.Model):

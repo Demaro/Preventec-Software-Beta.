@@ -20,8 +20,8 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from profiles.forms import ProfileForm, ProfileDocForm, ProfileDatosForm
-from profiles.models import Profile, Cargo
+from profiles.forms import ProfileForm, ProfileDocForm, ProfileDatosForm, ProfileObreroForm, ProfileDatosObreroForm, ProfileDocObreroForm
+from profiles.models import Profile, Perfil_Obrero, Cargo
 from posts.models import Post
 
 from django.utils import timezone
@@ -132,7 +132,7 @@ def siete(request):
 
 
 
-
+#Creacion del perfil staff
 def crear_perfil_staff(request, id_user):
 	if request.user.is_authenticated():
 		instance1	=	id_user
@@ -232,6 +232,58 @@ def carga_docu2(request, id_profile):
 	return render(request, "cargar_docu.html", context)
 
 
+#Creacion del Perfil Obrero
+
+def crear_perfil_obrero(request):
+	if request.user.is_authenticated():
+		form = ProfileObreroForm(request.POST or None)
+		
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.ultimateupdate = timezone.now()
+			instance.inicio_cargo = timezone.now()
+			instance.save()
+			print(instance.id)
+			return HttpResponseRedirect('/perfil_datos_obrero/%s' % instance.id )
+
+	context = {
+		"form": form,
+	}
+	return render(request, "create_profile_obrero.html", context)
+
+
+def perfil_datos_obrero(request, id_profile):
+	if request.user.is_authenticated():
+		instance = id_profile
+		obj 	= Perfil_Obrero.objects.get(id=id_profile)
+		form 	= ProfileDatosObreroForm(request.POST or None, instance=obj)
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.save()
+			print(instance.id)
+			return HttpResponseRedirect('/cargar_documentos_obrero/%s' % instance.id )
+	context = {
+		"obj": obj,
+		"form": form,
+	}
+	return render(request, "perfil_datos_obrero.html", context)
+
+
+def carga_docu_obrero(request, id_profile):
+	if request.user.is_authenticated():
+		instance = id_profile
+		obj 	= Perfil_Obrero.objects.get(id=id_profile)
+		form 	= ProfileDocObreroForm(request.POST or None, instance=obj)
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.save()
+			print(instance.id)
+			return HttpResponseRedirect('/gestion_usuarios')
+	context = {
+		"obj": obj,
+		"form": form,
+	}
+	return render(request, "cargar_docu_obrero.html", context)
 
 def profile_list(request):
 	profiles_obj = Profile.objects.all().order_by("-ultimateupdate")
@@ -250,7 +302,24 @@ def profile_list(request):
 
 def profile_detail(request, id_profile):
 	object_list = Profile.objects.filter(id=id_profile)
-	return render(request, "profile_detail.html", {"object_list": object_list})
+
+	context = {
+		"object_list": object_list,
+		
+	}
+	return render(request, "profile_detail.html", context)
+
+
+def profile_detail_obrero(request, id_profile):
+	objects_list = Perfil_Obrero.objects.filter(id=id_profile)
+	context = {
+		"objects_list": objects_list,
+
+	}
+	return render(request, "profile_detail_obrero.html", context)
+
+
+
 
 
 
@@ -283,6 +352,23 @@ def profile_update(request, id_profile):
 	else:
 		raise Http404
 
+
+
+def profile_update_obrero(request, id_profile):
+	instance = Perfil_Obrero.objects.get(id=id_profile)
+	form = ProfileObreroForm(request.POST or None,  instance=instance)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.ultimateupdate = timezone.now()
+		instance.save()
+		messages.success(request, "<a href='#'>Item</a> Modificado!", extra_tags='html_safe')
+		return HttpResponseRedirect('/perfil_datos_obrero/%s/' % id_profile)
+
+	context = {
+		"instance": instance,
+		"form": form,
+	}
+	return render(request, "create_profile_obrero.html", context)
 
 
 

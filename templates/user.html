@@ -240,7 +240,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <div class="col-md-6 col-sm-6 col-xs-6">
-               <h2></i>&nbsp;&nbsp;Todos los Usuarios</h2>
+               <h2></i>&nbsp;&nbsp;Usuarios y Obreros</h2>
 
              </div>
 
@@ -266,7 +266,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                    Agregar: &nbsp;&nbsp;
                                  <a href='{% url "staff" %}'><button type="button" class="btn btn-primary btn-xs">Usuario</button></a>
-                                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Trabajador</button>
+                                  <a href='{% url "profile:add_obrero" %}'> <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">Obrero</button>
 
                             
                                 </div>
@@ -287,7 +287,6 @@
                             <th class="column-title">Nombre</th>
                             <th class="column-title">Apellido</th>
                             <th class="column-title">Cargo</th>
-                            <th class="column-title">Supervisor</th>
                             <th class="column-title">Ultima Actualizacion</th>
                             <th>Ver</th>
                           
@@ -300,6 +299,7 @@
 
                             
                       {% for obj in obj %}
+
                           <tr class="even pointer"> 
 
                                  <td>   {{ obj.user.first_name }}</a></td> 
@@ -311,7 +311,7 @@
                                   
                                   <td>{{ obj.cargo }}</td>
 
-                                  <td> No Aplica</td>
+                           
                                 
                                  
                                   <td>{{ obj.ultimateupdate }}</td>
@@ -329,6 +329,67 @@
                              
                             </table>
                           </div>
+
+                        </div>
+
+
+                          <div class="panel-body">
+                            
+
+
+                          <div class="table-responsive">
+
+                      <table id="myTable2" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                         
+                            <th class="column-title">Nombre</th>
+                            <th class="column-title">Apellido</th>
+                            <th class="column-title">Cargo</th>
+                            <th class="column-title">Supervisor</th>
+                            <th class="column-title">Ultima Actualizacion</th>
+                            <th>Ver</th>
+                          
+                         
+
+                          </tr>
+                        </thead>
+
+                              <tbody>
+
+                            
+                      {% for obj in obj2 %}
+
+                          <tr class="even pointer"> 
+
+                                 <td>   {{ obj.nombre }}</a></td> 
+                        
+                                  
+                                   <td>
+                                    {{ obj.apellido }}
+                                  </td>                              
+                                  
+                                  <td>{{ obj.cargo }}</td>
+
+                                  <td> {{ obj.supervisor.user.first_name }} {{ obj.supervisor.user.last_name }}</td>
+                                
+                                 
+                                  <td>{{ obj.ultimateupdate }}</td>
+
+
+
+                          <td><a href='{% url "profile:profile_detail_obrero" obj.id %}'><button type="button" rel="tooltip" title="Ver todo" class="btn btn-primary btn-simple btn-xs">
+                          <i class="fa fa-eye"></i>
+                          </button></a></td>
+                                </tr>
+                        {% endfor %}
+
+                              
+                              </tbody>
+                             
+                            </table>
+                          </div>
+                          
                         </div>
                                                   </div>
                         </div>
@@ -408,6 +469,14 @@ $(window).on('popstate', function () {
 
 $(document).ready(function(){
     $('#myTable').DataTable();
+});
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('#myTable2').DataTable();
 });
 
 </script>

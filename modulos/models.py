@@ -116,7 +116,7 @@ class Ejecucion(models.Model):
 
 class Documento(models.Model):
 	template 	= models.ForeignKey('Template', related_name="template", null=True, blank=True)
-	user1	=	models.ForeignKey(Profile, related_name="user1")
+	user1	=	models.ForeignKey(Profile, related_name="user1", null=True, blank=True)
 	fecha 	=	models.DateField(null=True, blank=True)
 	depto	=	models.CharField(max_length=50, null=True, blank=True)
 	duracion	=	models.IntegerField(default=0)
@@ -124,7 +124,7 @@ class Documento(models.Model):
 	descripcion	= 	models.TextField(null=True, blank=True)
 	subtitulo1	=	models.TextField(null=True, blank=True)
 	subtitulo2	=	models.TextField(null=True, blank=True)
-	user2		=	models.ForeignKey(Profile, related_name="user2")
+	user2		=	models.ForeignKey(Profile, related_name="user2", null=True, blank=True)
 
 	def __str__(self):
 		return self.titulo

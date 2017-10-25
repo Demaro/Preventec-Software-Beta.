@@ -10,6 +10,14 @@ from profiles.views import (
 	carga_docu2,
 	profile_detail,
 	profile_update,
+
+	crear_perfil_obrero,
+	perfil_datos_obrero,
+	carga_docu_obrero,
+	profile_detail_obrero,
+	profile_update_obrero,
+
+
 	profile_delete,
 	#resume,
 	home,
@@ -40,15 +48,22 @@ urlpatterns = [
 	url(r'^profiles', profile_list, name='list'),
 	url(r'^organigrama', profiles_contacts, name='org_users'),
 	url(r'^crear_perfil_staff/(?P<id_user>\d+)/$', login_required(crear_perfil_staff), name="perfil_staff"),
-
 	url(r'^perfil_datos_staff/(?P<id_profile>\d+)/$', login_required(perfil_datos_staff), name="datos_staff"),
 	url(r'^perfil_datos_staff_edit/(?P<id_profile>\d+)/$', login_required(perfil_datos_staff2), name="datos_staff2"),
 	url(r'^cargar_documentos/(?P<id_profile>\d+)/$', login_required(carga_docu), name="add_docu"),
 	url(r'^cargar_documentos_edit/(?P<id_profile>\d+)/$', login_required(carga_docu2), name="add_docu2"),
 
+	url(r'^add_obrero/$', login_required(crear_perfil_obrero), name="add_obrero"),
+	url(r'^perfil_datos_obrero/(?P<id_profile>\d+)/$', login_required(perfil_datos_obrero), name="datos_obrero"),
+	url(r'^cargar_documentos_obrero/(?P<id_profile>\d+)/$', login_required(carga_docu_obrero), name="add_docu_obrero"),
+
+
+
 
 	url(r'^perfil-detalle/(?P<id_profile>\d+)/$', login_required(profile_detail), name='profile_detail'),
+	url(r'^perfil-detalle_obrero/(?P<id_profile>\d+)/$', login_required(profile_detail_obrero), name='profile_detail_obrero'),
 	url(r'^perfil-editar/(?P<id_profile>\d+)/$', login_required(profile_update), name='edit'),
+	url(r'^perfil-editar_obrero/(?P<id_profile>\d+)/$', login_required(profile_update_obrero), name='edit_obrero'),
 
 	url(r'^delete-profile/(?P<id_profile>\d+)$', profile_delete, name='delete'),
 

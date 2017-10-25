@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+               <div class="col-md-12 col-sm-12 col-xs-12">
+   
+                             <a href='#Usted esta Aqui.'> Nuevo Obrero  <i class="fa fa-hand-o-down"></i></a> 
+                                &nbsp;&nbsp;&nbsp; Perfil Laboral <i class="fa fa-hand-o-right"></i>
+                               &nbsp;&nbsp;&nbsp;  Carga de Documentacion <i class="fa fa-hand-o-right"></i>
+
+                               
+        
+</div> 
+
+
+              <div class="title_right">
+
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+   <br>
+
+            <div class="">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><i class="fa fa-user"></i> Ingresar Trabajador Obrero</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                        <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal form-label-left">
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre"> Nombre
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              {{ form.nombre }}
+                            </div>
+
+                          </div>
+                                                    <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre"> Apellido
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              {{ form.apellido }}
+                            </div>
+
+                          </div>
+                             <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre"> Rut
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              {{ form.rut }}
+                            </div>
+
+                          </div>
+                                                    <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre"> Fecha Nacimiento
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              {{ form.birthdate }}
+                            </div>
+
+                          </div>
+
+ <br>
+ <br>
+
+      <!--
+                    <div class="title_left">
+                <small>Datos del Perfil:</small>
+              </div>
+              <br>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rut">Rut <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                            {{form2.rut}}
+                            </div>
+                          </div>
+                          {% if not instance %}
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthdate">Fecha Nacimiento <span class="required"></span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <input type="text" id="birthdate" name="birthdate" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="avatar" class="control-label col-md-3 col-sm-3 col-xs-12">Foto de Perfil<span class="required"></span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{form2.avatar}}
+                            
+                            </div>
+                          </div>
+                          {% endif %}
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cargo">Cargo <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{form2.cargo}}
+                            </div>
+                          </div>
+                          
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contrato">Contrato<span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                            {{form2.contrato}}
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="legales_asoc">Legales Acosiados<span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                            {{form2.legales_asoc}}
+                            </div>
+                          </div>
+                        
+   </form>
+                             -->
+                              {% csrf_token %}
+                              <a href='/gestion_usuarios'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i> Cancelar</button></a>
+                              <button type="submit" id="next" name="next" class="btn btn-primary pull-right" style="display:none;"><i class="fa fa-chevron-right"></i> Continuar</button>
+                              <div class="col-md-4 col-sm-4 col-xs-4">  
+                      <button name="btnsave" type="button" class="btn btn-primary ">Guardar</button>
+                    </div>
+
+                     
+
+
+
+          
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+ {% endblock content %}
+
+ {% block content2 %}
+
+<script>
+$(document).ready(function(){
+    $("button[name='btnsave']").click(function(){
+        $("#next").fadeIn()
+    });
+
+});
+</script>
+
+{% endblock content2 %}
+
