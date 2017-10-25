@@ -33,6 +33,8 @@ from django.utils import timezone
 
 from django.template import loader
 
+from django.db.models import Count
+
 
 import pytz
 
@@ -332,28 +334,25 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 
 	obj_template1 = Template.objects.get(id=id_doc)
 
-	obj_get	=	Documento.objects.filter(template=obj_template1)
+	obj_get	=	Documento.objects.filter(template=obj_template1).order_by('-id')[:1]
 	obj_template 		= Documento.objects.get(id=obj_get)
-	context1 = {
-
-		"obj_modulo": obj_modulo,
-		"obj_sub": obj_sub,
-		"obj_get": obj_get,
-		"obj_get1": obj_get1,
-		"obj_template" : obj_template,
-		"obj_template1":	obj_template1,
-
-	}
+	date = timezone.now()
 
 	form 	=	DocumentoForm(request.POST or None, instance=obj_template)
 
 	if form.is_valid():
 		instance = form.save(commit=False)
+		instance.fecha = date
 		instance.save()
+		new_instance = Documento(template=instance.template, user1=instance.user1, fecha=instance.fecha, titulo=instance.titulo, duracion=instance.duracion, descripcion=instance.descripcion, subtitulo1=instance.subtitulo1, subtitulo2=instance.subtitulo2, user2=instance.user2)
+		new_instance.save()
+
 		print(instance.id)
+		print(new_instance.id)
 	
 
 	context = {	
+
 
 		"obj_template" : obj_template,
 		"obj_template1":	obj_template1,
@@ -361,6 +360,7 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 		"obj_modulo": obj_modulo,
 		"obj_sub": obj_sub,
 		"obj_get1": obj_get1,
+		"new_instance": new_instance
 
 
 	}	

@@ -116,7 +116,7 @@
 
                         <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
 
-<a href='{% url "profile:select_users"  obj_modulo.id obj_sub.id obj_get1.id obj_template.id obj_template1.id %}'><button type="button" id="next" name="next" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right" ></i>  Continuar</button></a>
+<a href='{% url "profile:select_users"  obj_modulo.id obj_sub.id obj_get1.id new_instance.id obj_template1.id %}'><button type="button" id="next" name="next" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right" ></i>  Continuar</button></a>
                     
                             <div class="col-md-4 col-sm-4 col-xs-4">  
                       <button type="submit" name="btnsave" class="btn btn-primary ">Guardar</button>
