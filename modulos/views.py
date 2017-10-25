@@ -349,10 +349,10 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 
 		print(instance.id)
 		print(new_instance.id)
+
 	
 
 	context = {	
-
 
 		"obj_template" : obj_template,
 		"obj_template1":	obj_template1,
@@ -360,7 +360,6 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 		"obj_modulo": obj_modulo,
 		"obj_sub": obj_sub,
 		"obj_get1": obj_get1,
-		"new_instance": new_instance
 
 
 	}	
