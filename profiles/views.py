@@ -327,30 +327,27 @@ def profile_update(request, id_profile):
 	instance = Profile.objects.get(id=id_profile)
 	id_user = instance.user.id
 	obj 	= User.objects.get(id=id_user)
-	if request.user.is_superuser:
-
-		form = UserNamesForm(request.POST or None, instance=obj)
-		if form.is_valid():
-			instance1 = form.save(commit=False)
-			instance1.save()
+	form = UserNamesForm(request.POST or None, instance=obj)
+	if form.is_valid():
+		instance1 = form.save(commit=False)
+		instance1.save()
 
 
-		form2 = ProfileForm(request.POST or None,  instance=instance)
-		if form2.is_valid():
-			instance = form2.save(commit=False)
-			instance.ultimateupdate = timezone.now()
-			instance.save()
-			messages.success(request, "<a href='#'>Item</a> Modificado!", extra_tags='html_safe')
-			return HttpResponseRedirect('/perfil_datos_staff_edit/%s/' % id_profile)
+	form2 = ProfileForm(request.POST or None,  instance=instance)
+	if form2.is_valid():
+		instance = form2.save(commit=False)
+		instance.ultimateupdate = timezone.now()
+		instance.save()
+		messages.success(request, "<a href='#'>Item</a> Modificado!", extra_tags='html_safe')
+		return HttpResponseRedirect('/perfil_datos_staff_edit/%s/' % id_profile)
 
-		context = {
-			"instance": instance,
-			"form2":form2,
-			"form": form,
-		}
-		return render(request, "create_profile.html", context)
-	else:
-		raise Http404
+	context = {
+		"instance": instance,
+		"form2":form2,
+		"form": form,
+	}
+	return render(request, "create_profile.html", context)
+
 
 
 
