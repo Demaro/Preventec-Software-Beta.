@@ -35,6 +35,8 @@ class ProfileDatosForm(forms.ModelForm):
 
 		fields = [
 			"cargo",
+			"especialidad",
+			"supervisor",
 			"unidad",
 			"comite_par",
 			"subcta",
@@ -46,6 +48,8 @@ class ProfileDatosForm(forms.ModelForm):
 			'unidad':    forms.Select(attrs={'class': 'form-control'}),
 			'comite_par': forms.CheckboxInput(attrs={'class': 'form-control'}),
 			'subcta'	:	forms.CheckboxInput(attrs={'class': 'form-control'}),
+			'especialidad':   forms.Select(attrs={'class': 'form-control'}),
+            'supervisor':		forms.Select(attrs={'class': 'form-control'}),
 
 
 

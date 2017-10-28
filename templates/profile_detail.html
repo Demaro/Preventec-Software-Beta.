@@ -109,7 +109,7 @@
                       <!-- start of user-activity-graph -->
                       <!--<div id="graph_bar" style="width:100%; height:280px;"></div> -->
                       <!-- end of user-activity-graph -->
-
+                        <div class="col-md-9 col-sm-9 col-xs-12">
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Datos</a>
@@ -119,6 +119,7 @@
                           <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Cursos</a>
                           </li>
                         </ul>
+                      </div>
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
@@ -142,6 +143,12 @@
 
                       &nbsp;&nbsp;&nbsp;Inicio Cargo:&nbsp; <u>{{obj.inicio_cargo}}</u> 
 
+                     <br>
+                     <br>
+
+                     {% if obj.especialidad %}
+                     &nbsp;&nbsp;&nbsp;  Especialidad:&nbsp; <u>{{ obj.especialidad }}</u> {% else %}
+                     &nbsp;&nbsp;&nbsp;  Especialidad:&nbsp;  <u>  No Asignado</u>{% endif %}
                      <br>
                      <br>
 
@@ -171,7 +178,14 @@
                      <br>
                      <br>
 
+
                          &nbsp;&nbsp;&nbsp; Subcontratista:&nbsp;  {% if obj.subcta %} <i class="fa fa-check user-profile-icon"></i>{% else %}<i class="fa fa-close user-profile-icon"></i> {% endif %}
+
+                     <br>
+                     <br>
+                     {% if obj.supervisor %}
+                      &nbsp;&nbsp;&nbsp; Supervisor:&nbsp;  <u>{{obj.supervisor }}</u>{% else %}
+                      &nbsp;&nbsp;&nbsp; Supervisor:&nbsp;  <u>  No Asignado</u>{% endif %}
 
                      <br>
                      <br>
@@ -258,6 +272,9 @@
                               </tbody>
                   
                             </table>
+                                   </div>
+                      
+                  
 
 
                                          <div class="btn-group">
@@ -266,14 +283,13 @@
                     </div>
                       <button class="btn btn-success dropdown-toggle" type="button" > Subir </button>
                      
-
+                        </div>
+                          </div>
             
 
                     
 
-                          </div>
-                        </div>
-                      </div>
+                   
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                            <div class="panel-body">
                           <div class="table-responsive">

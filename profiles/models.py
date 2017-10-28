@@ -66,6 +66,8 @@ class Profile(models.Model):
 	años_exp     = models.IntegerField(null=True, blank=True)
 	contrato = models.FileField(null=True, blank=True)
 	legales_asoc =  models.FileField(null=True, blank=True)
+	especialidad = models.ForeignKey('Especialidad_staff', null=True, blank=True)
+	supervisor	= models.ForeignKey('Profile', related_name="supervisor1", null=True, blank=True)
 
 	
 
@@ -133,13 +135,16 @@ class Perfil_Obrero(models.Model):
 		ordering = ["-ultimateupdate",]
 
 
+class Especialidad_staff(models.Model):
+	nombre = models.TextField(max_length=30)
+
+
+	def __str__(self):
+			return self.nombre
+
+
 class Cargo(models.Model):
 	nombre = models.TextField(max_length=30)
-	tipo   = models.IntegerField()
-
-
-	def __unicode__(self):
-		return self.nombre
 
 
 	def __str__(self):
