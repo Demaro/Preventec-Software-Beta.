@@ -79,7 +79,7 @@
                       <table id="myexample" class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
                         <thead>
                           <tr class="headings">
-                            <th> <input type="checkbox" id="checkAll" class="icheckbox_flat-green" name="carpeta"> </th>
+                            <th> <input type="checkbox" id="checkAll" class="icheckbox_flat-green" name="firmaALL"> </th>
                             <th class="column-title">Nombre</th>
                             <th class="column-title">Apellido</th>
                             <th class="column-title">Rut</th>
@@ -103,14 +103,21 @@
                             
                             {% for obj in obj_list %}
 
+
+                            
+
                           <tr>
                             <td>  
                             <div id="checkboxes">
 
+                            {% if obj_get.id == obj1.id %}
+                            si
+                            {% else %}
+
 
                             <input class="icheckbox_flat-green"  id="id_firmas_{{ obj.id }}" name="firmas" type="checkbox" value="{{ obj.id }}">
+                            {% endif %}
                          
-
                           
                   
 
@@ -142,18 +149,19 @@
 
 
 
-                        <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
+                        <a href='{% url "profile:proceso"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
                           <!--
 
                           <button type="submit" class="btn btn-primary pull-right">Guardar y Continuar</button>
                         -->
 
-
+{% if obj_get.etapa == 2 %}
 <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id  obj_get.id obj_template.id %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Continuar</button></a>
+{% endif %}
 
                             <div class="col-md-4 col-sm-4 col-xs-4">  
                               {% csrf_token %}
-                     <input type="submit" class="btn btn-primary " name="Guardar" value="Guardar">
+                     <input type="submit" class="btn btn-primary " id="btnsave" name="btnsave" value="Guardar" style="display:none;">
                       </form>
                     </div>
                         </div>
@@ -175,12 +183,88 @@
 
 
 <script type="text/javascript">
+  $(document).ready(function() {
+    $("input[name='firmas']").change(function() {
+        var maxAllowed = 0;
+          var cnt = $("input[name='firmas']:checked").length;
+            if (cnt > maxAllowed) {
+              $('#btnsave').fadeIn('fast');
+           
+            }else {
+              $('#btnsave').fadeOut('fast');
+            }
+    
+
+    });
+
+    
+  });
+
+
+
+
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("input[name='firmaALL']").change(function() {
+        var maxAllowed = 0;
+          var cnt = $("input[name='firmaALL']:checked").length;
+            if (cnt > maxAllowed) {
+              $('#btnsave').fadeIn('fast');
+           
+            }else {
+              $('#btnsave').fadeOut('fast');
+            }
+    
+
+    });
+
+    
+  });
+
+
+
+
+</script>
+
+<script type="text/javascript">
 $("#checkAll").click(function () {
     $(".icheckbox_flat-green").prop('checked', $(this).prop('checked'));
 });
 
 
 </script>
+
+
+  <script>
+      $("#checkAll").on("change", function() {
+        $(':checkbox').not(this).prop('checked', this.checked);
+      });
+
+      $(":checkbox").on("change", function(){
+        var checkboxValues = {};
+        $(":checkbox").each(function(){
+          checkboxValues[this.id] = this.checked;
+        });
+        $.cookie('checkboxValues', checkboxValues, { expires: 7, path: '/' })
+      });
+
+      function repopulateCheckboxes(){
+        var checkboxValues = $.cookie('checkboxValues');
+        if(checkboxValues){
+          Object.keys(checkboxValues).forEach(function(element) {
+            var checked = checkboxValues[element];
+            $("#" + element).prop('checked', checked);
+          });
+        }
+      }
+
+      $.cookie.json = true;
+      repopulateCheckboxes();
+    </script>
+
+
 
 <script type="text/javascript">
 $(document).ready(function() {

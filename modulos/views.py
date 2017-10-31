@@ -26,7 +26,7 @@ from profiles.models import Profile
 
 from activitys.forms import ActivityForm
 
-from .forms import ModuloForm, CarpetaForm, SubCarpetaForm, DocumentoForm, DocFirmasForm
+from .forms import ModuloForm, CarpetaForm, SubCarpetaForm, DocumentoForm, DocFirmasForm, DocEtapaForm
 
 
 from django.utils import timezone
@@ -219,6 +219,8 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 
 	obj_template	= Template.objects.all()
 
+	obj_docu = Documento.objects.all()
+
 
 
 
@@ -234,6 +236,8 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 		return HttpResponseRedirect('/modulo/%s/' % id_modulo)
 
 	context = {	
+
+
 
 		"obj_get" : obj_get,
 		"form"  : form,
@@ -260,6 +264,7 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 	obj_get	=	SubCarpeta.objects.get(id=id_carpeta)
 
 	obj_template	= Template.objects.all()
+	obj_docu = Documento.objects.exclude(default=True).order_by('-id')
 
 
 	form = ActivityForm(request.POST or None, instance=obj_get)
@@ -274,6 +279,8 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 		return HttpResponseRedirect('/modulo/%s/' % id_modulo)
 
 	context = {	
+
+		"obj_docu": obj_docu,
 
 		"obj_get" : obj_get,
 		"form"  : form,
@@ -302,6 +309,8 @@ def subcarpeta_detail(request, id_modulo, id_submodulo, id_carpeta, id_subcarpet
 
 	obj_subcarp = SubCarpeta.objects.get(id=id_subcarpeta)
 
+	obj_docu = Documento.objects.all()
+
 
 	form = ActivityForm(request.POST or None, instance=obj_get)
 
@@ -315,6 +324,8 @@ def subcarpeta_detail(request, id_modulo, id_submodulo, id_carpeta, id_subcarpet
 		return HttpResponseRedirect('/modulo/%s/' % id_modulo)
 
 	context = {	
+
+		"obj_docu" : obj_docu,
 
 		"obj_get" : obj_get,
 		"form"  : form,
@@ -334,7 +345,7 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 
 	obj_template1 = Template.objects.get(id=id_doc)
 
-	obj_get	=	Documento.objects.filter(template=obj_template1).order_by('-id')[:1]
+	obj_get	=	Documento.objects.filter(default=True)
 	obj_template 		= Documento.objects.get(id=obj_get)
 
 	date = timezone.now()
@@ -345,7 +356,7 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 		instance = form.save(commit=False)
 		instance.fecha = date
 		instance.save()
-		new_instance = Documento(template=instance.template, user1=instance.user1, fecha=instance.fecha, titulo=instance.titulo, duracion=instance.duracion, descripcion=instance.descripcion, subtitulo1=instance.subtitulo1, subtitulo2=instance.subtitulo2, user2=instance.user2)
+		new_instance = Documento(template=instance.template, user1=instance.user1, fecha=instance.fecha, titulo=instance.titulo, duracion=instance.duracion, descripcion=instance.descripcion, subtitulo1=instance.subtitulo1, subtitulo2=instance.subtitulo2, user2=instance.user2, etapa=1)
 		new_instance.save()
 
 		print(instance.id)
@@ -387,14 +398,9 @@ def documento_select_save(request, id_modulo,id_submodulo, id_carpeta, id_doc, i
 		instance = form.save(commit=False)
 		instance.fecha = date
 		instance.save()
-		new_instance = Documento(template=instance.template, user1=instance.user1, fecha=instance.fecha, titulo=instance.titulo, duracion=instance.duracion, descripcion=instance.descripcion, subtitulo1=instance.subtitulo1, subtitulo2=instance.subtitulo2, user2=instance.user2)
-		new_instance.save()
-
 		print(instance.id)
-		print(new_instance.id)
 
-
-		return HttpResponseRedirect('/modulo/%s/submodulo/%s/carpeta/%s/modelo/%s/docu/%s/'  % (obj_modulo.id, obj_sub.id, obj_get1.id, obj_template1.id, new_instance.id ))
+		return HttpResponseRedirect('/modulo/%s/submodulo/%s/carpeta/%s/modelo/%s/docu/%s/'  % (obj_modulo.id, obj_sub.id, obj_get1.id, obj_template1.id, instance.id ))
 
 
 	context = {	
@@ -424,15 +430,25 @@ def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 
 
 	form 	=	DocFirmasForm(request.POST or None, instance=obj_get)
+	form2	=	DocEtapaForm(instance=obj_get)
 
 	if form.is_valid():
 		firmas = form.save(commit=False)
+		
+		
 		get_firmas = request.POST.getlist('firmas')
 		print(get_firmas)
 
 		firmas.firmas = get_firmas
-		
+
 		firmas.save()
+
+		obj  = form2.save(commit=False)
+		obj.etapa = 2
+		obj.save()
+
+		print(obj.etapa)
+
 		return HttpResponseRedirect('/modulo/%s/submodulo/%s/carpeta/%s/modelo/%s/documento/%s/selecion_asistentes/' % (obj_modulo.id, obj_sub.id, obj_get1.id, obj_template.id, obj_get.id))
 
 	context = {
@@ -534,6 +550,22 @@ def docu_generate(request, id_modulo,id_submodulo, id_carpeta, id_doc, id_docu):
 
 	}	
 	return render(request, "docu_select.html", context)
+
+
+
+
+def docu_pend_delete(request, id_modulo, id_submodulo, id_carpeta, id_docu):
+	instance = Documento.objects.get(id=id_docu)
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+	obj_proceso	=	SubCarpeta.objects.get(id=id_carpeta) 
+
+	if request.user.is_superuser:
+		instance.delete()
+		messages.success(request, "Eliminado con exito")
+		return HttpResponseRedirect('/modulo/%s/submodulo/%s/proceso/%s/' % (obj_modulo.id, obj_sub.id, obj_proceso.id ))
+	else:
+		raise Http404
 
 
 from django.views.generic import View

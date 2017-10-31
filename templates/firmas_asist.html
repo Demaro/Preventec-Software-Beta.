@@ -11,7 +11,7 @@
             <div class="page-title">
                <div class="col-md-12 col-sm-12 col-xs-12">
    
-                             <a href='/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}/carpeta/{{ obj_get1.id }}/modelo/{{ obj_get.id }}/'>Generar {{ obj_get.nombre }} <i class="fa fa-hand-o-left"></i></a> &nbsp;&nbsp;  &nbsp;  <a href="/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}/carpeta/{{ obj_get1.id }}/documento/{{ obj_docu1.id }}/{{ obj_get.id }}/selecion_asistentes/"> Seleccion de Asistentes <i class="fa fa-hand-o-left"></i></a>
+                             <a href='/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}/carpeta/{{ obj_get1.id }}/modelo/{{ obj_get.id }}/'>Generar {{ obj_get.nombre }} <i class="fa fa-hand-o-left"></i></a> &nbsp;&nbsp;  &nbsp;  <a href="/modulo/{{ obj_modulo.id }}/submodulo/{{ obj_sub.id }}/carpeta/{{ obj_get1.id }}/modelo/{{ obj_get.id }}/documento/{{ obj_docu1.id }}/selecion_asistentes/"> Seleccion de Asistentes <i class="fa fa-hand-o-left"></i></a>
                                &nbsp;&nbsp;&nbsp; <a href='#Usted esta Aqui.'> <u>Firmas de Asistentes</u> <i class="fa fa-hand-o-down"></i></a>
                                &nbsp;&nbsp;&nbsp;  Documento <i class="fa fa-hand-o-right"></i> 
         
@@ -82,11 +82,11 @@
                             
                             </th>
                          
+                            <th class="column-title">Firma</th>
                             <th class="column-title">Nombre</th>
                             <th class="column-title">Apellido</th>
-                            <th class="column-title">Cargo</th>
                             <th class="column-title">Rut</th>
-                            <th class="column-title">Firma</th>
+                            <th class="column-title">Cargo</th>
 
                           
                             </th>
@@ -101,86 +101,25 @@
                               <tbody>
 
 
-
+                          {% for obj in obj_docu1.firmas.all %}
                           <tr class="even pointer">
                             <td class="a-center ">                             
                             </td>  
 
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> Steve </a></td>
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>Wozniak </a></td>
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>Obrero </a></td>                               
-                                  
+                                 <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a></td>
+                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.user.first_name }} </a></td>
+                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.user.last_name }} </a></td>
                                   <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>18.211.122-1 </a></td>
+                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.cargo }}</a></td>                               
+                                  
+
                                 
                                  
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> </a></td>
+
                                   
                                 </tr>
-                                <tr class="even pointer">
-                            <td class="a-center ">                             
-                            </td>  
+                            {% endfor %}
 
-                                  <td>Bill</td>
-
-                                  <td>Gates</td>
-                                  
-                                  <td>Obrero</td>                               
-                                  
-                                  <td>18.211.122-1</td>
-                                
-                                 
-                                  <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                  
-                                </tr>
-           <tr class="even pointer">
-                            <td class="a-center ">                             
-                            </td>  
-
-                                  <td> <a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> Mark</a></td>
-
-                                  <td>Rojas</td>
-                                  
-                                  <td>Obrero</td>                               
-                                  
-                                  <td>18.211.122-1</td>
-                                
-                                 
-                                  <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                  
-                                </tr>
-           
-           <tr class="even pointer">
-                            <td class="a-center ">                             
-                            </td>  
-
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>Jesus</a></td>
-
-                                  <td>Martinez</td>
-                                  
-                                  <td>Obrero</td>                               
-                                  
-                                  <td>18.211.122-1</td>
-                                
-                                 
-                                  <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-                                  
-                                </tr>
-           <tr class="even pointer">
-                            <td class="a-center ">                             
-                            </td>  
-
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>Steve </a></td>
-
-                                  <td>Wozniak</td>
-                                  
-                                  <td>Obrero</td>                               
-                                  
-                                  <td>18.211.122-1</td>
-                                
-                                 
-                                  <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-                                  
-                                </tr>
            
            
                               </tbody>
@@ -197,7 +136,7 @@
                         -->
 
 
-                        <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
+                        <a href='{% url "profile:proceso"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
 
                         <a href='{% url "profile:docu_generate"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Continuar</button></a>
 

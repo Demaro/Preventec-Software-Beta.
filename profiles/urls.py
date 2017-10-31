@@ -46,7 +46,8 @@ from modulos.views import (
 	select_users2, 
 	firmas_asist, 
 	huellero, 
-	docu_generate
+	docu_generate,
+	docu_pend_delete
 
 	)
 
@@ -121,6 +122,10 @@ urlpatterns = [
 	url(r'^documento_pdf/(?P<id_docu>\d+)/(?P<nombre>[\w-]+)$', PDFPrueba.as_view(), name='mi_pdf'),
 
 	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/seleccion_participantes/$', login_required(select_users2), name='select_users2'),
+
+
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/proceso/(?P<id_carpeta>\d+)/documento/(?P<id_docu>\d+)/delete', docu_pend_delete, name='delete_docu'),
+
 
 
 

@@ -145,3 +145,15 @@ class DocFirmasForm(forms.ModelForm):
 	
 		}
 
+class DocEtapaForm(forms.ModelForm):
+		
+	class Meta:
+		model = Documento
+
+
+		fields = [
+
+			"etapa",
+
+
+		]

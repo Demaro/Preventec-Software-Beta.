@@ -126,6 +126,8 @@ class Documento(models.Model):
 	subtitulo2	=	models.TextField(null=True, blank=True)
 	user2		=	models.ForeignKey(Profile, related_name="user2", null=True, blank=True)
 	firmas 		=	models.ManyToManyField(Profile,  blank=True)
+	etapa		=  	models.IntegerField(null=True, blank=True, default=0)
+	default 	=	models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.titulo
@@ -134,6 +136,7 @@ class Documento(models.Model):
 		descripcion = self.descripcion
 		markdown_text = markdown(descripcion)
 		return mark_safe(markdown_text)
+
 
 
 class Template(models.Model):

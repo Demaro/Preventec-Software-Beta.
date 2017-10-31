@@ -133,14 +133,9 @@
 
 <div class="content">
 <center>
-                              <strong>DEFINICIONES DE ACCIDENTES</strong>
+                              <strong></strong>
                               <br>
 
-Accidente del Trabajo: Toda lesión que sufre un trabajador a causa o con ocasión del
-                                        Trabajo que le produzca incapacidad o muerte.
-Accidente de Trayecto: Toda lesión que sufre un trabajador en el trayecto directo desde el lugar de su habitación a su trabajo o viceversa que le produzca incapacidad o muerte.
-
-Yo asumo la responsabilidad de informarme de los procedimientos y manuales que me sean entregado especialmente su reglamento interno, además la Empresa queda facultada para evaluar el conocimiento adquirido a través de ello.
 </center>
 </div>
 <br>
@@ -169,7 +164,7 @@ Yo asumo la responsabilidad de informarme de los procedimientos y manuales que m
 
              {% csrf_token %}   
     
-                        <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>  
+                        <a href='{% url "profile:proceso"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>  
          <a href='{% url "profile:mi_pdf"  obj_docu1.id obj_get.nombre %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generar PDF</button></a>   
 
                            

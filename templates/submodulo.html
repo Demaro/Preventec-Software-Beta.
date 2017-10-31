@@ -83,7 +83,7 @@
                           <tr class="headings">
                             <th>
                             
-                              <input type="checkbox" id="checkAll" class="check" name="carpeta">
+                                <input type="checkbox" id="checkAll" class="icheckbox_flat-green" name="carpetaALL"> </th>
                               
                             
                             </th>
@@ -114,7 +114,7 @@
                             
                             <div id="checkboxes">
 
-                            <input type="checkbox" name="carpeta" value="{{ carpeta.nombre }}" class="check"   >
+                              <input class="icheckbox_flat-green"  id="id_firmas_{{ carpeta.id }}" name="carpeta" type="checkbox" value="{{ carpeta.id }}">
                     
 
                             </div>
@@ -276,8 +276,13 @@
 
 <script type="text/javascript">
 $("#checkAll").click(function () {
-    $(".check").prop('checked', $(this).prop('checked'));
+    $(".icheckbox_flat-green").prop('checked', $(this).prop('checked'));
 });
+
+
+</script> 
+<script type="text/javascript">
+
   $(document).ready(function() {
     $("input[name='carpeta']").change(function() {
         var maxAllowed = 1;
@@ -299,6 +304,33 @@ $("#checkAll").click(function () {
 
 
 </script>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $("input[name='carpetaALL']").change(function() {
+        var maxAllowed = 0;
+          var cnt = $("input[name='carpetaALL']:checked").length;
+            if (cnt > maxAllowed) {
+              $('#btncarpeta').fadeOut('fast');
+           
+            }else {
+              $('#btncarpeta').fadeIn('fast');
+            }
+    
+
+    });
+
+    
+  });
+
+
+
+
+</script>
+
+
 
 
 
