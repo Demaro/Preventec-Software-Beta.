@@ -78,7 +78,7 @@ class Carpeta(models.Model):
 	fecha_termino 	= models.DateField(null=True, blank=True)
 	porcent			= models.IntegerField(default=0)
 	estado        	= models.CharField(max_length=20)
-	subcarpeta		= models.ManyToManyField('SubCarpeta', related_name="subcarpeta", null=True, blank=True)
+	subcarpeta		= models.ManyToManyField('SubCarpeta', related_name="subcarpeta",  blank=True)
 	#archivo
 
 
@@ -125,6 +125,7 @@ class Documento(models.Model):
 	subtitulo1	=	models.TextField(null=True, blank=True)
 	subtitulo2	=	models.TextField(null=True, blank=True)
 	user2		=	models.ForeignKey(Profile, related_name="user2", null=True, blank=True)
+	firmas 		=	models.ManyToManyField(Profile,  blank=True)
 
 	def __str__(self):
 		return self.titulo

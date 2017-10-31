@@ -26,7 +26,7 @@ from profiles.models import Profile
 
 from activitys.forms import ActivityForm
 
-from .forms import ModuloForm, CarpetaForm, SubCarpetaForm, DocumentoForm
+from .forms import ModuloForm, CarpetaForm, SubCarpetaForm, DocumentoForm, DocFirmasForm
 
 
 from django.utils import timezone
@@ -336,6 +336,7 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 
 	obj_get	=	Documento.objects.filter(template=obj_template1).order_by('-id')[:1]
 	obj_template 		= Documento.objects.get(id=obj_get)
+
 	date = timezone.now()
 
 	form 	=	DocumentoForm(request.POST or None, instance=obj_template)
@@ -351,7 +352,50 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 		print(new_instance.id)
 
 
-	
+		return HttpResponseRedirect('/modulo/%s/submodulo/%s/carpeta/%s/modelo/%s/docu/%s/'  % (obj_modulo.id, obj_sub.id, obj_get1.id, obj_template1.id, new_instance.id ))
+
+
+	context = {	
+
+		"obj_template" : obj_template,
+		"obj_template1":	obj_template1,
+		"form"		:	form,
+		"obj_modulo": obj_modulo,
+		"obj_sub": obj_sub,
+		"obj_get1": obj_get1,
+
+
+	}	
+	return render(request, "documento.html", context)
+
+
+def documento_select_save(request, id_modulo,id_submodulo, id_carpeta, id_doc, id_doc1): 
+
+	obj_modulo = Modulo.objects.get(id=id_modulo)
+	obj_sub		= Submodulo.objects.get(id=id_submodulo)
+	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
+
+	obj_template1 = Template.objects.get(id=id_doc)
+
+	obj_template 		= Documento.objects.get(id=id_doc1)
+
+	date = timezone.now()
+
+	form 	=	DocumentoForm(request.POST or None, instance=obj_template)
+
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.fecha = date
+		instance.save()
+		new_instance = Documento(template=instance.template, user1=instance.user1, fecha=instance.fecha, titulo=instance.titulo, duracion=instance.duracion, descripcion=instance.descripcion, subtitulo1=instance.subtitulo1, subtitulo2=instance.subtitulo2, user2=instance.user2)
+		new_instance.save()
+
+		print(instance.id)
+		print(new_instance.id)
+
+
+		return HttpResponseRedirect('/modulo/%s/submodulo/%s/carpeta/%s/modelo/%s/docu/%s/'  % (obj_modulo.id, obj_sub.id, obj_get1.id, obj_template1.id, new_instance.id ))
+
 
 	context = {	
 
@@ -368,8 +412,8 @@ def documento_select(request, id_modulo,id_submodulo, id_carpeta, id_doc):
 
 
 
-
 def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
+	obj_list = Profile.objects.all()
 	obj_modulo = Modulo.objects.get(id=id_modulo)
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
@@ -379,8 +423,21 @@ def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 	obj_template = Template.objects.get(id=id_doc)
 
 
-	context = {
+	form 	=	DocFirmasForm(request.POST or None, instance=obj_get)
 
+	if form.is_valid():
+		firmas = form.save(commit=False)
+		get_firmas = request.POST.getlist('firmas')
+		print(get_firmas)
+
+		firmas.firmas = get_firmas
+		
+		firmas.save()
+		return HttpResponseRedirect('/modulo/%s/submodulo/%s/carpeta/%s/modelo/%s/documento/%s/selecion_asistentes/' % (obj_modulo.id, obj_sub.id, obj_get1.id, obj_template.id, obj_get.id))
+
+	context = {
+		"obj_list":obj_list,
+		"form": form,
 		"obj_modulo": obj_modulo,
 		"obj_sub": obj_sub,
 		"obj_get": obj_get,
@@ -392,6 +449,7 @@ def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 
 
 def select_users2(request, id_modulo, id_submodulo, id_carpeta):
+
 	obj_modulo = Modulo.objects.get(id=id_modulo)
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 	obj_get	=	Carpeta.objects.get(id=id_carpeta)

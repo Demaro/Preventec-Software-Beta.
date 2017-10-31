@@ -66,7 +66,12 @@
                           <div class="panel-body">
                             
 
+                        
 
+
+                     
+                          <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal 
+                          form-label-left">
                           <div class="table-responsive">
 
 
@@ -74,136 +79,67 @@
                       <table id="myexample" class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
                         <thead>
                           <tr class="headings">
-                            <th></th>
+                            <th> <input type="checkbox" id="checkAll" class="icheckbox_flat-green" name="carpeta"> </th>
                             <th class="column-title">Nombre</th>
                             <th class="column-title">Apellido</th>
                             <th class="column-title">Rut</th>
                             <th class="column-title">Cargo</th>
-                            <th class="column-title">Supervisor</th>
+
                           
                           </tr>
                         </thead>
                          <tfoot>
                           <tr class="headings">
                             <th></th>
-                            <th class="column-title">Nombre</th>
-                            <th class="column-title">Apellido</th>
-                            <th class="column-title">Rut</th>
+                            <th class="column-title"></th>
+                            <th class="column-title"></th>
+                            <th class="column-title"></th>
                             <th class="column-title">Cargo</th>
-                            <th class="column-title">Supervisor</th>
+                           
                           
                           </tr>
                         </tfoot>
-
                           <tbody>
-
+                            
+                            {% for obj in obj_list %}
 
                           <tr>
                             <td>  
                             <div id="checkboxes">
 
-                            <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
-                    
+
+                            <input class="icheckbox_flat-green"  id="id_firmas_{{ obj.id }}" name="firmas" type="checkbox" value="{{ obj.id }}">
+                         
+
+                          
+                  
 
                             </div>                           
                             </td>  
-                                  <td>Bill</td>
-                                  <td>Gates</td>
-                                  <td>18.211.122-1</td>
-                                  <td>Gerente</td>
-                                  <td>No Aplica</td>                              
+                                  <td>{{ obj.user.first_name }}</td>
+                                  <td>{{ obj.user.last_name }}</td>
+                                  <td>{{ obj.rut }}</td>
+                                  <td>{{ obj.cargo }}</td>
+                                                      
                                   
                                   
                                 
-                                 
-                                 
+                              
                                 
                                 </tr>
-                                <tr>
-                            <td>   
-                              <div id="checkboxes">
+                                {% endfor %}
 
-                            <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
-                    
-
-                            </div>                           
-                            </td>   
-
-                                 <td> Steve</td>
-                                  <td>Wozniak</td>
-                                  <td>73.011.122-1</td>
-                                  <td>Supervisor</td>
-                                  <td>No Aplica</td>                               
-                                  
-                                 
-                                  
-                                </tr>
-                              <tr>
-                            <td class="a-center ">  
-                             <div id="checkboxes">
-
-                            <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check">
-
-                            </div>                            
-                            </td>  
-
-                                  <td>Steve</td>
-                                  <td>Jobs</td>
-                                  <td>18.211.122-1</td>
-                                  <td>Supervisor</td>
-                                  <td>No Aplica</td> 
-
-                                  
-                                </tr>
-           
-           <tr>
-                            <td>
-                           <div id="checkboxes">
-
-                            <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
-                    
-
-                            </div>                              
-                            </td>  
-
-                                  <td>jesus</td>
-                                  <td>Martinez</td>
-                                  <td>12.241.122-k</td>
-                                  <td>Obrero</td>
-                                  <td>Steve Wozniak</td> 
-                                
-                                 
-                                  
-                                  
-                                </tr>
-           <tr>
-                            <td>
-                            <div id="checkboxes">
-
-                            <input type="checkbox" name="carpeta" value="{{ subcarpeta.nombre }}" class="check"   >
-                    
-
-                            </div>                              
-                            </td>  
-
-                            
-                                  <td>Jose</td>
-                                  <td>Perez</td>
-                                  <td>2.411.188-5</td>
-                                  <td>Obrero</td>
-                                  <td>Steve Jobs</td> 
-                                
-                                 
-                                  
-                                  
-                                </tr>
-           
-           
                               </tbody>
                           
                             </table>
                           </div>
                         </div>
+
+
+                          
+                      
+
+
 
 
                         <a href='{% url "profile:carpeta"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
@@ -216,11 +152,14 @@
 <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id  obj_get.id obj_template.id %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Continuar</button></a>
 
                             <div class="col-md-4 col-sm-4 col-xs-4">  
-                      <button type="button" class="btn btn-primary ">Guardar</button>
+                              {% csrf_token %}
+                     <input type="submit" class="btn btn-primary " name="Guardar" value="Guardar">
+                      </form>
                     </div>
                         </div>
                         </div>
                         </a>
+                        
 
 
 
@@ -235,7 +174,13 @@
 {% block content2 %}
 
 
+<script type="text/javascript">
+$("#checkAll").click(function () {
+    $(".icheckbox_flat-green").prop('checked', $(this).prop('checked'));
+});
 
+
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {

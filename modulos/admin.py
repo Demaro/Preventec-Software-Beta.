@@ -68,9 +68,10 @@ class EjecucionModelAdmin(admin.ModelAdmin):
 
 
 class DocumentoModelAdmin(admin.ModelAdmin):
-	list_display = ["id", "template", "user1", "fecha", "depto", "duracion", "titulo", "subtitulo1", "subtitulo2", "user2", ]
+	list_display = ["id", "template", "user1", "fecha", "depto", "duracion", "titulo", "subtitulo1", "subtitulo2", "user2",  ]
 	list_editable     = [  "user1", "fecha", "depto", "duracion", "titulo", "subtitulo1", "subtitulo2", "user2", ]
-	list_filter	       = [  "template", "fecha", "user1", ]
+	list_filter	       = [  "template", "fecha", "user1", "firmas", ]
+	filter_horizontal = [ "firmas", ]
 
 	search_fields = ["fecha", "user1",  ]
 	class Meta:

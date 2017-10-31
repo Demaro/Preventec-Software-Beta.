@@ -68,7 +68,7 @@ class SubCarpetaForm(forms.ModelForm):
 			"cumplimiento": 'Cumplimiento',									
 		}
 		widgets = {
-		 	"user_asign":	forms.Select(attrs={'class': 'form-control'}),
+			"user_asign":	forms.Select(attrs={'class': 'form-control'}),
 			"fecha_inicio":	forms.DateInput(attrs={'class': 'form-control'}),
 			"fecha_termino":forms.DateInput(attrs={'class': 'form-control'}),
 			'nombre':		forms.TextInput(attrs={'class': 'form-control'}),
@@ -96,6 +96,7 @@ class DocumentoForm(forms.ModelForm):
 			"user2",
 
 
+
 		]
 		labels = {
 			"user1" :	'Nombre',
@@ -104,7 +105,8 @@ class DocumentoForm(forms.ModelForm):
 			"titulo" :	'Titulo',
 			"subtitulo1" : 'Sub Titulo',
 			"subtitulo2" :	'Sub Titulo',
-			"user2" :		'Efectuado por'	,			
+			"user2" :		'Efectuado por'	,
+		
 		}
 		widgets = {
 			'user1':		forms.Select(attrs={'class': 'form-control'}),
@@ -115,9 +117,31 @@ class DocumentoForm(forms.ModelForm):
 			"subtitulo2":  	forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Sub titulo'}),
 			"user2":  		forms.Select(attrs={'class': 'form-control'}),
 
+
 	
 		}
 
 
+class DocFirmasForm(forms.ModelForm):
+		
+	class Meta:
+		model = Documento
 
+
+		fields = [
+
+			"firmas",
+
+
+		]
+		labels = {
+
+			"firmas":		'',			
+		}
+		widgets = {
+
+			"firmas":  		forms.CheckboxSelectMultiple(attrs={'class': 'icheckbox_flat-green'}),
+
+	
+		}
 

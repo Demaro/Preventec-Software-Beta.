@@ -32,7 +32,23 @@ from profiles.views import (
 
 	)
 
-from modulos.views import PDFPrueba, modulo_detail, carpeta_detail, submodulo_detail, proceso_detail, subcarpeta_detail, subcarpeta_edit, documento_select, select_users, select_users2, firmas_asist, huellero, docu_generate
+from modulos.views import (
+	PDFPrueba, 
+	modulo_detail, 
+	carpeta_detail, 
+	submodulo_detail, 
+	proceso_detail, 
+	subcarpeta_detail, 
+	subcarpeta_edit, 
+	documento_select, 
+	documento_select_save,
+	select_users, 
+	select_users2, 
+	firmas_asist, 
+	huellero, 
+	docu_generate
+
+	)
 
 from modulos.views import calendar_activity
 
@@ -92,8 +108,9 @@ urlpatterns = [
 	url(r'^editar/subcarpeta/(?P<id_subcarpeta>\d+)/$', subcarpeta_edit, name='edit_subcpa'),
 
 	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/modelo/(?P<id_doc>\d+)/$', documento_select, name='documento'),
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/modelo/(?P<id_doc>\d+)/docu/(?P<id_doc1>\d+)/$', documento_select_save, name='documento_save'),
 
-	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/documento/(?P<id_docu>\d+)/(?P<id_doc>\d+)/selecion_asistentes/$', select_users, name='select_users'),
+	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/modelo/(?P<id_doc>\d+)/documento/(?P<id_docu>\d+)/selecion_asistentes/$', select_users, name='select_users'),
 
 	url(r'^modulo/(?P<id_modulo>\d+)/submodulo/(?P<id_submodulo>\d+)/carpeta/(?P<id_carpeta>\d+)/documento/(?P<id_docu>\d+)/(?P<id_doc>\d+)/$', docu_generate, name='docu_generate'),
 
