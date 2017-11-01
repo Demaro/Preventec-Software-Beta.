@@ -264,7 +264,8 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 	obj_get	=	SubCarpeta.objects.get(id=id_carpeta)
 
 	obj_template	= Template.objects.all()
-	obj_docu = Documento.objects.exclude(default=True).order_by('-id')
+	obj_docu = Documento.objects.exclude(default=True).exclude(etapa=3).order_by('-id')
+	obj_docu1 = Documento.objects.exclude(default=True).exclude(etapa=1).exclude(etapa=2).order_by('-id')
 
 
 	form = ActivityForm(request.POST or None, instance=obj_get)
@@ -281,6 +282,7 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 	context = {	
 
 		"obj_docu": obj_docu,
+		"obj_docu1": obj_docu1,
 
 		"obj_get" : obj_get,
 		"form"  : form,
@@ -512,8 +514,16 @@ def firmas_asist(request, id_modulo,id_submodulo, id_carpeta, id_docu, id_doc):
 	obj_get	=	Template.objects.get(id=id_doc)
 
 	date 	= timezone.now()
-
 	obj_docu1 		= Documento.objects.get(id=id_docu)
+
+	if request.method == 'POST':
+		form	=	DocEtapaForm(instance=obj_docu1)
+		obj  = form.save(commit=False)
+		obj.etapa = 3
+		obj.fecha3	= timezone.now()
+		obj.save()
+
+		print(obj.etapa)
 
 	context = {	
 

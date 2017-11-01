@@ -138,12 +138,16 @@
 
                         <a href='{% url "profile:proceso"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
 
+                        {% if obj_docu1.etapa == 3 %}
                         <a href='{% url "profile:docu_generate"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Continuar</button></a>
+                        {% endif %}
 
+                      <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal form-label-left">
+                      {% csrf_token %}
                       <div class="col-md-4 col-sm-4 col-xs-4">  
-                      <button type="button" class="btn btn-primary ">Guardar</button>
+                      <button type="submit" class="btn btn-primary ">Guardar</button>
                     </div>
-
+                  </form>
 
                         </div>
                         </div>

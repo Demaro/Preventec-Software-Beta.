@@ -18,6 +18,10 @@ from markdown_deux import markdown
 from profiles.models import Profile
 
 
+from datetime import timedelta
+from datetime import datetime
+
+
 
 # Create your models here.
 # MVC MODEL VIEW CONTROLLER
@@ -112,12 +116,15 @@ class Ejecucion(models.Model):
 		return self.nombre
 
 
-
+def get_deadline():
+    return datetime.today() + timedelta(days=2)
 
 class Documento(models.Model):
 	template 	= models.ForeignKey('Template', related_name="template", null=True, blank=True)
 	user1	=	models.ForeignKey(Profile, related_name="user1", null=True, blank=True)
 	fecha 	=	models.DateField(null=True, blank=True)
+	fecha2	=	models.DateField(null=True, blank=True, default=get_deadline)
+	fecha3	=	models.DateField(null=True, blank=True)
 	depto	=	models.CharField(max_length=50, null=True, blank=True)
 	duracion	=	models.IntegerField(default=0)
 	titulo	=	models.TextField()
