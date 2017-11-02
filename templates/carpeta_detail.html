@@ -130,10 +130,9 @@
             {% else %}
 
 
-
                       <div class="btn-group">
 
-                          <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false"> Modelo <span class="caret"></span> </button>
+                           <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false"> Generar Interno <span class="caret"></span> </button>
 
 
                           <ul class="dropdown-menu">
@@ -144,9 +143,10 @@
                             {% endfor %}
                           </ul>
   </div>
-                                              
+                                     
                        
-
+{% if obj_docu %}
+          
                           
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-5 form-group pull-right top_search">
@@ -245,7 +245,7 @@
                           </div>
                         </div>
 
-
+{% endif %}
                             
                           </div>
                         <td>

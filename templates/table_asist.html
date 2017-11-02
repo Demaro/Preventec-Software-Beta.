@@ -110,13 +110,10 @@
                             <td>  
                             <div id="checkboxes">
 
-                            {% if obj_get.id == obj1.id %}
-                            si
-                            {% else %}
 
 
                             <input class="icheckbox_flat-green"  id="id_firmas_{{ obj.id }}" name="firmas" type="checkbox" value="{{ obj.id }}">
-                            {% endif %}
+                            
                          
                           
                   
@@ -143,7 +140,70 @@
                         </div>
 
 
+                        <table id="myexample" class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
+                        <thead>
+                          <tr class="headings">
+                            <th> <input type="checkbox" id="checkAll2" class="icheckbox_flat-green2" name="firmaALL2"> </th>
+                            <th class="column-title">Nombre</th>
+                            <th class="column-title">Apellido</th>
+                            <th class="column-title">Rut</th>
+                            <th class="column-title">Cargo</th>
+
                           
+                          </tr>
+                        </thead>
+                         <tfoot>
+                          <tr class="headings">
+                            <th></th>
+                            <th class="column-title"></th>
+                            <th class="column-title"></th>
+                            <th class="column-title"></th>
+                            <th class="column-title"></th>
+                           
+                          
+                          </tr>
+                        </tfoot>
+                          <tbody>
+                            
+                            {% for obj in obj_list_obr %}
+
+
+                            
+
+                          <tr>
+                            <td>  
+                            <div id="checkboxes">
+
+
+
+                            <input class="icheckbox_flat-green2"  id="id_firmas_{{ obj.id }}" name="firmasobr" type="checkbox" value="{{ obj.id }}">
+                         
+                         
+                          
+                  
+
+                            </div>                           
+                            </td>  
+                                  <td>{{ obj.nombre }}</td>
+                                  <td>{{ obj.apellido}}</td>
+                                  <td>{{ obj.rut }}</td>
+                                  <td>{{ obj.cargo }}</td>
+                                                      
+                                  
+                                  
+                                
+                              
+                                
+                                </tr>
+                                {% endfor %}
+
+                              </tbody>
+                          
+                            </table>
+                          </div>
+                        </div>
+
+
                       
 
 
@@ -176,6 +236,37 @@
 </div>
 </div>
 </div>
+
+
+<style type="text/css">
+.icheckbox_flat-green2,
+.iradio_flat-green2 {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background: url(green.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_flat-green2 {
+    background-position: 0 0;
+}
+    .icheckbox_flat-green2.checked {
+        background-position: -22px 0;
+    }
+    .icheckbox_flat-green2.disabled {
+        background-position: -44px 0;
+        cursor: default;
+    }
+    .icheckbox_flat-green2.checked.disabled {
+        background-position: -66px 0;
+    }
+</style>
 {% endblock content %}
 
 
@@ -187,6 +278,29 @@
     $("input[name='firmas']").change(function() {
         var maxAllowed = 0;
           var cnt = $("input[name='firmas']:checked").length;
+            if (cnt > maxAllowed) {
+              $('#btnsave').fadeIn('fast');
+           
+            }else {
+              $('#btnsave').fadeOut('fast');
+            }
+    
+
+    });
+
+    
+  });
+
+
+
+
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("input[name='firmasobr']").change(function() {
+        var maxAllowed = 0;
+          var cnt = $("input[name='firmasobr']:checked").length;
             if (cnt > maxAllowed) {
               $('#btnsave').fadeIn('fast');
            
@@ -228,6 +342,31 @@
 
 </script>
 
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("input[name='firmaALL2']").change(function() {
+        var maxAllowed = 0;
+          var cnt = $("input[name='firmaALL2']:checked").length;
+            if (cnt > maxAllowed) {
+              $('#btnsave').fadeIn('fast');
+           
+            }else {
+              $('#btnsave').fadeOut('fast');
+            }
+    
+
+    });
+
+    
+  });
+
+
+
+
+</script>
+
 <script type="text/javascript">
 $("#checkAll").click(function () {
     $(".icheckbox_flat-green").prop('checked', $(this).prop('checked'));
@@ -237,9 +376,18 @@ $("#checkAll").click(function () {
 </script>
 
 
+<script type="text/javascript">
+$("#checkAll2").click(function () {
+    $(".icheckbox_flat-green2").prop('checked', $(this).prop('checked'));
+});
+
+
+</script>
+
+
   <script>
       $("#checkAll").on("change", function() {
-        $(':checkbox').not(this).prop('checked', this.checked);
+        $('.icheckbox_flat-green').not(this).prop('checked', this.checked);
       });
 
       $(":checkbox").on("change", function(){

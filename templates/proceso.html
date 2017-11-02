@@ -124,7 +124,7 @@
                             
                             <div id="checkboxes">
 
-                              <input id="" type="checkbox" id="checkAll" class="icheckbox_flat-green" name="carpeta">
+                              <input id="" type="checkbox" id="checkAll" value="{{ subcarpeta.nombre }}" class="icheckbox_flat-green" name="carpeta">
                     
 
                             </div>
@@ -268,7 +268,7 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 
-                        <input class="form-control" id="registroConcepto" name="nombre_carpeta" type="text">
+                        <input class="form-control" id="obj_name" name="obj_name" type="text">
                         </div>
                       </div>
 
@@ -453,7 +453,7 @@ function getValueUsingParentTag(){
   if(selected.length > 1 ){
 
    
-      document.getElementById("registroConcepto").value=selected;
+      document.getElementById("obj_name").value=selected;
       
   
   } 

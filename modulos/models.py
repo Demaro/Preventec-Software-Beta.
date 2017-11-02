@@ -15,7 +15,7 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 from markdown_deux import markdown
 
-from profiles.models import Profile
+from profiles.models import Profile, Perfil_Obrero
 
 
 from datetime import timedelta
@@ -133,6 +133,7 @@ class Documento(models.Model):
 	subtitulo2	=	models.TextField(null=True, blank=True)
 	user2		=	models.ForeignKey(Profile, related_name="user2", null=True, blank=True)
 	firmas 		=	models.ManyToManyField(Profile,  blank=True)
+	firmasobr   =	models.ManyToManyField(Perfil_Obrero,  blank=True)
 	etapa		=  	models.IntegerField(null=True, blank=True, default=0)
 	default 	=	models.BooleanField(default=False)
 

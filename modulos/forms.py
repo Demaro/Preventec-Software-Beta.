@@ -131,12 +131,13 @@ class DocFirmasForm(forms.ModelForm):
 		fields = [
 
 			"firmas",
+			"firmasobr",
 
 
 		]
 		labels = {
 
-			"firmas":		'',			
+			"firmas":		'',		
 		}
 		widgets = {
 

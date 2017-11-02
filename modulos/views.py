@@ -22,7 +22,7 @@ from django.utils import timezone
 
 
 from .models import Modulo, Submodulo, Carpeta, SubCarpeta, Template, Documento
-from profiles.models import Profile
+from profiles.models import Profile, Perfil_Obrero
 
 from activitys.forms import ActivityForm
 
@@ -268,6 +268,7 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 	obj_docu1 = Documento.objects.exclude(default=True).exclude(etapa=1).exclude(etapa=2).order_by('-id')
 
 
+
 	form = ActivityForm(request.POST or None, instance=obj_get)
 
 	if form.is_valid():
@@ -422,6 +423,7 @@ def documento_select_save(request, id_modulo,id_submodulo, id_carpeta, id_doc, i
 
 def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 	obj_list = Profile.objects.all()
+	obj_list_obr =	Perfil_Obrero.objects.all()
 	obj_modulo = Modulo.objects.get(id=id_modulo)
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 	obj_get1	=	SubCarpeta.objects.get(id=id_carpeta) 
@@ -439,9 +441,12 @@ def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 		
 		
 		get_firmas = request.POST.getlist('firmas')
+		get_firmas_obr = request.POST.getlist('firmasobr')
 		print(get_firmas)
+		print(get_firmas_obr)
 
 		firmas.firmas = get_firmas
+		firmas.firmasobr = get_firmas_obr
 
 		firmas.save()
 
@@ -454,6 +459,7 @@ def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 		return HttpResponseRedirect('/modulo/%s/submodulo/%s/carpeta/%s/modelo/%s/documento/%s/selecion_asistentes/' % (obj_modulo.id, obj_sub.id, obj_get1.id, obj_template.id, obj_get.id))
 
 	context = {
+		"obj_list_obr": obj_list_obr,
 		"obj_list":obj_list,
 		"form": form,
 		"obj_modulo": obj_modulo,
