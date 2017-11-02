@@ -139,7 +139,7 @@ class Documento(models.Model):
 	user2		=	models.ForeignKey(Profile, related_name="user2", null=True, blank=True)
 	firmas 		=	models.ManyToManyField(Profile,  blank=True)
 	firmasobr   =	models.ManyToManyField(Perfil_Obrero,  blank=True)
-	suma_firmas	= 	models.IntegerField(null=True, blank=True)
+	suma_firmas	= 	models.IntegerField(null=True, blank=True, default=0)
 	etapa		=  	models.IntegerField(null=True, blank=True, default=0)
 	default 	=	models.BooleanField(default=False)
 

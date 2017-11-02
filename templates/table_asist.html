@@ -63,20 +63,14 @@
 
                     <!-- start accordion -->
       
-                          <div class="panel-body">
+                        
                             
 
-                        
-
-
+                    
                      
                           <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal 
                           form-label-left">
-                          <div class="table-responsive">
-
-
-
-                      <table id="myexample" class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
+                        <table id="myexample" class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
                         <thead>
                           <tr class="headings">
                             <th> <input type="checkbox" id="checkAll" class="icheckbox_flat-green" name="firmaALL"> </th>
@@ -94,7 +88,7 @@
                             <th class="column-title"></th>
                             <th class="column-title"></th>
                             <th class="column-title"></th>
-                            <th class="column-title">Cargo</th>
+                            <th class="column-title"></th>
                            
                           
                           </tr>
@@ -113,7 +107,7 @@
 
 
                             <input class="icheckbox_flat-green"  id="id_firmas_{{ obj.id }}" name="firmas" type="checkbox" value="{{ obj.id }}">
-                            
+                         
                          
                           
                   
@@ -121,7 +115,7 @@
                             </div>                           
                             </td>  
                                   <td>{{ obj.user.first_name }}</td>
-                                  <td>{{ obj.user.last_name }}</td>
+                                  <td>{{ obj.user.last_name}}</td>
                                   <td>{{ obj.rut }}</td>
                                   <td>{{ obj.cargo }}</td>
                                                       
@@ -136,11 +130,24 @@
                               </tbody>
                           
                             </table>
-                          </div>
-                        </div>
+                      
+                  
 
 
-                        <table id="myexample" class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
+
+                              <br>
+
+
+                    <!-- start accordion -->
+      
+                        
+                            
+
+                    
+                     
+                          <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal 
+                          form-label-left">
+                        <table id="myexample2" class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
                         <thead>
                           <tr class="headings">
                             <th> <input type="checkbox" id="checkAll2" class="icheckbox_flat-green2" name="firmaALL2"> </th>
@@ -202,8 +209,6 @@
                             </table>
                           </div>
                         </div>
-
-
                       
 
 
@@ -417,7 +422,11 @@ $("#checkAll2").click(function () {
 <script type="text/javascript">
 $(document).ready(function() {
   $('#myexample').DataTable( {
+    "lengthMenu": [[5, 10, -1 ], [5, 10, "All"]],
+     
+
     initComplete: function () {
+
         
     this.api().columns([4]).every( function () {
         var column = this;
@@ -435,11 +444,28 @@ $(document).ready(function() {
 
         column.data().unique().sort().each( function ( d, j ) {
           select.append( '<option value="'+d+'">'+d+'</option>' )
+
         } );
       } );
     }
+
   } );
+
+
 } );
+
+
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#myexample2').DataTable( {
+    "lengthMenu": [[5, 10, -1 ], [5, 10, "All"]]
+
+} );
+
+})
 
 
 
