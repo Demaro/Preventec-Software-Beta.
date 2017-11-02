@@ -71,51 +71,29 @@
 
                           <form action="" method="POST" role="form" enctype='multipart/form-data' class="form-horizontal 
                           form-label-left">
-
-                         
-                          <label for="checkAll"> 
-
-                                         
-                              <input type="checkbox" id="checkAll" class="icheckbox_flat-green" name="firmaALL">
-                              Encargados:  </label>
-                      
-
-                     
+                          <ul id="id_firmas">
+                           
+                      <li><input type="checkbox" id="checkAll" class="icheckbox_flat-green" name="firmaALL"> Todos</li>
+                      </ul>
                             <div id="checkboxes">
 
 
-
-                            
                                 <h4>{{ form.firmas }}</h4>
 
-
-                        
+                              </ul>
+                              
+                         
+                         
+                          
                   
-                          <label for="checkAll"> 
 
-                                         
-                              <input type="checkbox" id="checkAll2" class="icheckbox_flat-green2" name="firmaALL2">
-                              Obreros:  </label>
+                            </div>                           
+                         
+
                       
 
-                     
-                            <div id="checkboxes">
-
-
-
-                            
-                                <h4>{{ form.firmasobr }}</h4>
-
-                              </ul>
-                              </div>
-
-<br>        
-<br>
-                        
-                          </div>
-                        </div>
-
-                              
+         <br>
+              
 
                         <a href='{% url "profile:proceso"  obj_modulo.id obj_sub.id obj_get1.id %}'><button type="button" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i>  Cancelar</button></a>
                           <!--
@@ -124,15 +102,14 @@
                         -->
          
 
-
+{% if obj_get.etapa == 2 %}
 <a href='{% url "profile:firmas_asist"  obj_modulo.id obj_sub.id obj_get1.id  obj_get.id obj_template.id %}'><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-chevron-right"></i>  Continuar</button></a>
-
+{% endif %}
 
                             <div class="col-md-4 col-sm-4 col-xs-4">  
                               {% csrf_token %}
                      <input type="submit" class="btn btn-primary " id="btnsave" name="btnsave" value="Guardar" style="display:none;">
-                         </form>
-                
+                      </form>
                     </div>
                         </div>
                         </div>
@@ -296,7 +273,7 @@ $("#checkAll2").click(function () {
 
 
 
-<!--
+
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -334,7 +311,7 @@ $(document).ready(function() {
 } );
 
 
--->
+
 </script>
 
 <script type="text/javascript">

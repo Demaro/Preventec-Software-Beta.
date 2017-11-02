@@ -137,11 +137,13 @@ class DocFirmasForm(forms.ModelForm):
 		]
 		labels = {
 
-			"firmas":		'',		
+			"firmas":		'',	
+			"firmasobr":	'',	
 		}
 		widgets = {
 
 			"firmas":  		forms.CheckboxSelectMultiple(attrs={'class': 'icheckbox_flat-green'}),
+			"firmasobr":  		forms.CheckboxSelectMultiple(attrs={'class': 'icheckbox_flat-green2'}),
 
 	
 		}

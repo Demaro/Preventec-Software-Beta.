@@ -46,6 +46,7 @@ def upload_location(instance, filename):
 
 
 class Profile(models.Model):
+	number = models.IntegerField(null=True, blank=True)
 	user = models.ForeignKey(settings.AUTH_USER_MODEL)
 	rut  = models.CharField(max_length=20, null=True, blank=True)
 	birthdate = models.DateField()

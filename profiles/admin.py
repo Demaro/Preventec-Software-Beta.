@@ -4,9 +4,9 @@ from django.contrib import admin
 from .models import Profile, Perfil_Obrero, Cargo, Especialidad, Especialidad_staff, Unidad
 
 class ProfileModelAdmin(admin.ModelAdmin):
-	list_display = ["id", "user", "rut", "unidad", "birthdate","avatar", "ultimateupdate",  "cargo", "especialidad", "supervisor", "comite_par",  "subcta", "inicio_cargo", "años_exp", "contrato", "legales_asoc"]
+	list_display = ["id", "number","user", "rut", "unidad", "birthdate","avatar", "ultimateupdate",  "cargo", "especialidad", "supervisor", "comite_par",  "subcta", "inicio_cargo", "años_exp", "contrato", "legales_asoc"]
 	list_display_links = ["user"]
-	list_editable = ["birthdate", "rut"]
+	list_editable = ["number", "birthdate", "rut"]
 	list_filter = ["cargo", "contrato", "legales_asoc"]
 
 	search_fields = ["user", "rut", "cargo", "contrato", "años_exp"]
