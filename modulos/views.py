@@ -589,7 +589,7 @@ def docu_pend_delete(request, id_modulo, id_submodulo, id_carpeta, id_docu):
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 	obj_proceso	=	SubCarpeta.objects.get(id=id_carpeta) 
 
-	if request.user.is_superuser:
+	if request.user.is_authenticated():
 		instance.delete()
 		messages.success(request, "Eliminado con exito")
 		return HttpResponseRedirect('/modulo/%s/submodulo/%s/proceso/%s/' % (obj_modulo.id, obj_sub.id, obj_proceso.id ))
