@@ -26,7 +26,7 @@ from profiles.models import Profile, Perfil_Obrero
 
 from activitys.forms import ActivityForm
 
-from .forms import ModuloForm, CarpetaForm, SubCarpetaForm, DocumentoForm, DocFirmasForm, DocEtapaForm
+from .forms import ModuloForm, CarpetaForm, SubCarpetaForm, DocumentoForm, DocFirmasForm, SumaFirmasForm, DocEtapaForm
 
 
 from django.utils import timezone
@@ -267,8 +267,6 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 	obj_docu = Documento.objects.exclude(default=True).exclude(etapa=3).order_by('-id')
 	obj_docu1 = Documento.objects.exclude(default=True).exclude(etapa=1).exclude(etapa=2).order_by('-id')
 
-
-
 	form = ActivityForm(request.POST or None, instance=obj_get)
 
 	if form.is_valid():
@@ -435,6 +433,7 @@ def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 
 	form 	=	DocFirmasForm(request.POST or None, instance=obj_get)
 	form2	=	DocEtapaForm(instance=obj_get)
+	form3	=	SumaFirmasForm(instance=obj_get)
 
 	if form.is_valid():
 		firmas = form.save(commit=False)
@@ -447,6 +446,13 @@ def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 
 		firmas.firmas = get_firmas
 		firmas.firmasobr = get_firmas_obr
+		count1 = firmas.firmas.count()
+		count2 = firmas.firmasobr.count()
+		suma   = count1 + count2
+
+		print(count1)
+		print(count2)
+		print(suma)
 
 		firmas.save()
 
@@ -454,7 +460,14 @@ def select_users(request, id_modulo, id_submodulo, id_carpeta, id_docu, id_doc):
 		obj.etapa = 2
 		obj.save()
 
-		print(obj.etapa)
+
+
+		obj2 = form3.save(commit=False)
+		obj2.suma_firmas = suma
+		obj2.save()
+
+
+		
 
 		return HttpResponseRedirect('/modulo/%s/submodulo/%s/carpeta/%s/modelo/%s/documento/%s/selecion_asistentes/' % (obj_modulo.id, obj_sub.id, obj_get1.id, obj_template.id, obj_get.id))
 

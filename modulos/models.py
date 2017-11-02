@@ -20,6 +20,9 @@ from profiles.models import Profile, Perfil_Obrero
 
 from datetime import timedelta
 from datetime import datetime
+from django.db.models import signals
+from django.db.models.signals import post_save 
+from django.db.models import Count
 
 
 
@@ -117,7 +120,9 @@ class Ejecucion(models.Model):
 
 
 def get_deadline():
-    return datetime.today() + timedelta(days=2)
+	return datetime.today() + timedelta(days=2)
+
+
 
 class Documento(models.Model):
 	template 	= models.ForeignKey('Template', related_name="template", null=True, blank=True)
@@ -134,6 +139,7 @@ class Documento(models.Model):
 	user2		=	models.ForeignKey(Profile, related_name="user2", null=True, blank=True)
 	firmas 		=	models.ManyToManyField(Profile,  blank=True)
 	firmasobr   =	models.ManyToManyField(Perfil_Obrero,  blank=True)
+	suma_firmas	= 	models.IntegerField(null=True, blank=True)
 	etapa		=  	models.IntegerField(null=True, blank=True, default=0)
 	default 	=	models.BooleanField(default=False)
 
@@ -144,6 +150,7 @@ class Documento(models.Model):
 		descripcion = self.descripcion
 		markdown_text = markdown(descripcion)
 		return mark_safe(markdown_text)
+
 
 
 

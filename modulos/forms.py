@@ -158,3 +158,16 @@ class DocEtapaForm(forms.ModelForm):
 
 
 		]
+
+class SumaFirmasForm(forms.ModelForm):
+		
+	class Meta:
+		model = Documento
+
+
+		fields = [
+
+			"suma_firmas",
+
+
+		]
