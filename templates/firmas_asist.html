@@ -109,7 +109,7 @@
                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a></td>
                                   <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.user.first_name }} </a></td>
                                   <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.user.last_name }} </a></td>
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>18.211.122-1 </a></td>
+                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>{{ obj.rut }} </a></td>
                                   <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.cargo }}</a></td>                               
                                   
 
@@ -169,9 +169,9 @@
                             </td>  
 
                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a></td>
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.user.first_name }} </a></td>
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.user.last_name }} </a></td>
-                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>18.211.122-1 </a></td>
+                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.nombre }} </a></td>
+                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.apellido }} </a></td>
+                                  <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'>{{ obj.rut }} </a></td>
                                   <td><a href='{% url "profile:huella"   obj_modulo.id obj_sub.id obj_get1.id obj_docu1.id obj_get.id  %}'> {{ obj.cargo }}</a></td>                               
                                   
 
