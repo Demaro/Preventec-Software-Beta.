@@ -70,6 +70,7 @@ class Submodulo(models.Model):
 	porcent 	= 	models.IntegerField(default=0)
 	estado  	= 	models.CharField(max_length=20, null=True, blank=True)
 	carpeta 	= 	models.ManyToManyField('Carpeta', related_name="carpeta")
+	tipo			= models.ForeignKey('Tipo', related_name="tipo_carpeta1", null=True, blank=True)
 	
 
 	def __str__(self):
@@ -86,6 +87,7 @@ class Carpeta(models.Model):
 	porcent			= models.IntegerField(default=0)
 	estado        	= models.CharField(max_length=20)
 	subcarpeta		= models.ManyToManyField('SubCarpeta', related_name="subcarpeta",  blank=True)
+	cumplimiento	= models.ForeignKey('Ejecucion', related_name="run", null=True, blank=True)
 	#archivo
 
 
