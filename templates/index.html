@@ -333,7 +333,13 @@
 
 
 <script type="text/javascript">
-function init_PNotify(){"undefined"!=typeof PNotify&&(console.log("init_PNotify"),new PNotify({title:"Actividad Diaria",type:"info",text:"Capacitar 20 tazadores para Try hovering over me. You can click things behind me",addclass:"info",styling:"bootstrap3",hide:!1,before_close:function(a){return a.update({title:a.options.title+" - Enjoy your Stay",before_close:null}),a.queueRemove(),!1}}))}
+  $(document).ready(function(){
+  function init_PNotify(){"undefined"!=typeof PNotify&&(console.log("init_PNotify"),new PNotify({title:"Actividad Diaria",type:"info",text:"Capacitar 20 tazadores para Try hovering over me. You can click things behind me",addclass:"info",styling:"bootstrap3",hide:!1,before_close:function(a){return a.update({title:a.options.title+" - Enjoy your Stay",before_close:null}),a.queueRemove(),!1}}))} 
+});
+
+  
+
+
 
 
 </script>
