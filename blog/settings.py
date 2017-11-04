@@ -168,8 +168,8 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE ='django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
     
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',    #causes verbose duplicate notifications in django 1.9
 )
 
 MEDIA_URL = "/media/"
