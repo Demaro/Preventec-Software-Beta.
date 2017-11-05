@@ -24,23 +24,15 @@ class CarpetaForm(forms.ModelForm):
 
 
 		fields = [
-			"user_asign",
-			"fecha_inicio",
-			"fecha_termino",
 			
-			
-
+		
 
 		]
 		labels = {
-			"user_asign" : 'Responsable',
-			"fecha_inicio":	'Fecha inicio',
-			"fecha_termino": 'Fecha Termino',									
+								
 		}
 		widgets = {
-			'user_asign':		forms.Select(attrs={'class': 'form-control'}),
-			'fecha_inicio': 	forms.TextInput(attrs={'class': 'form-control'}),
-			'fecha_termino':	forms.TextInput(attrs={'class': 'form-control'}),
+
 	
 		}
 
@@ -50,9 +42,7 @@ class SubCarpetaForm(forms.ModelForm):
 
 
 		fields = [
-			"user_asign",
-			"fecha_inicio",
-			"fecha_termino",
+
 			"nombre",
 			"porcent",
 			"cumplimiento",
@@ -60,16 +50,13 @@ class SubCarpetaForm(forms.ModelForm):
 
 		]
 		labels = {
-			"user_asign":	"Responsable",
-			"fecha_inicio":	"Fecha inicio",
-			"fecha_termino": "Fecha Termino",
+
 			"nombre" : 'Nombre',
 			"porcent":	'Porcentaje',
 			"cumplimiento": 'Cumplimiento',									
 		}
 		widgets = {
-			"user_asign":	forms.Select(attrs={'class': 'form-control'}),
-			"fecha_inicio":	forms.DateInput(attrs={'class': 'form-control'}),
+
 			"fecha_termino":forms.DateInput(attrs={'class': 'form-control'}),
 			'nombre':		forms.TextInput(attrs={'class': 'form-control'}),
 			'porcent': 		forms.NumberInput(attrs={'class': 'form-control'}),

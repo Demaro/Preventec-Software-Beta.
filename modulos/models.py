@@ -23,6 +23,8 @@ from datetime import datetime
 from django.db.models import signals
 from django.db.models.signals import post_save 
 from django.db.models import Count
+from django.db.models import Q
+from model_utils import Choices
 
 
 
@@ -63,6 +65,13 @@ class Modulo(models.Model):
 		return self.nombre
 
 
+ORDER_COLUMN_CHOICES = Choices(
+	('0', 'nombre'),
+	('1', 'porcent'),
+	('2', 'estado'),
+	('3', 'carpeta'),
+	('4', 'tipo')
+)
 
 class Submodulo(models.Model):
 	nombre  	=	models.CharField(max_length=100, null=True, blank=True)
@@ -76,23 +85,26 @@ class Submodulo(models.Model):
 	def __str__(self):
 		return self.nombre
 
+class Meta:
+	db_table = "carpeta"
+
+
 
 class Carpeta(models.Model):
-	user_asign 		= models.ForeignKey(User, related_name="responsable", null=True, blank=True)
 	default			= models.BooleanField(default=True)
-	tipo			= models.ForeignKey('Tipo', related_name="tipo_carpeta", null=True, blank=True)
 	nombre     		= models.CharField(max_length=100)
-	fecha_inicio 	= models.DateField(null=True, blank=True)
-	fecha_termino 	= models.DateField(null=True, blank=True)
 	porcent			= models.IntegerField(default=0)
 	estado        	= models.CharField(max_length=20)
 	subcarpeta		= models.ManyToManyField('SubCarpeta', related_name="subcarpeta",  blank=True)
 	cumplimiento	= models.ForeignKey('Ejecucion', related_name="run", null=True, blank=True)
+	submodulo 		= models.ForeignKey('Submodulo', related_name="sub2" ,null=True, blank=True)
 	#archivo
 
 
 	def __str__(self):
 		return self.nombre
+
+
 
 class Tipo(models.Model):
 	nombre	=	models.CharField(max_length=20)
@@ -101,11 +113,8 @@ class Tipo(models.Model):
 		return self.nombre
 
 class SubCarpeta(models.Model):
-	user_asign 		= models.ForeignKey(User, related_name="responsable2", null=True, blank=True)
 	default			= models.BooleanField()
 	nombre     		= models.CharField(max_length=100)
-	fecha_inicio 	= models.DateField(null=True, blank=True)
-	fecha_termino 	= models.DateField(null=True, blank=True)
 	porcent			= models.IntegerField(default=0)
 	estado        	= models.CharField(max_length=20)
 	cumplimiento	= models.ForeignKey('Ejecucion', related_name="responsable", null=True, blank=True)

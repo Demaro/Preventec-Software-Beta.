@@ -29,8 +29,8 @@ class SubModuloModelAdmin(admin.ModelAdmin):
 
 
 class CarpetaModelAdmin(admin.ModelAdmin):
-	list_display = ["id",  "nombre",  "fecha_inicio", "fecha_termino", "estado", "default", "tipo",]
-	list_editable     = [ "nombre",   "fecha_termino", "estado", "default", "tipo", ]
+	list_display = ["id",  "nombre", "estado", "default", "submodulo",]
+	list_editable     = [ "nombre",  "estado", "default", "submodulo", ]
 	list_filter	       = [  "nombre" , "estado", "subcarpeta",  ]
 	filter_horizontal = [ "subcarpeta", ]
 
@@ -48,8 +48,8 @@ class TipoModelAdmin(admin.ModelAdmin):
 		model = Tipo
 
 class SubCarpetaModelAdmin(admin.ModelAdmin):
-	list_display = ["id",  "nombre",  "fecha_inicio", "fecha_termino", "estado", "default", "cumplimiento",]
-	list_editable     = [ "nombre", "estado",  "fecha_termino", "estado", "default", "cumplimiento",]
+	list_display = ["id",  "nombre", "estado", "default", "cumplimiento",]
+	list_editable     = [ "nombre", "estado",  "estado", "default", "cumplimiento",]
 	list_filter	       = [  "nombre" , "estado", ]
 
 	search_fields = ["nombre", "estado", ]

@@ -18,6 +18,8 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from rest_framework.routers import DefaultRouter
+
 
 from django.contrib.auth.views import login_required
 
@@ -27,10 +29,20 @@ from django_js_reverse.views import urls_js
 from profiles import urls
 
 from profiles.views import home
+from modulos.views import SubModuloViewSet, CarpetaViewSet
+
+
+
+router = DefaultRouter()
+router.register(r'submodulo', SubModuloViewSet)
+router.register(r'carpeta', CarpetaViewSet)
+
+
 
 urlpatterns = [
 	
 	url(r'^admin/', admin.site.urls),
+	url(r'^api/', include(router.urls)),
 
 	url(r'^login', login_view, name='login'),
 	url(r'^logout/', logout_view, name='logout'),

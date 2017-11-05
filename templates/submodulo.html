@@ -78,7 +78,7 @@
 
                           <div class="table-responsive">
 
-                      <table class="table table-striped jambo_table bulk_action">
+                      <table id="myTable" class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
                             <th>
@@ -91,7 +91,7 @@
                             <th class="column-title">Nombre</th>
                             <th class="column-title">Ponder %</th>
                             <th class="column-title">Estado</th>
-                            <th class="column-title">Responsable</th>
+                            <th class="column-title">Carpeta</th>
                             <th class="column-title">Archivo</th>
                             <th class="column-title">Facha Carga</th>
                           
@@ -152,7 +152,7 @@
 
 
 
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-sm" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 <form id="antoform" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype='multipart/form-data'>
 
                     <div class="modal-dialog modal-sm">
@@ -272,6 +272,38 @@
 
 
 {% block content2 %}
+
+
+
+
+
+
+<script type="text/javascript">
+
+$('#checkAll tbody').on('click', 'button', function () {
+    let data = table.row($(this).parents('tr')).data();
+    let class_name = $(this).attr('class');
+    if (class_name == 'btn btn-info') {
+        // EDIT button
+        $('#responsable').val(data['responsable']);
+        $('#fecha_inicio').val(data['fecha_inicio']);
+        $('#fecha_termino').val(data['fecha_termino']);
+        $('#type').val('edit');
+        $('#modal_title').text('EDIT');
+        $("#myModal0").modal();
+    } else {
+        // DELETE button
+        $('#modal_title').text('DELETE');
+        $("#confirm").modal();
+    }
+
+    id = data['id'];
+
+});
+
+
+
+</script>
 
 
 <script type="text/javascript">

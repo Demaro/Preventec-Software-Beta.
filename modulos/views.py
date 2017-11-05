@@ -38,6 +38,13 @@ from django.db.models import Count
 
 import pytz
 
+from modulos.serializers import SubModuloSerializer, CarpetaSerializer
+# Create your views here.
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+
+from django.template.response import TemplateResponse
+
 
 
 
@@ -131,6 +138,17 @@ def modulo_detail(request, id_modulo):
 	return render(request, "modulo_detalle.html", context)
 
 
+class SubModuloViewSet(viewsets.ModelViewSet):
+    queryset = Submodulo.objects.all()
+    serializer_class = SubModuloSerializer
+
+    def get_queryset(self):
+        queryset = super(SubModuloViewSet, self).get_queryset()
+        carpetas_nombre = self.request.query_params.get('carpeta', None)
+        if carpetas_nombre:
+            queryset = queryset.filter(carpeta__nombre=carpetas_nombre)
+        return queryset
+
 
 def submodulo_detail(request, id_modulo, id_submodulo):
 
@@ -202,6 +220,25 @@ def subcarpeta_edit(request, id_subcarpeta):
 	return render(request, "subcarpeta_edit.html", context)
 
 
+
+
+
+def index(request):
+    html = TemplateResponse(request, 'index.html')
+    return HttpResponse(html.render())
+
+
+
+
+
+class CarpetaViewSet(viewsets.ModelViewSet):
+    queryset = Carpeta.objects.all()
+    serializer_class = CarpetaSerializer 
+
+
+
+
+
 def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 
 	id_modulo = id_modulo
@@ -247,6 +284,10 @@ def carpeta_detail(request, id_modulo, id_submodulo, id_carpeta):
 
 	}
 	return render(request, "carpeta_detail.html", context)
+
+
+
+
 
 
 def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
