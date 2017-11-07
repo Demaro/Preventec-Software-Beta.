@@ -12,7 +12,7 @@ class CarpetaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Carpeta
         # fields = '__all__'
-        fields = ('nombre', 'porcent', 'estado', )
+        fields = ('url', 'nombre', 'porcent', 'estado', 'user_asign', 'fecha_inicio', 'submodulo', )
 
 
 
@@ -23,8 +23,8 @@ class SubModuloSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Submodulo
-        # fields = '__all__'
-        fields = ('nombre', 'porcent', 'estado', 'carpeta', 'tipo',)
+        # fields = '__all__'id
+        fields = ('id', 'nombre', 'porcent', 'estado', 'carpeta', 'tipo',)
 
 
 

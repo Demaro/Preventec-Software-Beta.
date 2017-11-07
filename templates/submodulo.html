@@ -91,9 +91,10 @@
                             <th class="column-title">Nombre</th>
                             <th class="column-title">Ponder %</th>
                             <th class="column-title">Estado</th>
-                            <th class="column-title">Carpeta</th>
+                            <th class="column-title">Responsabe</th>
                             <th class="column-title">Archivo</th>
-                            <th class="column-title">Facha Carga</th>
+                            <th class="column-title">Accion</th>
+
                           
                             </th>
                             <th class="bulk-actions" colspan="7" id="botones">
@@ -106,7 +107,7 @@
 
                               <tbody>
 
-                               {% for carpeta in obj_get.carpeta.all|dictsort:"id"  %}
+                               
 
                           <tr class="even pointer">
                             <td class="a-center ">
@@ -114,26 +115,29 @@
                             
                             <div id="checkboxes">
 
-                              <input class="icheckbox_flat-green"  id="id_firmas_{{ carpeta.id }}" name="carpeta" type="checkbox" value="{{ carpeta.id }}">
+                              <input class="icheckbox_flat-green"  id="id_firmas_{{ carpeta.id }}" name="carpeta" type="hidden" value="{{ carpeta.id }}">
                     
 
                             </div>
                               
                             </td>  
-
-                                  <td><a href='{% url "profile:carpeta"  id_modulo=obj_modulo.id id_submodulo=obj_get.id id_carpeta=carpeta.id %}'>{{ carpeta.nombre }}</td>
+{% for carpeta in obj_get.carpeta.all|dictsort:"id"  %}
+<!--
+                                  <td><a href='#{% url "profile:carpeta"  id_modulo=obj_modulo.id id_submodulo=obj_get.id id_carpeta=carpeta.id %}'></td>
                                   <td>17%</td>
                                   
                                   <td>
-                                  {% if carpeta.estado == "Cargado" %}<button type="button" class="btn btn-success btn-xs">{{ carpeta.estado }}</button>{% else %}<button type="button" class="btn btn-danger btn-xs">{{ carpeta.estado }}</button>{% endif %}</td></a>                               
+                                  {% if carpeta.estado == "Cargado" %}<button type="button" class="btn btn-success btn-xs"></button>{% else %}<button type="button" class="btn btn-danger btn-xs"></button>{% endif %}</td></a>                               
                                   
-                                  <td>{{ carpeta.user_asign}}</td>
+                                  <td></td>
                                 
                                  
                                   <td>{% if carpeta.estado == "Cargado" %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf. + 2</a></li>{% else %}Vacio{% endif %}</td>
-                                  <td>{{ carpeta.fecha_carga }}</td>
-                                  
+                                  <td></td>
+                          
+                                
                                 </tr>
+-->
            
                               </tbody>
                               {% endfor %}
@@ -275,7 +279,104 @@
 
 
 
+<script type="text/javascript">
 
+let table = $('#myTable').DataTable({
+
+    // "processing": true,
+    // "serverSide": true,
+    "ajax": {
+        "url": "/api/carpeta/by/{{obj_get.id}}/",
+        "type": "GET",
+        "dataSrc":""
+
+        
+    },
+
+    "columns": [
+        {"defaultContent":' <input class="icheckbox_flat-green"  id="id_firmas_{{ carpeta.id }}" name="carpeta" type="checkbox" value="{{ carpeta.id }}">'},
+        {"data": "nombre"},
+        {"data": "porcent"},
+        {"data": "estado"},
+        {"data": "user_asign"},
+        {"data": "fecha_inicio"},
+        
+
+        {
+            "data": null,
+         
+            "defaultContent": '<button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-primary btn-simple btn-xs"><i class="fa fa-edit"></i></button>' + '<button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-trash"></i></button>'
+           
+        }
+    ]
+});
+
+
+
+
+let id = 0;
+
+$('#myTable tbody').on('click', 'button', function () {
+    let data = table.row($(this).parents('tr')).data();
+    let class_name = $(this).attr('class');
+    if (class_name == 'btn btn-info') {
+        // EDIT button
+        $('#responsable').val(data['responsable']);
+        $('#fecha_inicio').val(data['fecha_inicio']);
+        $('#fecha_termino').val(data['fecha_termino']);
+        $('#type').val('edit');
+        $('#modal_title').text('EDIT');
+        $("#myModal0").modal();
+    } else {
+        // DELETE button
+        $('#modal_title').text('DELETE');
+        $("#confirm").modal();
+    }
+
+    id = data['id'];
+
+});
+
+$('form').on('submit', function (e) {
+    e.preventDefault();
+    let $this = $(this);
+    let type = $('#type').val();
+    let method = '';
+    let url = '/api/carpeta/';
+    if (type == 'new') {
+        // new
+        method = 'POST';
+    } else {
+        // edit
+        url = url + id + '/';
+        method = 'PUT';
+    }
+
+    $.ajax({
+        url: url,
+        method: method,
+        data: $this.serialize()
+    }).success(function (data, textStatus, jqXHR) {
+        location.reload();
+    }).error(function (jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR)
+    });
+});
+
+$('#confirm').on('click', '#delete', function (e) {
+    $.ajax({
+        url: '/api/carpeta/' + id + '/',
+        method: 'DELETE'
+    }).success(function (data, textStatus, jqXHR) {
+        location.reload();
+    }).error(function (jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR)
+    });
+});
+
+
+
+</script>
 
 
 <script type="text/javascript">

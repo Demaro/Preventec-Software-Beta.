@@ -229,11 +229,21 @@ def index(request):
 
 
 
-
+from rest_framework import generics
 
 class CarpetaViewSet(viewsets.ModelViewSet):
     queryset = Carpeta.objects.all()
     serializer_class = CarpetaSerializer 
+
+
+class CarpetaList(generics.ListAPIView):
+    serializer_class = CarpetaSerializer 
+
+
+    def get_queryset(self):
+    	submodulo = self.kwargs['submodulo']
+
+    	return Carpeta.objects.filter(submodulo=submodulo)
 
 
 

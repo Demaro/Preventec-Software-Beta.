@@ -91,11 +91,14 @@ class Meta:
 
 
 class Carpeta(models.Model):
+	user_asign		= models.ForeignKey(Profile, related_name="responsable", null=True, blank=True)
 	default			= models.BooleanField(default=True)
 	nombre     		= models.CharField(max_length=100)
 	porcent			= models.IntegerField(default=0)
 	estado        	= models.CharField(max_length=20)
 	subcarpeta		= models.ManyToManyField('SubCarpeta', related_name="subcarpeta",  blank=True)
+	fecha_inicio	= models.DateField(null=True, blank=True)
+	fecha_termino	= models.DateField(null=True, blank=True)
 	cumplimiento	= models.ForeignKey('Ejecucion', related_name="run", null=True, blank=True)
 	submodulo 		= models.ForeignKey('Submodulo', related_name="sub2" ,null=True, blank=True)
 	#archivo

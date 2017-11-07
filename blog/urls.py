@@ -29,7 +29,7 @@ from django_js_reverse.views import urls_js
 from profiles import urls
 
 from profiles.views import home
-from modulos.views import SubModuloViewSet, CarpetaViewSet
+from modulos.views import SubModuloViewSet, CarpetaList, CarpetaViewSet
 
 
 
@@ -39,10 +39,13 @@ router.register(r'carpeta', CarpetaViewSet)
 
 
 
+
+
 urlpatterns = [
 	
 	url(r'^admin/', admin.site.urls),
 	url(r'^api/', include(router.urls)),
+	url(r'^api/carpeta/by/(?P<submodulo>\d+)/$', CarpetaList.as_view()),
 
 	url(r'^login', login_view, name='login'),
 	url(r'^logout/', logout_view, name='logout'),
