@@ -3,7 +3,7 @@ Sistema supervisor de obras para los prevencionistas. Todas las funciones de pre
 
 **Acceso:** 
 *en pagina principal*
-*"Ingresar"*
+*menu y categoria: "Ingresar"*
 
 user: mux
 
