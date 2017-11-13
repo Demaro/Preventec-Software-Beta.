@@ -115,11 +115,7 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
 		'NAME':  'd6q60mlq0hha72',
 		'USER': 'rujkpxneaccakb',
-<<<<<<< HEAD
 		'PASS:' '******************************************',
-=======
-		
->>>>>>> 38bfb15f33b01e71522454a81bb21cfd5c4365d1
 		'HOST': 'ec2-107-22-211-182.compute-1.amazonaws.com',
 		'PORT':      '5432',
 	}
