@@ -6,6 +6,7 @@ Sistema supervisor de obras para los prevencionistas. Todas las funciones de pre
 *"Ingresar"*
 
 user: mux
+
 pass: adminmux123
 
 **usuario activo**
