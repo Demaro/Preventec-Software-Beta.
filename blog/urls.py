@@ -23,19 +23,25 @@ from rest_framework.routers import DefaultRouter
 
 from django.contrib.auth.views import login_required
 
-from accounts.views import (login_view, register_view, logout_view, view_users) 
+from accounts.views import (login_view, register_view, logout_view, view_users, UserViewSet) 
 from django_js_reverse.views import urls_js 
 
 from profiles import urls
 
-from profiles.views import home
-from modulos.views import SubModuloViewSet, CarpetaList, CarpetaViewSet
+from profiles.views import home, ProfileViewSet
+from modulos.views import SubModuloViewSet, CarpetaList, CarpetaViewSet, EjecucionViewSet
+from musics.views import MusicViewSet
 
 
 
 router = DefaultRouter()
+router.register(r'user', UserViewSet)
+router.register(r'perfil', ProfileViewSet)
 router.register(r'submodulo', SubModuloViewSet)
 router.register(r'carpeta', CarpetaViewSet)
+router.register(r'ejecucion', EjecucionViewSet)
+router.register(r'music', MusicViewSet)
+
 
 
 
@@ -46,6 +52,7 @@ urlpatterns = [
 	url(r'^admin/', admin.site.urls),
 	url(r'^api/', include(router.urls)),
 	url(r'^api/carpeta/by/(?P<submodulo>\d+)/$', CarpetaList.as_view()),
+
 
 	url(r'^login', login_view, name='login'),
 	url(r'^logout/', logout_view, name='logout'),

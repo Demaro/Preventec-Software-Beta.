@@ -156,7 +156,7 @@
 
 
 
-<div class="modal fade bd-example-modal-sm" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-sm"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 <form id="antoform" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype='multipart/form-data'>
 
                     <div class="modal-dialog modal-sm">
@@ -211,7 +211,7 @@
                     </div>
 </div>
 </form>
-<form id="antoform" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype='multipart/form-data'>
+                    <form role="form">
                   <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
                       <div class="modal-content">
@@ -246,7 +246,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          <button type="button" class="btn btn-primary">Guardar</button>
+                          <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
 
                       </div>
@@ -255,9 +255,93 @@
 
 
               </form>
+
  
 
 </div>
+</div>
+
+
+
+<div id="myModal0" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                  <div class="x_title">
+                    <h2>Editar Elemento</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+
+      
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  
+                    <br />
+                    <form id="form" data-parsley-validate class="form-horizontal form-label-left">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre 
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="nombre" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Responsable 
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="user_asign" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Inicio</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Termino</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ponderacion  
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" id="ponder"  class="form-control col-md-3 col-xs-3">
+                        </div>
+                          <div class="col-md-3 col-sm-3 col-xs-12">
+                          %
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ejecucion 
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          {{ form.cumplimiento }}
+                        </div>
+                      </div>
+                    
+
+                   
+
+
+                        </div>
+                        <div class="modal-footer">
+                          {% csrf_token %}
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                          <button type="submit" class="btn btn-primary">Guardar</button>
+                           </form>
+                        </div>
+
+                      </div>
+
+  </div>
 </div>
 
 
@@ -280,6 +364,24 @@
 
 
 <script type="text/javascript">
+
+
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
 
 let table = $('#myTable').DataTable({
 
@@ -305,7 +407,7 @@ let table = $('#myTable').DataTable({
         {
             "data": null,
          
-            "defaultContent": '<button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-primary btn-simple btn-xs"><i class="fa fa-edit"></i></button>' + '<button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-trash"></i></button>'
+            "defaultContent": '<button type="button" class="btn btn-info">Edit</button>' + '<button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-trash"></i></button>'
            
         }
     ]
@@ -316,14 +418,16 @@ let table = $('#myTable').DataTable({
 
 let id = 0;
 
+
 $('#myTable tbody').on('click', 'button', function () {
     let data = table.row($(this).parents('tr')).data();
     let class_name = $(this).attr('class');
     if (class_name == 'btn btn-info') {
         // EDIT button
-        $('#responsable').val(data['responsable']);
-        $('#fecha_inicio').val(data['fecha_inicio']);
-        $('#fecha_termino').val(data['fecha_termino']);
+        $('#nombre').val(data['nombre']);
+        $('#user_asign').val(data['user_asign']);
+        $('#ponder').val(data['porcent']);
+        $('#id_cumplimiento').val(data['id_cumplimiento']);
         $('#type').val('edit');
         $('#modal_title').text('EDIT');
         $("#myModal0").modal();
@@ -347,10 +451,41 @@ $('form').on('submit', function (e) {
         // new
         method = 'POST';
     } else {
+      csrftoken
         // edit
         url = url + id + '/';
         method = 'PUT';
+
+    };
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+function sameOrigin(url) {
+    // test that a given url is a same-origin URL
+    // url could be relative or scheme relative or absolute
+    var host = document.location.host; // host + port
+    var protocol = document.location.protocol;
+    var sr_origin = '//' + host;
+    var origin = protocol + sr_origin;
+    // Allow absolute or scheme relative URLs to same origin
+    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        // or any other URL that isn't scheme relative or absolute i.e relative.
+        !(/^(\/\/|http:|https:).*/.test(url));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+            // Send the token to same-origin, relative URLs only.
+            // Send the token only if the method warrants CSRF protection
+            // Using the CSRFToken value acquired earlier
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
     }
+});
+
 
     $.ajax({
         url: url,

@@ -1,0 +1,41 @@
+{% for obj in obj_list|dictsort:"id"  %}
+
+                          <tr class="even pointer">
+                            <td class="a-center ">
+
+                            
+                            <div id="checkboxes">
+
+                              <input type="checkbox" id="checkAll" value="{{ obj.nombre }}" class="icheckbox_flat-green" name="carpeta">
+                    
+
+                            </div>
+                              
+                            </td>  
+
+                                  <td><a href='{% url "profile:proceso"  id_modulo=obj_modulo.id id_submodulo=obj_get.id id_carpeta=obj.id %}'>{{ obj.nombre }}</td>
+                                  <td>17%</td>
+                                  
+                                  <td>
+                                  {% if obj.estado == "Cargado" %}<button type="button" class="btn btn-success btn-xs">{{ obj.estado }}</button>{% else %}<button type="button" class="btn btn-danger btn-xs">{{ obj.estado }}</button>{% endif %}</td></a>                               
+                                  
+                                  <td>{{ obj.user_asign}}</td>
+                                
+                                 
+                                  <td>{% if obj.estado == "Cargado" %}<a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf. + 2</a></li>{% else %}Vacio{% endif %}</td>
+                                  <td>{{ obj.fecha_carga }}</td>
+
+                                  <td> {% if not obj.default %}<button type="button" class="btn btn-primary btn-simple btn-xs">
+                                    <i class="fa fa-edit"></i>
+                                    </button></a>{% endif %}
+                                  {% if not obj.default %}<a id="url" name="{{obj.slug}}"  href='#' class='btn-ExitSystem' value='{{ obj.slug }}'><button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                                  <i class="fa fa-trash"></i>
+                                  </button></a>{% endif %}</td>
+
+
+                             
+                                </tr>
+
+{% endfor %}
+
+

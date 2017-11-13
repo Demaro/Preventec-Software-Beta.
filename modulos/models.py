@@ -85,8 +85,7 @@ class Submodulo(models.Model):
 	def __str__(self):
 		return self.nombre
 
-class Meta:
-	db_table = "carpeta"
+
 
 
 
@@ -106,6 +105,36 @@ class Carpeta(models.Model):
 
 	def __str__(self):
 		return self.nombre
+
+
+def query_carpeta_by_args(**kwargs):
+	draw = int(kwargs.get('draw', None)[0])
+	length = int(kwargs.get('length', None)[0])
+	start = int(kwargs.get('start', None)[0])
+	search_value = kwargs.get('search[value]', None)[0]
+	order_column = kwargs.get('order[0][column]', None)[0]
+	order = kwargs.get('order[0][dir]', None)[0]
+
+	order_column = ORDER_COLUMN_CHOICES[order_column]
+	# django orm '-' -> desc
+	if order == 'desc':
+		order_column = '-' + order_column
+
+	if search_value:
+		queryset = Carpeta.objects.filter(Q(id__icontains=search_value) |
+										Q(nombre__icontains=search_value) |
+										Q(porcent__icontains=search_value) |
+										Q(user_asign__icontains=search_value) |
+										Q(estado__icontains=search_value))
+	else:
+		queryset = Carpeta.objects
+	count = queryset.count()
+	queryset = queryset.order_by(order_column)[start:start + length]
+	return {
+		'items': queryset,
+		'count': count,
+		'draw': draw
+	}
 
 
 

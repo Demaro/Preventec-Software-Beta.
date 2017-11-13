@@ -20,6 +20,14 @@ from profiles.forms import ProfileForm
 
 from profiles.models import Profile, Perfil_Obrero
 
+from .serializers import UserSerializer
+from rest_framework import viewsets, status
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer 
+
+
 def login_view(request):
     form = UserLoginForm(request.POST or None)
     if not request.user.is_authenticated():

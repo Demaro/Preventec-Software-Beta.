@@ -21,7 +21,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 
-from .models import Modulo, Submodulo, Carpeta, SubCarpeta, Template, Documento
+from .models import Modulo, Submodulo, Carpeta, SubCarpeta, Template, Documento, Ejecucion
 from profiles.models import Profile, Perfil_Obrero
 
 from activitys.forms import ActivityForm
@@ -38,12 +38,19 @@ from django.db.models import Count
 
 import pytz
 
-from modulos.serializers import SubModuloSerializer, CarpetaSerializer
+from modulos.serializers import SubModuloSerializer, CarpetaSerializer, EjecucionSerializer
 # Create your views here.
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
 from django.template.response import TemplateResponse
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+
+
+
+
+
 
 
 
@@ -139,15 +146,15 @@ def modulo_detail(request, id_modulo):
 
 
 class SubModuloViewSet(viewsets.ModelViewSet):
-    queryset = Submodulo.objects.all()
-    serializer_class = SubModuloSerializer
+	queryset = Submodulo.objects.all()
+	serializer_class = SubModuloSerializer
 
-    def get_queryset(self):
-        queryset = super(SubModuloViewSet, self).get_queryset()
-        carpetas_nombre = self.request.query_params.get('carpeta', None)
-        if carpetas_nombre:
-            queryset = queryset.filter(carpeta__nombre=carpetas_nombre)
-        return queryset
+	def get_queryset(self):
+		queryset = super(SubModuloViewSet, self).get_queryset()
+		carpetas_nombre = self.request.query_params.get('carpeta', None)
+		if carpetas_nombre:
+			queryset = queryset.filter(carpeta__nombre=carpetas_nombre)
+		return queryset
 
 
 def submodulo_detail(request, id_modulo, id_submodulo):
@@ -158,27 +165,16 @@ def submodulo_detail(request, id_modulo, id_submodulo):
 	id_submodulo = id_submodulo	
 	
 	obj_get = Submodulo.objects.get(id=id_submodulo)
+	obj_list = Carpeta.objects.filter(submodulo=id_submodulo)
 
 	obj_modulo = Modulo.objects.get(id=id_modulo)
 
-	obj_carpeta = Carpeta.objects.get(id=1)
-
-	form = SubCarpetaForm(request.POST or None, instance=obj_carpeta)
-
-	if form.is_valid():
-
-		instance = form.save(commit=False)
-		instance.save()	
-		print(obj_get.id)
-		# message success
-		messages.success(request, "Creado con exito!")
-		return HttpResponseRedirect('/submodulo/%s/' % id_submodulo)
 
 
 	context = {	
-		"form": form,
 		"obj_get" : obj_get,
 		"obj_modulo": obj_modulo,
+		"obj_list": obj_list
 
 	}
 	if obj_get.id == 3:
@@ -194,7 +190,39 @@ def submodulo_detail(request, id_modulo, id_submodulo):
 	if obj_get.id == 22:
 		return render(request, "proceso.html", context)
 	else:
-		return render(request, "submodulo.html", context)	
+		return render(request, "carpeta/carpeta.html", context)	
+
+
+def save_all(request,form,ob_get,template_name):
+	data = dict()
+	if request.method == 'POST':
+		if form.is_valid():
+			carp = form.save(commit=False)
+			carp.submodulo = ob_get
+			carp.save()
+			data['form_is_valid'] = True
+			carpeta = Carpeta.objects.all()
+			data['submodulo_list'] = render_to_string('carpeta/carpeta_2.html',{'carpeta':carpeta})
+		else:
+			data['form_is_valid'] = False
+	context = {
+	'form':form
+	}
+	data['html_form'] = render_to_string(template_name,context,request=request)
+	return JsonResponse(data)
+
+
+def carpeta_create(request, id_submodulo):
+
+	obj = Submodulo.objects.get(id=id_submodulo)
+
+	print(obj)
+	if request.method == 'POST':
+		form = CarpetaForm(request.POST)
+	else:
+		form = CarpetaForm()
+	return save_all(request,form, obj,'carpeta/carpeta_create.html', )
+
 
 
 def subcarpeta_edit(request, id_subcarpeta):
@@ -224,26 +252,34 @@ def subcarpeta_edit(request, id_subcarpeta):
 
 
 def index(request):
-    html = TemplateResponse(request, 'index.html')
-    return HttpResponse(html.render())
+	html = TemplateResponse(request, 'indextable.html')
+	return HttpResponse(html.render())
 
 
 
 from rest_framework import generics
+from modulos.models import query_carpeta_by_args
 
 class CarpetaViewSet(viewsets.ModelViewSet):
-    queryset = Carpeta.objects.all()
-    serializer_class = CarpetaSerializer 
+	queryset = Carpeta.objects.all()
+	serializer_class = CarpetaSerializer 
+
+
+
+
+class EjecucionViewSet(viewsets.ModelViewSet):
+	queryset = Ejecucion.objects.all()
+	serializer_class = EjecucionSerializer 
 
 
 class CarpetaList(generics.ListAPIView):
-    serializer_class = CarpetaSerializer 
+	serializer_class = CarpetaSerializer 
 
 
-    def get_queryset(self):
-    	submodulo = self.kwargs['submodulo']
+	def get_queryset(self):
+		submodulo = self.kwargs['submodulo']
 
-    	return Carpeta.objects.filter(submodulo=submodulo)
+		return Carpeta.objects.filter(submodulo=submodulo)
 
 
 
@@ -312,7 +348,7 @@ def proceso_detail(request, id_modulo, id_submodulo, id_carpeta):
 
 	obj_sub		= Submodulo.objects.get(id=id_submodulo)
 
-	obj_get	=	SubCarpeta.objects.get(id=id_carpeta)
+	obj_get	=	Carpeta.objects.get(id=id_carpeta)
 
 	obj_template	= Template.objects.all()
 	obj_docu = Documento.objects.exclude(default=True).exclude(etapa=3).order_by('-id')

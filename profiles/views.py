@@ -31,9 +31,14 @@ from accounts.views import (login_view, register_view, logout_view)
 from accounts.forms import  UserRegisterForm, UserNamesForm
 
 from modulos.forms import ModuloForm
+from rest_framework import viewsets, status
+
+from .serializers import PerfilSerializer
 
 
-
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = PerfilSerializer
 
 from django.contrib.auth import (
 	authenticate,

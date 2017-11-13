@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from django.contrib import admin
 
+from musics.views import index
+
 from profiles.views import (
 	profile_list,
 	crear_perfil_staff,
@@ -36,8 +38,9 @@ from modulos.views import (
 	PDFPrueba, 
 	modulo_detail, 
 	carpeta_detail, 
-	submodulo_detail, 
+	submodulo_detail,
 	proceso_detail, 
+	carpeta_create,
 	subcarpeta_detail, 
 	subcarpeta_edit, 
 	documento_select, 
@@ -62,6 +65,8 @@ from django.contrib.auth.views import login_required
 urlpatterns = [
 
 
+
+	url(r'^index_table', index, name='index_table'),
 	url(r'^profiles', profile_list, name='list'),
 	url(r'^organigrama', profiles_contacts, name='org_users'),
 	url(r'^crear_perfil_staff/(?P<id_user>\d+)/$', login_required(crear_perfil_staff), name="perfil_staff"),
@@ -99,6 +104,10 @@ urlpatterns = [
 	url(r'^actividades', login_required(actividades), name='activitys'),
 	url(r'^detalle_actividad', login_required(detail_actividad), name='detail_activity'),
 	url(r'^calendario_actividades', calendar_activity, name='calendar_activity'),
+
+
+	url(r'^carpeta/create/(?P<id_submodulo>\d+)/$', carpeta_create, name='carpeta_create'), 
+
 
 	url(r'^modulos', modules, name='modules'),
 	url(r'^modulo/(?P<id_modulo>\d+)/$', modulo_detail, name='module'),

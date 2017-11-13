@@ -18,6 +18,7 @@ class ModuloForm(forms.ModelForm):
 		]
 
 
+
 class CarpetaForm(forms.ModelForm):
 	class Meta:
 		model = Carpeta
@@ -25,14 +26,24 @@ class CarpetaForm(forms.ModelForm):
 
 		fields = [
 			
-		
+			"user_asign",
+			"nombre",
+			"porcent",
+			"fecha_inicio",
+			"fecha_termino",
+			"cumplimiento",
 
 		]
 		labels = {
 								
 		}
 		widgets = {
-
+			'user_asign':		forms.Select(attrs={'class': 'form-control'}),
+			'nombre':			forms.TextInput(attrs={'class': 'form-control'}),
+			'porcent': 			forms.NumberInput(attrs={'class': 'form-control'}),
+			'fecha_termino':	forms.DateInput(attrs={'class': 'form-control'}),
+			'fecha_termino':	forms.DateInput(attrs={'class': 'form-control'}),
+			'cumplimiento':		forms.Select(attrs={'class': 'form-control'}),
 	
 		}
 
